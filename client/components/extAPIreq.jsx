@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ExtAPIreq extends Component {
+export default class ExtAPIreq extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -53,4 +53,4 @@ class ExtAPIreq extends Component {
   }
 }
 
-export default ExtAPIreq;
+//export default ExtAPIreq;
