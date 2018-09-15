@@ -10,6 +10,9 @@ const server = express()
 server.use(bodyParser.json())
 server.use(express.static(path.join(__dirname, '../public')))
 
-//server.use('/api/path', require('./path/to/router'))
+//API calls
+server.use('/api/v1', require('./routes/routesToDB'))
+
+server.use('/api/ext', require('./routes/routesToExternalAPI'))
 
 module.exports = server
