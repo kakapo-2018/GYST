@@ -1,18 +1,5 @@
 const request = require('superagent');
 
-// export function fetchUsers() {
-//   return dispatch => {
-//     return request.get('/api/ext/duck').then(res => {
-//       console.log('action:', res.body);
-//       dispatch({
-//         type: 'FETCH_USERS',
-//         payload: res.body,
-//         isLoaded: true
-//       });
-//     });
-//   };
-// }
-
 export function itemsHasErrored(bool) {
   return {
     type: 'ITEMS_HAS_ERRORED',
@@ -26,7 +13,7 @@ export function itemsIsLoading(bool) {
   };
 }
 export function itemsFetchDataSuccess(items) {
-  console.log('action', items);
+  console.log('Action payload:', items);
   return {
     type: 'ITEMS_FETCH_DATA_SUCCESS',
     items
@@ -34,6 +21,8 @@ export function itemsFetchDataSuccess(items) {
 }
 
 export function itemsFetchData(url) {
+  console.log('Fetching data from:', url);
+
   return dispatch => {
     dispatch(itemsIsLoading(true));
     return request
@@ -43,7 +32,7 @@ export function itemsFetchData(url) {
           throw Error(response.statusText);
         }
         dispatch(itemsIsLoading(false));
-        return response.body.meals;
+        return response.body;
       })
       .then(items => dispatch(itemsFetchDataSuccess(items)))
       .catch(() => dispatch(itemsHasErrored(true)));

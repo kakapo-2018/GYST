@@ -6,6 +6,7 @@ export function itemsHasErrored(state = false, action) {
       return state;
   }
 }
+
 export function itemsIsLoading(state = false, action) {
   switch (action.type) {
     case 'ITEMS_IS_LOADING':
@@ -14,7 +15,9 @@ export function itemsIsLoading(state = false, action) {
       return state;
   }
 }
+
 export function items(state = [], action) {
+  console.log('Reducer Action:', action);
   switch (action.type) {
     case 'ITEMS_FETCH_DATA_SUCCESS':
       return action.items;

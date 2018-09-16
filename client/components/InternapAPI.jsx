@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { itemsFetchData } from '../actions/example_action';
 
-class ExtAPIreq extends Component {
+class InternalAPI extends Component {
   componentDidMount() {
-    this.props.fetchData();
+    this.props.fetchData('/api/v1/');
   }
 
   render() {
@@ -14,11 +14,14 @@ class ExtAPIreq extends Component {
     if (this.props.isLoading) {
       return <p>Loading…</p>;
     }
+
     return (
       <ul>
-        {console.log(this.props.items)}
+        {console.log('Props:', this.props.items)}
         {this.props.items.map(item => (
-          <li key={item.id}>{item.strMeal}</li>
+          <li key={item.name} className="list-group-item">
+            Name: {item.name}, Address: {item.address}
+          </li>
         ))}
       </ul>
     );
@@ -35,11 +38,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchData: url => dispatch(itemsFetchData('/api/ext/duck'))
+    fetchData: url => dispatch(itemsFetchData(url))
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ExtAPIreq);
+)(InternalAPI);
