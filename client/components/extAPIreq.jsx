@@ -1,56 +1,45 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { itemsFetchData } from '../actions/example_action';
 
 class ExtAPIreq extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      items: []
-    };
-  }
-
   componentDidMount() {
-    fetch('/api/ext/duck')
-      .then(res => res.json())
-      .then(
-        result => {
-          console.log('result', result);
-          this.setState({
-            isLoaded: true,
-            items: result
-          });
-        },
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
+    this.props.fetchData();
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-      return <div>Loading...</div>;
-    } else {
-      return (
-        <ul>
-          <li>
-            Meals:
-            <ul className="list-group">
-              {items.meals.map(item => (
-                <li className="list-group-item">{item.strMeal}</li>
-              ))}
-            </ul>
-          </li>
-        </ul>
-      );
+    if (this.props.hasErrored) {
+      return <p>Sorry! There was an error loading the items</p>;
     }
+    if (this.props.isLoading) {
+      return <p>Loading…</p>;
+    }
+    return (
+      <ul>
+        {console.log(this.props.items)}
+        {this.props.items.map(item => (
+          <li key={item.id}>{item.strMeal}</li>
+        ))}
+      </ul>
+    );
   }
 }
 
-export default ExtAPIreq;
+const mapStateToProps = state => {
+  return {
+    items: state.items,
+    hasErrored: state.itemsHasErrored,
+    isLoading: state.itemsIsLoading
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchData: url => dispatch(itemsFetchData('/api/ext/duck'))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ExtAPIreq);
