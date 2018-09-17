@@ -1,12 +1,19 @@
 const express = require('express');
-
+const token = require('../auth/token');
+const verifyJwt = require('express-jwt');
 const router = express.Router();
 
 const { userExists, createUser } = require('../db/exampleDbFunctions');
 
-const token = require('../auth/token');
-
 router.post('/register', register, token.issue);
+
+router.get('/username', token.decode, (req, res) => {
+  console.log('ding');
+
+  res.json({
+    username: req.user.username
+  });
+});
 
 function register(req, res, next) {
   userExists(req.body.username)
@@ -20,5 +27,12 @@ function register(req, res, next) {
       res.status(500).send({ message: err.message });
     });
 }
+
+// router.get(
+//   '/user',
+//   verifyJwt({ secret: process.env.JWT_SECRET }),
+//   user,
+//   userError
+// );
 
 module.exports = router;
