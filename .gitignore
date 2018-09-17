@@ -3,3 +3,4 @@ dev.sqlite3
 bundle.js
 bundle.js.map
 *.log
+.env

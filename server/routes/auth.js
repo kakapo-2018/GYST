@@ -4,19 +4,17 @@ const router = express.Router();
 
 const { userExists, createUser } = require('../db/exampleDbFunctions');
 
-router.post('/register', register);
+const token = require('../auth/token');
 
-function register(req, res) {
+router.post('/register', register, token.issue);
+
+function register(req, res, next) {
   userExists(req.body.username)
     .then(exists => {
-      console.log(exists);
       if (exists) {
         return res.status(400).send({ message: 'User exists' });
       }
-
-      createUser(req.body.username, req.body.password).then(() =>
-        res.status(201).end()
-      );
+      createUser(req.body.username, req.body.password).then(() => next());
     })
     .catch(err => {
       res.status(500).send({ message: err.message });
