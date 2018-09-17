@@ -11,11 +11,9 @@ class ExternalAPI extends Component {
     if (this.props.hasErrored) {
       return <p>Sorry! There was an error loading the items</p>;
     }
-    if (this.props.isLoading) {
+    if (this.props.isLoading || !this.props.items.meals) {
       return <p>Loading…</p>;
     }
-
-    if (!this.props.items.meals) return null;
 
     return (
       <ul>

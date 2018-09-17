@@ -1,12 +1,10 @@
 import React from 'react';
-import { render } from 'react-dom';
-import App from './components/App';
-
-import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 
+import App from './components/App';
 import reducers from './reducers';
 
 const store = createStore(

@@ -32,6 +32,7 @@ export function itemsFetchData(url) {
           throw Error(response.statusText);
         }
         dispatch(itemsIsLoading(false));
+
         return response.body;
       })
       .then(items => dispatch(itemsFetchDataSuccess(items)))
