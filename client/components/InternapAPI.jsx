@@ -20,7 +20,7 @@ class InternalAPI extends Component {
         {console.log('Props:', this.props.items)}
         {this.props.items.map(item => (
           <li key={item.username} className="list-group-item">
-            Name: {item.username}, Address: {item.address}
+            Name: {item.username}, Email: {item.email}
           </li>
         ))}
       </ul>

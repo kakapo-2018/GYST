@@ -1,14 +1,17 @@
 const connection = require('./connection');
 const hash = require('../auth/hash');
 
-function getUsers() {
+function getUsers(testDB) {
+  const db = testDB || connection;
   return db('users');
 }
 
-function createUser(username, password, testDB) {
+function createUser(obj, testDB) {
   const db = testDB || connection;
-  const passwordHash = hash.generate(password);
-  return db('users').insert({ username, hash: passwordHash });
+  const username = obj.username;
+  const email = obj.email;
+  const passwordHash = hash.generate(obj.password);
+  return db('users').insert({ username, email, hash: passwordHash });
 }
 
 function userExists(username, testDB) {
@@ -17,7 +20,6 @@ function userExists(username, testDB) {
     .count('id as n')
     .where('username', username)
     .then(count => {
-      console.log(count);
       return count[0].n > 0;
     });
 }
