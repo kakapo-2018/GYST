@@ -1,14 +1,18 @@
-const db = require('./connection');
+const connection = require('./connection');
 const hash = require('../auth/hash');
 
-function exampleDbFunction() {
+function getUsers() {
   return db('users');
 }
 
-function userExists(username, conn) {
-  //const db = conn || connection;
-  console.log(username);
+function createUser(username, password, testDB) {
+  const db = testDB || connection;
+  const passwordHash = hash.generate(password);
+  return db('users').insert({ username, hash: passwordHash });
+}
 
+function userExists(username, testDB) {
+  const db = testDB || connection;
   return db('users')
     .count('id as n')
     .where('username', username)
@@ -18,14 +22,8 @@ function userExists(username, conn) {
     });
 }
 
-function createUser(username, password, conn) {
-  const passwordHash = hash.generate(password);
-  // const db = conn || connection
-  return db('users').insert({ username, hash: passwordHash });
-}
-
-function getUserByName(username, conn) {
-  // const db = conn || connection
+function getUserByName(username, testDB) {
+  const db = testDB || connection;
   return db('users')
     .select()
     .where('username', username)
@@ -33,7 +31,7 @@ function getUserByName(username, conn) {
 }
 
 module.exports = {
-  exampleDbFunction,
+  getUsers,
   userExists,
   createUser,
   getUserByName

@@ -1,6 +1,4 @@
-// server/db/users.js
 const verifyJwt = require('express-jwt');
-
 const jwt = require('jsonwebtoken');
 
 const db = require('../db/exampleDbFunctions');
