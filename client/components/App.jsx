@@ -75,7 +75,16 @@ class App extends Component {
             {this.state.authenticated && <Logout logOut={this.logOut} />}
             <Route exact path="/db" component={InternapAPI} />
             <Route exact path="/ext" component={ExternalAPI} />
-            <Route exact path="/register" component={RegisterForm} />
+
+            {!this.state.authenticated && (
+              <Route
+                exact
+                path="/register"
+                render={() => (
+                  <RegisterForm refreshLoginState={this.refreshLoginState} />
+                )}
+              />
+            )}
 
             {!this.state.authenticated && (
               <Route

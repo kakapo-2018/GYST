@@ -4,13 +4,7 @@ const bodyParser = require('body-parser');
 
 const authRoutes = require('./routes/auth');
 
-// const cors = require('cors')
-
 const server = express();
-
-// server.use(cors('*'))
-
-// server.use(bodyParser.json());
 
 server.use(
   bodyParser.urlencoded({

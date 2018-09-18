@@ -30,7 +30,7 @@ class RegisterForm extends Component {
       email: email.trim(),
       password: password.trim()
     };
-    this.props.registerUser(creds);
+    this.props.registerUser(creds).then(() => this.props.refreshLoginState());
   }
 
   render() {
