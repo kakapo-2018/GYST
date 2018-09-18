@@ -4,6 +4,13 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 
+import {
+  HashRouter as Router,
+  Route,
+  Link,
+  withRouter
+} from 'react-router-dom';
+
 import App from './components/App';
 import reducers from './reducers';
 
@@ -17,7 +24,9 @@ const store = createStore(
 
 render(
   <Provider store={store}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </Provider>,
   document.getElementById('app')
 );

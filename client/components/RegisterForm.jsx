@@ -1,5 +1,7 @@
 const request = require('superagent');
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { registerUser, registerError } from '../actions/register';
 
 class RegisterForm extends Component {
   constructor(props) {
@@ -11,17 +13,6 @@ class RegisterForm extends Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  registerUser(creds) {
-    request
-      .post('/api/v1/auth/register')
-      .type('form')
-      .send(creds)
-      .set('Accept', /application\/json/)
-      .end(function(err, res) {
-        console.log(res);
-      });
   }
 
   handleChange(e) {
@@ -39,7 +30,7 @@ class RegisterForm extends Component {
       email: email.trim(),
       password: password.trim()
     };
-    this.registerUser(creds);
+    this.props.registerUser(creds);
   }
 
   render() {
@@ -84,4 +75,18 @@ class RegisterForm extends Component {
   }
 }
 
-export default RegisterForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    registerUser: creds => {
+      return dispatch(registerUser(creds));
+    },
+    registerError: message => {
+      dispatch(registerError(message));
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(RegisterForm);

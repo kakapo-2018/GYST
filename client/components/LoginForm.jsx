@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-const request = require('superagent');
+import { connect } from 'react-redux';
+
+import { loginUser } from '../actions/login';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -10,17 +12,6 @@ class LoginForm extends Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  loginUser(creds) {
-    request
-      .post('/api/v1/auth/login')
-      .type('form')
-      .send(creds)
-      .set('Accept', /application\/json/)
-      .end(function(err, res) {
-        console.log(res);
-      });
   }
 
   handleChange(e) {
@@ -37,7 +28,7 @@ class LoginForm extends Component {
       username: username.trim(),
       password: password.trim()
     };
-    this.loginUser(creds);
+    this.props.loginUser(creds);
   }
 
   render() {
@@ -72,4 +63,15 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    loginUser: creds => {
+      return dispatch(loginUser(creds));
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(LoginForm);
