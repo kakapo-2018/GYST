@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 
 import InternapAPI from './InternapAPI';
 import ExternalAPI from './ExternalAPI';
@@ -17,6 +17,7 @@ class App extends Component {
       loggedInAs: ''
     };
     this.logOut = this.logOut.bind(this);
+    this.refreshLoginState = this.refreshLoginState.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +28,12 @@ class App extends Component {
 
   logOut() {
     this.setState({ authenticated: false });
+  }
+
+  refreshLoginState() {
+    this.setState({
+      authenticated: isAuthenticated()
+    });
   }
 
   render() {
@@ -40,7 +47,12 @@ class App extends Component {
             </p>
             <p>{this.state.authenticated && getUserTokenInfo().username}</p>
             <Link to="/">
-              <button className="btn btn-primary m-1">Home</button>
+              <button
+                className="btn btn-primary m-1"
+                onClick={() => this.forceUpdate()}
+              >
+                Home
+              </button>
             </Link>
             <Link to="/db">
               <button className="btn btn-primary m-1">Database Query</button>
@@ -64,8 +76,16 @@ class App extends Component {
             <Route exact path="/db" component={InternapAPI} />
             <Route exact path="/ext" component={ExternalAPI} />
             <Route exact path="/register" component={RegisterForm} />
-            <Route exact path="/login" component={LoginForm} />
-            <Route exact path="/logout" component={Logout} />
+
+            {!this.state.authenticated && (
+              <Route
+                exact
+                path="/login"
+                render={() => (
+                  <LoginForm refreshLoginState={this.refreshLoginState} />
+                )}
+              />
+            )}
           </div>
         </div>
       </Router>

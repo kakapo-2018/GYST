@@ -28,7 +28,7 @@ class LoginForm extends Component {
       username: username.trim(),
       password: password.trim()
     };
-    this.props.loginUser(creds);
+    this.props.loginUser(creds).then(() => this.props.refreshLoginState());
   }
 
   render() {
