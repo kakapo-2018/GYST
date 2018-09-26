@@ -20,31 +20,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 //Components
 import PersistentDrawer from './Drawer';
-
-//Vars
-const drawerWidth = 240;
-
-const styles = theme => ({
-  appBar: {
-    position: 'absolute',
-    marginLeft: drawerWidth,
-    [theme.breakpoints.up('md')]: {
-      width: `calc(100% - ${drawerWidth}px)`
-    }
-  },
-  navIconHide: {
-    [theme.breakpoints.up('md')]: {
-      display: 'none'
-    }
-  },
-  toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    width: drawerWidth,
-    [theme.breakpoints.up('md')]: {
-      position: 'relative'
-    }
-  }
-});
+import NavBar from './NavBar';
 
 class App extends Component {
   constructor(props) {
@@ -79,27 +55,11 @@ class App extends Component {
   }
 
   render() {
-    const { classes, theme } = this.props;
-
     return (
       <React.Fragment>
         <CssBaseline />
 
-        <AppBar className={classes.appBar}>
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerToggle}
-              className={classes.navIconHide}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="title" color="inherit" noWrap>
-              Responsive drawer
-            </Typography>
-          </Toolbar>
-        </AppBar>
+        <NavBar handleDrawerToggle={this.handleDrawerToggle} />
 
         <PersistentDrawer
           handleDrawerToggle={this.handleDrawerToggle}
@@ -110,4 +70,4 @@ class App extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(App);
+export default App;
