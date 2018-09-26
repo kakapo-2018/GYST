@@ -46,7 +46,7 @@ class App extends Component {
       <React.Fragment>
         <CssBaseline />
         <PersistentDrawer />
-        <div className="container">
+        {/* <div className="container">
           <div className="jumbotron">
             <Button variant="contained" color="primary" className="mdc-button">
               Primary
@@ -106,7 +106,7 @@ class App extends Component {
               />
             )}
           </div>
-        </div>
+        </div> */}
       </React.Fragment>
     );
   }

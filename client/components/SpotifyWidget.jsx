@@ -1,17 +1,16 @@
-import React, { Component } from "react";
-import SpotifyPlayer from "react-spotify-player";
-import "./App.css";
+import React, { Component } from 'react';
+import SpotifyPlayer from 'react-spotify-player';
 
 class SpotifyWidget extends Component {
   constructor() {
     super();
     this.state = {
       size: {
-        width: "20%",
+        width: '20%',
         height: 300
       },
-      view: "list",
-      theme: "black"
+      view: 'list',
+      theme: 'black'
     };
   }
 
