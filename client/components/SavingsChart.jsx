@@ -1,15 +1,36 @@
-import React from "react";
+import React, { Component } from "react";
 import ChartistGraph from "./Chartist";
 
-class Bar extends React.Component {
+class Bar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      savedMoney: 0,
+      totalGoal: 1500
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    console.log(e.target.value);
+    // this.setState({
+    //   savedMoney: e.target.value
+    // });
+    this.setState({ savedMoney: e.target.value });
+  }
+
   render() {
     var data = {
-      labels: ["Sugar", "Glazed", "Maple", "Chocolate"],
-      series: [10, 10, 20, 60]
+      labels: ["Money Saved"],
+      series: [this.state.savedMoney]
     };
 
     var options = {
-      donut: true
+      donut: true,
+      donutWidth: 60,
+      startAngle: 270,
+      total: this.state.totalGoal,
+      showLabel: true
     };
 
     var type = "Pie";
@@ -24,6 +45,7 @@ class Bar extends React.Component {
           options={options}
           type={type}
         />
+        <input type="number" onChange={this.handleChange} />
       </div>
     );
   }
