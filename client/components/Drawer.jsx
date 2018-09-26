@@ -15,8 +15,9 @@ import Hidden from '@material-ui/core/Hidden';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import SpotifyWidget from "./SpotifyWidget";
-import DateTime from "./DateTime";
+import SpotifyWidget from './SpotifyWidget';
+import DateTime from './DateTime';
+import WorldMap from './WorldMap';
 
 const drawerWidth = 240;
 
@@ -40,17 +41,7 @@ const styles = theme => ({
     top: '0',
     left: '0',
     backgroundSize: 'cover',
-    backgroundPosition: 'center center',
-    '&:after': {
-      position: 'absolute',
-      zIndex: '3',
-      width: '100%',
-      height: '100%',
-      content: '""',
-      display: 'block',
-      background: '#000',
-      opacity: '.8'
-    }
+    backgroundPosition: 'center center'
   },
 
   whiten: {
@@ -64,6 +55,7 @@ const styles = theme => ({
     width: 150,
     height: 150
   },
+
   appBar: {
     position: 'absolute',
     marginLeft: drawerWidth,
@@ -112,11 +104,6 @@ class ResponsiveDrawer extends React.Component {
           className={classNames(classes.avatar, classes.bigAvatar)}
         />
         <Divider className={classes.whiten} />
-
-        <div
-          className={classes.background}
-          style={{ backgroundImage: 'url(' + 'sidebar-4.jpg' + ')' }}
-        />
       </div>
     );
 
@@ -170,7 +157,8 @@ class ResponsiveDrawer extends React.Component {
             {'You think water moves fast? You should see ice.'}
           </Typography>
           <SpotifyWidget />
-            <DateTime />
+          <DateTime />
+          <WorldMap />
         </main>
       </div>
     );
