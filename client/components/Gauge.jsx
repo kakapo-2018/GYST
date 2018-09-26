@@ -5,7 +5,8 @@ import LiquidFillGauge from "react-liquid-gauge";
 
 class Gauge extends Component {
   state = {
-    value: 0
+    value: 100,
+    savingGoal: 2000
   };
   startColor = "#f44336";
   endColor = "#4CAF50";
@@ -13,7 +14,9 @@ class Gauge extends Component {
   render() {
     const radius = 200;
     const interpolate = interpolateRgb(this.startColor, this.endColor);
-    const fillColor = interpolate(this.state.value / 100);
+    const fillColor = interpolate(
+      (this.state.value / this.state.savingGoal) * 100
+    );
     const gradientStops = [
       {
         key: "0%",
@@ -45,7 +48,7 @@ class Gauge extends Component {
           style={{ margin: "0 auto" }}
           width={radius * 2}
           height={radius * 2}
-          value={this.state.value}
+          value={(this.state.value / this.state.savingGoal) * 100}
           percent="%"
           textSize={1}
           textOffsetX={0}
@@ -99,10 +102,22 @@ class Gauge extends Component {
         >
           <input
             type="number"
-            //className="btn btn-default btn-block"
             placeholder="savedAmount"
             onChange={e => {
-              this.setState({ value: e.target.value });
+              this.setState({
+                value: e.target.value,
+                savingGoal: this.state.savingGoal
+              });
+            }}
+          />
+          <input
+            type="number"
+            placeholder="Goal"
+            onChange={e => {
+              this.setState({
+                value: this.state.value,
+                savingGoal: e.target.value
+              });
             }}
           />
         </div>
