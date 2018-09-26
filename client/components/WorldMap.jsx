@@ -13,6 +13,10 @@ const wrapperStyles = {
 }
 
 class WorldMap extends Component {
+    handleClick(i, e) {
+      console.log("clicked", i)
+      
+  }
   render() {
     return (
       <div style={wrapperStyles}>
@@ -35,6 +39,7 @@ class WorldMap extends Component {
                   key={i}
                   geography={geography}
                   projection={projection}
+                  onClick = {(i)=>this.handleClick(i)}
                   style={{
                     default: {
                       fill: "#ECEFF1",
@@ -49,6 +54,12 @@ class WorldMap extends Component {
                       outline: "none",
                     },
                     pressed: {
+                      fill: "#FF5722",
+                      stroke: "#607D8B",
+                      strokeWidth: 0.75,
+                      outline: "none",
+                    },
+                    visited: {
                       fill: "#FF5722",
                       stroke: "#607D8B",
                       strokeWidth: 0.75,
