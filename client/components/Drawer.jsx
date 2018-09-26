@@ -41,7 +41,17 @@ const styles = theme => ({
     top: '0',
     left: '0',
     backgroundSize: 'cover',
-    backgroundPosition: 'center center'
+    backgroundPosition: 'center center',
+    '&:after': {
+      position: 'absolute',
+      zIndex: '3',
+      width: '100%',
+      height: '100%',
+      content: '""',
+      display: 'block',
+      background: '#000',
+      opacity: '.8'
+    }
   },
 
   whiten: {
@@ -102,6 +112,10 @@ class ResponsiveDrawer extends React.Component {
           alt="Remy Sharp"
           src="luke.jpeg"
           className={classNames(classes.avatar, classes.bigAvatar)}
+        />
+        <div
+          className={classes.background}
+          style={{ backgroundImage: 'url(' + 'sidebar-4.jpg' + ')' }}
         />
         <Divider className={classes.whiten} />
       </div>
