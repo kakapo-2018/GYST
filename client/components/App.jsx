@@ -1,29 +1,66 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { isAuthenticated, getUserTokenInfo } from '../utils/auth';
 
+//Keep for now
+import { Route, Link } from 'react-router-dom';
 import InternapAPI from './InternapAPI';
 import ExternalAPI from './ExternalAPI';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import Logout from './Logout';
 
-import { isAuthenticated, getUserTokenInfo } from '../utils/auth';
+//Material-UI
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import Typography from '@material-ui/core/Typography';
+import AppBar from '@material-ui/core/AppBar';
+import { withStyles } from '@material-ui/core/styles';
 
-import Button from '@material-ui/core/Button';
-
+//Components
 import PersistentDrawer from './Drawer';
+
+//Vars
+const drawerWidth = 240;
+
+const styles = theme => ({
+  appBar: {
+    position: 'absolute',
+    marginLeft: drawerWidth,
+    [theme.breakpoints.up('md')]: {
+      width: `calc(100% - ${drawerWidth}px)`
+    }
+  },
+  navIconHide: {
+    [theme.breakpoints.up('md')]: {
+      display: 'none'
+    }
+  },
+  toolbar: theme.mixins.toolbar,
+  drawerPaper: {
+    width: drawerWidth,
+    [theme.breakpoints.up('md')]: {
+      position: 'relative'
+    }
+  }
+});
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       authenticated: false,
-      loggedInAs: ''
+      loggedInAs: '',
+      mobileOpen: false
     };
     this.logOut = this.logOut.bind(this);
     this.refreshLoginState = this.refreshLoginState.bind(this);
   }
+
+  handleDrawerToggle = () => {
+    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+  };
 
   componentDidMount() {
     this.setState({
@@ -42,74 +79,35 @@ class App extends Component {
   }
 
   render() {
+    const { classes, theme } = this.props;
+
     return (
       <React.Fragment>
         <CssBaseline />
-        <PersistentDrawer />
-        {/* <div className="container">
-          <div className="jumbotron">
-            <Button variant="contained" color="primary" className="mdc-button">
-              Primary
-            </Button>
-            <h1>Hello World</h1>
-            <p>
-              {this.state.authenticated ? 'Logged in as: ' : 'Please log in'}
-            </p>
-            <p>{this.state.authenticated && getUserTokenInfo().username}</p>
-            <Link to="/">
-              <Button
-                className="TextButtons-button-1"
-                onClick={() => this.forceUpdate()}
-              >
-                Home
-              </Button>
-            </Link>
-            <Link to="/db">
-              <Button className="btn btn-primary m-1">Database Query</Button>
-            </Link>
-            <Link to="/ext">
-              <Button className="btn btn-primary m-1">
-                External API Query
-              </Button>
-            </Link>
-            {!this.state.authenticated && (
-              <React.Fragment>
-                <Link to="/register">
-                  <Button className="btn btn-primary m-1">Register</Button>
-                </Link>
-                <Link to="/login">
-                  <Button className="btn btn-primary m-1">Login</Button>
-                </Link>
-              </React.Fragment>
-            )}
-            {this.state.authenticated && <Logout logOut={this.logOut} />}
-            <Route exact path="/db" component={InternapAPI} />
-            <Route exact path="/ext" component={ExternalAPI} />
 
-            {!this.state.authenticated && (
-              <Route
-                exact
-                path="/register"
-                render={() => (
-                  <RegisterForm refreshLoginState={this.refreshLoginState} />
-                )}
-              />
-            )}
+        <AppBar className={classes.appBar}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="Open drawer"
+              onClick={this.handleDrawerToggle}
+              className={classes.navIconHide}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="title" color="inherit" noWrap>
+              Responsive drawer
+            </Typography>
+          </Toolbar>
+        </AppBar>
 
-            {!this.state.authenticated && (
-              <Route
-                exact
-                path="/login"
-                render={() => (
-                  <LoginForm refreshLoginState={this.refreshLoginState} />
-                )}
-              />
-            )}
-          </div>
-        </div> */}
+        <PersistentDrawer
+          handleDrawerToggle={this.handleDrawerToggle}
+          drawerState={this.state.mobileOpen}
+        />
       </React.Fragment>
     );
   }
 }
 
-export default App;
+export default withStyles(styles, { withTheme: true })(App);
