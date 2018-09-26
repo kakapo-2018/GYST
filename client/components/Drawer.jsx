@@ -11,9 +11,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Divider from '@material-ui/core/Divider';
 
 //Components
-import SpotifyWidget from './SpotifyWidget';
-import DateTime from './DateTime';
-import WorldMap from './WorldMap';
+import Main from './Main';
 
 const drawerWidth = 240;
 
@@ -127,16 +125,8 @@ class ResponsiveDrawer extends React.Component {
           </Drawer>
         </Hidden>
 
-        {/* App */}
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <Typography noWrap>
-            {'You think water moves fast? You should see ice.'}
-          </Typography>
-          <SpotifyWidget />
-          <DateTime />
-          <WorldMap />
-        </main>
+        {/* Components from main will render here */}
+        <Main />
       </div>
     );
   }
