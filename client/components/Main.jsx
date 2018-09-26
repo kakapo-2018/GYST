@@ -9,10 +9,16 @@ import AppBar from "@material-ui/core/AppBar";
 import { withStyles } from "@material-ui/core/styles";
 
 //Components
+import SpotifyWidget from './SpotifyWidget';
+import DateTime from './DateTime';
+import WorldMap from './WorldMap';
+import Fitness from './Fitness';
+
 import SpotifyWidget from "./SpotifyWidget";
 import DateTime from "./DateTime";
 import WorldMap from "./WorldMap";
 import Gauge from "./Gauge";
+import Fitness from './Fitness';
 
 const drawerWidth = 240;
 
@@ -48,6 +54,7 @@ class Main extends Component {
         <SpotifyWidget />
         <DateTime />
         <WorldMap />
+        <Fitness />
         <Gauge />
       </main>
     );
