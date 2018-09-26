@@ -14,7 +14,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
-// import { mailFolderListItems, otherMailFolderListItems } from './tileData';
+
+import SpotifyWidget from "./SpotifyWidget";
+import DateTime from "./DateTime";
 
 const drawerWidth = 240;
 
@@ -167,6 +169,8 @@ class ResponsiveDrawer extends React.Component {
           <Typography noWrap>
             {'You think water moves fast? You should see ice.'}
           </Typography>
+          <SpotifyWidget />
+            <DateTime />
         </main>
       </div>
     );
