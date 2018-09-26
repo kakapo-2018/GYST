@@ -5,10 +5,10 @@ import LiquidFillGauge from "react-liquid-gauge";
 
 class Gauge extends Component {
   state = {
-    value: 50
+    value: 0
   };
-  startColor = "#6495ed"; // cornflowerblue
-  endColor = "#dc143c"; // crimson
+  startColor = "#f44336";
+  endColor = "#4CAF50";
 
   render() {
     const radius = 200;
@@ -90,9 +90,6 @@ class Gauge extends Component {
             fill: color("#fff").toString(),
             fontFamily: "Arial"
           }}
-          onClick={() => {
-            this.setState({ value: Math.random() * 100 });
-          }}
         />
         <div
           style={{
@@ -100,15 +97,14 @@ class Gauge extends Component {
             width: 120
           }}
         >
-          <button
-            type="button"
-            className="btn btn-default btn-block"
-            onClick={() => {
-              this.setState({ value: Math.random() * 100 });
+          <input
+            type="number"
+            //className="btn btn-default btn-block"
+            placeholder="savedAmount"
+            onChange={e => {
+              this.setState({ value: e.target.value });
             }}
-          >
-            Refresh
-          </button>
+          />
         </div>
       </div>
     );
