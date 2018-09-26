@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 
 class Fitness extends Component {
   constructor(props) {
@@ -34,10 +37,14 @@ class Fitness extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Food Trackr</h1>
-        {this.state.searchInfo}
-      </div>
+      <Card style={{ maxWidth: 275 }}>
+        <CardContent style={{ padding: 0, maxWidth: 275 }}>
+          <div>
+            <h1>Food Trackr</h1>
+            {this.state.searchInfo}
+          </div>
+        </CardContent>
+      </Card>
     );
   }
 }
