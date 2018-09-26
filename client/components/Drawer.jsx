@@ -18,7 +18,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SpotifyWidget from "./SpotifyWidget";
 import DateTime from "./DateTime";
 import WorldMap from "./WorldMap";
-import Bar from "./SavingsChart";
+import Gauge from "./Gauge";
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -173,7 +173,7 @@ class ResponsiveDrawer extends React.Component {
           <SpotifyWidget />
           <DateTime />
           <WorldMap />
-          <Bar />
+          <Gauge />
         </main>
       </div>
     );
