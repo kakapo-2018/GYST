@@ -12,6 +12,7 @@ import { withStyles } from '@material-ui/core/styles';
 import SpotifyWidget from './SpotifyWidget';
 import DateTime from './DateTime';
 import WorldMap from './WorldMap';
+import Fitness from './Fitness';
 
 const drawerWidth = 240;
 
@@ -47,6 +48,7 @@ class Main extends Component {
         <SpotifyWidget />
         <DateTime />
         <WorldMap />
+        <Fitness />
       </main>
     );
   }
