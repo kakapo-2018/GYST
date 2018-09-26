@@ -14,9 +14,7 @@ class Gauge extends Component {
   render() {
     const radius = 200;
     const interpolate = interpolateRgb(this.startColor, this.endColor);
-    const fillColor = interpolate(
-      (this.state.value / this.state.savingGoal) * 100
-    );
+    const fillColor = interpolate(this.state.value / this.state.savingGoal);
     const gradientStops = [
       {
         key: "0%",
@@ -35,7 +33,7 @@ class Gauge extends Component {
       {
         key: "100%",
         stopColor: color(fillColor)
-          .brighter(0.5)
+          .brighter(0.2)
           .toString(),
         stopOpacity: 0.5,
         offset: "100%"
