@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Moment from "react-moment";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -8,9 +7,9 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Clock from "react-live-clock";
-import Icon from "@material-ui/core/Icon";
+import Calendar from "react-calendar";
 
-const styles = {
+const styles = theme => ({
   card: {
     backgroundColor: "#aa2e25",
     maxWidth: 275
@@ -19,17 +18,12 @@ const styles = {
     display: "flex",
     justifyContent: "center"
   },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)"
+  cal: {
+    marginTop: "5%"
   },
   title: {
     marginBottom: 16,
     fontSize: 14
-  },
-  pos: {
-    marginBottom: 12
   },
   time: {
     color: "white",
@@ -42,41 +36,52 @@ const styles = {
     letterSpacing: "2px",
     textAlign: "center"
   }
-};
+});
 
-function SimpleCard(props) {
-  const { classes } = props;
+class DateTime extends React.Component {
+  state = {
+    clickedCal: false
+  };
 
-  return (
-    <Card className={classes.card}>
-      <CardContent className={classes.date}>
-        <Typography variant="headline" component="h2">
-          <Clock
-            className={classes.time}
-            format={"HH:mm"}
-            ticking={true}
-            timezone={"Pacific/Auckland"}
-          />
-        </Typography>
-        <Clock format={"MMMM Do, YYYY"} timezone={"Pacific/Auckland"} />
-      </CardContent>
-      <hr />
-      <CardActions className={classes.action}>
-        <Button size="small">
-          <i id="calIcon" className="far fa-calendar-alt" />
-          Calendar
-        </Button>
-        <Button size="small">
-          <i id="calIcon" className="fas fa-bell" />
-          Alerts
-        </Button>
-      </CardActions>
-    </Card>
-  );
+  handleCalToggle = () => {
+    this.setState(state => ({ clickedCal: !state.clickedCal }));
+  };
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <Card className={classes.card}>
+        <CardContent className={classes.date}>
+          <Typography variant="headline" component="h2">
+            <Clock
+              className={classes.time}
+              format={"HH:mm"}
+              ticking={true}
+              timezone={"Pacific/Auckland"}
+            />
+          </Typography>
+          <Clock format={"MMMM Do, YYYY"} timezone={"Pacific/Auckland"} />
+          {this.state.clickedCal && <Calendar className={classes.cal} />}
+        </CardContent>
+        <hr />
+        <CardActions className={classes.action}>
+          <Button onClick={this.handleCalToggle} size="small">
+            <i id="calIcon" className="far fa-calendar-alt" />
+            Calendar
+          </Button>
+          <Button size="small">
+            <i id="calIcon" className="fas fa-bell" />
+            Alerts
+          </Button>
+        </CardActions>
+      </Card>
+    );
+  }
 }
 
-SimpleCard.propTypes = {
+DateTime.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SimpleCard);
+export default withStyles(styles)(DateTime);
