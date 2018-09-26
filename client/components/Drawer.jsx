@@ -1,32 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
 import Avatar from '@material-ui/core/Avatar';
 
-import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import Hidden from '@material-ui/core/Hidden';
+import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+
 import SpotifyWidget from './SpotifyWidget';
+import DateTime from './DateTime';
 import WorldMap from './WorldMap';
-// import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 
 const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
-  },
-  appFrame: {
+    flexGrow: 1,
     height: '100vh',
     zIndex: 1,
     overflow: 'hidden',
@@ -34,36 +31,21 @@ const styles = theme => ({
     display: 'flex',
     width: '100%'
   },
-  appBar: {
+
+  background: {
     position: 'absolute',
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
+    zIndex: '-1',
+    height: '100%',
+    width: '100%',
+    display: 'block',
+    top: '0',
+    left: '0',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center center'
   },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  'appBarShift-left': {
-    marginLeft: drawerWidth
-  },
-  'appBarShift-right': {
-    marginRight: drawerWidth
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 20
-  },
-  hide: {
-    display: 'none'
-  },
-  drawerPaper: {
-    position: 'relative',
-    width: drawerWidth
+
+  whiten: {
+    backgroundColor: 'white'
   },
 
   avatar: {
@@ -73,163 +55,118 @@ const styles = theme => ({
     width: 150,
     height: 150
   },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar
+
+  appBar: {
+    position: 'absolute',
+    marginLeft: drawerWidth,
+    [theme.breakpoints.up('md')]: {
+      width: `calc(100% - ${drawerWidth}px)`
+    }
+  },
+  navIconHide: {
+    [theme.breakpoints.up('md')]: {
+      display: 'none'
+    }
+  },
+  toolbar: theme.mixins.toolbar,
+  drawerPaper: {
+    width: drawerWidth,
+    [theme.breakpoints.up('md')]: {
+      position: 'relative'
+    }
   },
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3,
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
-  },
-  'content-left': {
-    marginLeft: -drawerWidth
-  },
-  'content-right': {
-    marginRight: -drawerWidth
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  'contentShift-left': {
-    marginLeft: 0
-  },
-  'contentShift-right': {
-    marginRight: 0
+    padding: theme.spacing.unit * 3
   }
 });
 
-class PersistentDrawer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-      anchor: 'left'
-    };
-  }
-
-  handleDrawerOpen = () => {
-    this.setState({ open: true });
+class ResponsiveDrawer extends React.Component {
+  state = {
+    mobileOpen: false
   };
 
-  handleDrawerClose = () => {
-    this.setState({ open: false });
-  };
-
-  handleChangeAnchor = event => {
-    this.setState({
-      anchor: event.target.value
-    });
+  handleDrawerToggle = () => {
+    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
 
   render() {
     const { classes, theme } = this.props;
-    const { anchor, open } = this.state;
 
     const drawer = (
-      <Drawer
-        variant="persistent"
-        anchor={anchor}
-        open={open}
-        classes={{
-          paper: classes.drawerPaper
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={this.handleDrawerClose}>
-            {theme.direction === 'rtl' ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
-          </IconButton>
-        </div>
-
-        <Divider />
-
+      <div>
+        <div className={classes.toolbar} />
+        <Divider className={classes.whiten} />
         <Avatar
           alt="Remy Sharp"
           src="luke.jpeg"
           className={classNames(classes.avatar, classes.bigAvatar)}
         />
-
-        {/* <List>{mailFolderListItems}</List>
-        <Divider />
-        <List>{otherMailFolderListItems}</List> */}
-      </Drawer>
+        <Divider className={classes.whiten} />
+      </div>
     );
-
-    let before = null;
-    let after = null;
-
-    if (anchor === 'left') {
-      before = drawer;
-    } else {
-      after = drawer;
-    }
 
     return (
       <div className={classes.root}>
-        <div className={classes.appFrame}>
-          <AppBar
-            className={classNames(classes.appBar, {
-              [classes.appBarShift]: open,
-              [classes[`appBarShift-${anchor}`]]: open
-            })}
-          >
-            <Toolbar disableGutters={!open}>
-              <IconButton
-                color="inherit"
-                aria-label="Open drawer"
-                onClick={this.handleDrawerOpen}
-                className={classNames(classes.menuButton, open && classes.hide)}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="title" color="inherit" noWrap>
-                Personal Dashboard
-              </Typography>
-            </Toolbar>
-          </AppBar>
-          {before}
-          <main
-            className={classNames(
-              classes.content,
-              classes[`content-${anchor}`],
-              {
-                [classes.contentShift]: open,
-                [classes[`contentShift-${anchor}`]]: open
-              }
-            )}
-          >
-            <div className={classes.drawerHeader} />
-            <Typography>
-              {'You think water moves fast? You should see ice.'}
+        <AppBar className={classes.appBar}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="Open drawer"
+              onClick={this.handleDrawerToggle}
+              className={classes.navIconHide}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="title" color="inherit" noWrap>
+              Responsive drawer
             </Typography>
-            <SpotifyWidget />
-            <WorldMap/>
-            <h1>sup</h1>
-          </main>
-          {after}
-        </div>
+          </Toolbar>
+        </AppBar>
+        <Hidden mdUp>
+          <Drawer
+            variant="temporary"
+            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+            open={this.state.mobileOpen}
+            onClose={this.handleDrawerToggle}
+            classes={{
+              paper: classes.drawerPaper
+            }}
+            ModalProps={{
+              keepMounted: true // Better open performance on mobile.
+            }}
+          >
+            {drawer}
+          </Drawer>
+        </Hidden>
+        <Hidden smDown implementation="css">
+          <Drawer
+            variant="permanent"
+            open
+            classes={{
+              paper: classes.drawerPaper
+            }}
+          >
+            {drawer}
+          </Drawer>
+        </Hidden>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Typography noWrap>
+            {'You think water moves fast? You should see ice.'}
+          </Typography>
+          <SpotifyWidget />
+          <DateTime />
+          <WorldMap />
+        </main>
       </div>
     );
   }
 }
 
-PersistentDrawer.propTypes = {
+ResponsiveDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired
 };
-
-export default withStyles(styles, { withTheme: true })(PersistentDrawer);
+export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
