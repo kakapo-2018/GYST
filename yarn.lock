@@ -1323,6 +1323,10 @@ chardet@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
 
+chartist@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/chartist/-/chartist-0.11.0.tgz#84ba5e05490d096d93dcfa9343ebc31ef6a3bd28"
+
 chokidar@^2.0.2:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.0.4.tgz#356ff4e2b0e8e43e322d18a372460bbcf3accd26"
@@ -4166,6 +4170,12 @@ react-calendar@^2.17.4:
     merge-class-names "^1.1.1"
     prop-types "^15.6.0"
     react-lifecycles-compat "^3.0.4"
+
+react-chartist@^0.13.1:
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/react-chartist/-/react-chartist-0.13.1.tgz#79cee44891dfd7008d555a7a5a623ab09c0b59d1"
+  dependencies:
+    prop-types "^15.5.8"
 
 react-dom@^16.5.0:
   version "16.5.0"

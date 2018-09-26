@@ -39,8 +39,8 @@ function SpotifyWidget(props) {
             width: "100%",
             height: 300
           }}
-          view={classes.view}
-          theme={classes.theme}
+          view={styles.view}
+          theme={styles.theme}
           allow="encrypted-media"
         />
       </CardContent>

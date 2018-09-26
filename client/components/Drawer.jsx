@@ -1,61 +1,61 @@
-import React from 'react';
-import classNames from 'classnames';
+import React from "react";
+import classNames from "classnames";
 
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Avatar from '@material-ui/core/Avatar';
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Drawer from "@material-ui/core/Drawer";
+import Avatar from "@material-ui/core/Avatar";
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Hidden from '@material-ui/core/Hidden';
-import Divider from '@material-ui/core/Divider';
-import MenuIcon from '@material-ui/icons/Menu';
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import List from "@material-ui/core/List";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import Hidden from "@material-ui/core/Hidden";
+import Divider from "@material-ui/core/Divider";
+import MenuIcon from "@material-ui/icons/Menu";
 
-import SpotifyWidget from './SpotifyWidget';
-import DateTime from './DateTime';
-import WorldMap from './WorldMap';
-
+import SpotifyWidget from "./SpotifyWidget";
+import DateTime from "./DateTime";
+import WorldMap from "./WorldMap";
+import Bar from "./SavingsChart";
 const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: '100vh',
+    // height: "100vh",
     zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
-    display: 'flex',
-    width: '100%'
+    overflow: "hidden",
+    position: "relative",
+    display: "flex",
+    width: "100%"
   },
 
   background: {
-    position: 'absolute',
-    zIndex: '-1',
-    height: '100%',
-    width: '100%',
-    display: 'block',
-    top: '0',
-    left: '0',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center center',
-    '&:after': {
-      position: 'absolute',
-      zIndex: '3',
-      width: '100%',
-      height: '100%',
+    position: "absolute",
+    zIndex: "-1",
+    height: "100%",
+    width: "100%",
+    display: "block",
+    top: "0",
+    left: "0",
+    backgroundSize: "cover",
+    backgroundPosition: "center center",
+    "&:after": {
+      position: "absolute",
+      zIndex: "3",
+      width: "100%",
+      height: "100%",
       content: '""',
-      display: 'block',
-      background: '#000',
-      opacity: '.8'
+      display: "block",
+      background: "#000",
+      opacity: ".8"
     }
   },
 
   whiten: {
-    backgroundColor: 'white'
+    backgroundColor: "white"
   },
 
   avatar: {
@@ -67,22 +67,22 @@ const styles = theme => ({
   },
 
   appBar: {
-    position: 'absolute',
+    position: "absolute",
     marginLeft: drawerWidth,
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up("md")]: {
       width: `calc(100% - ${drawerWidth}px)`
     }
   },
   navIconHide: {
-    [theme.breakpoints.up('md')]: {
-      display: 'none'
+    [theme.breakpoints.up("md")]: {
+      display: "none"
     }
   },
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    [theme.breakpoints.up('md')]: {
-      position: 'relative'
+    [theme.breakpoints.up("md")]: {
+      position: "relative"
     }
   },
   content: {
@@ -115,7 +115,7 @@ class ResponsiveDrawer extends React.Component {
         />
         <div
           className={classes.background}
-          style={{ backgroundImage: 'url(' + 'sidebar-4.jpg' + ')' }}
+          style={{ backgroundImage: "url(" + "sidebar-4.jpg" + ")" }}
         />
         <Divider className={classes.whiten} />
       </div>
@@ -141,7 +141,7 @@ class ResponsiveDrawer extends React.Component {
         <Hidden mdUp>
           <Drawer
             variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+            anchor={theme.direction === "rtl" ? "right" : "left"}
             open={this.state.mobileOpen}
             onClose={this.handleDrawerToggle}
             classes={{
@@ -168,11 +168,12 @@ class ResponsiveDrawer extends React.Component {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Typography noWrap>
-            {'You think water moves fast? You should see ice.'}
+            {"You think water moves fast? You should see ice."}
           </Typography>
           <SpotifyWidget />
           <DateTime />
           <WorldMap />
+          <Bar />
         </main>
       </div>
     );
