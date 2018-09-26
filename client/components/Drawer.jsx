@@ -17,6 +17,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import SpotifyWidget from './SpotifyWidget';
+import WorldMap from './WorldMap';
 // import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 
 const drawerWidth = 240;
@@ -216,6 +217,7 @@ class PersistentDrawer extends React.Component {
               {'You think water moves fast? You should see ice.'}
             </Typography>
             <SpotifyWidget />
+            <WorldMap/>
             <h1>sup</h1>
           </main>
           {after}
