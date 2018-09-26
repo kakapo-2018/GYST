@@ -39,9 +39,16 @@ yarn dev
 ## React (Client Side)
   | name | purpose |
   | --- | --- |
-  | App | Title and Navbar |
-  | Header | Names of the team |
- 
+  | Drawer | Navbar and Drawer | 
+  | LoginForm | View for user to enter their login credentials| 
+  | Logout |View for user to logout | 
+  | RegisterForm | View for user to sign up for the App | 
+  | DateTime | View for user to see the date and time | 
+  | SpotifyWidget | View for user to use spotify | 
+  | WorldMap | View for user to see where they have travelled | 
+  
+  
+  
 ## Reducers (Client Side)
 
   | name | purpose |
