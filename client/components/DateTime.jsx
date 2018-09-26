@@ -15,6 +15,10 @@ const styles = {
     backgroundColor: "#aa2e25",
     maxWidth: 275
   },
+  action: {
+    display: "flex",
+    justifyContent: "center"
+  },
   bullet: {
     display: "inline-block",
     margin: "0 2px",
@@ -57,13 +61,13 @@ function SimpleCard(props) {
         <Clock format={"MMMM Do, YYYY"} timezone={"Pacific/Auckland"} />
       </CardContent>
       <hr />
-      <CardActions>
+      <CardActions className={classes.action}>
         <Button size="small">
-          <i id="calIcon" class="far fa-calendar-alt" />
+          <i id="calIcon" className="far fa-calendar-alt" />
           Calendar
         </Button>
         <Button size="small">
-          <i id="calIcon" class="fas fa-bell" />
+          <i id="calIcon" className="fas fa-bell" />
           Alerts
         </Button>
       </CardActions>
