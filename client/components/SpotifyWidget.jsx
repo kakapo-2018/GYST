@@ -1,32 +1,55 @@
-import React, { Component } from 'react';
-import SpotifyPlayer from 'react-spotify-player';
+import React, { Component } from "react";
+import SpotifyPlayer from "react-spotify-player";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 
-class SpotifyWidget extends Component {
-  constructor() {
-    super();
-    this.state = {
-      size: {
-        width: '20%',
-        height: 300
-      },
-      view: 'list',
-      theme: 'black'
-    };
+const styles = {
+  card: {
+    backgroundColor: "black",
+    maxWidth: 275,
+    margin: 0,
+    padding: 0
+  },
+  style: {
+    display: "flex",
+    justifyContent: "center",
+    padding: 0,
+    margin: 0
+  },
+  view: "list",
+  theme: "black",
+  widget: {
+    padding: 0,
+    margin: 0
   }
+};
 
-  render() {
-    return (
-      <div className="App">
+function SpotifyWidget(props) {
+  const { classes } = props;
+
+  return (
+    <Card className={classes.card}>
+      <CardContent style={{ padding: 0 }} className={classes.style}>
         <SpotifyPlayer
+          className={classes.widget}
           uri="spotify:playlist:4dPMKxqQQB7CuOe28Vrcje"
-          size={this.state.size}
-          view={this.state.view}
-          theme={this.state.theme}
+          size={{
+            width: "100%",
+            height: 300
+          }}
+          view={classes.view}
+          theme={classes.theme}
           allow="encrypted-media"
         />
-      </div>
-    );
-  }
+      </CardContent>
+    </Card>
+  );
 }
 
-export default SpotifyWidget;
+SpotifyWidget.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(SpotifyWidget);
