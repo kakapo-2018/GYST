@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 
 import InternapAPI from './InternapAPI';
 import ExternalAPI from './ExternalAPI';
@@ -8,6 +8,11 @@ import RegisterForm from './RegisterForm';
 import Logout from './Logout';
 
 import { isAuthenticated, getUserTokenInfo } from '../utils/auth';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+import Button from '@material-ui/core/Button';
+
+import PersistentDrawer from './Drawer';
 
 class App extends Component {
   constructor(props) {
@@ -38,37 +43,42 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <React.Fragment>
+        <CssBaseline />
+        <PersistentDrawer />
         <div className="container">
           <div className="jumbotron">
+            <Button variant="contained" color="primary" className="mdc-button">
+              Primary
+            </Button>
             <h1>Hello World</h1>
             <p>
               {this.state.authenticated ? 'Logged in as: ' : 'Please log in'}
             </p>
             <p>{this.state.authenticated && getUserTokenInfo().username}</p>
             <Link to="/">
-              <button
-                className="btn btn-primary m-1"
+              <Button
+                className="TextButtons-button-1"
                 onClick={() => this.forceUpdate()}
               >
                 Home
-              </button>
+              </Button>
             </Link>
             <Link to="/db">
-              <button className="btn btn-primary m-1">Database Query</button>
+              <Button className="btn btn-primary m-1">Database Query</Button>
             </Link>
             <Link to="/ext">
-              <button className="btn btn-primary m-1">
+              <Button className="btn btn-primary m-1">
                 External API Query
-              </button>
+              </Button>
             </Link>
             {!this.state.authenticated && (
               <React.Fragment>
                 <Link to="/register">
-                  <button className="btn btn-primary m-1">Register</button>
+                  <Button className="btn btn-primary m-1">Register</Button>
                 </Link>
                 <Link to="/login">
-                  <button className="btn btn-primary m-1">Login</button>
+                  <Button className="btn btn-primary m-1">Login</Button>
                 </Link>
               </React.Fragment>
             )}
@@ -97,7 +107,7 @@ class App extends Component {
             )}
           </div>
         </div>
-      </Router>
+      </React.Fragment>
     );
   }
 }
