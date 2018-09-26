@@ -1,22 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
+import React from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { withStyles } from "@material-ui/core/styles";
+import Avatar from "@material-ui/core/Avatar";
 
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import MenuItem from '@material-ui/core/MenuItem';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import SpotifyWidget from './SpotifyWidget';
+import Drawer from "@material-ui/core/Drawer";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import List from "@material-ui/core/List";
+import MenuItem from "@material-ui/core/MenuItem";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import SpotifyWidget from "./SpotifyWidget";
+import DateTime from "./DateTime";
 // import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 
 const drawerWidth = 240;
@@ -26,31 +27,31 @@ const styles = theme => ({
     flexGrow: 1
   },
   appFrame: {
-    height: '100vh',
+    height: "100vh",
     zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
-    display: 'flex',
-    width: '100%'
+    overflow: "hidden",
+    position: "relative",
+    display: "flex",
+    width: "100%"
   },
   appBar: {
-    position: 'absolute',
-    transition: theme.transitions.create(['margin', 'width'], {
+    position: "absolute",
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     })
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['margin', 'width'], {
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen
     })
   },
-  'appBarShift-left': {
+  "appBarShift-left": {
     marginLeft: drawerWidth
   },
-  'appBarShift-right': {
+  "appBarShift-right": {
     marginRight: drawerWidth
   },
   menuButton: {
@@ -58,10 +59,10 @@ const styles = theme => ({
     marginRight: 20
   },
   hide: {
-    display: 'none'
+    display: "none"
   },
   drawerPaper: {
-    position: 'relative',
+    position: "relative",
     width: drawerWidth
   },
 
@@ -73,37 +74,37 @@ const styles = theme => ({
     height: 150
   },
   drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    padding: "0 8px",
     ...theme.mixins.toolbar
   },
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     })
   },
-  'content-left': {
+  "content-left": {
     marginLeft: -drawerWidth
   },
-  'content-right': {
+  "content-right": {
     marginRight: -drawerWidth
   },
   contentShift: {
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen
     })
   },
-  'contentShift-left': {
+  "contentShift-left": {
     marginLeft: 0
   },
-  'contentShift-right': {
+  "contentShift-right": {
     marginRight: 0
   }
 });
@@ -113,7 +114,7 @@ class PersistentDrawer extends React.Component {
     super(props);
     this.state = {
       open: false,
-      anchor: 'left'
+      anchor: "left"
     };
   }
 
@@ -146,7 +147,7 @@ class PersistentDrawer extends React.Component {
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={this.handleDrawerClose}>
-            {theme.direction === 'rtl' ? (
+            {theme.direction === "rtl" ? (
               <ChevronRightIcon />
             ) : (
               <ChevronLeftIcon />
@@ -171,7 +172,7 @@ class PersistentDrawer extends React.Component {
     let before = null;
     let after = null;
 
-    if (anchor === 'left') {
+    if (anchor === "left") {
       before = drawer;
     } else {
       after = drawer;
@@ -213,9 +214,10 @@ class PersistentDrawer extends React.Component {
           >
             <div className={classes.drawerHeader} />
             <Typography>
-              {'You think water moves fast? You should see ice.'}
+              {"You think water moves fast? You should see ice."}
             </Typography>
             <SpotifyWidget />
+            <DateTime />
             <h1>sup</h1>
           </main>
           {after}
