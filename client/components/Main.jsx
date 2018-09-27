@@ -14,6 +14,9 @@ import DateTime from "./DateTime";
 import WorldMap from "./WorldMap";
 import Gauge from "./Gauge";
 import Fitness from "./Fitness";
+import TodoMain from "./TodoMain";
+import RSS from "./RssFeed";
+import Weather from "./Weather";
 import MapContainer from "./MapContainer";
 
 const drawerWidth = 240;
@@ -36,7 +39,9 @@ const styles = theme => ({
 class Main extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      todos: [{ id: "1", task: "lol", checked: false }]
+    };
   }
   render() {
     const { classes, theme } = this.props;
@@ -52,6 +57,10 @@ class Main extends Component {
         <DateTime />
         <Gauge />
         <Fitness />
+        <Weather />
+        <TodoMain />
+
+        <RSS />
         <WorldMap />
       </main>
     );
