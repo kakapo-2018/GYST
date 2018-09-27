@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { loginUser } from '../actions/login';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -73,7 +75,7 @@ class SignIn extends React.Component {
       username: username.trim(),
       password: password.trim()
     };
-    this.props.loginUser(creds).then(() => this.props.refreshLoginState());
+    this.props.loginUser(creds);
   }
 
   render() {
@@ -133,4 +135,23 @@ SignIn.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SignIn);
+function mapStateToProps(state) {
+  return {
+    state: state.auth
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loginUser: creds => {
+      return dispatch(loginUser(creds));
+    }
+  };
+};
+
+export default withStyles(styles)(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SignIn)
+);
