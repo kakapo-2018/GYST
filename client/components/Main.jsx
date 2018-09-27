@@ -13,7 +13,7 @@ import SpotifyWidget from "./SpotifyWidget";
 import DateTime from "./DateTime";
 import WorldMap from "./WorldMap";
 import Gauge from "./Gauge";
-import TodoList from "./TodoList";
+import TodoMain from "./TodoMain";
 
 const drawerWidth = 240;
 
@@ -52,7 +52,7 @@ class Main extends Component {
         <DateTime />
         <WorldMap />
         <Gauge />
-        <TodoList todos={this.state.todos} />
+        <TodoMain />
       </main>
     );
   }

@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Checkbox from "@material-ui/core/Checkbox";
-// import { DeleteIcon } from "@material-ui/core/SvgIcon";
 import IconButton from "@material-ui/core/IconButton";
 import Divider from "@material-ui/core/Divider";
-import { ListItem } from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
 
 const listElementStyles = {
   color: "blue",
@@ -45,9 +44,25 @@ class Todo extends Component {
     //   ? listElementStyles
     //   : listElementCheckedStyles;
     return (
-      <div>
-        <li>{todo}</li>
-      </div>
+      <ListItem
+        style={{ width: "90%" }}
+        righticonbutton={
+          <div>
+            <IconButton
+              tooltip="remove"
+              tooltipPosition="bottom-right"
+              onClick={this.onClick}
+              iconStyle={{ color: "red" }}
+            />
+            <Checkbox onCheck={this.onCheck} style={{ marginTop: 12 }} />
+          </div>
+        }
+      >
+        <div>
+          <li>{todo}</li>
+        </div>
+        <Divider />
+      </ListItem>
     );
   }
 }
