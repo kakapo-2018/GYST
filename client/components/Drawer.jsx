@@ -13,6 +13,7 @@ import Divider from '@material-ui/core/Divider';
 import Main from './Main';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
+import SignIn from './SignIn';
 
 const drawerWidth = 240;
 
@@ -109,12 +110,6 @@ class ResponsiveDrawer extends React.Component {
       <div>
         <div className={classes.toolbar} />
         <Divider className={classes.whiten} />
-        {!this.state.showRegisterForm && (
-          <LoginForm toggleRegister={this.toggleRegister} />
-        )}
-        {this.state.showRegisterForm && (
-          <RegisterForm toggleLogin={this.toggleLogin} />
-        )}
         <Avatar
           alt="Profile Picture"
           src="luke.jpeg"
@@ -158,7 +153,14 @@ class ResponsiveDrawer extends React.Component {
         </Hidden>
 
         {/* Components from main will render here */}
-        <Main />
+        {/* <Main /> */}
+        {/* {!this.state.showRegisterForm && (
+          <LoginForm toggleRegister={this.toggleRegister} />
+        )}
+        {this.state.showRegisterForm && (
+          <RegisterForm toggleLogin={this.toggleLogin} />
+        )} */}
+        <SignIn />
       </div>
     );
   }
