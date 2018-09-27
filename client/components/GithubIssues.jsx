@@ -23,8 +23,6 @@ class GithubIssues extends Component {
         })
         request.get('repos/kakapo-2018/Personal-Dashboard')
             .then(res => {
-                console.log(res);
-                
                 this.setState({
                     userDatas: res.data
                 });
