@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { loginUser } from '../actions/login';
+import { registerUser } from '../actions/register';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -46,7 +46,7 @@ const styles = theme => ({
   }
 });
 
-class SignIn extends React.Component {
+class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -73,7 +73,7 @@ class SignIn extends React.Component {
       username: username.trim(),
       password: password.trim()
     };
-    this.props.loginUser(creds);
+    this.props.registerUser(creds);
   }
 
   render() {
@@ -128,7 +128,7 @@ class SignIn extends React.Component {
               variant="raised"
               color="primary"
               onClick={this.props.toggleLogin}
-              // className={this.state.classes.submit}
+              className={this.state.classes.submit}
             >
               Back
             </Button>
@@ -138,27 +138,24 @@ class SignIn extends React.Component {
     );
   }
 }
-SignIn.propTypes = {
+Register.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state) {
-  return {
-    state: state.auth
-  };
-}
-
 const mapDispatchToProps = dispatch => {
   return {
-    loginUser: creds => {
-      return dispatch(loginUser(creds));
+    registerUser: creds => {
+      return dispatch(registerUser(creds));
+    },
+    registerError: message => {
+      dispatch(registerError(message));
     }
   };
 };
 
 export default withStyles(styles)(
   connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
-  )(SignIn)
+  )(Register)
 );
