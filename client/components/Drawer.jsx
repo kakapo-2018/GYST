@@ -155,12 +155,6 @@ class ResponsiveDrawer extends React.Component {
         {console.log(this.props.state)}
         {/* Components from main will render here */}
         {this.props.state.isAuthenticated && <Main />}
-        {/* {!this.state.showRegisterForm && (
-          <LoginForm toggleRegister={this.toggleRegister} />
-        )}
-        {this.state.showRegisterForm && (
-          <RegisterForm toggleLogin={this.toggleLogin} />
-        )} */}
         {this.state.showLogin &&
           !this.props.state.isAuthenticated && (
             <SignIn toggleRegister={this.toggleRegister} />

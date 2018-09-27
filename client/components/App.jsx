@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { isAuthenticated, getUserTokenInfo } from '../utils/auth';
-
+import { connect } from 'react-redux';
 //Keep for now
 import { Route, Link } from 'react-router-dom';
 import InternapAPI from './InternapAPI';
@@ -53,7 +53,18 @@ class App extends Component {
       <React.Fragment>
         <CssBaseline />
 
-        <NavBar handleDrawerToggle={this.handleDrawerToggle} />
+        {this.props.state.isAuthenticated && (
+          <NavBar
+            user={this.props.state.user.username}
+            handleDrawerToggle={this.handleDrawerToggle}
+          />
+        )}
+        {!this.props.state.isAuthenticated && (
+          <NavBar
+            user="Please Register or Login"
+            handleDrawerToggle={this.handleDrawerToggle}
+          />
+        )}
 
         <PersistentDrawer
           handleDrawerToggle={this.handleDrawerToggle}
@@ -64,4 +75,10 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    state: state.auth
+  };
+}
+
+export default connect(mapStateToProps)(App);
