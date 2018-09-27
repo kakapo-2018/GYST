@@ -1,3 +1,13 @@
 body {
   /* color: red; */
 }
+
+#calIcon {
+  margin-right: 5.5%;
+}
+
+#pie2 {
+  background-color: lightpink;
+  border-radius: 10px;
+  padding-top: 10px;
+}
