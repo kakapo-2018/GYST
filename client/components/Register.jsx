@@ -12,7 +12,10 @@ import PersonAdd from '@material-ui/icons/PersonAdd';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-
+import InputAdornment from '@material-ui/core/InputAdornment';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import VpnKey from '@material-ui/icons/VpnKey';
+import Email from '@material-ui/icons/Email';
 const styles = theme => ({
   layout: {
     width: 'auto',
@@ -100,6 +103,11 @@ class Register extends React.Component {
                   name="username"
                   autoComplete="username"
                   autoFocus
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <AccountCircle />
+                    </InputAdornment>
+                  }
                 />
               </FormControl>
               <FormControl margin="normal" required fullWidth>
@@ -109,6 +117,11 @@ class Register extends React.Component {
                   id="email"
                   name="email"
                   autoComplete="email"
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <Email />
+                    </InputAdornment>
+                  }
                 />
               </FormControl>
               <FormControl margin="normal" required fullWidth>
@@ -119,6 +132,11 @@ class Register extends React.Component {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <VpnKey />
+                    </InputAdornment>
+                  }
                 />
               </FormControl>
               <Button
