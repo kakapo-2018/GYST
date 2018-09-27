@@ -32,11 +32,7 @@ class TodoList extends Component {
         />
       );
     });
-    return (
-      <List style={{ marginLeft: "5%" }}>
-        <ul>{todoNode}</ul>
-      </List>
-    );
+    return <List style={{ marginLeft: "5%" }}>{todoNode}</List>;
   }
 }
 

@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import DeleteIcon from "@material-ui/icons/Delete";
+import CommentIcon from "@material-ui/icons/Comment";
 
 const listElementStyles = {
   color: "blue",
@@ -40,35 +42,52 @@ class Todo extends Component {
   render() {
     const { todo } = this.props;
     console.log(todo);
+    const listStyles = !this.props.checked
+      ? listElementStyles
+      : listElementCheckedStyles;
 
     // const listStyles = !this.props.checked
     //   ? listElementStyles
     //   : listElementCheckedStyles;
     return (
-      <div>
-        <div>
-          <IconButton
-            tooltip="remove"
-            tooltipposition="bottom-right"
-            onClick={this.onClick}
-            iconstyle={{ color: "red" }}
-          >
-            <Checkbox onChange={this.onCheck} style={{ marginTop: 12 }} />
+      //   <div style={{ display: "flex" }}>
+      //     <div>
+      //       <Checkbox onChange={this.onCheck} style={{ marginTop: 12 }} />
+      //     </div>
+      //     <IconButton
+      //       tooltip="remove"
+      //       tooltipposition="bottom-right"
+      //       onClick={this.onClick}
+      //       iconstyle={{ color: "red" }}
+      //     >
+      //       <DeleteIcon />
+      //     </IconButton>
+      //     <div style={{ display: "flex" }}>
+      //       <li>{todo}</li>
+      //     </div>
+      //     <Divider />
+      //   </div>
+      <ListItem
+        // key={value}
+        // role={undefined}
+        dense
+        button
+        onClick={this.onCheck}
+        // className={classes.listItem}
+      >
+        <Checkbox
+          //   checked={this.state.checked.indexOf(value) !== -1}
+          //   tabIndex={-1}
+          //   disableRipple
+          onClick={this.onCheck}
+        />
+        <ListItemText primary={todo} />
+        <ListItemSecondaryAction>
+          <IconButton aria-label="Comments">
+            <CommentIcon />
           </IconButton>
-        </div>
-        <IconButton
-          tooltip="remove"
-          tooltipposition="bottom-right"
-          onClick={this.onClick}
-          iconstyle={{ color: "red" }}
-        >
-          <DeleteIcon />
-        </IconButton>
-        <div>
-          <li>{todo}</li>
-        </div>
-        <Divider />
-      </div>
+        </ListItemSecondaryAction>
+      </ListItem>
     );
   }
 }
