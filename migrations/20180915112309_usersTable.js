@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     table.string('username');
     table.string('email');
     table.string('hash');
+    table.integer('savingGoal');
   });
 };
 

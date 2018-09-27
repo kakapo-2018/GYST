@@ -1,17 +1,37 @@
 import { color } from 'd3-color';
+import { connect } from 'react-redux';
 import { interpolateRgb } from 'd3-interpolate';
-import React, { Component } from 'react';
+import { saveItemAction } from '../actions/savings';
+import React from 'react';
 import LiquidFillGauge from 'react-liquid-gauge';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-class Gauge extends Component {
-  state = {
-    value: 100,
-    savingGoal: 2000
-  };
+class Gauge extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 100,
+      savingGoal: 2000
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({
+      ...this.state,
+      [e.target.name]: e.target.value
+    });
+    console.log(this.props);
+    this.props.saveIt(
+      this.state.value,
+      this.state.savingGoal,
+      this.props.state.user.id
+    );
+  }
+
   startColor = '#f44336';
   endColor = '#4CAF50';
 
@@ -100,39 +120,41 @@ class Gauge extends Component {
           />
         </CardContent>
         <CardActions style={{ margin: '2%', display: 'flex' }}>
-          {/* <div
-            style={{
-              margin: "20px auto",
-              width: 120
-            }}
-          > */}
           <input
             style={{ maxWidth: '45%' }}
             type="number"
+            name="value"
             placeholder="Amount Saved"
-            onChange={e => {
-              this.setState({
-                value: e.target.value,
-                savingGoal: this.state.savingGoal
-              });
-            }}
+            onChange={this.handleChange}
           />
           <input
             style={{ maxWidth: '45%' }}
             type="number"
+            name="savingGoal"
             placeholder="Goal"
-            onChange={e => {
-              this.setState({
-                value: this.state.value,
-                savingGoal: e.target.value
-              });
-            }}
+            onChange={this.handleChange}
           />
-          {/* </div> */}
         </CardActions>
       </Card>
     );
   }
 }
 
-export default Gauge;
+function mapStateToProps(state) {
+  return {
+    state: state.auth
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    saveIt: (saved, goal, id) => {
+      dispatch(saveItemAction(saved, goal, id));
+    }
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Gauge);

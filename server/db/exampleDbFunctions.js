@@ -32,9 +32,17 @@ function getUserByName(username, testDB) {
     .first();
 }
 
+function saveSavings(saved, goal, id, testDB) {
+  const db = testDB || connection;
+  return db('users')
+    .where({ id: id })
+    .update({ savingGoal: goal });
+}
+
 module.exports = {
   getUsers,
   userExists,
   createUser,
-  getUserByName
+  getUserByName,
+  saveSavings
 };
