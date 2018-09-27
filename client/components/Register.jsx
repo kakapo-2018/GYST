@@ -109,7 +109,6 @@ class Register extends React.Component {
                   id="email"
                   name="email"
                   autoComplete="email"
-                  autoFocus
                 />
               </FormControl>
               <FormControl margin="normal" required fullWidth>

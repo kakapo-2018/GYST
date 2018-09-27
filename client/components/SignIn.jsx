@@ -12,7 +12,9 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-
+import InputAdornment from '@material-ui/core/InputAdornment';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import VpnKey from '@material-ui/icons/VpnKey';
 const styles = theme => ({
   layout: {
     width: 'auto',
@@ -38,7 +40,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.secondary.main
   },
   form: {
-    width: '100%', // Fix IE11 issue.
+    width: '100%',
     marginTop: theme.spacing.unit
   },
   submit: {
@@ -98,6 +100,11 @@ class SignIn extends React.Component {
                   name="username"
                   autoComplete="username"
                   autoFocus
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <AccountCircle />
+                    </InputAdornment>
+                  }
                 />
               </FormControl>
               <FormControl margin="normal" required fullWidth>
@@ -108,6 +115,11 @@ class SignIn extends React.Component {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <VpnKey />
+                    </InputAdornment>
+                  }
                 />
               </FormControl>
               <Button
