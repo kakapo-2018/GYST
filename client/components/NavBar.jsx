@@ -51,8 +51,13 @@ class Navbar extends Component {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="title" color="inherit" noWrap>
-            Responsive drawer
+          <Typography
+            style={{ textTransform: 'capitalize' }}
+            variant="title"
+            color="inherit"
+            noWrap
+          >
+            {this.props.user}
           </Typography>
         </Toolbar>
       </AppBar>
