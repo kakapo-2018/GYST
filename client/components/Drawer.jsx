@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-
+import { connect } from 'react-redux';
 //elements
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -11,7 +11,7 @@ import Divider from '@material-ui/core/Divider';
 
 //Components
 import Main from './Main';
-import LoginForm from './LoginForm';
+import Logout from './Logout';
 import Register from './Register';
 import SignIn from './SignIn';
 
@@ -115,6 +115,7 @@ class ResponsiveDrawer extends React.Component {
           src="luke.jpeg"
           className={classNames(classes.avatar, classes.bigAvatar)}
         />
+        {this.props.state.isAuthenticated && <Logout />}
         <div
           className={classes.background}
           style={{ backgroundImage: 'url(' + 'sidebar-4.jpg' + ')' }}
@@ -151,18 +152,19 @@ class ResponsiveDrawer extends React.Component {
             {drawer}
           </Drawer>
         </Hidden>
-
+        {console.log(this.props.state)}
         {/* Components from main will render here */}
-        {/* <Main /> */}
+        {this.props.state.isAuthenticated && <Main />}
         {/* {!this.state.showRegisterForm && (
           <LoginForm toggleRegister={this.toggleRegister} />
         )}
         {this.state.showRegisterForm && (
           <RegisterForm toggleLogin={this.toggleLogin} />
         )} */}
-        {this.state.showLogin && (
-          <SignIn toggleRegister={this.toggleRegister} />
-        )}
+        {this.state.showLogin &&
+          !this.props.state.isAuthenticated && (
+            <SignIn toggleRegister={this.toggleRegister} />
+          )}
         {this.state.showRegisterForm && (
           <Register toggleLogin={this.toggleLogin} />
         )}
@@ -171,8 +173,17 @@ class ResponsiveDrawer extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    state: state.auth
+  };
+}
+
 ResponsiveDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired
 };
-export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
+
+export default withStyles(styles, { withTheme: true })(
+  connect(mapStateToProps)(ResponsiveDrawer)
+);
