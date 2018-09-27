@@ -1,21 +1,20 @@
-import React, { Component } from "react"
+import React, { Component } from 'react';
 import {
   ComposableMap,
   ZoomableGroup,
   Geographies,
-  Geography,
-} from "react-simple-maps"
+  Geography
+} from 'react-simple-maps';
 
 const wrapperStyles = {
-  width: "100%",
+  width: '100%',
   maxWidth: 980,
-  margin: "0 auto",
-}
+  margin: '0 auto'
+};
 
 class WorldMap extends Component {
-    handleClick(i, e) {
-      console.log("clicked", i)
-      
+  handleClick(i, e) {
+    console.log('clicked', i);
   }
   render() {
     return (
@@ -23,56 +22,61 @@ class WorldMap extends Component {
         <ComposableMap
           projectionConfig={{
             scale: 205,
-            rotation: [-11,0,0],
+            rotation: [-11, 0, 0]
           }}
           width={980}
           height={551}
           style={{
-            width: "100%",
-            height: "auto",
+            width: '100%',
+            height: 'auto'
           }}
-          >
-          <ZoomableGroup center={[0,20]} disablePanning>
+        >
+          <ZoomableGroup center={[0, 20]} disablePanning>
             <Geographies geography="./world.json">
-              {(geographies, projection) => geographies.map((geography, i) => geography.id !== "ATA" && (
-                <Geography
-                  key={i}
-                  geography={geography}
-                  projection={projection}
-                  onClick = {(i)=>this.handleClick(i)}
-                  style={{
-                    default: {
-                      fill: "#ECEFF1",
-                      stroke: "#607D8B",
-                      strokeWidth: 0.75,
-                      outline: "none",
-                    },
-                    hover: {
-                      fill: "#607D8B",
-                      stroke: "#607D8B",
-                      strokeWidth: 0.75,
-                      outline: "none",
-                    },
-                    pressed: {
-                      fill: "#FF5722",
-                      stroke: "#607D8B",
-                      strokeWidth: 0.75,
-                      outline: "none",
-                    },
-                    visited: {
-                      fill: "#FF5722",
-                      stroke: "#607D8B",
-                      strokeWidth: 0.75,
-                      outline: "none",
-                    },
-                  }}
-                />
-              ))}
+              {(geographies, projection) =>
+                geographies.map(
+                  (geography, i) =>
+                    geography.id !== 'ATA' && (
+                      <Geography
+                        key={i}
+                        geography={geography}
+                        projection={projection}
+                        onClick={i => this.handleClick(i)}
+                        style={{
+                          default: {
+                            fill: '#ECEFF1',
+                            stroke: '#607D8B',
+                            strokeWidth: 0.75,
+                            outline: 'none'
+                          },
+                          hover: {
+                            fill: '#607D8B',
+                            stroke: '#607D8B',
+                            strokeWidth: 0.75,
+                            outline: 'none'
+                          },
+                          pressed: {
+                            fill: '#FF5722',
+                            stroke: '#607D8B',
+                            strokeWidth: 0.75,
+                            outline: 'none'
+                          },
+                          visited: {
+                            fill: '#FF5722',
+                            stroke: '#607D8B',
+                            strokeWidth: 0.75,
+                            outline: 'none'
+                          }
+                        }}
+                      />
+                    )
+                )
+              }
             </Geographies>
           </ZoomableGroup>
         </ComposableMap>
       </div>
-    )
+    );
   }
 }
-export default WorldMap
+export default WorldMap;
