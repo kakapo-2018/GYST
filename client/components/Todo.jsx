@@ -49,14 +49,21 @@ class Todo extends Component {
         <div>
           <IconButton
             tooltip="remove"
-            tooltipPosition="bottom-right"
+            tooltipposition="bottom-right"
             onClick={this.onClick}
-            iconStyle={{ color: "red" }}
-          />
-          <Checkbox onCheck={this.onCheck} style={{ marginTop: 12 }} />
-          <DeleteIcon />
+            iconstyle={{ color: "red" }}
+          >
+            <Checkbox onChange={this.onCheck} style={{ marginTop: 12 }} />
+          </IconButton>
         </div>
-
+        <IconButton
+          tooltip="remove"
+          tooltipposition="bottom-right"
+          onClick={this.onClick}
+          iconstyle={{ color: "red" }}
+        >
+          <DeleteIcon />
+        </IconButton>
         <div>
           <li>{todo}</li>
         </div>

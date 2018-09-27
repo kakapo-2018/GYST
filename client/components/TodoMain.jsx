@@ -35,6 +35,8 @@ class TodoMain extends Component {
   }
 
   handleRemove(id) {
+    console.log("removed");
+
     const finalTodos = this.state.todos.filter(todo => {
       if (todo.id != id) return todo;
     });
@@ -45,7 +47,8 @@ class TodoMain extends Component {
   }
 
   handleCheck(id) {
-    // console.log('shah')
+    console.log("checked");
+
     const finalTodos = this.state.todos.map(todo => {
       if (todo.id === id) {
         todo.checked = !todo.checked;
@@ -100,7 +103,7 @@ class TodoMain extends Component {
           open={this.state.open}
           message="Todo Item deleted"
           autoHideDuration={2000}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleRequestClose}
         />
       </Paper>
     );
