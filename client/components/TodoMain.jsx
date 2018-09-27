@@ -21,7 +21,6 @@ class TodoMain extends Component {
     this.handleCheck = this.handleCheck.bind(this);
   }
   handleClick(todo) {
-    console.log(this.state);
     this.setState({
       todos: [
         ...this.state.todos,
@@ -35,8 +34,6 @@ class TodoMain extends Component {
   }
 
   handleRemove(id) {
-    console.log("removed");
-
     const finalTodos = this.state.todos.filter(todo => {
       if (todo.id != id) return todo;
     });
@@ -73,7 +70,7 @@ class TodoMain extends Component {
           paddingBottom: "20px",
           marginTop: 100,
           marginBottom: 100,
-          marginRight: 20,
+          marginRight: 40,
           marginLeft: 40
         }}
       >

@@ -15,8 +15,6 @@ class TodoList extends Component {
   }
   render() {
     const { handleRemove, handleCheck, todos } = this.props;
-    console.log(this.props);
-    console.log(todos);
 
     var todoNode = todos.map(todo => {
       console.log(todo.task);

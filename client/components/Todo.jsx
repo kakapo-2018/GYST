@@ -6,7 +6,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
-import CommentIcon from "@material-ui/icons/Comment";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const listElementStyles = {
   color: "blue",
@@ -35,7 +35,7 @@ class Todo extends Component {
   }
 
   onCheck(event) {
-    console.log(this.props.id);
+    console.log("yo");
     this.props.handleCheck(this.props.id);
   }
 
@@ -81,10 +81,10 @@ class Todo extends Component {
           //   disableRipple
           onClick={this.onCheck}
         />
-        <ListItemText primary={todo} />
+        <ListItemText style={listStyles} primary={todo} />
         <ListItemSecondaryAction>
           <IconButton aria-label="Comments">
-            <CommentIcon />
+            <DeleteIcon onClick={this.onClick} />
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
