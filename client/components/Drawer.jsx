@@ -11,6 +11,8 @@ import Divider from '@material-ui/core/Divider';
 
 //Components
 import Main from './Main';
+import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
 
 const drawerWidth = 240;
 
@@ -77,6 +79,21 @@ const styles = theme => ({
 });
 
 class ResponsiveDrawer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showRegisterForm: false
+    };
+    this.toggleRegister = this.toggleRegister.bind(this);
+  }
+
+  toggleRegister() {
+    console.log('hit');
+
+    this.setState({
+      showRegisterForm: true
+    });
+  }
   render() {
     const { classes, theme } = this.props;
 
@@ -84,6 +101,10 @@ class ResponsiveDrawer extends React.Component {
       <div>
         <div className={classes.toolbar} />
         <Divider className={classes.whiten} />
+        {!this.state.showRegisterForm && (
+          <LoginForm toggleRegister={this.toggleRegister} />
+        )}
+        {this.state.showRegisterForm && <RegisterForm />}
         <Avatar
           alt="Remy Sharp"
           src="luke.jpeg"

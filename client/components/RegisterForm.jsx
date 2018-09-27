@@ -35,42 +35,47 @@ class RegisterForm extends Component {
 
   render() {
     return (
-      <form name="SignUp" action="/api/v1/auth/register" method="POST">
-        <h3>Sign up below</h3>
-        <div className="form-group">
-          <label>User Name</label>
-          <input
-            type="text"
-            className="form-control"
-            name="username"
-            placeholder="Enter username"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            type="text"
-            className="form-control"
-            name="email"
-            placeholder="Enter email"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            className="form-control"
-            placeholder="Password"
-            onChange={this.handleChange}
-          />
-        </div>
-        <button onClick={this.handleClick} className="btn btn-primary">
-          Sign Up
+      <div>
+        <form name="SignUp" action="/api/v1/auth/register" method="POST">
+          <h3>Sign up below</h3>
+          <div className="form-group">
+            <label>User Name</label>
+            <input
+              type="text"
+              className="form-control"
+              name="username"
+              placeholder="Enter username"
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              type="text"
+              className="form-control"
+              name="email"
+              placeholder="Enter email"
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              className="form-control"
+              placeholder="Password"
+              onChange={this.handleChange}
+            />
+          </div>
+          <button onClick={this.handleClick} className="btn btn-primary">
+            Sign Up
+          </button>
+        </form>
+        <button onClick={this.props.toggleLogin} className="btn btn-primary">
+          Back
         </button>
-      </form>
+      </div>
     );
   }
 }

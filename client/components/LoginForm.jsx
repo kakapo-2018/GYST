@@ -33,32 +33,37 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <form name="Login" action="/api/v1/auth/login" method="POST">
-        <h3>Login below</h3>
-        <div className="form-group">
-          <label>User Name</label>
-          <input
-            type="text"
-            className="form-control"
-            name="username"
-            placeholder="Enter username"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            className="form-control"
-            placeholder="Password"
-            onChange={this.handleChange}
-          />
-        </div>
-        <button onClick={this.handleClick} className="btn btn-primary">
-          Login
+      <div>
+        <form name="Login" action="/api/v1/auth/login" method="POST">
+          <h3>Login below</h3>
+          <div className="form-group">
+            <label>User Name</label>
+            <input
+              type="text"
+              className="form-control"
+              name="username"
+              placeholder="Enter username"
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              className="form-control"
+              placeholder="Password"
+              onChange={this.handleChange}
+            />
+          </div>
+          <button onClick={this.handleClick} className="btn btn-primary">
+            Login
+          </button>
+        </form>
+        <button onClick={this.props.toggleRegister} className="btn btn-primary">
+          Register
         </button>
-      </form>
+      </div>
     );
   }
 }
