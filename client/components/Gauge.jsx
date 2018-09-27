@@ -19,17 +19,21 @@ class Gauge extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({
-      ...this.state,
-      [e.target.name]: e.target.value
-    });
-    console.log(this.props);
+  componentDidUpdate() {
+    console.log(this.state);
+
     this.props.saveIt(
       this.state.value,
       this.state.savingGoal,
       this.props.state.user.id
     );
+  }
+
+  handleChange(e) {
+    this.setState({
+      ...this.state,
+      [e.target.name]: e.target.value
+    });
   }
 
   startColor = '#f44336';
