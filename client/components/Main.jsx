@@ -52,7 +52,7 @@ class Main extends Component {
         <Typography noWrap>
           {"You think water moves fast? You should see ice."}
         </Typography>
-        <MapContainer />
+
         <SpotifyWidget />
         <DateTime />
         <Gauge />
@@ -62,6 +62,7 @@ class Main extends Component {
 
         <RSS />
         <WorldMap />
+        <MapContainer />
       </main>
     );
   }
