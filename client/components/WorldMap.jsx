@@ -13,9 +13,39 @@ const wrapperStyles = {
 }
 
 class WorldMap extends Component {
-    handleClick(i, e) {
-      console.log("clicked", i)
-      
+  constructor(props) {
+    super(props);
+    this.state = {
+      style: {
+        default: {
+          fill: "#ECEFF1",
+          stroke: "#607D8B",
+          strokeWidth: 0.75,
+          outline: "none",
+        }
+      }
+    }
+  }
+  handleClick() {
+    console.log("clicked")
+    console.log(this.state.style.default.fill)
+    this.setState({
+      style: {
+      default: {
+        fill: "#607D8B",
+        stroke: "#607D8B",
+        strokeWidth: 0.75,
+        outline: "none",
+      },                    
+      pressed: {
+        fill: "red",
+        stroke: "#607D8B",
+        strokeWidth: 0.75,
+        outline: "none",
+      },
+
+    }
+    })
   }
   render() {
     return (
@@ -23,7 +53,7 @@ class WorldMap extends Component {
         <ComposableMap
           projectionConfig={{
             scale: 205,
-            rotation: [-11,0,0],
+            rotation: [-11, 0, 0],
           }}
           width={980}
           height={551}
@@ -31,36 +61,24 @@ class WorldMap extends Component {
             width: "100%",
             height: "auto",
           }}
-          >
-          <ZoomableGroup center={[0,20]} disablePanning>
+        >
+          <ZoomableGroup center={[0, 20]} disablePanning>
             <Geographies geography="./world.json">
               {(geographies, projection) => geographies.map((geography, i) => geography.id !== "ATA" && (
                 <Geography
                   key={i}
                   geography={geography}
                   projection={projection}
-                  onClick = {(i)=>this.handleClick(i)}
+                  onClick={() => this.handleClick()}
                   style={{
                     default: {
-                      fill: "#ECEFF1",
-                      stroke: "#607D8B",
-                      strokeWidth: 0.75,
-                      outline: "none",
-                    },
-                    hover: {
-                      fill: "#607D8B",
+                      fill: this.state.style,
                       stroke: "#607D8B",
                       strokeWidth: 0.75,
                       outline: "none",
                     },
                     pressed: {
-                      fill: "#FF5722",
-                      stroke: "#607D8B",
-                      strokeWidth: 0.75,
-                      outline: "none",
-                    },
-                    visited: {
-                      fill: "#FF5722",
+                      fill: "red",
                       stroke: "#607D8B",
                       strokeWidth: 0.75,
                       outline: "none",
