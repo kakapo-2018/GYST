@@ -72,7 +72,7 @@ class Todo extends Component {
         // role={undefined}
         dense
         button
-        onClick={this.onCheck}
+        // onClick={this.onCheck}
         // className={classes.listItem}
       >
         <Checkbox
