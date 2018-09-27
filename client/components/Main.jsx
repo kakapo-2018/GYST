@@ -14,6 +14,7 @@ import DateTime from './DateTime';
 import WorldMap from './WorldMap';
 import Gauge from './Gauge';
 import Fitness from './Fitness';
+import RSS from './RssFeed';
 
 const drawerWidth = 240;
 
@@ -51,6 +52,7 @@ class Main extends Component {
         <Gauge />
         <Fitness />
         <WorldMap />
+        <RSS />
       </main>
     );
   }
