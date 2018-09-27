@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import ListItemText from "@material-ui/core/ListItemText";
-import Checkbox from "@material-ui/core/Checkbox";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import Checkbox from '@material-ui/core/Checkbox';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const listElementStyles = {
-  color: "blue",
+  color: 'blue',
   fontSize: 18,
-  lineHeight: "24px"
+  lineHeight: '24px'
 };
 
 const listElementCheckedStyles = {
   ...listElementStyles,
-  textDecoration: "line-through"
+  textDecoration: 'line-through'
 };
 
 class Todo extends Component {
@@ -35,7 +35,7 @@ class Todo extends Component {
   }
 
   onCheck(event) {
-    console.log("yo");
+    console.log('yo');
     this.props.handleCheck(this.props.id);
   }
 
