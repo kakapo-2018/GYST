@@ -13,6 +13,7 @@ import SpotifyWidget from "./SpotifyWidget";
 import DateTime from "./DateTime";
 import WorldMap from "./WorldMap";
 import Gauge from "./Gauge";
+import TodoList from "./TodoList";
 
 const drawerWidth = 240;
 
@@ -34,7 +35,9 @@ const styles = theme => ({
 class Main extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      todos: [{ id: "1", task: "lol", checked: false }]
+    };
   }
   render() {
     const { classes, theme } = this.props;
@@ -49,6 +52,7 @@ class Main extends Component {
         <DateTime />
         <WorldMap />
         <Gauge />
+        <TodoList todos={this.state.todos} />
       </main>
     );
   }
