@@ -13,8 +13,8 @@ import SpotifyWidget from "./SpotifyWidget";
 import DateTime from "./DateTime";
 import WorldMap from "./WorldMap";
 import Gauge from "./Gauge";
+import Fitness from "./Fitness";
 import TodoMain from "./TodoMain";
-
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -50,8 +50,9 @@ class Main extends Component {
         </Typography>
         <SpotifyWidget />
         <DateTime />
-        <WorldMap />
         <Gauge />
+        <Fitness />
+        <WorldMap />
         <TodoMain />
       </main>
     );
