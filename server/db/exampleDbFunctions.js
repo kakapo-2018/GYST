@@ -36,7 +36,10 @@ function saveSavings(saved, goal, id, testDB) {
   const db = testDB || connection;
   return db('users')
     .where({ id: id })
-    .update({ savingGoal: goal });
+    .update({ savingGoal: goal })
+    .then(data => {
+      return db('users').where({ id: id });
+    });
 }
 
 module.exports = {

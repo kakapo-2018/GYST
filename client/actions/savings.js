@@ -13,7 +13,7 @@ export function itemsIsLoading(bool) {
   };
 }
 export function itemsFetchDataSuccess(items) {
-  console.log('Action payload:', items);
+  //   console.log('Action payload:', items);
   return {
     type: 'ITEMS_FETCH_DATA_SUCCESS',
     items
@@ -21,8 +21,8 @@ export function itemsFetchDataSuccess(items) {
 }
 
 export function saveItemAction(saved, goal, id) {
-  console.log('hit the action');
-  console.log(saved, goal);
+  //   console.log('hit the action');
+  //   console.log(saved, goal);
   let obj = { saved, goal, id };
   return dispatch => {
     dispatch(itemsIsLoading(true));

@@ -20,8 +20,6 @@ class Gauge extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state);
-
     this.props.saveIt(
       this.state.value,
       this.state.savingGoal,
