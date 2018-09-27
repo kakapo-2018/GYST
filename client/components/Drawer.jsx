@@ -159,9 +159,10 @@ class ResponsiveDrawer extends React.Component {
           !this.props.state.isAuthenticated && (
             <SignIn toggleRegister={this.toggleRegister} />
           )}
-        {this.state.showRegisterForm && (
-          <Register toggleLogin={this.toggleLogin} />
-        )}
+        {this.state.showRegisterForm &&
+          !this.props.state.isAuthenticated && (
+            <Register toggleLogin={this.toggleLogin} />
+          )}
       </div>
     );
   }
