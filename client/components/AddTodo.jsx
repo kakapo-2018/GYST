@@ -3,6 +3,14 @@ import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
+import AddIcon from "@material-ui/icons/Add";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = theme => ({
+  button: {
+    margin: "2px"
+  }
+});
 
 class AddTodo extends Component {
   static propTypes = {
@@ -18,6 +26,8 @@ class AddTodo extends Component {
   }
 
   onClick(event) {
+    console.log("clicked desu");
+
     event.preventDefault();
     var todo = this.state.inputValue;
     if (todo == "") return;
@@ -30,14 +40,14 @@ class AddTodo extends Component {
   }
 
   render() {
-    const { handleClick } = this.props;
+    const { handleClick, classes } = this.props;
     return (
       <div>
         <form id="myForm">
-          <Paper style={{ width: "90%", leftMargin: "15px" }} zDepth={1}>
+          <Paper style={{ width: "90%", leftMargin: "15px" }} zdepth={1}>
             <div style={{ marginLeft: "10px" }}>
               <TextField
-                hintText="What needs to be done?"
+                hinttext="What needs to be done?"
                 className="AddText"
                 fullWidth={true}
                 onChange={e => this.setState({ inputValue: e.target.value })}
@@ -47,14 +57,18 @@ class AddTodo extends Component {
           <br />
           <Button
             type="submit"
-            label="Add todo"
-            primary={true}
+            variant="fab"
+            color="primary"
+            aria-label="Add"
             onClick={this.onClick}
-          />
+            className={classes.button}
+          >
+            <AddIcon />
+          </Button>
         </form>
       </div>
     );
   }
 }
 
-export default AddTodo;
+export default withStyles(styles)(AddTodo);

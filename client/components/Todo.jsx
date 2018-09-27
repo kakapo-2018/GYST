@@ -4,6 +4,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const listElementStyles = {
   color: "blue",
@@ -44,25 +45,23 @@ class Todo extends Component {
     //   ? listElementStyles
     //   : listElementCheckedStyles;
     return (
-      <ListItem
-        style={{ width: "90%" }}
-        righticonbutton={
-          <div>
-            <IconButton
-              tooltip="remove"
-              tooltipPosition="bottom-right"
-              onClick={this.onClick}
-              iconStyle={{ color: "red" }}
-            />
-            <Checkbox onCheck={this.onCheck} style={{ marginTop: 12 }} />
-          </div>
-        }
-      >
+      <div>
+        <div>
+          <IconButton
+            tooltip="remove"
+            tooltipPosition="bottom-right"
+            onClick={this.onClick}
+            iconStyle={{ color: "red" }}
+          />
+          <Checkbox onCheck={this.onCheck} style={{ marginTop: 12 }} />
+          <DeleteIcon />
+        </div>
+
         <div>
           <li>{todo}</li>
         </div>
         <Divider />
-      </ListItem>
+      </div>
     );
   }
 }
