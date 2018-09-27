@@ -11,7 +11,6 @@ router.get('/rss/', (req, res) => {
     .get(apiEndpointBaseRSS)
     .buffer(true)
     .then(result => {
-      console.log('router external API result2: \n', result);
       res.send(result.text);
     });
 });

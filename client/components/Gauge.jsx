@@ -1,20 +1,19 @@
-import { color } from "d3-color";
-import { interpolateRgb } from "d3-interpolate";
-import React, { Component } from "react";
-import LiquidFillGauge from "react-liquid-gauge";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import { color } from 'd3-color';
+import { interpolateRgb } from 'd3-interpolate';
+import React, { Component } from 'react';
+import LiquidFillGauge from 'react-liquid-gauge';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 class Gauge extends Component {
   state = {
     value: 100,
     savingGoal: 2000
   };
-  startColor = "#f44336";
-  endColor = "#4CAF50";
+  startColor = '#f44336';
+  endColor = '#4CAF50';
 
   render() {
     const radius = 120;
@@ -22,26 +21,26 @@ class Gauge extends Component {
     const fillColor = interpolate(this.state.value / this.state.savingGoal);
     const gradientStops = [
       {
-        key: "0%",
+        key: '0%',
         stopColor: color(fillColor)
           .darker(0.5)
           .toString(),
         stopOpacity: 1,
-        offset: "0%"
+        offset: '0%'
       },
       {
-        key: "50%",
+        key: '50%',
         stopColor: fillColor,
         stopOpacity: 0.75,
-        offset: "50%"
+        offset: '50%'
       },
       {
-        key: "100%",
+        key: '100%',
         stopColor: color(fillColor)
           .brighter(0.2)
           .toString(),
         stopOpacity: 0.5,
-        offset: "100%"
+        offset: '100%'
       }
     ];
 
@@ -49,7 +48,7 @@ class Gauge extends Component {
       <Card style={{ maxWidth: 275 }}>
         <CardContent style={{ padding: 0, maxWidth: 275 }}>
           <LiquidFillGauge
-            style={{ margin: "0 auto" }}
+            style={{ margin: '0 auto' }}
             width={radius * 2}
             maxWidth={375}
             height={radius * 2}
@@ -91,16 +90,16 @@ class Gauge extends Component {
               fill: fillColor
             }}
             textStyle={{
-              fill: color("#444").toString(),
-              fontFamily: "Arial"
+              fill: color('#444').toString(),
+              fontFamily: 'Arial'
             }}
             waveTextStyle={{
-              fill: color("#fff").toString(),
-              fontFamily: "Arial"
+              fill: color('#fff').toString(),
+              fontFamily: 'Arial'
             }}
           />
         </CardContent>
-        <CardActions style={{ margin: "2%", display: "flex" }}>
+        <CardActions style={{ margin: '2%', display: 'flex' }}>
           {/* <div
             style={{
               margin: "20px auto",
@@ -108,7 +107,7 @@ class Gauge extends Component {
             }}
           > */}
           <input
-            style={{ maxWidth: "45%" }}
+            style={{ maxWidth: '45%' }}
             type="number"
             placeholder="Amount Saved"
             onChange={e => {
@@ -119,7 +118,7 @@ class Gauge extends Component {
             }}
           />
           <input
-            style={{ maxWidth: "45%" }}
+            style={{ maxWidth: '45%' }}
             type="number"
             placeholder="Goal"
             onChange={e => {
