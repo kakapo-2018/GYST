@@ -56,8 +56,6 @@ class SignIn extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
-    console.log(this.state.classes);
   }
   handleChange(e) {
     this.setState({

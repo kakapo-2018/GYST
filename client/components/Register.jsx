@@ -52,12 +52,11 @@ class Register extends React.Component {
     this.state = {
       username: '',
       password: '',
+      email: '',
       classes: this.props.classes
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
-    console.log(this.state.classes);
   }
   handleChange(e) {
     this.setState({
@@ -68,9 +67,10 @@ class Register extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    const { username, password } = this.state;
+    const { username, email, password } = this.state;
     const creds = {
       username: username.trim(),
+      email: email.trim(),
       password: password.trim()
     };
     this.props.registerUser(creds);
@@ -99,6 +99,16 @@ class Register extends React.Component {
                   id="username"
                   name="username"
                   autoComplete="username"
+                  autoFocus
+                />
+              </FormControl>
+              <FormControl margin="normal" required fullWidth>
+                <InputLabel htmlFor="email">Email address</InputLabel>
+                <Input
+                  onChange={this.handleChange}
+                  id="email"
+                  name="email"
+                  autoComplete="email"
                   autoFocus
                 />
               </FormControl>
