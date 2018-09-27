@@ -12,7 +12,7 @@ import Divider from '@material-ui/core/Divider';
 //Components
 import Main from './Main';
 import LoginForm from './LoginForm';
-import RegisterForm from './RegisterForm';
+import Register from './Register';
 import SignIn from './SignIn';
 
 const drawerWidth = 240;
@@ -160,7 +160,12 @@ class ResponsiveDrawer extends React.Component {
         {this.state.showRegisterForm && (
           <RegisterForm toggleLogin={this.toggleLogin} />
         )} */}
-        <SignIn />
+        {this.state.showLogin && (
+          <SignIn toggleRegister={this.toggleRegister} />
+        )}
+        {this.state.showRegisterForm && (
+          <Register toggleLogin={this.toggleLogin} />
+        )}
       </div>
     );
   }

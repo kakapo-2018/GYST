@@ -6,7 +6,7 @@ import { Route, Link } from 'react-router-dom';
 import InternapAPI from './InternapAPI';
 import ExternalAPI from './ExternalAPI';
 import LoginForm from './LoginForm';
-import RegisterForm from './RegisterForm';
+// import RegisterForm from './RegisterForm';
 import Logout from './Logout';
 
 //Material-UI

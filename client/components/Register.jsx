@@ -8,7 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import LockIcon from '@material-ui/icons/LockOutlined';
+import PersonAdd from '@material-ui/icons/PersonAdd';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -83,9 +83,9 @@ class SignIn extends React.Component {
         <main className={this.state.classes.layout}>
           <Paper className={this.state.classes.paper}>
             <Avatar className={this.state.classes.avatar}>
-              <LockIcon />
+              <PersonAdd />
             </Avatar>
-            <Typography variant="headline">Sign in</Typography>
+            <Typography variant="headline">Register</Typography>
             <form
               name="Login"
               action="/api/v1/auth/login"
@@ -120,17 +120,17 @@ class SignIn extends React.Component {
                 onClick={this.handleClick}
                 className={this.state.classes.submit}
               >
-                Sign in
+                Register
               </Button>
             </form>
             <Button
               fullWidth
               variant="raised"
               color="primary"
-              onClick={this.props.toggleRegister}
-              className={this.state.classes.submit}
+              onClick={this.props.toggleLogin}
+              // className={this.state.classes.submit}
             >
-              Register
+              Back
             </Button>
           </Paper>
         </main>
