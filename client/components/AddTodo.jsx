@@ -44,7 +44,7 @@ class AddTodo extends Component {
     return (
       <div>
         <form id="myForm">
-          <Paper style={{ width: "90%", leftMargin: "15px" }} zdepth={1}>
+          <Paper style={{ width: "100%", leftMargin: "15px" }} zdepth={1}>
             <div style={{ marginLeft: "10px" }}>
               <TextField
                 hinttext="What needs to be done?"

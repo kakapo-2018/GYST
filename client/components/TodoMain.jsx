@@ -71,18 +71,25 @@ class TodoMain extends Component {
           marginTop: 100,
           marginBottom: 100,
           marginRight: 40,
-          marginLeft: 40
+          marginLeft: 40,
+          maxWidth: "500px"
         }}
       >
         <div
           style={{
-            display: "flex"
+            display: "flex",
+            justifyContent: "center"
           }}
         >
-          <div style={{ marginLeft: "44%" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center"
+            }}
+          >
             <h1 style={{ textAlign: "center", color: "grey" }}>Todo List</h1>
           </div>
-          <div style={{ marginRight: "10%", marginTop: 13 }}>
+          <div style={{ marginTop: 13 }}>
             <IconButton />
           </div>
         </div>
@@ -93,7 +100,7 @@ class TodoMain extends Component {
           handleCheck={this.handleCheck}
         />
         <br />
-        <div style={{ marginLeft: "5%" }}>
+        <div style={{ marginLeft: "5%", marginRight: "5%" }}>
           <AddTodo handleClick={this.handleClick} />
         </div>
         <Snackbar
