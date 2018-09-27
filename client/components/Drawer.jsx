@@ -82,16 +82,24 @@ class ResponsiveDrawer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showRegisterForm: false
+      showRegisterForm: false,
+      showLogin: true
     };
     this.toggleRegister = this.toggleRegister.bind(this);
+    this.toggleLogin = this.toggleLogin.bind(this);
+  }
+
+  toggleLogin() {
+    this.setState({
+      showLogin: true,
+      showRegisterForm: false
+    });
   }
 
   toggleRegister() {
-    console.log('hit');
-
     this.setState({
-      showRegisterForm: true
+      showRegisterForm: true,
+      showLogin: false
     });
   }
   render() {
@@ -104,9 +112,11 @@ class ResponsiveDrawer extends React.Component {
         {!this.state.showRegisterForm && (
           <LoginForm toggleRegister={this.toggleRegister} />
         )}
-        {this.state.showRegisterForm && <RegisterForm />}
+        {this.state.showRegisterForm && (
+          <RegisterForm toggleLogin={this.toggleLogin} />
+        )}
         <Avatar
-          alt="Remy Sharp"
+          alt="Profile Picture"
           src="luke.jpeg"
           className={classNames(classes.avatar, classes.bigAvatar)}
         />
@@ -130,7 +140,7 @@ class ResponsiveDrawer extends React.Component {
               paper: classes.drawerPaper
             }}
             ModalProps={{
-              keepMounted: true // Better open performance on mobile.
+              keepMounted: true
             }}
           >
             {drawer}
