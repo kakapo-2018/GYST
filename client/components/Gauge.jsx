@@ -198,17 +198,17 @@ class Gauge extends React.Component {
             style={{ maxWidth: '45%' }}
             type="number"
             name="value"
-            placeholder="Amount Saved"
+            placeholder={'Saved: $' + this.props.state.items.saved}
             onChange={this.handleChange}
           />
           <input
             style={{ maxWidth: '45%' }}
             type="number"
             name="savingGoal"
-            placeholder="Goal"
+            placeholder={'Goal: $' + this.props.state.items.savingGoal}
             onChange={this.handleChange}
           />
-          <button onClick={this.save}>Save shit</button>
+          <button onClick={this.save}>Save</button>
         </CardActions>
       </Card>
     );
