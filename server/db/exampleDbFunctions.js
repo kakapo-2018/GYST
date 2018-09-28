@@ -36,10 +36,19 @@ function saveSavings(saved, goal, id, testDB) {
   const db = testDB || connection;
   return db('users')
     .where({ id: id })
-    .update({ savingGoal: goal })
+    .update({ savingGoal: goal, saved: saved })
     .then(data => {
       return db('users').where({ id: id });
     });
+}
+
+function getSavings(id, testDB) {
+  console.log('hit db');
+
+  const db = testDB || connection;
+  return db('users')
+    .where({ id: id })
+    .first();
 }
 
 module.exports = {
@@ -47,5 +56,6 @@ module.exports = {
   userExists,
   createUser,
   getUserByName,
-  saveSavings
+  saveSavings,
+  getSavings
 };

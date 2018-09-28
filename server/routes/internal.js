@@ -18,4 +18,14 @@ router.post('/savings', (req, res) => {
     });
 });
 
+router.get('/savings', (req, res) => {
+  console.log(req.query);
+
+  accessDB.getSavings(req.query.id).then(result => {
+    console.log(result);
+
+    res.json(result);
+  });
+});
+
 module.exports = router;

@@ -40,3 +40,24 @@ export function saveItemAction(saved, goal, id) {
       .catch(() => dispatch(itemsHasErrored(true)));
   };
 }
+
+export function getItemAction(id) {
+  //   console.log('hit the action');
+  console.log('2222222222222222222222222222222');
+  let obj = { id };
+  return dispatch => {
+    dispatch(itemsIsLoading(true));
+    return request
+      .get('/api/v1/savings', obj)
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        dispatch(itemsIsLoading(false));
+
+        return response.body;
+      })
+      .then(items => dispatch(itemsFetchDataSuccess(items)))
+      .catch(() => dispatch(itemsHasErrored(true)));
+  };
+}

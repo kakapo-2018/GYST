@@ -1,7 +1,7 @@
 import { color } from 'd3-color';
 import { connect } from 'react-redux';
 import { interpolateRgb } from 'd3-interpolate';
-import { saveItemAction } from '../actions/savings';
+import { saveItemAction, getItemAction } from '../actions/savings';
 import React from 'react';
 import LiquidFillGauge from 'react-liquid-gauge';
 import Card from '@material-ui/core/Card';
@@ -13,18 +13,30 @@ class Gauge extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 100,
-      savingGoal: 2000
+      value: 1,
+      savingGoal: 1
     };
     this.handleChange = this.handleChange.bind(this);
+    this.save = this.save.bind(this);
   }
 
-  componentDidUpdate() {
+  componentWillMount() {
+    console.log('will mount');
+
+    this.props.getIt(this.props.state.auth.user.id);
+  }
+  // this.props.state.items[0].saved,
+  // this.props.state.items[0].savingGoal
+  save() {
     this.props.saveIt(
       this.state.value,
       this.state.savingGoal,
-      this.props.state.user.id
+      this.props.state.auth.user.id
     );
+    this.props.getIt(this.props.state.auth.user.id);
+    // {
+    //   console.log(this.props.items.saved);
+    // }
   }
 
   handleChange(e) {
@@ -68,13 +80,19 @@ class Gauge extends React.Component {
 
     return (
       <Card style={{ maxWidth: 275 }}>
+        {console.log(this.props)}
         <CardContent style={{ padding: 0, maxWidth: 275 }}>
+          {console.log(this.props)}
           <LiquidFillGauge
             style={{ margin: '0 auto' }}
             width={radius * 2}
             maxWidth={375}
             height={radius * 2}
-            value={(this.state.value / this.state.savingGoal) * 100}
+            value={
+              (this.props.state.items.saved /
+                this.props.state.items.savingGoal) *
+              100
+            }
             percent="%"
             textSize={1}
             textOffsetX={0}
@@ -136,6 +154,7 @@ class Gauge extends React.Component {
             placeholder="Goal"
             onChange={this.handleChange}
           />
+          <button onClick={this.save}>Save shit</button>
         </CardActions>
       </Card>
     );
@@ -144,7 +163,8 @@ class Gauge extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    state: state.auth
+    state: state,
+    items: state.items[0]
   };
 }
 
@@ -152,6 +172,11 @@ function mapDispatchToProps(dispatch) {
   return {
     saveIt: (saved, goal, id) => {
       dispatch(saveItemAction(saved, goal, id));
+    },
+    getIt: id => {
+      console.log(id + 'getttit');
+
+      dispatch(getItemAction(id));
     }
   };
 }
