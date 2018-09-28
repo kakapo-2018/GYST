@@ -18,8 +18,6 @@ const listElementCheckedStyles = {
 };
 
 class Todo extends Component {
-  static propTypes = {};
-
   constructor(props) {
     super(props);
     this.onClick = this.onClick.bind(this);
@@ -42,7 +40,7 @@ class Todo extends Component {
     return (
       <ListItem dense button>
         <Checkbox
-          checked={this.props.checked}
+          checked={Boolean(this.props.checked)}
           onClick={() => this.onCheck(this.props.name, this.props.checked)}
         />
         <ListItemText style={listStyles} primary={todo} />
