@@ -1,8 +1,7 @@
 import React from "react";
+// import { connect } from 'react-redux';
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import WbSunny from '@material-ui/icons/WbSunny'
@@ -45,83 +44,69 @@ const styles = theme => ({
 });
 
 class Sidebar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        };
-        this.handleClick = this.handleClick.bind(this);
-    }
-    handleClick(e) {
-        e.preventDefault();
-        console.log("weather clicked");
-
-    }
-
-
     render() {
+       
         const { classes } = this.props;
-
-        return (
+           return (
             <Card className={classes.card}>
-                <Button className={classes.button} onClick={this.handleClick}>
+                <Button className={classes.button} onClick={()=> this.props.handleClick("weather")}>
                     <Icon className={classes.icon} ><WbSunny /></Icon>
                     <Typography className={classes.sub}>
                         Weather
                     </Typography>
                 </Button>
-                <Button className={classes.button}>
+                <Button className={classes.button} onClick={() => this.props.handleClick("saving")}>
                     <Icon className={classes.icon} > <AttachMoney /></Icon>
                     <Typography className={classes.sub}>
                         Saving
                     </Typography>
                 </Button>
-                <Button className={classes.button}>
+                <Button className={classes.button} onClick={() => this.props.handleClick("spotify")}>
                     <Icon className={classes.icon} >
                         <QueueMusic /></Icon>
                     <Typography className={classes.sub} >
                         Spotify
                     </Typography>
                 </Button>
-                <Button className={classes.button}>
+                <Button className={classes.button} onClick={() => this.props.handleClick("date & time")}>
                     <Icon className={classes.icon} >
                         <AccessTime /></Icon>
                     <Typography className={classes.sub}>
                         Date & Time
                     </Typography>
                 </Button>
-                <Button className={classes.button} >
+                <Button className={classes.button} onClick={() => this.props.handleClick("rss")}>
                     <Icon className={classes.icon} >
                         <Web /></Icon>
                     <Typography className={classes.sub}>
                         RSS
                      </Typography>
                 </Button>
-                <Button className={classes.button} >
+                <Button className={classes.button} onClick={() => this.props.handleClick("food tracker")}>
                     <Icon className={classes.icon} ><Fastfood /></Icon>
                     <Typography className={classes.sub}>
                         Food Tracker
                     </Typography>
                 </Button>
-                <Button className={classes.button} >
+                <Button className={classes.button} onClick={() => this.props.handleClick("to do list")}>
                     <Icon className={classes.icon}><CheckCircleOutline /></Icon>
                     <Typography className={classes.sub}>
                         To Do List
                      </Typography>
                 </Button>
-                <Button className={classes.button} >
+                <Button className={classes.button} onClick={() => this.props.handleClick("world map")} >
                     <Icon className={classes.icon}><AirplanemodeActive /></Icon>
                     <Typography className={classes.sub}>
                         World Map
                      </Typography>
                 </Button>
-                <Button className={classes.button} >
+                <Button className={classes.button} onClick={() => this.props.handleClick("google map")} >
                     <Icon className={classes.icon} ><Map /></Icon>
                     <Typography className={classes.sub}>
                         Google Map
                     </Typography>
                 </Button>
-                <Button className={classes.button} >
+                <Button className={classes.button} onClick={() => this.props.handleClick("github issues")} >
                     <Icon className={classes.icon}><ReportProblem /></Icon>
                     <Typography className={classes.sub}>
                         Github Issues
@@ -131,7 +116,6 @@ class Sidebar extends React.Component {
         );
     }
 }
-
 
 
 export default withStyles(styles)(Sidebar);
