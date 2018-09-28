@@ -58,21 +58,22 @@ export function delTodosAction(id, user) {
 
 //check todos
 
-export function chkTodosAction(id, user) {
+export function chkTodosAction(id, user, checked) {
   let obj = {
     id: id,
-    user: user
+    user: user,
+    checked: checked
   };
   console.log(obj);
 
-  //   return function(dispatch) {
-  //     request('post', '/todo/delete', obj).then(response => {
-  //       if (!response.ok) {
-  //       } else {
-  //         dispatch(receiveTodos(response.body));
-  //       }
-  //     });
-  //   };
+  return function(dispatch) {
+    request('post', '/todo/check', obj).then(response => {
+      if (!response.ok) {
+      } else {
+        dispatch(receiveTodos(response.body));
+      }
+    });
+  };
 }
 
 // function receiveTodos(response) {

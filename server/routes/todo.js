@@ -23,26 +23,17 @@ router.post('/save', (req, res) => {
 
 router.post('/delete', (req, res) => {
   todoDB.deleteTodo(req.body.id, req.body.user).then(result => {
-    console.log(result);
-    if (result == undefined) {
-      res.json([1, 10]);
-    } else {
-      res.json(result);
-    }
+    res.json(result);
   });
 });
 
 router.post('/check', (req, res) => {
-  console.log(req.body);
-
-  //   todoDB.checkTodo(req.query.id).then(result => {
-  //     console.log(result);
-  //     if (result == undefined) {
-  //       res.json([1, 10]);
-  //     } else {
-  //       res.json(result);
-  //     }
-  //   });
+  todoDB
+    .checkTodo(req.body.id, req.body.user, req.body.checked)
+    .then(result => {
+      console.log(result);
+      res.json(result);
+    });
 });
 
 module.exports = router;

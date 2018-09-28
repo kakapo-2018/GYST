@@ -10,7 +10,8 @@ import uuid from 'uuid';
 import {
   getTodosAction,
   addTodosAction,
-  delTodosAction
+  delTodosAction,
+  chkTodosAction
 } from '../actions/todo';
 import AddTodo from './AddTodo';
 import TodoList from './TodoList';
@@ -56,7 +57,7 @@ class TodoMain extends Component {
     this.props.delTodos(id, this.props.state.auth.user.id);
   }
 
-  handleCheck(id) {
+  handleCheck(id, checked) {
     // const finalTodos = this.state.todos.map(todo => {
     //   if (todo.id === id) {
     //     todo.checked = !todo.checked;
@@ -66,7 +67,7 @@ class TodoMain extends Component {
     // this.setState({
     //   todos: finalTodos
     // });
-    this.props.chkTodos(id, this.props.state.auth.user.id);
+    this.props.chkTodos(id, this.props.state.auth.user.id, checked);
   }
 
   handleRequestClose = () => {
@@ -148,8 +149,8 @@ function mapDispatchToProps(dispatch) {
     delTodos: (id, user) => {
       dispatch(delTodosAction(id, user));
     },
-    chkTodos: (id, user) => {
-      dispatch(chkTodosAction(id, user));
+    chkTodos: (id, user, checked) => {
+      dispatch(chkTodosAction(id, user, checked));
     }
   };
 }
