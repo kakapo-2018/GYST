@@ -7,24 +7,20 @@ class TodoList extends Component {
   static propTypes = {
     handleRemove: PropTypes.func,
     handleCheck: PropTypes.func
-    //todos: PropTypes.array
   };
-
   constructor(props) {
     super(props);
   }
   render() {
     const { handleRemove, handleCheck, todos } = this.props;
-
     var todoNode = todos.map(todo => {
-      console.log(todo.task);
-
       return (
         <Todo
           key={todo.id}
-          todo={todo.task}
-          id={todo.id}
-          checked={todo.checked}
+          name={todo.id}
+          todo={todo.todo}
+          id={todo.userid}
+          checked={todo.status}
           handleRemove={handleRemove}
           handleCheck={handleCheck}
         />
