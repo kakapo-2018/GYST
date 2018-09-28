@@ -1,11 +1,52 @@
 import React, { Component } from 'react';
-
 import SpotifyWebApi from 'spotify-web-api-js';
-const spotifyApi = new SpotifyWebApi();
 
+//styles
+
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
+
+const spotifyApi = new SpotifyWebApi();
+const styles = theme => ({
+  card: {
+    display: 'flex',
+  },
+  details: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  content: {
+    flex: '1 0 auto',
+  },
+  cover: {
+    width: 151,
+    height: 151,
+  },
+  controls: {
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+  },
+  playIcon: {
+    height: 38,
+    width: 38,
+  },
+});
 class SpotifyTest extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const { classes, theme } = this.props;
+    console.log(this.props);
+    
     const params = this.getHashParams();
     const token = params.access_token;
     if (token) {
@@ -67,9 +108,44 @@ class SpotifyTest extends Component {
         {this.state.loggedIn && (
           <button onClick={() => this.getPlaylist()}>Check playlist</button>
         )}
+
+          <Card className={classes.card}>
+            <div className={classes.details}>
+              <CardContent className={classes.content}>
+                <Typography variant="headline">Live From Space</Typography>
+                <Typography variant="subheading" color="textSecondary">
+                  Mac Miller
+                </Typography>
+              </CardContent>
+              <div className={classes.controls}>
+                <IconButton aria-label="Previous">
+                  {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
+                </IconButton>
+                <IconButton aria-label="Play/pause">
+                  <PlayArrowIcon className={classes.playIcon} />
+                </IconButton>
+                <IconButton onClick={() => this.getNowPlaying()} aria-label="Next">
+                  {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
+                </IconButton>
+              </div>
+            </div>
+            <CardMedia
+              className={classes.cover}
+              image="/static/images/cards/live-from-space.jpg"
+              title="Live from space album cover"
+            />
+          </Card>
+        );
+      }
+
       </div>
     );
   }
 }
 
-export default SpotifyTest;
+// MediaControlCard.propTypes = {
+//   classes: PropTypes.object.isRequired,
+//   theme: PropTypes.object.isRequired,
+// };
+
+export default withStyles(styles, { withTheme: true })(SpotifyTest);
