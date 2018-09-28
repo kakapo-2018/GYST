@@ -14,6 +14,7 @@ import Main from './Main';
 import Logout from './Logout';
 import Register from './Register';
 import SignIn from './SignIn';
+import Sidebar from './Sidebar'
 
 const drawerWidth = 240;
 
@@ -121,6 +122,7 @@ class ResponsiveDrawer extends React.Component {
           style={{ backgroundImage: 'url(' + 'sidebar-4.jpg' + ')' }}
         />
         <Divider className={classes.whiten} />
+        <Sidebar />
       </div>
     );
 
