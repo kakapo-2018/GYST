@@ -45,22 +45,20 @@ class Main extends Component {
   }
   render() {
     const { classes, theme } = this.props;
-    // var layouts = [
-    //   { 1: 'a', x: 4, y: 4, w: 4, h: 4, minW: 16, minH: 16 },
-    //   { 2: 'b', x: 2, y: 2, w: 4, h: 4, minW: 4, maxW: 4 },
-    //   { 3: 'c', x: 8, y: 8, w: 1, h: 2 }
-    // ];
 
     return (
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <ResponsiveGridLayout
+          draggableCancel="input,textarea,img"
           className="layout"
-          // layouts={layouts}
           breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
           cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
         >
-          <div key="1" data-grid={{ x: 0, y: 0, w: 4, h: 3 }}>
+          <div
+            key="1"
+            data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 3, minH: 2, maxH: 2 }}
+          >
             <SpotifyWidget />
           </div>
           <div key="3" data-grid={{ x: 0, y: 0, w: 2, h: 1, maxW: 2, maxH: 1 }}>
