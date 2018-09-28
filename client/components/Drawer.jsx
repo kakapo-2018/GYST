@@ -181,7 +181,6 @@ class ResponsiveDrawer extends React.Component {
             {drawer}
           </Drawer>
         </Hidden>
-        {console.log(this.props.state)}
         {/* Components from main will render here */}
         {this.props.state.isAuthenticated && <Main showCom={this.state} />}
         {this.state.showLogin &&
