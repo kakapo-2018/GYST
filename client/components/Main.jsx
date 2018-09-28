@@ -46,7 +46,7 @@ class Main extends Component {
   }
   render() {
     const { classes, theme } = this.props;
-
+    // {console.log(this.props.showCom.weather)}
     return (
       <main className={classes.content}>
         <div className={classes.toolbar} />
@@ -56,45 +56,100 @@ class Main extends Component {
           breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
           cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
         >
-          <div
-            key="1"
-            data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 3, minH: 2, maxH: 2 }}
-          >
-            <SpotifyWidget />
-          </div>
-          <div key="3" data-grid={{ x: 0, y: 0, w: 2, h: 1, maxW: 2, maxH: 1 }}>
-            <DateTime />
-          </div>
-          <div key="4" data-grid={{ x: 0, y: 0, w: 3, h: 2 }}>
-            <Gauge />
-          </div>
-          <div key="5" data-grid={{ x: 0, y: 0, w: 2, h: 2 }}>
-            <Fitness />
-          </div>
-          <div key="6" data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}>
-            <Weather />
-          </div>
-          <div key="7" data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}>
-            <TodoMain />
-          </div>
-          <div key="8" data-grid={{ x: 0, y: 0, w: 3, h: 1, minW: 3, minH: 1 }}>
-            <GithubIssues />
-          </div>
-          <div key="9" data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}>
-            <RSS />
-          </div>
-          <div
-            key="10"
-            data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
-          >
-            <WorldMap />
-          </div>
-          <div
-            key="11"
-            data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
-          >
-            <MapContainer />
-          </div>
+          {this.props.showCom.spotify ? (
+            <div
+              key="1"
+              data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 3, minH: 2, maxH: 2 }}
+            >
+              {<SpotifyWidget />}
+            </div>
+          ) : (
+            <div />
+          )}
+          {this.props.showCom.date ? (
+            <div
+              key="3"
+              data-grid={{ x: 0, y: 0, w: 2, h: 1, maxW: 2, maxH: 1 }}
+            >
+              <DateTime />
+            </div>
+          ) : (
+            <div />
+          )}
+          {this.props.showCom.saving ? (
+            <div key="4" data-grid={{ x: 0, y: 0, w: 2, h: 2 }}>
+              <Gauge />
+            </div>
+          ) : (
+            <div />
+          )}
+          {this.props.showCom.food ? (
+            <div key="5" data-grid={{ x: 0, y: 0, w: 3, h: 2 }}>
+              <Fitness />
+            </div>
+          ) : (
+            <div />
+          )}
+          {this.props.showCom.weather ? (
+            <div
+              key="6"
+              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+            >
+              <Weather />
+            </div>
+          ) : (
+            <div />
+          )}
+          {this.props.showCom.todo ? (
+            <div
+              key="7"
+              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+            >
+              <TodoMain />
+            </div>
+          ) : (
+            <div />
+          )}
+          {this.props.showCom.github ? (
+            <div
+              key="8"
+              data-grid={{ x: 0, y: 0, w: 3, h: 1, minW: 3, minH: 1 }}
+            >
+              <GithubIssues />
+            </div>
+          ) : (
+            <div />
+          )}
+          {this.props.showCom.rss ? (
+            <div
+              key="9"
+              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+            >
+              <RSS />
+            </div>
+          ) : (
+            <div />
+          )}
+          {this.props.showCom.worldmap ? (
+            <div
+              key="10"
+              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+            >
+              <WorldMap />
+            </div>
+          ) : (
+            <div />
+          )}
+          {this.props.showCom.googlemap ? (
+            <div
+              key="11"
+              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+            >
+              <MapContainer />
+            </div>
+          ) : (
+            <div />
+          )}
         </ResponsiveGridLayout>
       </main>
     );

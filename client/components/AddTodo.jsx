@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import Paper from "@material-ui/core/Paper";
-import TextField from "@material-ui/core/TextField";
-import PropTypes from "prop-types";
-import Button from "@material-ui/core/Button";
-import AddIcon from "@material-ui/icons/Add";
-import { withStyles } from "@material-ui/core/styles";
+import React, { Component } from 'react';
+import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
+import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   button: {
-    margin: "2px"
+    margin: '2px'
   }
 });
 
@@ -21,21 +21,19 @@ class AddTodo extends Component {
     super();
     this.onClick = this.onClick.bind(this);
     this.state = {
-      inputValue: ""
+      inputValue: ''
     };
   }
 
   onClick(event) {
-    console.log("clicked desu");
-
     event.preventDefault();
     var todo = this.state.inputValue;
-    if (todo == "") return;
+    if (todo == '') return;
     else {
-      var form = document.getElementById("myForm");
+      var form = document.getElementById('myForm');
       form.reset();
       this.props.handleClick(todo);
-      this.state.inputValue = "";
+      this.state.inputValue = '';
     }
   }
 
@@ -44,8 +42,8 @@ class AddTodo extends Component {
     return (
       <div>
         <form id="myForm">
-          <Paper style={{ width: "100%", leftMargin: "15px" }} zdepth={1}>
-            <div style={{ marginLeft: "10px" }}>
+          <Paper style={{ width: '100%', leftMargin: '15px' }} zdepth={1}>
+            <div style={{ marginLeft: '10px' }}>
               <TextField
                 hinttext="What needs to be done?"
                 className="AddText"
