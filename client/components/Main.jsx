@@ -78,7 +78,7 @@ class Main extends Component {
           <div key="7" data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}>
             <TodoMain />
           </div>
-          <div key="8" data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}>
+          <div key="8" data-grid={{ x: 0, y: 0, w: 3, h: 1, minW: 3, minH: 1 }}>
             <GithubIssues />
           </div>
           <div key="9" data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}>

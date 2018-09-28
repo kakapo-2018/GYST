@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { itemsFetchData } from '../actions/example_action';
+import Paper from '@material-ui/core/Paper';
 
 class RSS extends Component {
   constructor(props) {
@@ -30,14 +30,25 @@ class RSS extends Component {
 
   render() {
     return (
-      <div>
-        RSS
-        <ul>
-          {this.state.feedItems.map(item => {
-            return <li>{item.title}</li>;
-          })}
-        </ul>
-      </div>
+      <Paper
+        style={{
+          padding: '10px',
+          maxWidth: '100%',
+          maxHeight: '100%',
+          minWidth: '100%',
+          minHeight: '100%',
+          overflow: 'hidden'
+        }}
+      >
+        <div>
+          RSS
+          <ul>
+            {this.state.feedItems.map(item => {
+              return <li>{item.title}</li>;
+            })}
+          </ul>
+        </div>
+      </Paper>
     );
   }
 }
