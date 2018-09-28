@@ -45,42 +45,9 @@ class Todo extends Component {
     const listStyles = !this.props.checked
       ? listElementStyles
       : listElementCheckedStyles;
-
-    // const listStyles = !this.props.checked
-    //   ? listElementStyles
-    //   : listElementCheckedStyles;
     return (
-      //   <div style={{ display: "flex" }}>
-      //     <div>
-      //       <Checkbox onChange={this.onCheck} style={{ marginTop: 12 }} />
-      //     </div>
-      //     <IconButton
-      //       tooltip="remove"
-      //       tooltipposition="bottom-right"
-      //       onClick={this.onClick}
-      //       iconstyle={{ color: "red" }}
-      //     >
-      //       <DeleteIcon />
-      //     </IconButton>
-      //     <div style={{ display: "flex" }}>
-      //       <li>{todo}</li>
-      //     </div>
-      //     <Divider />
-      //   </div>
-      <ListItem
-        // key={value}
-        // role={undefined}
-        dense
-        button
-        // onClick={this.onCheck}
-        // className={classes.listItem}
-      >
-        <Checkbox
-          //   checked={this.state.checked.indexOf(value) !== -1}
-          //   tabIndex={-1}
-          //   disableRipple
-          onClick={this.onCheck}
-        />
+      <ListItem dense button>
+        <Checkbox onClick={this.onCheck} />
         <ListItemText style={listStyles} primary={todo} />
         <ListItemSecondaryAction>
           <IconButton aria-label="Comments">
