@@ -60,30 +60,30 @@ class Main extends Component {
             key="1"
             data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 3, minH: 2, maxH: 2 }}
           >
-                   {this.props.showCom.spotify &&  <SpotifyWidget />}
+            {this.props.showCom.spotify && <SpotifyWidget />}
           </div>
           <div key="3" data-grid={{ x: 0, y: 0, w: 2, h: 1, maxW: 2, maxH: 1 }}>
-          {this.props.showCom.date && <DateTime />}
+            {this.props.showCom.date && <DateTime />}
           </div>
           <div key="4" data-grid={{ x: 0, y: 0, w: 2, h: 2 }}>
-          {this.props.showCom.saving && <Gauge />}
+            {this.props.showCom.saving && <Gauge />}
           </div>
           <div key="5" data-grid={{ x: 0, y: 0, w: 2, h: 2 }}>
-          {this.props.showCom.food &&  <Fitness />}
+            {this.props.showCom.food && <Fitness />}
           </div>
-         
+
           <div key="6" data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}>
-          {this.props.showCom.weather && <Weather />}
+            {this.props.showCom.weather && <Weather />}
           </div>
-          
+
           <div key="7" data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}>
-          {this.props.showCom.todo && <TodoMain />}
+            {this.props.showCom.todo && <TodoMain />}
           </div>
           <div key="8" data-grid={{ x: 0, y: 0, w: 3, h: 1, minW: 3, minH: 1 }}>
-          {this.props.showCom.github && <GithubIssues />}
+            {this.props.showCom.github && <GithubIssues />}
           </div>
           <div key="9" data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}>
-          {this.props.showCom.rss &&  <RSS />}
+            {this.props.showCom.rss && <RSS />}
           </div>
           <div
             key="10"
@@ -96,7 +96,7 @@ class Main extends Component {
             data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
           >
             {this.props.showCom.googlemap && <MapContainer />}
-            </div>
+          </div>
         </ResponsiveGridLayout>
       </main>
     );
