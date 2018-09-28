@@ -79,15 +79,34 @@ const styles = theme => ({
   }
 });
 
+// constructor(props) {
+//   super(props);
+//   this.state = {
+
+//   };
+//   ;
+// }
+
 class ResponsiveDrawer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showRegisterForm: false,
-      showLogin: true
+      showLogin: true,
+      weather: false,
+      saving: false,
+      spotify: false,
+      date: false,
+      rss: false,
+      food: false,
+      todo: false,
+      worldmap: false,
+      googlemap: false,
+      github: false
     };
     this.toggleRegister = this.toggleRegister.bind(this);
     this.toggleLogin = this.toggleLogin.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   toggleLogin() {
@@ -103,6 +122,16 @@ class ResponsiveDrawer extends React.Component {
       showLogin: false
     });
   }
+
+  handleClick(component) {
+    console.log(this.state);
+  this.setState({
+      ...this.state,
+      [component]: !this.state[component]
+  })
+
+}
+
   render() {
     const { classes, theme } = this.props;
 
@@ -121,7 +150,7 @@ class ResponsiveDrawer extends React.Component {
           style={{ backgroundImage: 'url(' + 'sidebar-4.jpg' + ')' }}
         />
         <Divider className={classes.whiten} />
-        <Sidebar />
+        <Sidebar handleClick={this.handleClick}/>
       </div>
     );
 
@@ -155,7 +184,7 @@ class ResponsiveDrawer extends React.Component {
         </Hidden>
         {console.log(this.props.state)}
         {/* Components from main will render here */}
-        {this.props.state.isAuthenticated && <Main />}
+        {this.props.state.isAuthenticated && <Main showCom={this.state}/>}
         {this.state.showLogin &&
           !this.props.state.isAuthenticated && (
             <SignIn toggleRegister={this.toggleRegister} />
