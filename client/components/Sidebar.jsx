@@ -15,6 +15,7 @@ import Map from '@material-ui/icons/Map';
 import ReportProblem from '@material-ui/icons/ReportProblem';
 import AirplanemodeActive from '@material-ui/icons/AirplanemodeActive';
 import CheckCircleOutline from '@material-ui/icons/CheckCircleOutline';
+import Divider from '@material-ui/core/Divider';
 
 const styles = theme => ({
   card: {
@@ -38,6 +39,9 @@ const styles = theme => ({
     letterSpacing: '2px',
     marginTop: '5%',
     marginBottom: '5%'
+  },
+  whiten: {
+    backgroundColor: 'white'
   }
 });
 
@@ -60,7 +64,6 @@ class Sidebar extends React.Component {
           onClick={() => this.props.handleClick('saving')}
         >
           <Icon className={classes.icon}>
-            {' '}
             <AttachMoney />
           </Icon>
           <Typography className={classes.sub}>Saving</Typography>
@@ -137,6 +140,7 @@ class Sidebar extends React.Component {
           </Icon>
           <Typography className={classes.sub}>Github Issues</Typography>
         </Button>
+        <Divider className={classes.whiten} />
       </Card>
     );
   }

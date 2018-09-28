@@ -84,7 +84,7 @@ class Main extends Component {
             <div />
           )}
           {this.props.showCom.food ? (
-            <div key="5" data-grid={{ x: 0, y: 0, w: 2, h: 2 }}>
+            <div key="5" data-grid={{ x: 0, y: 0, w: 3, h: 2 }}>
               <Fitness />
             </div>
           ) : (
