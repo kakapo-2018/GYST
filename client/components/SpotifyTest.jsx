@@ -81,15 +81,32 @@ class SpotifyTest extends Component {
     });
   }
 
-  getNowPlaying() {
+  nextSong() {
     spotifyApi.skipToNext().then(response => {
-      spotifyApi;
-      // this.setState({
-      //   nowPlaying: {
-      //     name: response.item.name,
-      //     albumArt: response.item.album.images[0].url
-      //   }
-      // });
+      spotifyApi.getMyCurrentPlaybackState().then(response => {
+        console.log(response);
+
+        this.setState({
+          nowPlaying: {
+            name: response.item.name,
+            albumArt: response.item.album.images[0].url
+          }
+        });
+      });
+    });
+  }
+
+  previousSong() {
+    spotifyApi.skipToPrevious().then(response => {
+      spotifyApi.getMyCurrentPlaybackState().then(response => {
+        this.setState({
+          nowPlaying: {
+            name: response.item.name,
+            artist: response.item.artists[0].name,
+            albumArt: response.item.album.images[0].url
+          }
+        });
+      });
     });
   }
   render() {
@@ -114,13 +131,18 @@ class SpotifyTest extends Component {
         <Card className={classes.card}>
           <div className={classes.details}>
             <CardContent className={classes.content}>
-              <Typography variant="headline">Live From Space</Typography>
+              <Typography variant="headline">
+                {this.state.nowPlaying.name}
+              </Typography>
               <Typography variant="subheading" color="textSecondary">
-                Mac Miller
+                {this.state.nowPlaying.artist}
               </Typography>
             </CardContent>
             <div className={classes.controls}>
-              <IconButton aria-label="Previous">
+              <IconButton
+                onClick={() => this.previousSong()}
+                aria-label="Previous"
+              >
                 {theme.direction === 'rtl' ? (
                   <SkipNextIcon />
                 ) : (
@@ -130,10 +152,7 @@ class SpotifyTest extends Component {
               <IconButton aria-label="Play/pause">
                 <PlayArrowIcon className={classes.playIcon} />
               </IconButton>
-              <IconButton
-                onClick={() => this.getNowPlaying()}
-                aria-label="Next"
-              >
+              <IconButton onClick={() => this.nextSong()} aria-label="Next">
                 {theme.direction === 'rtl' ? (
                   <SkipPreviousIcon />
                 ) : (
@@ -144,11 +163,10 @@ class SpotifyTest extends Component {
           </div>
           <CardMedia
             className={classes.cover}
-            image="/static/images/cards/live-from-space.jpg"
-            title="Live from space album cover"
+            image={this.state.nowPlaying.albumArt}
+            // title={this.state.name}
           />
         </Card>
-        ); }
       </div>
     );
   }
