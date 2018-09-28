@@ -3,11 +3,23 @@ import { connect } from 'react-redux';
 import { interpolateRgb } from 'd3-interpolate';
 import { saveItemAction, getItemAction } from '../actions/savings';
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+
 import LiquidFillGauge from 'react-liquid-gauge';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit
+  },
+  input: {
+    display: 'none'
+  }
+});
 
 class Gauge extends React.Component {
   constructor(props) {
@@ -30,10 +42,7 @@ class Gauge extends React.Component {
       this.state.savingGoal,
       this.props.state.auth.user.id
     );
-    console.log('hi');
-
     setTimeout(() => {
-      console.log('hi2');
       this.props.getIt(this.props.state.auth.user.id);
     }, 20);
   }
@@ -79,9 +88,7 @@ class Gauge extends React.Component {
 
     return (
       <Card style={{ maxWidth: 275 }}>
-        {console.log(this.props)}
         <CardContent style={{ padding: 0, maxWidth: 275 }}>
-          {console.log(this.props.loading)}
           {!this.props.loading && (
             <LiquidFillGauge
               style={{ margin: '0 auto' }}
@@ -194,21 +201,23 @@ class Gauge extends React.Component {
           )}
         </CardContent>
         <CardActions style={{ margin: '2%', display: 'flex' }}>
-          <input
+          <Input
             style={{ maxWidth: '45%' }}
             type="number"
             name="value"
             placeholder={'Saved: $' + this.props.state.items.saved}
             onChange={this.handleChange}
           />
-          <input
+          <Input
             style={{ maxWidth: '45%' }}
             type="number"
             name="savingGoal"
             placeholder={'Goal: $' + this.props.state.items.savingGoal}
             onChange={this.handleChange}
           />
-          <button onClick={this.save}>Save</button>
+          <Button variant="contained" color="primary" onClick={this.save}>
+            Save
+          </Button>
         </CardActions>
       </Card>
     );
@@ -229,14 +238,14 @@ function mapDispatchToProps(dispatch) {
       dispatch(saveItemAction(saved, goal, id));
     },
     getIt: id => {
-      console.log(id + 'getttit');
-
       dispatch(getItemAction(id));
     }
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Gauge);
+export default withStyles(styles)(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Gauge)
+);

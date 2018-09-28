@@ -13,7 +13,6 @@ export function itemsIsLoading(bool) {
   };
 }
 export function itemsFetchDataSuccess(items) {
-  console.log('Action payload:', items);
   return {
     type: 'ITEMS_FETCH_DATA_SUCCESS',
     items
@@ -21,8 +20,6 @@ export function itemsFetchDataSuccess(items) {
 }
 
 export function itemsFetchData(url) {
-  console.log('Fetching data from:', url);
-
   return dispatch => {
     dispatch(itemsIsLoading(true));
     return request
