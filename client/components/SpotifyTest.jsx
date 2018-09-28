@@ -17,36 +17,36 @@ import SkipNextIcon from '@material-ui/icons/SkipNext';
 const spotifyApi = new SpotifyWebApi();
 const styles = theme => ({
   card: {
-    display: 'flex',
+    display: 'flex'
   },
   details: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   content: {
-    flex: '1 0 auto',
+    flex: '1 0 auto'
   },
   cover: {
     width: 151,
-    height: 151,
+    height: 151
   },
   controls: {
     display: 'flex',
     alignItems: 'center',
     paddingLeft: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit
   },
   playIcon: {
     height: 38,
-    width: 38,
-  },
+    width: 38
+  }
 });
 class SpotifyTest extends Component {
   constructor(props) {
     super(props);
-    const { classes, theme } = this.props;
+
     console.log(this.props);
-    
+
     const params = this.getHashParams();
     const token = params.access_token;
     if (token) {
@@ -73,7 +73,7 @@ class SpotifyTest extends Component {
   getPlaylist() {
     spotifyApi.getUserPlaylists().then(playlist => {
       console.log(playlist);
-      spotifyApi
+      spotifyApi;
       this.setState({
         myPlaylist: playlist
       });
@@ -83,7 +83,7 @@ class SpotifyTest extends Component {
 
   getNowPlaying() {
     spotifyApi.skipToNext().then(response => {
-      spotifyApi
+      spotifyApi;
       // this.setState({
       //   nowPlaying: {
       //     name: response.item.name,
@@ -93,9 +93,12 @@ class SpotifyTest extends Component {
     });
   }
   render() {
+    const { classes, theme } = this.props;
     return (
       <div className="ok">
-        <a href="http://localhost:3000/login"> Login to Spotify </a>
+        {!this.state.loggedIn && (
+          <a href="http://localhost:3000/login"> Login to Spotify </a>
+        )}
         <div>Now Playing: {this.state.nowPlaying.name}</div>
         <div>
           <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} />
@@ -108,44 +111,47 @@ class SpotifyTest extends Component {
         {this.state.loggedIn && (
           <button onClick={() => this.getPlaylist()}>Check playlist</button>
         )}
-
-          <Card className={classes.card}>
-            <div className={classes.details}>
-              <CardContent className={classes.content}>
-                <Typography variant="headline">Live From Space</Typography>
-                <Typography variant="subheading" color="textSecondary">
-                  Mac Miller
-                </Typography>
-              </CardContent>
-              <div className={classes.controls}>
-                <IconButton aria-label="Previous">
-                  {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-                </IconButton>
-                <IconButton aria-label="Play/pause">
-                  <PlayArrowIcon className={classes.playIcon} />
-                </IconButton>
-                <IconButton onClick={() => this.getNowPlaying()} aria-label="Next">
-                  {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-                </IconButton>
-              </div>
+        <Card className={classes.card}>
+          <div className={classes.details}>
+            <CardContent className={classes.content}>
+              <Typography variant="headline">Live From Space</Typography>
+              <Typography variant="subheading" color="textSecondary">
+                Mac Miller
+              </Typography>
+            </CardContent>
+            <div className={classes.controls}>
+              <IconButton aria-label="Previous">
+                {theme.direction === 'rtl' ? (
+                  <SkipNextIcon />
+                ) : (
+                  <SkipPreviousIcon />
+                )}
+              </IconButton>
+              <IconButton aria-label="Play/pause">
+                <PlayArrowIcon className={classes.playIcon} />
+              </IconButton>
+              <IconButton
+                onClick={() => this.getNowPlaying()}
+                aria-label="Next"
+              >
+                {theme.direction === 'rtl' ? (
+                  <SkipPreviousIcon />
+                ) : (
+                  <SkipNextIcon />
+                )}
+              </IconButton>
             </div>
-            <CardMedia
-              className={classes.cover}
-              image="/static/images/cards/live-from-space.jpg"
-              title="Live from space album cover"
-            />
-          </Card>
-        );
-      }
-
+          </div>
+          <CardMedia
+            className={classes.cover}
+            image="/static/images/cards/live-from-space.jpg"
+            title="Live from space album cover"
+          />
+        </Card>
+        ); }
       </div>
     );
   }
 }
-
-// MediaControlCard.propTypes = {
-//   classes: PropTypes.object.isRequired,
-//   theme: PropTypes.object.isRequired,
-// };
 
 export default withStyles(styles, { withTheme: true })(SpotifyTest);
