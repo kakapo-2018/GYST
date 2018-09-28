@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Input from '@material-ui/core/Input';
+import { addSpotifyAction, getSpotifyAction } from '../actions/spotify';
 
 class SpotifyWidgetV2 extends React.Component {
   constructor(props) {
@@ -27,6 +29,7 @@ class SpotifyWidgetV2 extends React.Component {
       showInput: false,
       showPlaylist: true
     });
+    this.props.addPlaylist(this.state.inputURI, this.props.state.auth.user.id);
   }
 
   render() {
@@ -47,7 +50,11 @@ class SpotifyWidgetV2 extends React.Component {
         {this.state.showPlaylist && (
           <div className="we">
             <iframe
-              src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3"
+              src={
+                this.props.spotify.spotify
+                  ? String(this.props.spotify.spotify[0].uri)
+                  : 'spotify:user:cottonsnugs:playlist:6JCWxtu3J9pdFzIVeAbQ8B'
+              }
               width="300"
               height="380"
               frameBorder="0"
@@ -60,4 +67,26 @@ class SpotifyWidgetV2 extends React.Component {
     );
   }
 }
-export default SpotifyWidgetV2;
+
+function mapStateToProps(state) {
+  return {
+    state: state,
+    spotify: state.spotify
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getPlaylist: id => {
+      dispatch(getSpotifyAction(id));
+    },
+    addPlaylist: (uri, id) => {
+      dispatch(addSpotifyAction(uri, id));
+    }
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SpotifyWidgetV2);
