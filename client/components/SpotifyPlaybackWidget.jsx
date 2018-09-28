@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import SpotifyWebApi from 'spotify-web-api-js';
 //styles
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -11,8 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
-// import PauseCircleOutline from '@material-ui/icons/PauseCircleOutline';
 import Pause from '@material-ui/icons/Pause';
+
 const spotifyApi = new SpotifyWebApi();
 const styles = theme => ({
   card: {
@@ -41,7 +40,7 @@ const styles = theme => ({
   }
 });
 
-class SpotifyTest extends Component {
+class SpotifyPlaybackWidget extends Component {
   constructor(props) {
     super(props);
     const params = this.getHashParams();
@@ -54,10 +53,6 @@ class SpotifyTest extends Component {
       nowPlaying: { name: 'Not Checked', albumArt: '' },
       paused: false
     };
-  }
-
-  componentWillMount() {
-    console.log('props');
   }
 
   componentDidMount() {
@@ -95,10 +90,7 @@ class SpotifyTest extends Component {
   }
 
   getSong() {
-    console.log('hit song');
-
     spotifyApi.getMyCurrentPlayingTrack().then(response => {
-      console.log(response);
       this.setState({
         nowPlaying: {
           name: response.item.name,
@@ -111,41 +103,18 @@ class SpotifyTest extends Component {
 
   nextSong() {
     spotifyApi.skipToNext().then(response => {
-      // spotifyApi.getMyCurrentPlayingTrack().then(response => {
-      //   console.log(response);
-
-      //   this.setState({
-      //     nowPlaying: {
-      //       name: response.item.name,
-      //       artist: response.item.artists[0].name,
-      //       albumArt: response.item.album.images[0].url
-      //     }
-      //   });
-      // });
       setTimeout(() => {
         this.getSong();
-      }, 1000);
+      }, 800);
     });
-
-    console.log('timeout');
   }
 
   previousSong() {
     spotifyApi.skipToPrevious().then(response => {
       setTimeout(() => {
-        spotifyApi.getMyCurrentPlayingTrack().then(response => {
-          console.log(response);
-          this.setState({
-            nowPlaying: {
-              name: response.item.name,
-              artist: response.item.artists[0].name,
-              albumArt: response.item.album.images[0].url
-            }
-          });
-          console.log(this.state);
-        });
-      });
-    }, 2000);
+        this.getSong();
+      }, 800);
+    });
   }
 
   togglePause() {
@@ -163,29 +132,12 @@ class SpotifyTest extends Component {
   }
 
   render() {
-    {
-      console.log(this.state.nowPlaying.artist);
-    }
-    console.log('rendering');
-
     const { classes, theme } = this.props;
     return (
       <div className="ok">
         {!this.state.loggedIn && (
           <a href="http://localhost:3000/login"> Login to Spotify </a>
         )}
-        {/* <div>Now Playing: {this.state.nowPlaying.name}</div>
-        <div>
-          <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} />
-        </div>
-        {this.state.loggedIn && (
-          <button onClick={() => this.getNowPlaying()}>
-            Check Now Playing
-          </button>
-        )}
-        {this.state.loggedIn && (
-          <button onClick={() => this.getPlaylist()}>Check playlist</button>
-        )} */}
         <Card className={classes.card}>
           <div className={classes.details}>
             <CardContent className={classes.content}>
@@ -237,7 +189,6 @@ class SpotifyTest extends Component {
           <CardMedia
             className={classes.cover}
             image={this.state.nowPlaying.albumArt}
-            // title={this.state.name}
           />
         </Card>
       </div>
@@ -245,4 +196,4 @@ class SpotifyTest extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(SpotifyTest);
+export default withStyles(styles, { withTheme: true })(SpotifyPlaybackWidget);

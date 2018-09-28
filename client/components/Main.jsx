@@ -8,7 +8,7 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 import { withStyles } from '@material-ui/core/styles';
 
 //Components
-import SpotifyWidgetV2 from './SpotifyWidgetV2';
+import SpotifyPlaybackWidget from './SpotifyPlaybackWidget';
 import DateTime from './DateTime';
 import WorldMap from './WorldMap';
 import Gauge from './Gauge';
@@ -18,7 +18,6 @@ import RSS from './RssFeed';
 import Weather from './Weather';
 import MapContainer from './MapContainer';
 import GithubIssues from './GithubIssues';
-import SpotifyTest from './SpotifyTest';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -60,10 +59,10 @@ class Main extends Component {
             key="1"
             data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 3, minH: 2, maxH: 2 }}
           >
-            {this.props.showCom.spotify && <SpotifyTest />}
+            {this.props.showCom.spotify && <SpotifyPlaybackWidget />}
           </div>
           <div key="3" data-grid={{ x: 0, y: 0, w: 2, h: 1, maxW: 2, maxH: 1 }}>
-            {this.props.showCom.date && <SpotifyTest />}
+            {this.props.showCom.date && <DateTime />}
           </div>
           <div key="4" data-grid={{ x: 0, y: 0, w: 2, h: 2 }}>
             {this.props.showCom.saving && <Gauge />}
