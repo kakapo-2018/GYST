@@ -5,6 +5,17 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import WbSunny from '@material-ui/icons/WbSunny'
+import Icon from '@material-ui/core/Icon'
+import AttachMoney from '@material-ui/icons/AttachMoney'
+import QueueMusic from '@material-ui/icons/QueueMusic'
+import AccessTime from '@material-ui/icons/AccessTime'
+import Web from '@material-ui/icons/Web'
+import Fastfood from '@material-ui/icons/Fastfood'
+import Map from '@material-ui/icons/Map'
+import ReportProblem from '@material-ui/icons/ReportProblem'
+import AirplanemodeActive from '@material-ui/icons/AirplanemodeActive'
+import CheckCircleOutline from '@material-ui/icons/CheckCircleOutline'
 
 
 const styles = theme => ({
@@ -22,11 +33,10 @@ const styles = theme => ({
         marginBottom: 16,
         fontSize: 14
     },
-    time: {
+    icon: {
         color: "white",
-        letterSpacing: "4px",
-        fontSize: "2em",
-        textAlign: "center"
+        textAlign: "center",
+        marginTop: "6%"
     },
     sub: {
         color: "white",
@@ -45,38 +55,56 @@ class Sidebar extends React.Component {
 
         return (
             <Card className={classes.card}>
+                <Button>
+                    <Typography className={classes.sub}>
+                        <Icon ><WbSunny className={classes.icon} /></Icon> Weather
+                    </Typography>
+                </Button>
+                <Button>
                 <Typography className={classes.sub}>
-                    Weather
+                    <Icon><AttachMoney className={classes.icon} /></Icon> Saving
           </Typography>
-                <Typography className={classes.sub}>
-                    Saving
-          </Typography>
-
+          </Button>
+          <Button>
                 <Typography className={classes.sub} >
-                    Spotify
+                    <Icon><QueueMusic className={classes.icon} /></Icon> Spotify
           </Typography>
+          </Button>
+          <Button>
                 <Typography className={classes.sub}>
-                    Date, Time and Calendar
+                    <Icon><AccessTime className={classes.icon} /></Icon> Date & Time
           </Typography>
+          </Button>
+          <Button>
                 <Typography className={classes.sub}>
-                    RSS
+                    <Icon><Web className={classes.icon} /></Icon> RSS
           </Typography>
+          </Button>
+          <Button>
                 <Typography className={classes.sub}>
-                    Food Tracker
+                    <Icon><Fastfood className={classes.icon} /></Icon>Food Tracker
           </Typography>
+          </Button>
+          <Button>
                 <Typography className={classes.sub}>
-                    To Do List
+                    <Icon><CheckCircleOutline className={classes.icon} /></Icon> To Do List
           </Typography>
+          </Button>
+          <Button>
                 <Typography className={classes.sub}>
-                    World Map
+                    <Icon><AirplanemodeActive className={classes.icon} /></Icon> World Map
           </Typography>
+          </Button>
+          <Button>
                 <Typography className={classes.sub}>
-                    Google Map
+                    <Icon><Map className={classes.icon} /></Icon>Google Map
           </Typography>
+          </Button>
+          <Button>
                 <Typography className={classes.sub}>
-                    Github Issues
+                    <Icon><ReportProblem className={classes.icon} /></Icon> Github Issues
           </Typography>
-
+          </Button>
             </Card>
         );
     }
