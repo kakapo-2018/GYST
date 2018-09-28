@@ -44,7 +44,7 @@ class RSS extends Component {
           RSS
           <ul>
             {this.state.feedItems.map(item => {
-              return <li>{item.title}</li>;
+              return <li key={item.id}>{item.title}</li>;
             })}
           </ul>
         </div>
