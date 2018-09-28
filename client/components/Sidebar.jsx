@@ -25,29 +25,38 @@ const styles = theme => ({
         maxWidth: 275,
         zIndex: '3'
     },
-    action: {
-        display: "flex",
-        justifyContent: "center"
-    },
-    title: {
-        marginBottom: 16,
-        fontSize: 14
+    button: {
+        width: 239,
+        textAlign: "center",
+        padding: 0
     },
     icon: {
         color: "white",
-        textAlign: "center",
-        marginTop: "6%"
+        textAlign: "left",
+        marginRight: "2%"
     },
     sub: {
         color: "white",
         letterSpacing: "2px",
-        textAlign: "center",
         marginTop: "5%",
-        marginBottom: "5%"
+        marginBottom: "5%",
+
     }
 });
 
 class Sidebar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        };
+        this.handleClick = this.handleClick.bind(this);
+    }
+    handleClick(e) {
+        e.preventDefault();
+        console.log("weather clicked");
+
+    }
 
 
     render() {
@@ -55,56 +64,69 @@ class Sidebar extends React.Component {
 
         return (
             <Card className={classes.card}>
-                <Button>
+                <Button className={classes.button} onClick={this.handleClick}>
+                    <Icon className={classes.icon} ><WbSunny /></Icon>
                     <Typography className={classes.sub}>
-                        <Icon ><WbSunny className={classes.icon} /></Icon> Weather
+                        Weather
                     </Typography>
                 </Button>
-                <Button>
-                <Typography className={classes.sub}>
-                    <Icon><AttachMoney className={classes.icon} /></Icon> Saving
-          </Typography>
-          </Button>
-          <Button>
-                <Typography className={classes.sub} >
-                    <Icon><QueueMusic className={classes.icon} /></Icon> Spotify
-          </Typography>
-          </Button>
-          <Button>
-                <Typography className={classes.sub}>
-                    <Icon><AccessTime className={classes.icon} /></Icon> Date & Time
-          </Typography>
-          </Button>
-          <Button>
-                <Typography className={classes.sub}>
-                    <Icon><Web className={classes.icon} /></Icon> RSS
-          </Typography>
-          </Button>
-          <Button>
-                <Typography className={classes.sub}>
-                    <Icon><Fastfood className={classes.icon} /></Icon>Food Tracker
-          </Typography>
-          </Button>
-          <Button>
-                <Typography className={classes.sub}>
-                    <Icon><CheckCircleOutline className={classes.icon} /></Icon> To Do List
-          </Typography>
-          </Button>
-          <Button>
-                <Typography className={classes.sub}>
-                    <Icon><AirplanemodeActive className={classes.icon} /></Icon> World Map
-          </Typography>
-          </Button>
-          <Button>
-                <Typography className={classes.sub}>
-                    <Icon><Map className={classes.icon} /></Icon>Google Map
-          </Typography>
-          </Button>
-          <Button>
-                <Typography className={classes.sub}>
-                    <Icon><ReportProblem className={classes.icon} /></Icon> Github Issues
-          </Typography>
-          </Button>
+                <Button className={classes.button}>
+                    <Icon className={classes.icon} > <AttachMoney /></Icon>
+                    <Typography className={classes.sub}>
+                        Saving
+                    </Typography>
+                </Button>
+                <Button className={classes.button}>
+                    <Icon className={classes.icon} >
+                        <QueueMusic /></Icon>
+                    <Typography className={classes.sub} >
+                        Spotify
+                    </Typography>
+                </Button>
+                <Button className={classes.button}>
+                    <Icon className={classes.icon} >
+                        <AccessTime /></Icon>
+                    <Typography className={classes.sub}>
+                        Date & Time
+                    </Typography>
+                </Button>
+                <Button className={classes.button} >
+                    <Icon className={classes.icon} >
+                        <Web /></Icon>
+                    <Typography className={classes.sub}>
+                        RSS
+                     </Typography>
+                </Button>
+                <Button className={classes.button} >
+                    <Icon className={classes.icon} ><Fastfood /></Icon>
+                    <Typography className={classes.sub}>
+                        Food Tracker
+                    </Typography>
+                </Button>
+                <Button className={classes.button} >
+                    <Icon className={classes.icon}><CheckCircleOutline /></Icon>
+                    <Typography className={classes.sub}>
+                        To Do List
+                     </Typography>
+                </Button>
+                <Button className={classes.button} >
+                    <Icon className={classes.icon}><AirplanemodeActive /></Icon>
+                    <Typography className={classes.sub}>
+                        World Map
+                     </Typography>
+                </Button>
+                <Button className={classes.button} >
+                    <Icon className={classes.icon} ><Map /></Icon>
+                    <Typography className={classes.sub}>
+                        Google Map
+                    </Typography>
+                </Button>
+                <Button className={classes.button} >
+                    <Icon className={classes.icon}><ReportProblem /></Icon>
+                    <Typography className={classes.sub}>
+                        Github Issues
+                    </Typography>
+                </Button>
             </Card>
         );
     }
