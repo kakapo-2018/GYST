@@ -51,7 +51,6 @@ class App extends Component {
     return (
       <React.Fragment>
         <CssBaseline />
-
         {this.props.state.isAuthenticated && (
           <NavBar
             user={this.props.state.user.username}
@@ -64,7 +63,6 @@ class App extends Component {
             handleDrawerToggle={this.handleDrawerToggle}
           />
         )}
-
         <PersistentDrawer
           handleDrawerToggle={this.handleDrawerToggle}
           drawerState={this.state.mobileOpen}

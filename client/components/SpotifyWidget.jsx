@@ -41,7 +41,7 @@ function SpotifyWidget(props) {
     >
       <SpotifyPlayer
         className={classes.widget}
-        uri="spotify:playlist:4dPMKxqQQB7CuOe28Vrcje"
+        uri="spotify:user:cottonsnugs:playlist:4dPMKxqQQB7CuOe28Vrcje"
         size={{
           width: '100%',
           height: 280
