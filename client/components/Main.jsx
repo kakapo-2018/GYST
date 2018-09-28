@@ -23,6 +23,7 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   content: {
+    paddingLeft: '255px',
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3
@@ -64,7 +65,7 @@ class Main extends Component {
           <div key="3" data-grid={{ x: 0, y: 0, w: 2, h: 1, maxW: 2, maxH: 1 }}>
             <DateTime />
           </div>
-          <div key="4" data-grid={{ x: 0, y: 0, w: 2, h: 2 }}>
+          <div key="4" data-grid={{ x: 0, y: 0, w: 3, h: 2 }}>
             <Gauge />
           </div>
           <div key="5" data-grid={{ x: 0, y: 0, w: 2, h: 2 }}>

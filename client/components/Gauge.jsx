@@ -134,7 +134,7 @@ class Gauge extends React.Component {
                 return (
                   <tspan>
                     <tspan className="value" style={valueStyle}>
-                      {value}
+                      {value >= 0 ? value : 0}
                     </tspan>
                     <tspan style={percentStyle}>{props.percent}</tspan>
                   </tspan>
@@ -187,7 +187,7 @@ class Gauge extends React.Component {
                 return (
                   <tspan>
                     <tspan className="value" style={valueStyle}>
-                      {value}
+                      {value >= 0 ? value : 0}
                     </tspan>
                     <tspan style={percentStyle}>{props.percent}</tspan>
                   </tspan>
