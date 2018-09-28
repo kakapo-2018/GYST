@@ -26,8 +26,11 @@ class Todo extends Component {
     this.onCheck = this.onCheck.bind(this);
   }
 
-  onClick(event) {
-    this.props.handleRemove(this.props.id);
+  onClick(name) {
+    console.log('hit');
+
+    console.log(name);
+    this.props.handleRemove(name);
   }
 
   onCheck(event) {
@@ -36,6 +39,8 @@ class Todo extends Component {
 
   render() {
     const { todo } = this.props;
+    console.log(this.props.name);
+
     const listStyles = !this.props.checked
       ? listElementStyles
       : listElementCheckedStyles;
@@ -45,7 +50,7 @@ class Todo extends Component {
         <ListItemText style={listStyles} primary={todo} />
         <ListItemSecondaryAction>
           <IconButton aria-label="Comments">
-            <DeleteIcon onClick={this.onClick} />
+            <DeleteIcon onClick={() => this.onClick(this.props.name)} />
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>

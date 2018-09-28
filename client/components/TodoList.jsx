@@ -21,6 +21,7 @@ class TodoList extends Component {
       return (
         <Todo
           key={todo.id}
+          name={todo.id}
           todo={todo.todo}
           id={todo.userid}
           checked={todo.status}

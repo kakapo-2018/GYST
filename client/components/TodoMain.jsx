@@ -7,7 +7,11 @@ import Paper from '@material-ui/core/Paper';
 import uuid from 'uuid';
 
 //internal dependecies
-import { getTodosAction, addTodosAction } from '../actions/todo';
+import {
+  getTodosAction,
+  addTodosAction,
+  delTodosAction
+} from '../actions/todo';
 import AddTodo from './AddTodo';
 import TodoList from './TodoList';
 
@@ -42,13 +46,14 @@ class TodoMain extends Component {
   }
 
   handleRemove(id) {
-    const finalTodos = this.state.todos.filter(todo => {
-      if (todo.id != id) return todo;
-    });
-    this.setState({
-      todos: finalTodos,
-      open: true
-    });
+    // const finalTodos = this.state.todos.filter(todo => {
+    //   if (todo.id != id) return todo;
+    // });
+    // this.setState({
+    //   todos: finalTodos,
+    //   open: true
+    // });
+    this.props.delTodos(id, this.props.state.auth.user.id);
   }
 
   handleCheck(id) {
@@ -128,8 +133,6 @@ class TodoMain extends Component {
 function mapStateToProps(state) {
   return {
     state: state
-    // items: state.items[0],
-    // loading: state.itemsIsLoading
   };
 }
 
@@ -140,6 +143,9 @@ function mapDispatchToProps(dispatch) {
     },
     addTodos: (id, todo) => {
       dispatch(addTodosAction(id, todo));
+    },
+    delTodos: (id, user) => {
+      dispatch(delTodosAction(id, user));
     }
   };
 }

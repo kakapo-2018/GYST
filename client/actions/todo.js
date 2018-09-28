@@ -39,6 +39,23 @@ export function addTodosAction(id, todo) {
   };
 }
 
+//delete todos
+
+export function delTodosAction(id, user) {
+  let obj = {
+    id: id,
+    user: user
+  };
+  return function(dispatch) {
+    request('post', '/todo/delete', obj).then(response => {
+      if (!response.ok) {
+      } else {
+        dispatch(receiveTodos(response.body));
+      }
+    });
+  };
+}
+
 // function receiveTodos(response) {
 //   return {
 //     type: 'GET_TODOS',

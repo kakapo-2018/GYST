@@ -20,12 +20,19 @@ function saveTodo(id, todo, testDB) {
     });
 }
 
-function deleteTodo(username, testDB) {
+function deleteTodo(id, user, testDB) {
+  console.log(user);
+
   const db = testDB || connection;
   return db('todos')
     .select()
-    .where('username', username)
-    .first();
+    .where('id', id)
+    .del()
+    .then(data => {
+      return connection('todos').where({
+        userid: user
+      });
+    });
 }
 
 function checkTodo(saved, goal, id, testDB) {

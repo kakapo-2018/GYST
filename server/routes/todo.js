@@ -22,7 +22,7 @@ router.post('/save', (req, res) => {
 });
 
 router.post('/delete', (req, res) => {
-  todoDB.deleteTodo(req.query.id).then(result => {
+  todoDB.deleteTodo(req.body.id, req.body.user).then(result => {
     console.log(result);
     if (result == undefined) {
       res.json([1, 10]);
