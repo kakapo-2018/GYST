@@ -1,5 +1,21 @@
 import React, { Component } from 'react';
-import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit
+  },
+  extendedIcon: {
+    marginRight: theme.spacing.unit
+  }
+});
 
 class RSS extends Component {
   constructor(props) {
@@ -21,6 +37,7 @@ class RSS extends Component {
 
     (async () => {
       let feed = await parser.parseURL('/api/ext/rss');
+      console.log(feed);
 
       feed.items.forEach(item => {
         this.setState({ feedItems: feed.items });
@@ -29,28 +46,42 @@ class RSS extends Component {
   };
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <Paper
+      <Card
+        className={classes.card}
         style={{
-          padding: '10px',
           maxWidth: '100%',
           maxHeight: '100%',
           minWidth: '100%',
           minHeight: '100%',
-          overflow: 'hidden'
+          overflow: 'scroll'
         }}
       >
+        <CardMedia
+          component="img"
+          className={classes.media}
+          height="110"
+          image="rss.jpg"
+          title="Contemplative Reptile"
+        />
         <div>
-          RSS
           <ul>
             {this.state.feedItems.map(item => {
-              return <li key={item.id}>{item.title}</li>;
+              return (
+                <li key={item.id}>
+                  <Typography component="p">
+                    <a href={item.link}> {item.title} </a>
+                  </Typography>
+                </li>
+              );
             })}
           </ul>
         </div>
-      </Paper>
+      </Card>
     );
   }
 }
 
-export default RSS;
+export default withStyles(styles)(RSS);
