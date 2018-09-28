@@ -11,7 +11,7 @@ function saveTodo(id, todo, testDB) {
     .insert({
       userid: id,
       todo: todo,
-      status: true
+      status: false
     })
     .then(data => {
       return connection('todos').where({

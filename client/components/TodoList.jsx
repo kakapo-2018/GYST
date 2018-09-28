@@ -16,12 +16,14 @@ class TodoList extends Component {
     const { handleRemove, handleCheck, todos } = this.props;
 
     var todoNode = todos.map(todo => {
+      console.log(todo);
+
       return (
         <Todo
           key={todo.id}
-          todo={todo.task}
-          id={todo.id}
-          checked={todo.checked}
+          todo={todo.todo}
+          id={todo.userid}
+          checked={todo.status}
           handleRemove={handleRemove}
           handleCheck={handleCheck}
         />

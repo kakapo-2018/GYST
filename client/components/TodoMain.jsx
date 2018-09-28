@@ -97,12 +97,19 @@ class TodoMain extends Component {
             <IconButton />
           </div>
         </div>
-
-        <TodoList
-          todos={this.state.todos}
+        {this.props.state.todos.todos && (
+          <TodoList
+            todos={this.props.state.todos.todos}
+            handleRemove={this.handleRemove}
+            handleCheck={this.handleCheck}
+          />
+        )}
+        {/* {this.props.state.todos.todos.length >= 1   &&     <TodoList
+          todos={this.props.state.todos.todos}
           handleRemove={this.handleRemove}
           handleCheck={this.handleCheck}
-        />
+        />} */}
+
         <br />
         <div style={{ marginLeft: '5%', marginRight: '5%' }}>
           <AddTodo handleClick={this.handleClick} />
