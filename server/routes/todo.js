@@ -12,7 +12,9 @@ router.get('/', (req, res) => {
 });
 
 router.post('/save', (req, res) => {
-  todoDB.saveTodo(req.body.saved, req.body.goal, req.body.id).then(result => {
+  console.log(req.body);
+
+  todoDB.saveTodo(req.body.id, req.body.todo).then(result => {
     res.json(result);
   });
 });

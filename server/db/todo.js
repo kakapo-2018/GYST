@@ -5,13 +5,18 @@ function getTodo(id, testDB) {
   return db('todos').where({ id: id });
 }
 
-function saveTodo(username, testDB) {
+function saveTodo(id, todo, testDB) {
   const db = testDB || connection;
   return db('todos')
-    .count('id as n')
-    .where('username', username)
-    .then(count => {
-      return count[0].n > 0;
+    .insert({
+      userid: id,
+      todo: todo,
+      status: true
+    })
+    .then(data => {
+      return connection('todos').where({
+        userid: id
+      });
     });
 }
 

@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import uuid from 'uuid';
 
 //internal dependecies
-import { getTodosAction } from '../actions/todo';
+import { getTodosAction, addTodosAction } from '../actions/todo';
 import AddTodo from './AddTodo';
 import TodoList from './TodoList';
 
@@ -38,6 +38,7 @@ class TodoMain extends Component {
         }
       ]
     });
+    this.props.addTodos(this.props.state.auth.user.id, todo);
   }
 
   handleRemove(id) {
@@ -129,6 +130,9 @@ function mapDispatchToProps(dispatch) {
   return {
     getTodos: id => {
       dispatch(getTodosAction(id));
+    },
+    addTodos: (id, todo) => {
+      dispatch(addTodosAction(id, todo));
     }
   };
 }
