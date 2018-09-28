@@ -8,16 +8,12 @@ class TodoList extends Component {
     handleRemove: PropTypes.func,
     handleCheck: PropTypes.func
   };
-
   constructor(props) {
     super(props);
   }
   render() {
     const { handleRemove, handleCheck, todos } = this.props;
-
     var todoNode = todos.map(todo => {
-      console.log(todo.status);
-
       return (
         <Todo
           key={todo.id}

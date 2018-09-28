@@ -47,26 +47,10 @@ class TodoMain extends Component {
   }
 
   handleRemove(id) {
-    // const finalTodos = this.state.todos.filter(todo => {
-    //   if (todo.id != id) return todo;
-    // });
-    // this.setState({
-    //   todos: finalTodos,
-    //   open: true
-    // });
     this.props.delTodos(id, this.props.state.auth.user.id);
   }
 
   handleCheck(id, checked) {
-    // const finalTodos = this.state.todos.map(todo => {
-    //   if (todo.id === id) {
-    //     todo.checked = !todo.checked;
-    //   }
-    //   return todo;
-    // });
-    // this.setState({
-    //   todos: finalTodos
-    // });
     this.props.chkTodos(id, this.props.state.auth.user.id, checked);
   }
 
@@ -111,12 +95,6 @@ class TodoMain extends Component {
             handleCheck={this.handleCheck}
           />
         )}
-        {/* {this.props.state.todos.todos.length >= 1   &&     <TodoList
-          todos={this.props.state.todos.todos}
-          handleRemove={this.handleRemove}
-          handleCheck={this.handleCheck}
-        />} */}
-
         <br />
         <div style={{ marginLeft: '5%', marginRight: '5%' }}>
           <AddTodo handleClick={this.handleClick} />

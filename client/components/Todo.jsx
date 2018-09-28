@@ -31,8 +31,6 @@ class Todo extends Component {
   }
 
   onCheck(name, checked) {
-    console.log(checked);
-
     this.props.handleCheck(name, checked);
   }
 

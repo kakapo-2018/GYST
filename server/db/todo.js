@@ -35,17 +35,11 @@ function deleteTodo(id, user, testDB) {
 
 function checkTodo(id, user, checked, testDB) {
   const db = testDB || connection;
-  console.log(id, user, checked);
-  console.log('checked was!');
-
   if (checked == 0) {
     checked = 1;
   } else if (checked == 1) {
     checked = 0;
   }
-  console.log('222222222222222222222');
-  console.log(checked);
-
   return db('todos')
     .where({ id: id })
     .update({ status: checked })
