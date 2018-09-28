@@ -13,13 +13,12 @@ const styles = theme => ({
   },
   box: {
     textAlign: 'center'
-
   },
   repo: {
-    padding: "5% 0% 4% 0%"
+    padding: '5% 0% 4% 0%'
   },
   header: {
-    margin:"0%"
+    margin: '0%'
   }
 });
 
@@ -43,13 +42,17 @@ class GithubIssues extends Component {
   render() {
     const { classes } = this.props;
     return (
-   
-        <Paper
-          style={{
-            maxWidth: '80%',
-            minHeight: '50%'
-          }}
-        >   <Button href="https://github.com/kakapo-2018/Personal-Dashboard" target="_blank">
+      <Paper
+        style={{
+          maxWidth: '100%',
+          minHeight: '100%'
+        }}
+      >
+        {' '}
+        <Button
+          href="https://github.com/kakapo-2018/Personal-Dashboard"
+          target="_blank"
+        >
           <header className={classes.header} />
           <div className={classes.box}>
             <img className={classes.img} src="./github.png" />
@@ -58,13 +61,12 @@ class GithubIssues extends Component {
             <div className={classes.issue}>
               <div className={classes.count}>
                 Issues:
-              {this.state.userDatas.open_issues_count}
+                {this.state.userDatas.open_issues_count}
               </div>
             </div>
           </div>
-          </Button>
-        </Paper>
-  
+        </Button>
+      </Paper>
     );
   }
 }
