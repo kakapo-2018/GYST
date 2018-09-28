@@ -87,8 +87,24 @@ class Gauge extends React.Component {
     ];
 
     return (
-      <Card style={{ maxWidth: 275 }}>
-        <CardContent style={{ padding: 0, maxWidth: 275 }}>
+      <Card
+        style={{
+          padding: '10px',
+          maxWidth: '100%',
+          maxHeight: '100%',
+          minWidth: '100%',
+          minHeight: '100%'
+        }}
+      >
+        <CardContent
+          style={{
+            padding: '10px',
+            maxWidth: '100%',
+            maxHeight: '100%',
+            minWidth: '100%',
+            minHeight: '100%'
+          }}
+        >
           {!this.props.loading && (
             <LiquidFillGauge
               style={{ margin: '0 auto' }}
@@ -200,7 +216,7 @@ class Gauge extends React.Component {
             />
           )}
         </CardContent>
-        <CardActions style={{ margin: '2%', display: 'flex' }}>
+        <CardActions style={{ paddingBottom: '8px' }}>
           <Input
             style={{ maxWidth: '45%' }}
             type="number"
