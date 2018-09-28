@@ -16,7 +16,7 @@ class TodoList extends Component {
     const { handleRemove, handleCheck, todos } = this.props;
 
     var todoNode = todos.map(todo => {
-      console.log(todo);
+      console.log(todo.status);
 
       return (
         <Todo

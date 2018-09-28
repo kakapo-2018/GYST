@@ -44,6 +44,7 @@ class Todo extends Component {
     return (
       <ListItem dense button>
         <Checkbox
+          checked={this.props.checked}
           onClick={() => this.onCheck(this.props.name, this.props.checked)}
         />
         <ListItemText style={listStyles} primary={todo} />
