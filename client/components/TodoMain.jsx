@@ -44,8 +44,6 @@ class TodoMain extends Component {
   }
 
   handleCheck(id) {
-    console.log('checked');
-
     const finalTodos = this.state.todos.map(todo => {
       if (todo.id === id) {
         todo.checked = !todo.checked;
