@@ -43,8 +43,6 @@ function saveSavings(saved, goal, id, testDB) {
 }
 
 function getSavings(id, testDB) {
-  console.log('hit db');
-
   const db = testDB || connection;
   return db('users')
     .where({ id: id })

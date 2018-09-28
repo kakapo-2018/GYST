@@ -21,22 +21,21 @@ class Gauge extends React.Component {
   }
 
   componentWillMount() {
-    console.log('will mount');
-
     this.props.getIt(this.props.state.auth.user.id);
   }
-  // this.props.state.items[0].saved,
-  // this.props.state.items[0].savingGoal
+
   save() {
     this.props.saveIt(
       this.state.value,
       this.state.savingGoal,
       this.props.state.auth.user.id
     );
-    this.props.getIt(this.props.state.auth.user.id);
-    // {
-    //   console.log(this.props.items.saved);
-    // }
+    console.log('hi');
+
+    setTimeout(() => {
+      console.log('hi2');
+      this.props.getIt(this.props.state.auth.user.id);
+    }, 20);
   }
 
   handleChange(e) {
@@ -82,62 +81,117 @@ class Gauge extends React.Component {
       <Card style={{ maxWidth: 275 }}>
         {console.log(this.props)}
         <CardContent style={{ padding: 0, maxWidth: 275 }}>
-          {console.log(this.props)}
-          <LiquidFillGauge
-            style={{ margin: '0 auto' }}
-            width={radius * 2}
-            maxWidth={375}
-            height={radius * 2}
-            value={
-              (this.props.state.items.saved /
-                this.props.state.items.savingGoal) *
-              100
-            }
-            percent="%"
-            textSize={1}
-            textOffsetX={0}
-            textOffsetY={0}
-            textRenderer={props => {
-              const value = Math.round(props.value);
-              const radius = Math.min(props.height / 2, props.width / 2);
-              const textPixels = (props.textSize * radius) / 2;
-              const valueStyle = {
-                fontSize: textPixels
-              };
-              const percentStyle = {
-                fontSize: textPixels * 0.6
-              };
+          {console.log(this.props.loading)}
+          {!this.props.loading && (
+            <LiquidFillGauge
+              style={{ margin: '0 auto' }}
+              width={radius * 2}
+              maxWidth={375}
+              height={radius * 2}
+              value={
+                (this.props.state.items.saved /
+                  this.props.state.items.savingGoal) *
+                100
+              }
+              percent="%"
+              textSize={1}
+              textOffsetX={0}
+              textOffsetY={0}
+              textRenderer={props => {
+                const value = Math.round(props.value);
+                const radius = Math.min(props.height / 2, props.width / 2);
+                const textPixels = (props.textSize * radius) / 2;
+                const valueStyle = {
+                  fontSize: textPixels
+                };
+                const percentStyle = {
+                  fontSize: textPixels * 0.6
+                };
 
-              return (
-                <tspan>
-                  <tspan className="value" style={valueStyle}>
-                    {value}
+                return (
+                  <tspan>
+                    <tspan className="value" style={valueStyle}>
+                      {value}
+                    </tspan>
+                    <tspan style={percentStyle}>{props.percent}</tspan>
                   </tspan>
-                  <tspan style={percentStyle}>{props.percent}</tspan>
-                </tspan>
-              );
-            }}
-            riseAnimation
-            waveAnimation
-            waveFrequency={2}
-            waveAmplitude={1}
-            gradient
-            gradientStops={gradientStops}
-            circleStyle={{
-              fill: fillColor
-            }}
-            waveStyle={{
-              fill: fillColor
-            }}
-            textStyle={{
-              fill: color('#444').toString(),
-              fontFamily: 'Arial'
-            }}
-            waveTextStyle={{
-              fill: color('#fff').toString(),
-              fontFamily: 'Arial'
-            }}
-          />
+                );
+              }}
+              riseAnimation
+              waveAnimation
+              waveFrequency={2}
+              waveAmplitude={1}
+              gradient
+              gradientStops={gradientStops}
+              circleStyle={{
+                fill: fillColor
+              }}
+              waveStyle={{
+                fill: fillColor
+              }}
+              textStyle={{
+                fill: color('#444').toString(),
+                fontFamily: 'Arial'
+              }}
+              waveTextStyle={{
+                fill: color('#fff').toString(),
+                fontFamily: 'Arial'
+              }}
+            />
+          )}
+          {this.props.loading && (
+            <LiquidFillGauge
+              style={{ margin: '0 auto' }}
+              width={radius * 2}
+              maxWidth={375}
+              height={radius * 2}
+              value={0}
+              percent="%"
+              textSize={1}
+              textOffsetX={0}
+              textOffsetY={0}
+              textRenderer={props => {
+                const value = Math.round(props.value);
+                const radius = Math.min(props.height / 2, props.width / 2);
+                const textPixels = (props.textSize * radius) / 2;
+                const valueStyle = {
+                  fontSize: textPixels
+                };
+                const percentStyle = {
+                  fontSize: textPixels * 0.6
+                };
+
+                return (
+                  <tspan>
+                    <tspan className="value" style={valueStyle}>
+                      {value}
+                    </tspan>
+                    <tspan style={percentStyle}>{props.percent}</tspan>
+                  </tspan>
+                );
+              }}
+              riseAnimation
+              waveAnimation
+              waveFrequency={2}
+              waveAmplitude={1}
+              gradient
+              gradientStops={gradientStops}
+              circleStyle={{
+                fill: fillColor
+              }}
+              waveStyle={{
+                fill: fillColor
+              }}
+              textStyle={{
+                fill: color('#444').toString(),
+                fontFamily: 'Arial'
+              }}
+              waveTextStyle={{
+                fill: color('#fff').toString(),
+                fontFamily: 'Arial'
+              }}
+            />
+          )}
         </CardContent>
         <CardActions style={{ margin: '2%', display: 'flex' }}>
           <input
@@ -164,7 +218,8 @@ class Gauge extends React.Component {
 function mapStateToProps(state) {
   return {
     state: state,
-    items: state.items[0]
+    items: state.items[0],
+    loading: state.itemsIsLoading
   };
 }
 

@@ -13,7 +13,6 @@ export function itemsIsLoading(bool) {
   };
 }
 export function itemsFetchDataSuccess(items) {
-  //   console.log('Action payload:', items);
   return {
     type: 'ITEMS_FETCH_DATA_SUCCESS',
     items
@@ -21,8 +20,6 @@ export function itemsFetchDataSuccess(items) {
 }
 
 export function saveItemAction(saved, goal, id) {
-  //   console.log('hit the action');
-  //   console.log(saved, goal);
   let obj = { saved, goal, id };
   return dispatch => {
     dispatch(itemsIsLoading(true));
@@ -42,22 +39,27 @@ export function saveItemAction(saved, goal, id) {
 }
 
 export function getItemAction(id) {
-  //   console.log('hit the action');
-  console.log('2222222222222222222222222222222');
   let obj = { id };
   return dispatch => {
-    dispatch(itemsIsLoading(true));
+    dispatch(getitemsIsLoading(true));
     return request
       .get('/api/v1/savings', obj)
       .then(response => {
         if (!response.ok) {
           throw Error(response.statusText);
         }
-        dispatch(itemsIsLoading(false));
+        dispatch(getitemsIsLoading(false));
 
         return response.body;
       })
       .then(items => dispatch(itemsFetchDataSuccess(items)))
       .catch(() => dispatch(itemsHasErrored(true)));
+  };
+}
+
+export function getitemsIsLoading(bool) {
+  return {
+    type: 'ITEMS_IS_LOADING',
+    isLoading: bool
   };
 }
