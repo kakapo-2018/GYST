@@ -1,11 +1,13 @@
 // external dependencies
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import Paper from '@material-ui/core/Paper';
 import uuid from 'uuid';
 
 //internal dependecies
+import { getTodosAction } from '../actions/todo';
 import AddTodo from './AddTodo';
 import TodoList from './TodoList';
 
@@ -20,6 +22,11 @@ class TodoMain extends Component {
     this.handleRemove = this.handleRemove.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
   }
+
+  componentWillMount() {
+    this.props.getTodos(this.props.state.auth.user.id);
+  }
+
   handleClick(todo) {
     this.setState({
       todos: [
@@ -110,4 +117,23 @@ class TodoMain extends Component {
   }
 }
 
-export default TodoMain;
+function mapStateToProps(state) {
+  return {
+    state: state
+    // items: state.items[0],
+    // loading: state.itemsIsLoading
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getTodos: id => {
+      dispatch(getTodosAction(id));
+    }
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TodoMain);

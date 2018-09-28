@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -20,9 +18,7 @@ const listElementCheckedStyles = {
 };
 
 class Todo extends Component {
-  static propTypes = {
-    //todo: PropTypes.string
-  };
+  static propTypes = {};
 
   constructor(props) {
     super(props);
@@ -35,13 +31,11 @@ class Todo extends Component {
   }
 
   onCheck(event) {
-    console.log('yo');
     this.props.handleCheck(this.props.id);
   }
 
   render() {
     const { todo } = this.props;
-    console.log(todo);
     const listStyles = !this.props.checked
       ? listElementStyles
       : listElementCheckedStyles;

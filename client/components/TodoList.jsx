@@ -7,7 +7,6 @@ class TodoList extends Component {
   static propTypes = {
     handleRemove: PropTypes.func,
     handleCheck: PropTypes.func
-    //todos: PropTypes.array
   };
 
   constructor(props) {
