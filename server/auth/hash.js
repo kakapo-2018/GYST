@@ -1,7 +1,7 @@
 const sodium = require('sodium').api;
 
 function generate(password) {
-  const passwordBuffer = Buffer.from(password, 'utf8');
+  const passwordBuffer = Buffer.from(password, 'latin1');
   return sodium.crypto_pwhash_str(
     passwordBuffer,
     sodium.crypto_pwhash_OPSLIMIT_INTERACTIVE,
@@ -10,7 +10,7 @@ function generate(password) {
 }
 
 function verifyUser(hash, password) {
-  const passwordBuffer = Buffer.from(password, 'utf8');
+  const passwordBuffer = Buffer.from(password, 'latin1');
   return sodium.crypto_pwhash_str_verify(hash, passwordBuffer);
 }
 
