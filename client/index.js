@@ -4,6 +4,9 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 
+import '../node_modules/react-grid-layout/css/styles.css';
+import '../node_modules/react-resizable/css/styles.css';
+
 import {
   BrowserRouter as Router,
   Route,

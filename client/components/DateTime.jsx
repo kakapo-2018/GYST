@@ -1,40 +1,40 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import Clock from "react-live-clock";
-import Calendar from "react-calendar";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Clock from 'react-live-clock';
+import Calendar from 'react-calendar';
 
 const styles = theme => ({
   card: {
-    backgroundColor: "#aa2e25",
-    maxWidth: 275
+    backgroundColor: '#aa2e25',
+    maxWidth: '100%'
   },
   action: {
-    display: "flex",
-    justifyContent: "center"
+    display: 'flex',
+    justifyContent: 'center'
   },
   cal: {
-    marginTop: "5%"
+    marginTop: '5%'
   },
   title: {
     marginBottom: 16,
     fontSize: 14
   },
   time: {
-    color: "white",
-    letterSpacing: "4px",
-    fontSize: "2em",
-    textAlign: "center"
+    color: 'white',
+    letterSpacing: '4px',
+    fontSize: '2em',
+    textAlign: 'center'
   },
   date: {
-    color: "white",
-    letterSpacing: "2px",
-    textAlign: "center"
+    color: 'white',
+    letterSpacing: '2px',
+    textAlign: 'center'
   }
 });
 
@@ -56,12 +56,12 @@ class DateTime extends React.Component {
           <Typography variant="headline" component="h2">
             <Clock
               className={classes.time}
-              format={"HH:mm"}
+              format={'HH:mm'}
               ticking={true}
-              timezone={"Pacific/Auckland"}
+              timezone={'Pacific/Auckland'}
             />
           </Typography>
-          <Clock format={"MMMM Do, YYYY"} timezone={"Pacific/Auckland"} />
+          <Clock format={'MMMM Do, YYYY'} timezone={'Pacific/Auckland'} />
           {this.state.clickedCal && <Calendar className={classes.cal} />}
         </CardContent>
         <hr />

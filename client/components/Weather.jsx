@@ -13,7 +13,10 @@ import 'react-open-weather/lib/css/ReactWeather.css';
 
 const styles = theme => ({
   card: {
-    maxWidth: 400
+    maxWidth: '100%',
+    maxHeight: '100%',
+    minWidth: '100%',
+    minHeight: '100%'
   }
 });
 
@@ -32,12 +35,12 @@ class Weather extends React.Component {
           />
         </CardContent>
         <CardActions>
-          <Button
+          {/* <Button
             size="small"
             href="https://www.metservice.com/towns-cities/wellington/wellington-city"
           >
             Learn More
-          </Button>
+          </Button> */}
         </CardActions>
       </Card>
     );
