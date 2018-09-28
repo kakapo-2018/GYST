@@ -11,6 +11,7 @@ const {
 } = require('../db/exampleDbFunctions');
 
 router.post('/register', register, token.issue);
+
 router.post('/login', login, token.issue);
 
 router.get('/username', token.decode, (req, res) => {
