@@ -23,6 +23,7 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   content: {
+    paddingLeft: '255px',
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3
