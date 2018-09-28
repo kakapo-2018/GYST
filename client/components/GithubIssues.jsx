@@ -2,12 +2,24 @@ import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   img: {
-    maxWidth: '25%',
-    maxHeight: '25%',
+    maxWidth: '30%',
+    maxHeight: '30%',
+    marginLeft: '3%',
     float: 'left'
+  },
+  box: {
+    textAlign: 'center'
+
+  },
+  repo: {
+    padding: "5% 0% 4% 0%"
+  },
+  header: {
+    margin:"0%"
   }
 });
 
@@ -31,28 +43,28 @@ class GithubIssues extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Paper
-        style={{
-          padding: '10px',
-          maxWidth: '100%',
-          maxHeight: '100%',
-          minWidth: '100%',
-          minHeight: '100%'
-        }}
-      >
-        <header className="header" />
-        <div className="user">
-          <img className={classes.img} src="./github.png" />
+   
+        <Paper
+          style={{
+            maxWidth: '80%',
+            minHeight: '50%'
+          }}
+        >   <Button href="https://github.com/kakapo-2018/Personal-Dashboard" target="_blank">
+          <header className={classes.header} />
+          <div className={classes.box}>
+            <img className={classes.img} src="./github.png" />
 
-          <div className="user_name">{this.state.userDatas.name}</div>
-          <div className="repo_issues">
-            <div className="issue_count">
-              Issues:
+            <div className={classes.repo}>{this.state.userDatas.name}</div>
+            <div className={classes.issue}>
+              <div className={classes.count}>
+                Issues:
               {this.state.userDatas.open_issues_count}
+              </div>
             </div>
           </div>
-        </div>
-      </Paper>
+          </Button>
+        </Paper>
+  
     );
   }
 }
