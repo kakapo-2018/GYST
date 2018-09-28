@@ -33,6 +33,7 @@ class SpotifyWidgetV2 extends React.Component {
   }
 
   render() {
+    console.log(this.props.spotify.spotify);
     return (
       <div>
         {this.state.showInput && (
@@ -49,14 +50,18 @@ class SpotifyWidgetV2 extends React.Component {
         )}
         {this.state.showPlaylist && (
           <div className="we">
-            <iframe
-              src="https://open.spotify.com/embed/playlist/6JCWxtu3J9pdFzIVeAbQ8B"
-              width="300"
-              height="380"
-              frameBorder="0"
-              allowtransparency="true"
-              allow="encrypted-media"
-            />
+            {this.props.spotify.spotify && (
+              <iframe
+                src={`https://open.spotify.com/embed/${
+                  this.props.spotify.spotify[3]
+                }/${this.props.spotify.spotify[4]}`}
+                width="300"
+                height="380"
+                frameBorder="0"
+                allowtransparency="true"
+                allow="encrypted-media"
+              />
+            )}
           </div>
         )}
       </div>

@@ -31,7 +31,15 @@ export function addSpotifyAction(link, id) {
     request('post', '/spotify/save', obj).then(response => {
       if (!response.ok) {
       } else {
-        dispatch(recievePlaylist(response.body));
+        console.log(response.body);
+        const len = response.body.length;
+        let select = Math.floor(Math.random() * len + 1);
+        console.log(select);
+
+        let split = response.body[select].uri.split(':');
+        console.log(split);
+
+        dispatch(recievePlaylist(split));
       }
     });
   };
