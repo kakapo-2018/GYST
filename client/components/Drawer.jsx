@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-
+import { connect } from 'react-redux';
 //elements
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -11,6 +11,9 @@ import Divider from '@material-ui/core/Divider';
 
 //Components
 import Main from './Main';
+import Logout from './Logout';
+import Register from './Register';
+import SignIn from './SignIn';
 
 const drawerWidth = 240;
 
@@ -77,6 +80,29 @@ const styles = theme => ({
 });
 
 class ResponsiveDrawer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showRegisterForm: false,
+      showLogin: true
+    };
+    this.toggleRegister = this.toggleRegister.bind(this);
+    this.toggleLogin = this.toggleLogin.bind(this);
+  }
+
+  toggleLogin() {
+    this.setState({
+      showLogin: true,
+      showRegisterForm: false
+    });
+  }
+
+  toggleRegister() {
+    this.setState({
+      showRegisterForm: true,
+      showLogin: false
+    });
+  }
   render() {
     const { classes, theme } = this.props;
 
@@ -85,10 +111,11 @@ class ResponsiveDrawer extends React.Component {
         <div className={classes.toolbar} />
         <Divider className={classes.whiten} />
         <Avatar
-          alt="Remy Sharp"
+          alt="Profile Picture"
           src="luke.jpeg"
           className={classNames(classes.avatar, classes.bigAvatar)}
         />
+        {this.props.state.isAuthenticated && <Logout />}
         <div
           className={classes.background}
           style={{ backgroundImage: 'url(' + 'sidebar-4.jpg' + ')' }}
@@ -109,7 +136,7 @@ class ResponsiveDrawer extends React.Component {
               paper: classes.drawerPaper
             }}
             ModalProps={{
-              keepMounted: true // Better open performance on mobile.
+              keepMounted: true
             }}
           >
             {drawer}
@@ -125,16 +152,33 @@ class ResponsiveDrawer extends React.Component {
             {drawer}
           </Drawer>
         </Hidden>
-
+        {console.log(this.props.state)}
         {/* Components from main will render here */}
-        <Main />
+        {this.props.state.isAuthenticated && <Main />}
+        {this.state.showLogin &&
+          !this.props.state.isAuthenticated && (
+            <SignIn toggleRegister={this.toggleRegister} />
+          )}
+        {this.state.showRegisterForm &&
+          !this.props.state.isAuthenticated && (
+            <Register toggleLogin={this.toggleLogin} />
+          )}
       </div>
     );
   }
+}
+
+function mapStateToProps(state) {
+  return {
+    state: state.auth
+  };
 }
 
 ResponsiveDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired
 };
-export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
+
+export default withStyles(styles, { withTheme: true })(
+  connect(mapStateToProps)(ResponsiveDrawer)
+);
