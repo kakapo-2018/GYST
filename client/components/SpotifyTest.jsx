@@ -56,10 +56,12 @@ class SpotifyTest extends Component {
     };
   }
 
+  componentWillMount() {
+    console.log('props');
+  }
+
   componentDidMount() {
     spotifyApi.getMyCurrentPlaybackState().then(response => {
-      console.log('mounted');
-
       this.setState({
         nowPlaying: {
           name: response.item.name,
@@ -85,42 +87,65 @@ class SpotifyTest extends Component {
 
   getPlaylist() {
     spotifyApi.getUserPlaylists().then(playlist => {
-      console.log(playlist);
       spotifyApi;
       this.setState({
         myPlaylist: playlist
       });
-      console.log(this.state);
+    });
+  }
+
+  getSong() {
+    console.log('hit song');
+
+    spotifyApi.getMyCurrentPlayingTrack().then(response => {
+      console.log(response);
+      this.setState({
+        nowPlaying: {
+          name: response.item.name,
+          artist: response.item.artists[0].name,
+          albumArt: response.item.album.images[0].url
+        }
+      });
     });
   }
 
   nextSong() {
     spotifyApi.skipToNext().then(response => {
-      spotifyApi.getMyCurrentPlaybackState().then(response => {
-        console.log(response);
+      // spotifyApi.getMyCurrentPlayingTrack().then(response => {
+      //   console.log(response);
 
-        this.setState({
-          nowPlaying: {
-            name: response.item.name,
-            albumArt: response.item.album.images[0].url
-          }
-        });
-      });
+      //   this.setState({
+      //     nowPlaying: {
+      //       name: response.item.name,
+      //       artist: response.item.artists[0].name,
+      //       albumArt: response.item.album.images[0].url
+      //     }
+      //   });
+      // });
+      setTimeout(() => {
+        this.getSong();
+      }, 1000);
     });
+
+    console.log('timeout');
   }
 
   previousSong() {
     spotifyApi.skipToPrevious().then(response => {
-      spotifyApi.getMyCurrentPlaybackState().then(response => {
-        this.setState({
-          nowPlaying: {
-            name: response.item.name,
-            artist: response.item.artists[0].name,
-            albumArt: response.item.album.images[0].url
-          }
+      setTimeout(() => {
+        spotifyApi.getMyCurrentPlayingTrack().then(response => {
+          console.log(response);
+          this.setState({
+            nowPlaying: {
+              name: response.item.name,
+              artist: response.item.artists[0].name,
+              albumArt: response.item.album.images[0].url
+            }
+          });
+          console.log(this.state);
         });
       });
-    });
+    }, 2000);
   }
 
   togglePause() {
@@ -138,13 +163,18 @@ class SpotifyTest extends Component {
   }
 
   render() {
+    {
+      console.log(this.state.nowPlaying.artist);
+    }
+    console.log('rendering');
+
     const { classes, theme } = this.props;
     return (
       <div className="ok">
         {!this.state.loggedIn && (
           <a href="http://localhost:3000/login"> Login to Spotify </a>
         )}
-        <div>Now Playing: {this.state.nowPlaying.name}</div>
+        {/* <div>Now Playing: {this.state.nowPlaying.name}</div>
         <div>
           <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} />
         </div>
@@ -155,7 +185,7 @@ class SpotifyTest extends Component {
         )}
         {this.state.loggedIn && (
           <button onClick={() => this.getPlaylist()}>Check playlist</button>
-        )}
+        )} */}
         <Card className={classes.card}>
           <div className={classes.details}>
             <CardContent className={classes.content}>
