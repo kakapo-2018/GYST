@@ -39,15 +39,22 @@ yarn dev
 ## React (Client Side)
   | name | purpose |
   | --- | --- |
-  | Drawer | Navbar and Drawer | 
+  | AddTodo | Add user to do list| 
+  | Calendar | View for calendar | 
+  | DateTime | View for user to see the date and time | 
+  | Drawer | View for user's profile and Drawer | 
+  | Fitness | View for fitness counter with food search and calorie counter | 
   | LoginForm | View for user to enter their login credentials| 
   | Logout |View for user to logout | 
+  | Main | Contain body components
+  | MapContainer | View for google map| 
+  | NavBar | View for google search| 
   | RegisterForm | View for user to sign up for the App | 
-  | DateTime | View for user to see the date and time | 
+  | RssFeed | View for social media | 
   | SpotifyWidget | View for user to use spotify | 
   | WorldMap | View for user to see where they have travelled | 
-  
-  
+  | TodoList | View for user to see their to do list | 
+  | Weather | View for weather in Wellington| 
   
 ## Reducers (Client Side)
 

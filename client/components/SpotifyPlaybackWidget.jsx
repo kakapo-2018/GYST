@@ -11,6 +11,7 @@ import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import Pause from '@material-ui/icons/Pause';
+import Button from '@material-ui/core/Button';
 
 const spotifyApi = new SpotifyWebApi();
 const styles = theme => ({
@@ -37,6 +38,10 @@ const styles = theme => ({
   playIcon: {
     height: 38,
     width: 38
+  },
+  button: {
+    margin: theme.spacing.unit,
+    textDecoration: 'none'
   }
 });
 
@@ -50,7 +55,7 @@ class SpotifyPlaybackWidget extends Component {
     }
     this.state = {
       loggedIn: token ? true : false,
-      nowPlaying: { name: 'Not Checked', albumArt: '' },
+      nowPlaying: { name: 'Please login', albumArt: '' },
       paused: false
     };
   }
@@ -135,15 +140,18 @@ class SpotifyPlaybackWidget extends Component {
     const { classes, theme } = this.props;
     return (
       <div className="ok">
-        {!this.state.loggedIn && (
-          <a href="http://localhost:3000/login"> Login to Spotify </a>
-        )}
         <Card className={classes.card}>
           <div className={classes.details}>
             <CardContent className={classes.content}>
-              <Typography variant="headline">
-                {this.state.nowPlaying.name}
-              </Typography>
+              {!this.state.loggedIn && (
+                <Button
+                  variant="outlined"
+                  href="http://localhost:3000/login"
+                  className={classes.button}
+                >
+                  Login to Spotify
+                </Button>
+              )}
               <Typography variant="subheading" color="textSecondary">
                 {this.state.nowPlaying.artist}
               </Typography>
