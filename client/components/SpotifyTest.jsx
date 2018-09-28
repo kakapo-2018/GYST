@@ -29,6 +29,17 @@ class SpotifyTest extends Component {
     return hashParams;
   }
 
+  getPlaylist() {
+    spotifyApi.getUserPlaylists().then(playlist => {
+      console.log(playlist);
+
+      this.setState({
+        myPlaylist: playlist
+      });
+      console.log(this.state);
+    });
+  }
+
   getNowPlaying() {
     spotifyApi.getMyCurrentPlaybackState().then(response => {
       this.setState({
@@ -51,6 +62,9 @@ class SpotifyTest extends Component {
           <button onClick={() => this.getNowPlaying()}>
             Check Now Playing
           </button>
+        )}
+        {this.state.loggedIn && (
+          <button onClick={() => this.getPlaylist()}>Check playlist</button>
         )}
       </div>
     );
