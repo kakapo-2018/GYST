@@ -67,8 +67,23 @@ class Fitness extends Component {
     const { classes } = this.props;
 
     return (
-      <Card style={{ maxWidth: 275 }}>
-        <CardContent style={{ padding: 0, maxWidth: 275 }}>
+      <Card
+        style={{
+          maxWidth: '100%',
+          maxHeight: '100%',
+          minWidth: '100%',
+          minHeight: '100%'
+        }}
+      >
+        <CardContent
+          style={{
+            padding: 10,
+            maxWidth: '100%',
+            maxHeight: '100%',
+            minWidth: '100%',
+            minHeight: '100%'
+          }}
+        >
           <div>
             <input
               type="text"
