@@ -8,6 +8,8 @@ export function getTodosAction(id) {
     request('get', '/todo', obj).then(response => {
       if (!response.ok) {
       } else {
+        console.log(response.body);
+
         dispatch(receiveTodos(response.body));
       }
     });
