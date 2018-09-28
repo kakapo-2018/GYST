@@ -1,17 +1,59 @@
 import { color } from 'd3-color';
+import { connect } from 'react-redux';
 import { interpolateRgb } from 'd3-interpolate';
-import React, { Component } from 'react';
+import { saveItemAction, getItemAction } from '../actions/savings';
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+
 import LiquidFillGauge from 'react-liquid-gauge';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
 
-class Gauge extends Component {
-  state = {
-    value: 100,
-    savingGoal: 2000
-  };
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit
+  },
+  input: {
+    display: 'none'
+  }
+});
+
+class Gauge extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 1,
+      savingGoal: 1
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.save = this.save.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.getIt(this.props.state.auth.user.id);
+  }
+
+  save() {
+    this.props.saveIt(
+      this.state.value,
+      this.state.savingGoal,
+      this.props.state.auth.user.id
+    );
+    setTimeout(() => {
+      this.props.getIt(this.props.state.auth.user.id);
+    }, 20);
+  }
+
+  handleChange(e) {
+    this.setState({
+      ...this.state,
+      [e.target.name]: e.target.value
+    });
+  }
+
   startColor = '#f44336';
   endColor = '#4CAF50';
 
@@ -45,94 +87,181 @@ class Gauge extends Component {
     ];
 
     return (
-      <Card style={{ maxWidth: 275 }}>
-        <CardContent style={{ padding: 0, maxWidth: 275 }}>
-          <LiquidFillGauge
-            style={{ margin: '0 auto' }}
-            width={radius * 2}
-            maxWidth={375}
-            height={radius * 2}
-            value={(this.state.value / this.state.savingGoal) * 100}
-            percent="%"
-            textSize={1}
-            textOffsetX={0}
-            textOffsetY={0}
-            textRenderer={props => {
-              const value = Math.round(props.value);
-              const radius = Math.min(props.height / 2, props.width / 2);
-              const textPixels = (props.textSize * radius) / 2;
-              const valueStyle = {
-                fontSize: textPixels
-              };
-              const percentStyle = {
-                fontSize: textPixels * 0.6
-              };
+      <Card
+        style={{
+          padding: '10px',
+          maxWidth: '100%',
+          maxHeight: '100%',
+          minWidth: '100%',
+          minHeight: '100%'
+        }}
+      >
+        <CardContent
+          style={{
+            padding: '10px',
+            maxWidth: '100%',
+            maxHeight: '100%',
+            minWidth: '100%',
+            minHeight: '100%'
+          }}
+        >
+          {!this.props.loading && (
+            <LiquidFillGauge
+              style={{ margin: '0 auto' }}
+              width={radius * 2}
+              maxWidth={375}
+              height={radius * 2}
+              value={
+                (this.props.state.items.saved /
+                  this.props.state.items.savingGoal) *
+                100
+              }
+              percent="%"
+              textSize={1}
+              textOffsetX={0}
+              textOffsetY={0}
+              textRenderer={props => {
+                const value = Math.round(props.value);
+                const radius = Math.min(props.height / 2, props.width / 2);
+                const textPixels = (props.textSize * radius) / 2;
+                const valueStyle = {
+                  fontSize: textPixels
+                };
+                const percentStyle = {
+                  fontSize: textPixels * 0.6
+                };
 
-              return (
-                <tspan>
-                  <tspan className="value" style={valueStyle}>
-                    {value}
+                return (
+                  <tspan>
+                    <tspan className="value" style={valueStyle}>
+                      {value >= 0 ? value : 0}
+                    </tspan>
+                    <tspan style={percentStyle}>{props.percent}</tspan>
                   </tspan>
-                  <tspan style={percentStyle}>{props.percent}</tspan>
-                </tspan>
-              );
-            }}
-            riseAnimation
-            waveAnimation
-            waveFrequency={2}
-            waveAmplitude={1}
-            gradient
-            gradientStops={gradientStops}
-            circleStyle={{
-              fill: fillColor
-            }}
-            waveStyle={{
-              fill: fillColor
-            }}
-            textStyle={{
-              fill: color('#444').toString(),
-              fontFamily: 'Arial'
-            }}
-            waveTextStyle={{
-              fill: color('#fff').toString(),
-              fontFamily: 'Arial'
-            }}
-          />
+                );
+              }}
+              riseAnimation
+              waveAnimation
+              waveFrequency={2}
+              waveAmplitude={1}
+              gradient
+              gradientStops={gradientStops}
+              circleStyle={{
+                fill: fillColor
+              }}
+              waveStyle={{
+                fill: fillColor
+              }}
+              textStyle={{
+                fill: color('#444').toString(),
+                fontFamily: 'Arial'
+              }}
+              waveTextStyle={{
+                fill: color('#fff').toString(),
+                fontFamily: 'Arial'
+              }}
+            />
+          )}
+          {this.props.loading && (
+            <LiquidFillGauge
+              style={{ margin: '0 auto' }}
+              width={radius * 2}
+              maxWidth={375}
+              height={radius * 2}
+              value={0}
+              percent="%"
+              textSize={1}
+              textOffsetX={0}
+              textOffsetY={0}
+              textRenderer={props => {
+                const value = Math.round(props.value);
+                const radius = Math.min(props.height / 2, props.width / 2);
+                const textPixels = (props.textSize * radius) / 2;
+                const valueStyle = {
+                  fontSize: textPixels
+                };
+                const percentStyle = {
+                  fontSize: textPixels * 0.6
+                };
+
+                return (
+                  <tspan>
+                    <tspan className="value" style={valueStyle}>
+                      {value >= 0 ? value : 0}
+                    </tspan>
+                    <tspan style={percentStyle}>{props.percent}</tspan>
+                  </tspan>
+                );
+              }}
+              riseAnimation
+              waveAnimation
+              waveFrequency={2}
+              waveAmplitude={1}
+              gradient
+              gradientStops={gradientStops}
+              circleStyle={{
+                fill: fillColor
+              }}
+              waveStyle={{
+                fill: fillColor
+              }}
+              textStyle={{
+                fill: color('#444').toString(),
+                fontFamily: 'Arial'
+              }}
+              waveTextStyle={{
+                fill: color('#fff').toString(),
+                fontFamily: 'Arial'
+              }}
+            />
+          )}
         </CardContent>
-        <CardActions style={{ margin: '2%', display: 'flex' }}>
-          {/* <div
-            style={{
-              margin: "20px auto",
-              width: 120
-            }}
-          > */}
-          <input
+        <CardActions style={{ paddingBottom: '8px' }}>
+          <Input
             style={{ maxWidth: '45%' }}
             type="number"
-            placeholder="Amount Saved"
-            onChange={e => {
-              this.setState({
-                value: e.target.value,
-                savingGoal: this.state.savingGoal
-              });
-            }}
+            name="value"
+            placeholder={'Saved: $' + this.props.state.items.saved}
+            onChange={this.handleChange}
           />
-          <input
+          <Input
             style={{ maxWidth: '45%' }}
             type="number"
-            placeholder="Goal"
-            onChange={e => {
-              this.setState({
-                value: this.state.value,
-                savingGoal: e.target.value
-              });
-            }}
+            name="savingGoal"
+            placeholder={'Goal: $' + this.props.state.items.savingGoal}
+            onChange={this.handleChange}
           />
-          {/* </div> */}
+          <Button variant="contained" color="primary" onClick={this.save}>
+            Save
+          </Button>
         </CardActions>
       </Card>
     );
   }
 }
 
-export default Gauge;
+function mapStateToProps(state) {
+  return {
+    state: state,
+    items: state.items[0],
+    loading: state.itemsIsLoading
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    saveIt: (saved, goal, id) => {
+      dispatch(saveItemAction(saved, goal, id));
+    },
+    getIt: id => {
+      dispatch(getItemAction(id));
+    }
+  };
+}
+
+export default withStyles(styles)(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Gauge)
+);

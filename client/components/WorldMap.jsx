@@ -5,12 +5,25 @@ import {
   Geographies,
   Geography
 } from 'react-simple-maps';
+import Card from '@material-ui/core/Card';
+import { withStyles } from '@material-ui/core/styles';
 
 const wrapperStyles = {
-  width: '100%',
-  maxWidth: 980,
-  margin: '0 auto'
+  maxWidth: '100%',
+  maxHeight: '100%',
+  minWidth: '100%',
+  minHeight: '100%'
 };
+
+const styles = theme => ({
+  card: {
+    padding: '10px',
+    maxWidth: '100%',
+    maxHeight: '100%',
+    minWidth: '100%',
+    minHeight: '100%'
+  }
+});
 
 class WorldMap extends Component {
   state = {
@@ -18,7 +31,6 @@ class WorldMap extends Component {
   };
 
   handleClick(i) {
-    console.log(i);
     this.setState({
       place:
         this.state.place == ''
@@ -27,57 +39,61 @@ class WorldMap extends Component {
     });
   }
   render() {
+    const { classes } = this.props;
     return (
-      <div style={wrapperStyles}>
-        <h1>{this.state.place}</h1>
-        <ComposableMap
-          projectionConfig={{
-            scale: 205,
-            rotation: [-11, 0, 0]
-          }}
-          width={980}
-          height={551}
-          style={{
-            width: '100%',
-            height: 'auto'
-          }}
-        >
-          <ZoomableGroup center={[0, 20]} disablePanning>
-            <Geographies geography="./world.json">
-              {(geographies, projection) =>
-                geographies.map(
-                  (geography, i) =>
-                    geography.id !== 'ATA' && (
-                      <Geography
-                        key={i}
-                        onClick={i => {
-                          this.handleClick(i);
-                        }}
-                        geography={geography}
-                        projection={projection}
-                        style={{
-                          default: {
-                            fill: '#ECEFF1',
-                            stroke: '#607D8B',
-                            strokeWidth: 0.75,
-                            outline: 'none'
-                          },
-                          pressed: {
-                            fill: '#607D8B',
-                            stroke: '#607D8B',
-                            strokeWidth: 0.75,
-                            outline: 'none'
-                          }
-                        }}
-                      />
-                    )
-                )
-              }
-            </Geographies>
-          </ZoomableGroup>
-        </ComposableMap>
-      </div>
+      <Card className={classes.card}>
+        <div style={wrapperStyles}>
+          <h1>{this.state.place}</h1>
+          <ComposableMap
+            projectionConfig={{
+              scale: 205,
+              rotation: [-11, 0, 0]
+            }}
+            width={980}
+            height={551}
+            style={{
+              width: '100%',
+              height: 'auto'
+            }}
+          >
+            <ZoomableGroup center={[0, 20]} disablePanning>
+              <Geographies geography="./world.json">
+                {(geographies, projection) =>
+                  geographies.map(
+                    (geography, i) =>
+                      geography.id !== 'ATA' && (
+                        <Geography
+                          key={i}
+                          onClick={i => {
+                            this.handleClick(i);
+                          }}
+                          geography={geography}
+                          projection={projection}
+                          style={{
+                            default: {
+                              fill: '#ECEFF1',
+                              stroke: '#607D8B',
+                              strokeWidth: 0.75,
+                              outline: 'none'
+                            },
+                            pressed: {
+                              fill: '#607D8B',
+                              stroke: 'grey',
+                              strokeWidth: 0.75,
+                              outline: 'none'
+                            }
+                          }}
+                        />
+                      )
+                  )
+                }
+              </Geographies>
+            </ZoomableGroup>
+          </ComposableMap>
+        </div>
+      </Card>
     );
   }
 }
-export default WorldMap;
+
+export default withStyles(styles)(WorldMap);

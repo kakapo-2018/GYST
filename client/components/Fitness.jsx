@@ -3,12 +3,22 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardMedia from '@material-ui/core/CardMedia';
+
 import AddIcon from '@material-ui/icons/Add';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit
   },
   extendedIcon: {
     marginRight: theme.spacing.unit
@@ -67,33 +77,63 @@ class Fitness extends Component {
     const { classes } = this.props;
 
     return (
-      <Card style={{ maxWidth: 275 }}>
-        <CardContent style={{ padding: 0, maxWidth: 275 }}>
-          <div>
-            <input
-              type="text"
-              value={this.state.searchTerm}
-              onChange={evt => this.updateInputValue(evt)}
-              className="form-control"
-              aria-label="Large"
-              aria-describedby="inputGroup-sizing-sm"
-            />
-            <Button
-              variant="fab"
-              color="primary"
-              aria-label="Add"
-              className={classes.button}
-              onClick={this.submit}
-            >
-              <AddIcon />
-            </Button>
-
-            <h1>Food Trackr</h1>
-            {this.state.searchInfo}
-            <h1>Total Cals</h1>
-            {this.state.totalCals}
-          </div>
+      <Card
+        className={classes.card}
+        style={{
+          maxWidth: '100%',
+          maxHeight: '100%',
+          minWidth: '100%',
+          minHeight: '100%'
+        }}
+      >
+        <CardMedia
+          component="img"
+          className={classes.media}
+          height="110"
+          image="food.jpg"
+          title="Contemplative Reptile"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="headline" component="h2">
+            Food Trackr
+          </Typography>
         </CardContent>
+
+        <Typography
+          component="p"
+          style={{
+            marginLeft: '10px'
+          }}
+        >
+          {this.state.searchInfo}
+        </Typography>
+        <Typography
+          component="p"
+          style={{
+            marginLeft: '10px'
+          }}
+        >
+          kCals consumed today: {this.state.totalCals}
+        </Typography>
+
+        <TextField
+          id="outlined-name"
+          label="Meal"
+          className={classes.textField}
+          value={this.state.searchTerm}
+          onChange={evt => this.updateInputValue(evt)}
+          margin="normal"
+          variant="outlined"
+        />
+        <Button
+          variant="fab"
+          color="primary"
+          aria-label="Add"
+          className={classes.button}
+          onClick={this.submit}
+        >
+          <AddIcon />
+        </Button>
       </Card>
     );
   }
