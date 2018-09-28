@@ -14,7 +14,7 @@ import Main from './Main';
 import Logout from './Logout';
 import Register from './Register';
 import SignIn from './SignIn';
-import Sidebar from './Sidebar'
+import Sidebar from './Sidebar';
 
 const drawerWidth = 240;
 
@@ -24,7 +24,6 @@ const styles = theme => ({
     height: '100%',
     zIndex: 1,
     overflow: 'hidden',
-    position: 'relative',
     display: 'flex',
     width: '100%'
   },
@@ -70,7 +69,7 @@ const styles = theme => ({
     overflow: 'visible',
     width: drawerWidth,
     [theme.breakpoints.up('md')]: {
-      position: 'relative'
+      position: 'fixed'
     }
   },
   content: {
