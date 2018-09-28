@@ -1,13 +1,13 @@
 // external dependencies
-import React, { Component } from "react";
-import IconButton from "@material-ui/core/IconButton";
-import Snackbar from "@material-ui/core/Snackbar";
-import Paper from "@material-ui/core/Paper";
-import uuid from "uuid";
+import React, { Component } from 'react';
+import IconButton from '@material-ui/core/IconButton';
+import Snackbar from '@material-ui/core/Snackbar';
+import Paper from '@material-ui/core/Paper';
+import uuid from 'uuid';
 
 //internal dependecies
-import AddTodo from "./AddTodo";
-import TodoList from "./TodoList";
+import AddTodo from './AddTodo';
+import TodoList from './TodoList';
 
 class TodoMain extends Component {
   constructor() {
@@ -44,8 +44,6 @@ class TodoMain extends Component {
   }
 
   handleCheck(id) {
-    console.log("checked");
-
     const finalTodos = this.state.todos.map(todo => {
       if (todo.id === id) {
         todo.checked = !todo.checked;
@@ -67,27 +65,25 @@ class TodoMain extends Component {
     return (
       <Paper
         style={{
-          paddingBottom: "20px",
-          marginTop: 100,
-          marginBottom: 100,
-          marginRight: 40,
-          marginLeft: 40,
-          maxWidth: "500px"
+          maxWidth: '100%',
+          maxHeight: '100%',
+          minWidth: '100%',
+          minHeight: '100%'
         }}
       >
         <div
           style={{
-            display: "flex",
-            justifyContent: "center"
+            display: 'flex',
+            justifyContent: 'center'
           }}
         >
           <div
             style={{
-              display: "flex",
-              justifyContent: "center"
+              display: 'flex',
+              justifyContent: 'center'
             }}
           >
-            <h1 style={{ textAlign: "center", color: "grey" }}>Todo List</h1>
+            <h1 style={{ textAlign: 'center', color: 'grey' }}>Todo List</h1>
           </div>
           <div style={{ marginTop: 13 }}>
             <IconButton />
@@ -100,7 +96,7 @@ class TodoMain extends Component {
           handleCheck={this.handleCheck}
         />
         <br />
-        <div style={{ marginLeft: "5%", marginRight: "5%" }}>
+        <div style={{ marginLeft: '5%', marginRight: '5%' }}>
           <AddTodo handleClick={this.handleClick} />
         </div>
         <Snackbar

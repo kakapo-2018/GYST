@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import List from "@material-ui/core/List";
-import Todo from "./Todo";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import List from '@material-ui/core/List';
+import Todo from './Todo';
 
 class TodoList extends Component {
   static propTypes = {
@@ -31,7 +31,7 @@ class TodoList extends Component {
       );
     });
     return (
-      <List style={{ marginLeft: "5%", marginRight: "5%" }}>{todoNode}</List>
+      <List style={{ marginLeft: '5%', marginRight: '5%' }}>{todoNode}</List>
     );
   }
 }

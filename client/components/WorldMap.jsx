@@ -5,19 +5,23 @@ import {
   Geographies,
   Geography
 } from 'react-simple-maps';
-import Card from "@material-ui/core/Card";
-import { withStyles } from "@material-ui/core/styles";
+import Card from '@material-ui/core/Card';
+import { withStyles } from '@material-ui/core/styles';
 
 const wrapperStyles = {
-  width: '100%',
-  maxWidth: 980,
-  margin: '0 auto'
+  maxWidth: '100%',
+  maxHeight: '100%',
+  minWidth: '100%',
+  minHeight: '100%'
 };
 
 const styles = theme => ({
   card: {
-    backgroundColor: "#FAFAFA",
-    maxWidth: 500
+    padding: '10px',
+    maxWidth: '100%',
+    maxHeight: '100%',
+    minWidth: '100%',
+    minHeight: '100%'
   }
 });
 
