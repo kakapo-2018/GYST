@@ -32,7 +32,7 @@ class SpotifyTest extends Component {
   getPlaylist() {
     spotifyApi.getUserPlaylists().then(playlist => {
       console.log(playlist);
-
+      spotifyApi
       this.setState({
         myPlaylist: playlist
       });
@@ -41,13 +41,14 @@ class SpotifyTest extends Component {
   }
 
   getNowPlaying() {
-    spotifyApi.getMyCurrentPlaybackState().then(response => {
-      this.setState({
-        nowPlaying: {
-          name: response.item.name,
-          albumArt: response.item.album.images[0].url
-        }
-      });
+    spotifyApi.skipToNext().then(response => {
+      spotifyApi
+      // this.setState({
+      //   nowPlaying: {
+      //     name: response.item.name,
+      //     albumArt: response.item.album.images[0].url
+      //   }
+      // });
     });
   }
   render() {

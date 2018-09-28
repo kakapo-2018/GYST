@@ -63,7 +63,7 @@ class Main extends Component {
             {this.props.showCom.spotify && <SpotifyTest />}
           </div>
           <div key="3" data-grid={{ x: 0, y: 0, w: 2, h: 1, maxW: 2, maxH: 1 }}>
-            {this.props.showCom.date && <SpotifyWidgetV2 />}
+            {this.props.showCom.date && <SpotifyTest />}
           </div>
           <div key="4" data-grid={{ x: 0, y: 0, w: 2, h: 2 }}>
             {this.props.showCom.saving && <Gauge />}
