@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const authRoutes = require('./routes/auth');
-
+const todoRoutes = require('./routes/todo');
 const server = express();
 
 server.use(
@@ -19,6 +19,8 @@ server.use(express.static(path.join(__dirname, '../public')));
 server.use('/api/v1', require('./routes/internal'));
 
 server.use('/api/v1/auth', authRoutes);
+
+server.use('/api/v1/todo', todoRoutes);
 
 server.use('/api/ext', require('./routes/external'));
 
