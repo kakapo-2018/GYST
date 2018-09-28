@@ -125,12 +125,11 @@ class ResponsiveDrawer extends React.Component {
 
   handleClick(component) {
     console.log(this.state);
-  this.setState({
+    this.setState({
       ...this.state,
       [component]: !this.state[component]
-  })
-
-}
+    });
+  }
 
   render() {
     const { classes, theme } = this.props;
@@ -150,7 +149,7 @@ class ResponsiveDrawer extends React.Component {
           style={{ backgroundImage: 'url(' + 'sidebar-4.jpg' + ')' }}
         />
         <Divider className={classes.whiten} />
-        <Sidebar handleClick={this.handleClick}/>
+        <Sidebar handleClick={this.handleClick} />
       </div>
     );
 
@@ -184,7 +183,7 @@ class ResponsiveDrawer extends React.Component {
         </Hidden>
         {console.log(this.props.state)}
         {/* Components from main will render here */}
-        {this.props.state.isAuthenticated && <Main showCom={this.state}/>}
+        {this.props.state.isAuthenticated && <Main showCom={this.state} />}
         {this.state.showLogin &&
           !this.props.state.isAuthenticated && (
             <SignIn toggleRegister={this.toggleRegister} />
