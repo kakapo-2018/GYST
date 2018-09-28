@@ -16,8 +16,6 @@ class TodoList extends Component {
     const { handleRemove, handleCheck, todos } = this.props;
 
     var todoNode = todos.map(todo => {
-      console.log(todo.task);
-
       return (
         <Todo
           key={todo.id}

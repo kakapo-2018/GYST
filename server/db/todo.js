@@ -1,8 +1,8 @@
 const connection = require('./connection');
 
-function getTodo(testDB) {
+function getTodo(id, testDB) {
   const db = testDB || connection;
-  return db('todos');
+  return db('todos').where({ id: id });
 }
 
 function saveTodo(username, testDB) {

@@ -1,4 +1,49 @@
-const request = require('superagent');
+import request from '../utils/api';
+
+//getting todos for a user
+
+export function getTodosAction(id) {
+  let obj = { id: id };
+  return function(dispatch) {
+    request('get', '/todo', obj).then(response => {
+      if (!response.ok) {
+      } else {
+        dispatch(receiveTodos(response.body));
+      }
+    });
+  };
+}
+
+function receiveTodos(response) {
+  return {
+    type: 'GET_TODOS',
+    isFetching: false,
+    todos: response
+  };
+}
+
+//adding todos
+
+export function getTodosAction(id) {
+    let obj = { id: id };
+    return function(dispatch) {
+      request('get', '/todo', obj).then(response => {
+        if (!response.ok) {
+        } else {
+          dispatch(receiveTodos(response.body));
+        }
+      });
+    };
+  }
+  
+  function receiveTodos(response) {
+    return {
+      type: 'GET_TODOS',
+      isFetching: false,
+      todos: response
+    };
+  }
+
 
 // export const updateBagAction = (id, destination, description) => ({
 //   type: 'UPDATE_BAG',
@@ -6,32 +51,6 @@ const request = require('superagent');
 //   description,
 //   destination
 // });
-
-//getting bags for a user
-
-export function getTodosAction(id) {
-  console.log('action');
-  console.log(id);
-
-  return function(dispatch) {
-    request('get', '/api/v1/todo').then(response => {
-      if (!response.ok) {
-      } else {
-        // dispatch(receiveAddBag(null, response.body.bag));
-      }
-    });
-  };
-}
-
-//all func below this line are for adding bags
-
-export function addBagReceived(bag, user) {
-  return {
-    type: 'BAG_ADD_SUCCESS',
-    isFetching: false,
-    response: bag
-  };
-}
 
 // function requestAddBag() {
 //   return {

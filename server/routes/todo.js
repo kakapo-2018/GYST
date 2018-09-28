@@ -6,7 +6,7 @@ const todoDB = require('../db/todo');
 router.get('/', (req, res) => {
   console.log('server');
 
-  todoDB.getTodo().then(result => {
+  todoDB.getTodo(req.query.id).then(result => {
     res.json(result);
   });
 });
