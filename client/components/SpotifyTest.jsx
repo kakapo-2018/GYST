@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import SpotifyWebApi from 'spotify-web-api-js';
-
 //styles
-
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -13,7 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
-
+// import PauseCircleOutline from '@material-ui/icons/PauseCircleOutline';
+import Pause from '@material-ui/icons/Pause';
 const spotifyApi = new SpotifyWebApi();
 const styles = theme => ({
   card: {
@@ -41,12 +40,10 @@ const styles = theme => ({
     width: 38
   }
 });
+
 class SpotifyTest extends Component {
   constructor(props) {
     super(props);
-
-    console.log(this.props);
-
     const params = this.getHashParams();
     const token = params.access_token;
     if (token) {
@@ -54,9 +51,25 @@ class SpotifyTest extends Component {
     }
     this.state = {
       loggedIn: token ? true : false,
-      nowPlaying: { name: 'Not Checked', albumArt: '' }
+      nowPlaying: { name: 'Not Checked', albumArt: '' },
+      paused: false
     };
   }
+
+  componentDidMount() {
+    spotifyApi.getMyCurrentPlaybackState().then(response => {
+      console.log('mounted');
+
+      this.setState({
+        nowPlaying: {
+          name: response.item.name,
+          artist: response.item.artists[0].name,
+          albumArt: response.item.album.images[0].url
+        }
+      });
+    });
+  }
+
   getHashParams() {
     var hashParams = {};
     var e,
@@ -109,6 +122,21 @@ class SpotifyTest extends Component {
       });
     });
   }
+
+  togglePause() {
+    this.state.paused
+      ? spotifyApi.play().then(response => {
+          this.setState({
+            paused: !this.state.paused
+          });
+        })
+      : spotifyApi.pause().then(response => {
+          this.setState({
+            paused: !this.state.paused
+          });
+        });
+  }
+
   render() {
     const { classes, theme } = this.props;
     return (
@@ -150,7 +178,22 @@ class SpotifyTest extends Component {
                 )}
               </IconButton>
               <IconButton aria-label="Play/pause">
-                <PlayArrowIcon className={classes.playIcon} />
+                {this.state.paused && (
+                  <Pause
+                    onClick={() => {
+                      this.togglePause();
+                    }}
+                    className={classes.playIcon}
+                  />
+                )}
+                {!this.state.paused && (
+                  <PlayArrowIcon
+                    className={classes.playIcon}
+                    onClick={() => {
+                      this.togglePause();
+                    }}
+                  />
+                )}
               </IconButton>
               <IconButton onClick={() => this.nextSong()} aria-label="Next">
                 {theme.direction === 'rtl' ? (
