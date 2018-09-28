@@ -33,14 +33,16 @@ router.post('/delete', (req, res) => {
 });
 
 router.post('/check', (req, res) => {
-  todoDB.checkTodo(req.query.id).then(result => {
-    console.log(result);
-    if (result == undefined) {
-      res.json([1, 10]);
-    } else {
-      res.json(result);
-    }
-  });
+  console.log(req.body);
+
+  //   todoDB.checkTodo(req.query.id).then(result => {
+  //     console.log(result);
+  //     if (result == undefined) {
+  //       res.json([1, 10]);
+  //     } else {
+  //       res.json(result);
+  //     }
+  //   });
 });
 
 module.exports = router;

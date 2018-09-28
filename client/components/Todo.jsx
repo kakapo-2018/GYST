@@ -27,26 +27,21 @@ class Todo extends Component {
   }
 
   onClick(name) {
-    console.log('hit');
-
-    console.log(name);
     this.props.handleRemove(name);
   }
 
-  onCheck(event) {
-    this.props.handleCheck(this.props.id);
+  onCheck(name) {
+    this.props.handleCheck(name);
   }
 
   render() {
     const { todo } = this.props;
-    console.log(this.props.name);
-
     const listStyles = !this.props.checked
       ? listElementStyles
       : listElementCheckedStyles;
     return (
       <ListItem dense button>
-        <Checkbox onClick={this.onCheck} />
+        <Checkbox onClick={() => this.onCheck(this.props.name)} />
         <ListItemText style={listStyles} primary={todo} />
         <ListItemSecondaryAction>
           <IconButton aria-label="Comments">

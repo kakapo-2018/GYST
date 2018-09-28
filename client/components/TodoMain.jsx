@@ -57,15 +57,16 @@ class TodoMain extends Component {
   }
 
   handleCheck(id) {
-    const finalTodos = this.state.todos.map(todo => {
-      if (todo.id === id) {
-        todo.checked = !todo.checked;
-      }
-      return todo;
-    });
-    this.setState({
-      todos: finalTodos
-    });
+    // const finalTodos = this.state.todos.map(todo => {
+    //   if (todo.id === id) {
+    //     todo.checked = !todo.checked;
+    //   }
+    //   return todo;
+    // });
+    // this.setState({
+    //   todos: finalTodos
+    // });
+    this.props.chkTodos(id, this.props.state.auth.user.id);
   }
 
   handleRequestClose = () => {
@@ -146,6 +147,9 @@ function mapDispatchToProps(dispatch) {
     },
     delTodos: (id, user) => {
       dispatch(delTodosAction(id, user));
+    },
+    chkTodos: (id, user) => {
+      dispatch(chkTodosAction(id, user));
     }
   };
 }

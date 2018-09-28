@@ -21,8 +21,6 @@ function saveTodo(id, todo, testDB) {
 }
 
 function deleteTodo(id, user, testDB) {
-  console.log(user);
-
   const db = testDB || connection;
   return db('todos')
     .select()
@@ -35,14 +33,16 @@ function deleteTodo(id, user, testDB) {
     });
 }
 
-function checkTodo(saved, goal, id, testDB) {
+function checkTodo(id, user, checked, testDB) {
   const db = testDB || connection;
-  return db('todos')
-    .where({ id: id })
-    .update({ savingGoal: goal, saved: saved })
-    .then(data => {
-      return db('todos').where({ id: id });
-    });
+  console.log(id, user, checked);
+
+  //   return db('todos')
+  //     .where({ id: id })
+  //     .update({ savingGoal: goal, saved: saved })
+  //     .then(data => {
+  //       return db('todos').where({ id: id });
+  //     });
 }
 
 module.exports = {
