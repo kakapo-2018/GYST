@@ -50,11 +50,7 @@ class SpotifyWidgetV2 extends React.Component {
         {this.state.showPlaylist && (
           <div className="we">
             <iframe
-              src={
-                this.props.spotify.spotify
-                  ? String(this.props.spotify.spotify[0].uri)
-                  : 'spotify:user:cottonsnugs:playlist:6JCWxtu3J9pdFzIVeAbQ8B'
-              }
+              src="https://open.spotify.com/embed/playlist/6JCWxtu3J9pdFzIVeAbQ8B"
               width="300"
               height="380"
               frameBorder="0"
