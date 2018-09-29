@@ -24,7 +24,7 @@ const styles = theme => ({
   card: {
     backgroundColor: 'transparent',
     color: 'white',
-    maxWidth: 275,
+    maxWidth: 240,
     zIndex: '3'
   },
   button: {
@@ -58,127 +58,125 @@ class Sidebar extends React.Component {
     const { classes } = this.props;
     return (
       <Card className={classes.card}>
-          <div className={classes.scrollbar}>
-      <div className={classes.overflow}>
-        <Button
-          className={classes.button}
-          onClick={() => this.props.handleClick('weather')}
-        >
-          <Icon className={classes.icon}>
-            <WbSunny />
-          </Icon>
-          <Typography className={classes.sub}>Weather</Typography>
-        </Button>
-        <Button
-          className={classes.button}
-          onClick={() => this.props.handleClick('saving')}
-        >
-          <Icon className={classes.icon}>
-            <AttachMoney />
-          </Icon>
-          <Typography className={classes.sub}>Saving</Typography>
-        </Button>
-        <Button
-          className={classes.button}
-          onClick={() => this.props.handleClick('spotify')}
-        >
-          <Icon className={classes.icon}>
-            <LibraryMusic />
-          </Icon>
-          <Typography className={classes.sub}>Spotify</Typography>
-        </Button>
-        <Button
-          className={classes.button}
-          onClick={() => this.props.handleClick('spotifyplaylist')}
-        >
-          <Icon className={classes.icon}>
-            <QueueMusic />
-          </Icon>
-          <Typography className={classes.sub}>Spotify Playlist</Typography>
-        </Button>
-        <Button
-          className={classes.button}
-          onClick={() => this.props.handleClick('date')}
-        >
-          <Icon className={classes.icon}>
-            <AccessTime />
-          </Icon>
-          <Typography className={classes.sub}>Date & Time</Typography>
-        </Button>
-        <Button
-          className={classes.button}
-          onClick={() => this.props.handleClick('instagram')}
-        >
-          <Icon className={classes.icon}>
-            <LinkedCamera />
-          </Icon>
-          <Typography className={classes.sub}>Instagram</Typography>
-        </Button>
-        <Button
-          className={classes.button}
-          onClick={() => this.props.handleClick('rss')}
-        >
-          <Icon className={classes.icon}>
-            <Web />
-          </Icon>
-          <Typography className={classes.sub}>RSS</Typography>
-        </Button>
-        <Button
-          className={classes.button}
-          onClick={() => this.props.handleClick('food')}
-        >
-          <Icon className={classes.icon}>
-            <Fastfood />
-          </Icon>
-          <Typography className={classes.sub}>Food Trackr</Typography>
-        </Button>
-        <Button
-          className={classes.button}
-          onClick={() => this.props.handleClick('todo')}
-        >
-          <Icon className={classes.icon}>
-            <CheckCircleOutline />
-          </Icon>
-          <Typography className={classes.sub}>To Do List</Typography>
-        </Button>
-        <Button
-          className={classes.button}
-          onClick={() => this.props.handleClick('worldmap')}
-        >
-          <Icon className={classes.icon}>
-            <AirplanemodeActive />
-          </Icon>
-          <Typography className={classes.sub}>World Map</Typography>
-        </Button>
-        <Button
-          className={classes.button}
-          onClick={() => this.props.handleClick('googlemap')}
-        >
-          <Icon className={classes.icon}>
-            <Map />
-          </Icon>
-          <Typography className={classes.sub}>Google Map</Typography>
-        </Button>
-        <Button
-          className={classes.button}
-          onClick={() => this.props.handleClick('github')}
-        >
-          <Icon className={classes.icon}>
-            <ReportProblem />
-          </Icon>
-          <Typography className={classes.sub}>Github Issues</Typography>
-        </Button>
-        <Button
-          className={classes.button}
-          onClick={() => this.props.handleClick('weight')}
-        >
-          <Icon className={classes.icon}>
-            <SwapVert />
-          </Icon>
-          <Typography className={classes.sub}>Weight Trackr</Typography>
-        </Button>
-        <Divider className={classes.whiten} />
-        </div>
+        <div className={classes.scrollbar}>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('weather')}
+          >
+            <Icon className={classes.icon}>
+              <WbSunny />
+            </Icon>
+            <Typography className={classes.sub}>Weather</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('saving')}
+          >
+            <Icon className={classes.icon}>
+              <AttachMoney />
+            </Icon>
+            <Typography className={classes.sub}>Saving</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('spotify')}
+          >
+            <Icon className={classes.icon}>
+              <LibraryMusic />
+            </Icon>
+            <Typography className={classes.sub}>Spotify</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('spotifyplaylist')}
+          >
+            <Icon className={classes.icon}>
+              <QueueMusic />
+            </Icon>
+            <Typography className={classes.sub}>Spotify Playlist</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('date')}
+          >
+            <Icon className={classes.icon}>
+              <AccessTime />
+            </Icon>
+            <Typography className={classes.sub}>Date & Time</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('instagram')}
+          >
+            <Icon className={classes.icon}>
+              <LinkedCamera />
+            </Icon>
+            <Typography className={classes.sub}>Instagram</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('rss')}
+          >
+            <Icon className={classes.icon}>
+              <Web />
+            </Icon>
+            <Typography className={classes.sub}>RSS</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('food')}
+          >
+            <Icon className={classes.icon}>
+              <Fastfood />
+            </Icon>
+            <Typography className={classes.sub}>Food Trackr</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('todo')}
+          >
+            <Icon className={classes.icon}>
+              <CheckCircleOutline />
+            </Icon>
+            <Typography className={classes.sub}>To Do List</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('worldmap')}
+          >
+            <Icon className={classes.icon}>
+              <AirplanemodeActive />
+            </Icon>
+            <Typography className={classes.sub}>World Map</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('googlemap')}
+          >
+            <Icon className={classes.icon}>
+              <Map />
+            </Icon>
+            <Typography className={classes.sub}>Google Map</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('github')}
+          >
+            <Icon className={classes.icon}>
+              <ReportProblem />
+            </Icon>
+            <Typography className={classes.sub}>Github Issues</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('weight')}
+          >
+            <Icon className={classes.icon}>
+              <SwapVert />
+            </Icon>
+            <Typography className={classes.sub}>Weight Trackr</Typography>
+          </Button>
+          <Divider className={classes.whiten} />
         </div>
       </Card>
     );
