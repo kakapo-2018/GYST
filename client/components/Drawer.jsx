@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { getProfileImage } from '../actions/login';
 //elements
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -87,7 +88,7 @@ class ResponsiveDrawer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showRegisterForm: true,
+      showRegisterForm: false,
       showLogin: true,
       weather: true,
       saving: true,
@@ -99,14 +100,24 @@ class ResponsiveDrawer extends React.Component {
       worldmap: true,
       googlemap: true,
       github: true,
-      weight:true,
-      instagram:true,
-      spotifyplaylist:true
-
+      weight: true,
+      instagram: true,
+      spotifyplaylist: true
     };
     this.toggleRegister = this.toggleRegister.bind(this);
     this.toggleLogin = this.toggleLogin.bind(this);
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getImage(this.props.state.user.id);
+
+    try {
+      let newState = JSON.parse(get('stateKey'));
+      // this.setState(newState);
+    } catch (e) {
+      console.log('Loading toggles failed');
+    }
   }
 
   toggleLogin() {
@@ -124,9 +135,6 @@ class ResponsiveDrawer extends React.Component {
   }
 
   handleClick(component) {
-    console.log(this.state);
-    console.log(component);
-
     this.setState({
       ...this.state,
       [component]: !this.state[component]
@@ -141,25 +149,16 @@ class ResponsiveDrawer extends React.Component {
     );
   }
 
-  componentDidMount() {
-    try {
-      let newState = JSON.parse(get('stateKey'));
-      // this.setState(newState);
-    } catch (e) {
-      console.log('Loading toggles failed');
-    }
-  }
-
   render() {
     const { classes, theme } = this.props;
-
     const drawer = (
       <div>
         <div className={classes.toolbar} />
         <Divider className={classes.whiten} />
         <Avatar
           alt="Profile Picture"
-          src="luke.jpeg"
+          crossOrigin="anonymous"
+          src={this.props.image.image}
           className={classNames(classes.avatar, classes.bigAvatar)}
         />
         {this.props.state.isAuthenticated && <Logout />}
@@ -200,7 +199,6 @@ class ResponsiveDrawer extends React.Component {
             {drawer}
           </Drawer>
         </Hidden>
-        {console.log(this.props.state)}
         {/* Components from main will render here */}
         {this.props.state.isAuthenticated && <Main showCom={this.state} />}
         {this.state.showLogin &&
@@ -218,7 +216,16 @@ class ResponsiveDrawer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    state: state.auth
+    state: state.auth,
+    image: state.image
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getImage: id => {
+      dispatch(getProfileImage(id));
+    }
   };
 }
 
@@ -228,5 +235,8 @@ ResponsiveDrawer.propTypes = {
 };
 
 export default withStyles(styles, { withTheme: true })(
-  connect(mapStateToProps)(ResponsiveDrawer)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ResponsiveDrawer)
 );

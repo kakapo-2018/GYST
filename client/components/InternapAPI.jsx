@@ -17,7 +17,6 @@ class InternalAPI extends Component {
 
     return (
       <ul>
-        {console.log('Props:', this.props.items)}
         {this.props.items.map(item => (
           <li key={item.username} className="list-group-item">
             Name: {item.username}, Email: {item.email}

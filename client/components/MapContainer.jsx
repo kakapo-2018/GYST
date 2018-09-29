@@ -26,7 +26,6 @@ export class MapContainer extends React.Component {
     this.setState({
       position: location
     });
-    console.log(this.state.position);
   }
 
   render() {

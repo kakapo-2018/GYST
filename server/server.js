@@ -6,6 +6,7 @@ const authRoutes = require('./routes/auth');
 const todoRoutes = require('./routes/todo');
 const weightRoutes = require('./routes/weight');
 const instaRoutes = require('./routes/insta');
+const imageRoutes = require('./routes/image');
 const server = express();
 
 var cors = require('cors');
@@ -24,6 +25,8 @@ server.use(express.static(path.join(__dirname, '../public')));
 server.use('/api/v1', require('./routes/internal'));
 
 server.use('/api/v1/auth', authRoutes);
+
+server.use('/api/v1/image', imageRoutes);
 
 server.use('/api/v1/todo', todoRoutes);
 
@@ -128,9 +131,7 @@ server.get('/callback', function(req, res) {
         };
 
         // use the access token to access the Spotify Web API
-        request.get(options, function(error, response, body) {
-          console.log(body);
-        });
+        request.get(options, function(error, response, body) {});
 
         // we can also pass the token to the browser to make requests from there
         res.redirect(

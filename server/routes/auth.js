@@ -22,13 +22,13 @@ router.get('/username', token.decode, (req, res) => {
 
 router.get('/login', token.decode, (req, res) => {
   res.json({
-    username: req.user.username
+    username: req.user.username,
+    image: req.body.image
   });
 });
 
 function register(req, res, next) {
   console.log('signIn');
-  console.log(req.body);
   userExists(req.body.username)
     .then(exists => {
       if (exists) {
@@ -43,7 +43,6 @@ function register(req, res, next) {
 
 function login(req, res, next) {
   console.log('signIn');
-  console.log(req.body);
   getUserByName(req.body.username)
     .then(user => {
       return user || invalidCredentials(res);

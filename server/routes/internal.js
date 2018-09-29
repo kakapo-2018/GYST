@@ -17,7 +17,6 @@ router.post('/savings', (req, res) => {
 
 router.get('/savings', (req, res) => {
   accessDB.getSavings(req.query.id).then(result => {
-    console.log(result);
     if (result == undefined) {
       res.json([1, 10]);
     } else {
