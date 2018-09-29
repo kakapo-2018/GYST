@@ -25,7 +25,7 @@ const styles = theme => ({
     backgroundColor: 'transparent',
     color: 'white',
     maxWidth: 250,
-    zIndex: '3'
+    zIndex: '3',
   },
   button: {
     width: 235,
@@ -49,8 +49,8 @@ const styles = theme => ({
   scrollbar: {
     height: 550,
     marginTop: theme.spacing.unit * 3,
-    overflowY: 'auto',
-    overflowX: 'hidden',
+    overflowY: 'scroll',
+   overflowX: 'hidden',
   }
 });
 
