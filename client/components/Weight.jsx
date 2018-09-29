@@ -47,6 +47,7 @@ class Weight extends React.Component {
       }
 
     add() {
+       
         this.state.dataForChart[1][0] != 'Start' ? 
         this.state.dataForChart.push([today, Number(document.getElementById("kg").value)])
         :
@@ -58,19 +59,25 @@ class Weight extends React.Component {
         let lastEnteredDate = this.state.dataForChart[len-1][0]
         this.setState(this.state)
         this.props.saveWeight(lastEnteredWeight, lastEnteredDate,  this.props.state.auth.user.id)
+        this.props.getWeight(this.props.state.auth.user.id);
+
     }
-    
+
+
     render() {
         const { classes } = this.props;
+
         return (
             <div className="App">
             
-            {this.props.weight && 
+{console.log(this.props.weight.weight)}
+{console.log(this.state.dataForChart)}
+            {this.props.weight.weight && 
                 <Chart
                     chartType="LineChart"
                     width="100%"
                     height="400px"
-                    data={this.state.dataForChart}
+                    data={this.props.weight.weight}
                     options={options}
                 />}
                 <Input

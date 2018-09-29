@@ -8,7 +8,12 @@ export function getWeightAction(id) {
     request('get', '/weight', obj).then(response => {
       if (!response.ok) {
       } else {
-          dispatch(recieveWeight(response.body));
+        let mappedWeight = response.body.map(data => {
+          return [String(data.date), data.kg]
+        })
+        mappedWeight.unshift(["Date", "Weight"])
+        console.log(mappedWeight)
+          dispatch(recieveWeight(mappedWeight));
         }
     });
   };
