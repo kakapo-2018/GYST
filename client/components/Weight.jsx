@@ -42,6 +42,9 @@ class Weight extends React.Component {
         this.add = this.add.bind(this)
     }
 
+    componentDidMount() {
+        this.props.getWeight(this.props.state.auth.user.id);
+      }
 
     add() {
         this.state.dataForChart[1][0] != 'Start' ? 
@@ -61,14 +64,15 @@ class Weight extends React.Component {
         const { classes } = this.props;
         return (
             <div className="App">
-
+            
+            {this.props.weight && 
                 <Chart
                     chartType="LineChart"
                     width="100%"
                     height="400px"
                     data={this.state.dataForChart}
                     options={options}
-                />
+                />}
                 <Input
                     style={{ maxWidth: '45%', marginLeft: '25%' }}
                     id="kg"
@@ -78,7 +82,7 @@ class Weight extends React.Component {
                 />
                 <Button variant="contained" color="primary" onClick={() => this.add()}>
                     Save
-          </Button>
+                </Button>
             </div>
         );
     }
@@ -86,7 +90,8 @@ class Weight extends React.Component {
 
 function mapStateToProps(state) {
     return {
-      state: state
+      state: state,
+      weight:state.weight
     };
   }
   
@@ -95,8 +100,8 @@ function mapStateToProps(state) {
         saveWeight: (weight, date, id) => {
         dispatch(saveWeightAction(weight, date, id));
       },
-      getWeight: () => {
-        dispatch(getWeightAction());
+      getWeight: (id) => {
+        dispatch(getWeightAction(id));
       }
     };
   }

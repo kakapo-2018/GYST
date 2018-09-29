@@ -4,12 +4,12 @@ import request from '../utils/api';
 
 export function getWeightAction(id) {
   let obj = { id: id };
-  return function(dispatch) {
+  return function (dispatch) {
     request('get', '/weight', obj).then(response => {
       if (!response.ok) {
       } else {
-        dispatch(recieveWeight(response.body));
-      }
+          dispatch(recieveWeight(response.body));
+        }
     });
   };
 }
@@ -27,11 +27,10 @@ function recieveWeight(response) {
 
 export function saveWeightAction(weight, date, id) {
   let obj = { weight, date, id };
-  return function(dispatch) {
+  return function (dispatch) {
     request('post', '/weight/save', obj).then(response => {
       if (!response.ok) {
       } else {
-      
         dispatch(recieveWeight(response.body));
       }
     });
