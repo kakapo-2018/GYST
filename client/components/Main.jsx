@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 //React-grid
 import { Responsive, WidthProvider } from 'react-grid-layout';
 const ResponsiveGridLayout = WidthProvider(Responsive);
+const originalLayouts = getFromLS('layouts') || {};
 
 //Material-UI
 import { withStyles } from '@material-ui/core/styles';
@@ -41,17 +42,29 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [{ id: '1', task: 'lol', checked: false }]
+      layouts: JSON.parse(JSON.stringify(originalLayouts))
     };
   }
+
+  componentDidMount() {}
+
+  onLayoutChange(layout, layouts) {
+    saveToLS('layouts', layouts);
+    this.setState({ layouts });
+  }
+
   render() {
     const { classes, theme } = this.props;
     return (
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <ResponsiveGridLayout
-          draggableCancel="input,textarea,img"
           className="layout"
+          layouts={this.state.layouts}
+          onLayoutChange={(layout, layouts) =>
+            this.onLayoutChange(layout, layouts)
+          }
+          draggableCancel="input,textarea,img"
           breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
           cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
         >
@@ -169,3 +182,26 @@ class Main extends Component {
 }
 
 export default withStyles(styles, { withTheme: true })(Main);
+
+function getFromLS(key) {
+  let ls = {};
+  if (global.localStorage) {
+    try {
+      ls = JSON.parse(global.localStorage.getItem('rgl-8')) || {};
+    } catch (e) {
+      /*Ignore*/
+    }
+  }
+  return ls[key];
+}
+
+function saveToLS(key, value) {
+  if (global.localStorage) {
+    global.localStorage.setItem(
+      'rgl-8',
+      JSON.stringify({
+        [key]: value
+      })
+    );
+  }
+}
