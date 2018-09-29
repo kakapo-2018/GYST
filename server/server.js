@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const spotifyRoutes = require('./routes/spotify');
 const authRoutes = require('./routes/auth');
 const todoRoutes = require('./routes/todo');
+const instaRoutes = require('./routes/insta');
 const server = express();
 
 var cors = require('cors');

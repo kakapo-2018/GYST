@@ -10,7 +10,7 @@ function saveInsta(id, url, testDB) {
   return db('insta')
     .insert({
       userid: id,
-      uri: url
+      link: url
     })
     .then(data => {
       return connection('insta').where({

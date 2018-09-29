@@ -42,7 +42,7 @@ class instaFeed extends React.Component {
   }
 
   componentDidMount() {
-    //this.props.getInsta(this.props.state.auth.user.id);
+    this.props.getInsta(this.props.state.auth.user.id);
   }
 
   handleChange(e) {
@@ -59,10 +59,10 @@ class instaFeed extends React.Component {
   }
 
   handleClick() {
+    this.props.addInsta(this.state.instaURL, this.props.state.auth.user.id);
     this.setState({
       instaURL: ''
     });
-    this.props.addPlaylist(this.state.instaURL, this.props.state.auth.user.id);
   }
 
   render() {
@@ -71,6 +71,7 @@ class instaFeed extends React.Component {
       <Card className={classes.card}>
         <CardContent>
           <TextField
+            onChange={this.handleChange}
             id="standard-textarea"
             label="Add instagram image url"
             placeholder="URL link"
