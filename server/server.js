@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const spotifyRoutes = require('./routes/spotify');
 const authRoutes = require('./routes/auth');
 const todoRoutes = require('./routes/todo');
-const weightRoutes = require('./routes/weight')
+const weightRoutes = require('./routes/weight');
+const instaRoutes = require('./routes/insta');
 const server = express();
 
 var cors = require('cors');
@@ -30,14 +31,13 @@ server.use('/api/v1/spotify', spotifyRoutes);
 
 server.use('/api/v1/weight', weightRoutes);
 
+server.use('/api/v1/insta', instaRoutes);
+
 server.use('/api/ext', require('./routes/external'));
 
-server.get('/spotify', (req, res) => {
-});
+server.get('/spotify', (req, res) => {});
 
-server.get('/weight', (req, res)=> {
-  console.log("weight server")
-})
+server.get('/weight', (req, res) => {});
 
 var request = require('request'); // "Request" library
 var querystring = require('querystring');

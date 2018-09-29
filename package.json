@@ -37,6 +37,7 @@
     "react-dom": "^16.5.0",
     "react-google-charts": "^3.0.8",
     "react-grid-layout": "^0.16.6",
+    "react-instagram-embed": "^1.4.0",
     "react-liquid-gauge": "^1.2.4",
     "react-live-clock": "^2.0.3",
     "react-moment": "^0.8.1",
