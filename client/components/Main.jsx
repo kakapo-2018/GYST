@@ -20,6 +20,7 @@ import RSS from './RssFeed';
 import Weather from './Weather';
 import MapContainer from './MapContainer';
 import GithubIssues from './GithubIssues';
+import SocialFeed from './SocialFeed';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -74,7 +75,7 @@ class Main extends Component {
               data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 3, minH: 2, maxH: 2 }}
             >
               {/* {<SpotifyPlaybackWidget />} */}
-              {<SpotifyPlaylist />}
+              {<SocialFeed />}
             </div>
           ) : (
             <div />
