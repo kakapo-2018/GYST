@@ -35,6 +35,7 @@
     "react-calendar": "^2.17.4",
     "react-chartist": "^0.13.1",
     "react-dom": "^16.5.0",
+    "react-google-charts": "^3.0.8",
     "react-grid-layout": "^0.16.6",
     "react-liquid-gauge": "^1.2.4",
     "react-live-clock": "^2.0.3",
