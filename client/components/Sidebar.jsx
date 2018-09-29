@@ -49,7 +49,8 @@ const styles = theme => ({
   scrollbar: {
     height: 550,
     marginTop: theme.spacing.unit * 3,
-    overflow: 'auto',
+    overflowY: 'auto',
+    overflowX: 'hidden',
   }
 });
 
