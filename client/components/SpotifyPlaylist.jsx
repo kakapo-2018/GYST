@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import { addSpotifyAction, getSpotifyAction } from '../actions/spotify';
 import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
+import Refresh from '@material-ui/icons/Refresh';
 
 class SpotifyPlaylist extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class SpotifyPlaylist extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleRefresh = this.handleRefresh.bind(this);
   }
 
   componentDidMount() {
@@ -24,6 +26,13 @@ class SpotifyPlaylist extends React.Component {
     this.setState({
       inputURI: e.target.value
     });
+  }
+
+  handleRefresh() {
+    this.setState({
+      inputURI: ''
+    });
+    this.props.getPlaylist(this.props.state.auth.user.id);
   }
 
   handleClick() {
@@ -37,6 +46,8 @@ class SpotifyPlaylist extends React.Component {
     return (
       <div>
         <div className="we">
+          {!this.props.spotify.spotify && <p>Loading...</p>}
+
           {this.props.spotify.spotify && (
             <iframe
               src={`https://open.spotify.com/embed/playlist/${
@@ -76,6 +87,14 @@ class SpotifyPlaylist extends React.Component {
             aria-label="Add"
           >
             <AddIcon />
+          </Button>
+          <Button
+            onClick={this.handleRefresh}
+            variant="fab"
+            color="primary"
+            aria-label="Add"
+          >
+            <Refresh />
           </Button>
           {/* <button>save</button> */}
         </div>
