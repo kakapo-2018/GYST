@@ -59,6 +59,15 @@ export function loginUser(creds) {
   };
 }
 
+function receiveImage(image) {
+  return {
+    type: 'IMAGE_RECEIVED',
+    isFetching: false,
+    isAuthenticated: true,
+    image
+  };
+}
+
 export function getProfileImage(id) {
   return dispatch => {
     console.log(id);
@@ -68,18 +77,11 @@ export function getProfileImage(id) {
         if (!response.ok) {
         } else {
           console.log(response.body);
-          dispatch(receiveImage(req.body.image));
+          console.log('back ina ction');
+
+          dispatch(receiveImage(response.body.image));
         }
       })
       .catch(err => dispatch(loginError(err.response.body.message)));
-  };
-}
-
-function receiveImage(image) {
-  return {
-    type: 'IMAGE_RECEIVED',
-    isFetching: false,
-    isAuthenticated: true,
-    image
   };
 }

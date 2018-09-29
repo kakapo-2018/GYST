@@ -138,7 +138,8 @@ class ResponsiveDrawer extends React.Component {
         <Divider className={classes.whiten} />
         <Avatar
           alt="Profile Picture"
-          src="https://i.imgur.com/jNNT4LE.png"
+          crossorigin="anonymous"
+          src={this.props.image.image}
           className={classNames(classes.avatar, classes.bigAvatar)}
         />
         {this.props.state.isAuthenticated && <Logout />}
@@ -196,8 +197,8 @@ class ResponsiveDrawer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    state: state.auth
-    // image: image
+    state: state.auth,
+    image: state.image
   };
 }
 
