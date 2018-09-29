@@ -79,14 +79,6 @@ const styles = theme => ({
   }
 });
 
-// constructor(props) {
-//   super(props);
-//   this.state = {
-
-//   };
-//   ;
-// }
-
 class ResponsiveDrawer extends React.Component {
   constructor(props) {
     super(props);
@@ -124,7 +116,6 @@ class ResponsiveDrawer extends React.Component {
   }
 
   handleClick(component) {
-    console.log(this.state);
     this.setState({
       ...this.state,
       [component]: !this.state[component]

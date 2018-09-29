@@ -74,8 +74,7 @@ class Main extends Component {
               key="1"
               data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 3, minH: 2, maxH: 2 }}
             >
-              {/* {<SpotifyPlaybackWidget />} */}
-              {<SocialFeed />}
+              <SpotifyPlaybackWidget />
             </div>
           ) : (
             <div />

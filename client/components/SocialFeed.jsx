@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { getInsta, addInsta } from '../actions/insta';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -72,6 +71,7 @@ class instaFeed extends React.Component {
         <CardContent>
           <TextField
             onChange={this.handleChange}
+            value={this.state.instaURL}
             id="standard-textarea"
             label="Add instagram image url"
             placeholder="URL link"
@@ -86,11 +86,8 @@ class instaFeed extends React.Component {
           >
             <AddIcon />
           </Button>
-          {console.log(this.props.insta)}
           {this.props.insta.insta &&
             this.props.insta.insta.map(post => {
-              console.log(post.link);
-
               return (
                 <InstagramEmbed
                   url={post.link}

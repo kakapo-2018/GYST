@@ -10,8 +10,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/save', (req, res) => {
-  console.log(req.body);
-
   instaDB.saveInsta(req.body.id, req.body.url).then(result => {
     res.json(result);
   });
