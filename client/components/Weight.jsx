@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import { saveWeightAction, getWeightAction } from '../actions/weight';
+import Card from '@material-ui/core/Card';
 
 const styles = theme => ({
     content: {
@@ -68,11 +69,9 @@ class Weight extends React.Component {
         const { classes } = this.props;
 
         return (
+            <Card className={classes.card}>
             <div className="App">
-            
-{console.log(this.props.weight.weight)}
-{console.log(this.state.dataForChart)}
-            {this.props.weight.weight && 
+             {this.props.weight.weight && 
                 <Chart
                     chartType="LineChart"
                     width="100%"
@@ -91,6 +90,7 @@ class Weight extends React.Component {
                     Save
                 </Button>
             </div>
+            </Card>
         );
     }
 }
