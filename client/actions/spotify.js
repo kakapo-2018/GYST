@@ -8,7 +8,16 @@ export function getSpotifyAction(id) {
     request('get', '/spotify', obj).then(response => {
       if (!response.ok) {
       } else {
-        dispatch(receiveTodos(response.body));
+        let alteredResponse = response.body.map(playlist => {
+          let splitArr = playlist.uri.split(':');
+          let playlistURI = splitArr[4];
+
+          return playlistURI;
+        });
+
+        // let split = response.body[].uri.split(':');
+        console.log(alteredResponse);
+        dispatch(recievePlaylist(alteredResponse));
       }
     });
   };

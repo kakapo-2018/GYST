@@ -7,66 +7,57 @@ class SpotifyPlaylist extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showInput: true,
-      showPlaylist: false,
       inputURI: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getPlaylist(this.props.state.auth.user.id);
+  }
+
   handleChange(e) {
-    console.log('hit');
     this.setState({
       inputURI: e.target.value
     });
   }
 
   handleClick() {
-    console.log('clicked');
-    console.log(this.state);
-    this.setState({
-      showInput: false,
-      showPlaylist: true
-    });
+    // this.setState({
+    //   showInput: false,
+    //   showPlaylist: true
+    // });
     this.props.addPlaylist(this.state.inputURI, this.props.state.auth.user.id);
   }
 
   render() {
     return (
       <div>
-        {this.state.showInput && (
-          <div>
-            <Input
-              style={{ maxWidth: '45%' }}
-              type="text"
-              name="spotify"
-              placeholder="Enter Playlist URI"
-              onChange={this.handleChange}
+        <div className="we">
+          {this.props.spotify.spotify && (
+            <iframe
+              src={`https://open.spotify.com/embed/playlist/${
+                this.props.spotify.spotify[
+                  Math.floor(Math.random() * this.props.spotify.spotify.length)
+                ]
+              }`}
+              width="300"
+              height="380"
+              frameBorder="0"
+              allowtransparency="true"
+              allow="encrypted-media"
             />
-            <button onClick={this.handleClick}>save</button>
-          </div>
-        )}
-        {this.state.showPlaylist && (
-          <div className="we">
-            {this.props.spotify.spotify && (
-              <iframe
-                src={`https://open.spotify.com/embed/playlist/${
-                  this.props.spotify.spotify[
-                    Math.floor(
-                      Math.random() * this.props.spotify.spotify.length
-                    )
-                  ]
-                }`}
-                width="300"
-                height="380"
-                frameBorder="0"
-                allowtransparency="true"
-                allow="encrypted-media"
-              />
-            )}
-          </div>
-        )}
+          )}
+          <Input
+            style={{ maxWidth: '45%' }}
+            type="text"
+            name="spotify"
+            placeholder="Enter Playlist URI"
+            onChange={this.handleChange}
+          />
+          <button onClick={this.handleClick}>save</button>
+        </div>
       </div>
     );
   }
