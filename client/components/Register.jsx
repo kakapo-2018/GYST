@@ -16,6 +16,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import VpnKey from '@material-ui/icons/VpnKey';
 import Email from '@material-ui/icons/Email';
+import Photo from '@material-ui/icons/Photo';
+
 const styles = theme => ({
   layout: {
     width: 'auto',
@@ -135,6 +137,23 @@ class Register extends React.Component {
                   startAdornment={
                     <InputAdornment position="start">
                       <VpnKey />
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+              <FormControl margin="normal" fullWidth>
+                <InputLabel htmlFor="password">
+                  Profile Image (Optional)
+                </InputLabel>
+                <Input
+                  onChange={this.handleChange}
+                  name="image"
+                  type="text"
+                  id="image"
+                  autoComplete="profile image"
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <Photo />
                     </InputAdornment>
                   }
                 />
