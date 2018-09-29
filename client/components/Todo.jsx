@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -18,18 +20,22 @@ const listElementCheckedStyles = {
 };
 
 class Todo extends Component {
+  static propTypes = {
+    //todo: PropTypes.string
+  };
+
   constructor(props) {
     super(props);
     this.onClick = this.onClick.bind(this);
     this.onCheck = this.onCheck.bind(this);
   }
 
-  onClick(name) {
-    this.props.handleRemove(name);
+  onClick(event) {
+    this.props.handleRemove(this.props.id);
   }
 
-  onCheck(name, checked) {
-    this.props.handleCheck(name, checked);
+  onCheck(event) {
+    this.props.handleCheck(this.props.id);
   }
 
   render() {
@@ -39,14 +45,11 @@ class Todo extends Component {
       : listElementCheckedStyles;
     return (
       <ListItem dense button>
-        <Checkbox
-          checked={Boolean(this.props.checked)}
-          onClick={() => this.onCheck(this.props.name, this.props.checked)}
-        />
+        <Checkbox onClick={this.onCheck} />
         <ListItemText style={listStyles} primary={todo} />
         <ListItemSecondaryAction>
           <IconButton aria-label="Comments">
-            <DeleteIcon onClick={() => this.onClick(this.props.name)} />
+            <DeleteIcon onClick={this.onClick} />
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>

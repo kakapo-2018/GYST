@@ -8,6 +8,8 @@ import { ListItem } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
 
 function TabContainer(props) {
   return (
@@ -17,15 +19,37 @@ function TabContainer(props) {
   );
 }
 
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+  const top = 50 + rand();
+  const left = 50 + rand();
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`
+  };
+}
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
     maxWidth: '100%',
-    maxHeight: '100%',
+    maxHeight: '85%',
     minWidth: '100%',
-    minHeight: '100%',
+    minHeight: '85%',
     overflow: 'auto'
+  },
+  paper: {
+    position: 'absolute',
+    width: theme.spacing.unit * 50,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 4
   },
   button: {
     margin: theme.spacing.unit
@@ -45,7 +69,7 @@ class RSS extends Component {
     this.state = {
       redditfeedItems: [],
       stufffeedItems: [],
-
+      open: false,
       value: 0
     };
   }
@@ -57,6 +81,14 @@ class RSS extends Component {
   componentDidMount() {
     this.fetchData();
   }
+
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
 
   _asyncToGenerator = function(fn) {};
   TypoListItemgraphy;
@@ -105,16 +137,7 @@ class RSS extends Component {
                   image="rss.jpg"
                   title="Contemplative Reptile"
                 />
-                <Card
-                  className={classes.card}
-                  style={{
-                    maxWidth: '100%',
-                    maxHeight: '100%',
-                    minWidth: '100%',
-                    minHeight: '100%',
-                    overflow: 'auto'
-                  }}
-                >
+                <Card className={classes.card}>
                   <div>
                     <List>
                       {this.state.redditfeedItems.map(item => {
@@ -122,8 +145,7 @@ class RSS extends Component {
                           <ListItem>
                             <Typography component="p">
                               <a target="_blank" href={item.link}>
-                                {' '}
-                                {item.title}{' '}
+                                {item.title}
                               </a>
                             </Typography>
                           </ListItem>
@@ -180,46 +202,5 @@ class RSS extends Component {
     );
   }
 }
-
-//   render() {
-//     const { classes } = this.props;
-
-//     return (
-//       <React.Fragment>
-//         <CardMedia
-//           component="img"
-//           className={classes.media}
-//           height="110"
-//           image="rss.jpg"
-//           title="Contemplative Reptile"
-//         />
-//         <Card
-//           className={classes.card}
-//           style={{
-//             maxWidth: '100%',
-//             maxHeight: '100%',
-//             minWidth: '100%',
-//             minHeight: '100%',
-//             overflow: 'auto'
-//           }}
-//         >
-//           <div>
-//             <List>
-//               {this.state.feedItems.map(item => {
-//                 return (
-//                   <ListItem>
-//                     <Typography component="p">
-//                       <a href={item.link}> {item.title} </a>
-//                     </Typography>
-//                   </ListItem>
-//                 );
-//               })}
-//             </List>
-//           </div>
-//         </Card>
-//       </React.Fragment>
-//     );
-//   }
-// }
 
 export default withStyles(styles)(RSS);
