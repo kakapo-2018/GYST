@@ -22,8 +22,7 @@ import Weather from './Weather';
 import MapContainer from './MapContainer';
 import GithubIssues from './GithubIssues';
 import Weight from './Weight';
-
-var loaded = 0;
+import SocialFeed from './SocialFeed';
 
 const drawerWidth = 240;
 
@@ -76,8 +75,7 @@ class Main extends Component {
               key="1"
               data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 3, minH: 2, maxH: 2 }}
             >
-              {/* {<SpotifyPlaybackWidget />} */}
-              {<SpotifyPlaylist />}
+              <SpotifyPlaybackWidget />
             </div>
           ) : (
             <React.Fragment />
@@ -187,6 +185,26 @@ class Main extends Component {
             </div>
           ) : (
             <React.Fragment />
+          )}
+                    {this.props.showCom.spotifyplaylist ? (
+            <div
+              key="13"
+              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+            >
+              <SpotifyPlaylist />
+            </div>
+          ) : (
+            <div />
+          )}
+                    {this.props.showCom.instagram ? (
+            <div
+              key="14"
+              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+            >
+              <SocialFeed />
+            </div>
+          ) : (
+                <React.Fragment />
           )}
         </ResponsiveGridLayout>
       </main>

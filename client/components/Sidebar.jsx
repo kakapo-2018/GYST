@@ -17,6 +17,8 @@ import AirplanemodeActive from '@material-ui/icons/AirplanemodeActive';
 import CheckCircleOutline from '@material-ui/icons/CheckCircleOutline';
 import Divider from '@material-ui/core/Divider';
 import SwapVert from '@material-ui/icons/SwapVert';
+import LibraryMusic from '@material-ui/icons/LibraryMusic';
+import LinkedCamera from '@material-ui/icons/LinkedCamera';
 
 const styles = theme => ({
   card: {
@@ -74,9 +76,18 @@ class Sidebar extends React.Component {
           onClick={() => this.props.handleClick('spotify')}
         >
           <Icon className={classes.icon}>
-            <QueueMusic />
+            <LibraryMusic />
           </Icon>
           <Typography className={classes.sub}>Spotify</Typography>
+        </Button>
+        <Button
+          className={classes.button}
+          onClick={() => this.props.handleClick('spotifyplaylist')}
+        >
+          <Icon className={classes.icon}>
+            <QueueMusic />
+          </Icon>
+          <Typography className={classes.sub}>Spotify Playlist</Typography>
         </Button>
         <Button
           className={classes.button}
@@ -86,6 +97,15 @@ class Sidebar extends React.Component {
             <AccessTime />
           </Icon>
           <Typography className={classes.sub}>Date & Time</Typography>
+        </Button>
+        <Button
+          className={classes.button}
+          onClick={() => this.props.handleClick('instagram')}
+        >
+          <Icon className={classes.icon}>
+            <LinkedCamera />
+          </Icon>
+          <Typography className={classes.sub}>Instagram</Typography>
         </Button>
         <Button
           className={classes.button}
@@ -103,7 +123,7 @@ class Sidebar extends React.Component {
           <Icon className={classes.icon}>
             <Fastfood />
           </Icon>
-          <Typography className={classes.sub}>Food Tracker</Typography>
+          <Typography className={classes.sub}>Food Trackr</Typography>
         </Button>
         <Button
           className={classes.button}
@@ -148,7 +168,7 @@ class Sidebar extends React.Component {
           <Icon className={classes.icon}>
             <SwapVert />
           </Icon>
-          <Typography className={classes.sub}>Weight</Typography>
+          <Typography className={classes.sub}>Weight Trackr</Typography>
         </Button>
         <Divider className={classes.whiten} />
       </Card>
