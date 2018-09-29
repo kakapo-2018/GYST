@@ -86,50 +86,25 @@ class instaFeed extends React.Component {
           >
             <AddIcon />
           </Button>
-          <InstagramEmbed
-            url="https://www.instagram.com/p/Zw9o4/"
-            hideCaption={false}
-            containerTagName="div"
-            injectScript
-            protocol=""
-            onLoading={() => {}}
-            onSuccess={() => {}}
-            onAfterRender={() => {}}
-            onFailure={() => {}}
-          />
-          <InstagramEmbed
-            url="https://instagr.am/p/Zw9o4/"
-            hideCaption={false}
-            containerTagName="div"
-            injectScript
-            protocol=""
-            onLoading={() => {}}
-            onSuccess={() => {}}
-            onAfterRender={() => {}}
-            onFailure={() => {}}
-          />
-          <InstagramEmbed
-            url="https://instagr.am/p/Zw9o4/"
-            hideCaption={false}
-            containerTagName="div"
-            injectScript
-            protocol=""
-            onLoading={() => {}}
-            onSuccess={() => {}}
-            onAfterRender={() => {}}
-            onFailure={() => {}}
-          />
-          <InstagramEmbed
-            url="https://instagr.am/p/Zw9o4/"
-            hideCaption={false}
-            containerTagName="div"
-            injectScript
-            protocol=""
-            onLoading={() => {}}
-            onSuccess={() => {}}
-            onAfterRender={() => {}}
-            onFailure={() => {}}
-          />
+          {console.log(this.props.insta)}
+          {this.props.insta.insta &&
+            this.props.insta.insta.map(post => {
+              console.log(post.link);
+
+              return (
+                <InstagramEmbed
+                  url={post.link}
+                  hideCaption={false}
+                  containerTagName="div"
+                  injectScript
+                  protocol=""
+                  onLoading={() => {}}
+                  onSuccess={() => {}}
+                  onAfterRender={() => {}}
+                  onFailure={() => {}}
+                />
+              );
+            })}
         </CardContent>
       </Card>
     );
@@ -139,7 +114,7 @@ class instaFeed extends React.Component {
 function mapStateToProps(state) {
   return {
     state: state,
-    spotify: state.insta
+    insta: state.insta
   };
 }
 
