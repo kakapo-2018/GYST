@@ -187,6 +187,26 @@ class Main extends Component {
           ) : (
             <div />
           )}
+                    {this.props.showCom.spotifyplaylist ? (
+            <div
+              key="13"
+              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+            >
+              <SpotifyPlaylist />
+            </div>
+          ) : (
+            <div />
+          )}
+                    {this.props.showCom.instagram ? (
+            <div
+              key="14"
+              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+            >
+              <SocialFeed />
+            </div>
+          ) : (
+            <div />
+          )}
         </ResponsiveGridLayout>
       </main>
     );
