@@ -103,7 +103,7 @@ class Sidebar extends React.Component {
           <Icon className={classes.icon}>
             <Fastfood />
           </Icon>
-          <Typography className={classes.sub}>Food Tracker</Typography>
+          <Typography className={classes.sub}>Food Trackr</Typography>
         </Button>
         <Button
           className={classes.button}
@@ -148,7 +148,7 @@ class Sidebar extends React.Component {
           <Icon className={classes.icon}>
             <SwapVert />
           </Icon>
-          <Typography className={classes.sub}>Weight</Typography>
+          <Typography className={classes.sub}>Weight Trackr</Typography>
         </Button>
         <Divider className={classes.whiten} />
       </Card>
