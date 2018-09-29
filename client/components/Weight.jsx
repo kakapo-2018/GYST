@@ -1,4 +1,3 @@
-
 import React from "react";
 import { connect } from 'react-redux'
 import Chart from "react-google-charts";
@@ -34,7 +33,9 @@ const options = {
 class Weight extends React.Component {
     constructor(props) {
         super(props)
+        
         this.state = {
+            confirm: false,
             dataForChart: [
                 ["Date", "Weight"],
                 ["Start", 0],
@@ -50,15 +51,9 @@ class Weight extends React.Component {
 
 
     save() {
-        return (
-            
-            <div>
-            {console.log("clicked")}
-                <Button variant="contained" color="secondary" onClick={() => this.add()}>
-                    Confirm
-                </Button>
-            </div>
-        )
+      this.setState({
+        confirm: true
+      })
     }
 
     add() {
@@ -72,6 +67,7 @@ class Weight extends React.Component {
         let len = this.state.dataForChart.length
         let lastEnteredWeight = this.state.dataForChart[len - 1][1]
         let lastEnteredDate = this.state.dataForChart[len - 1][0]
+        this.state.confirm = false
         this.setState(this.state)
         this.props.saveWeight(lastEnteredWeight, lastEnteredDate, this.props.state.auth.user.id)
         this.props.getWeight(this.props.state.auth.user.id);
@@ -101,10 +97,14 @@ class Weight extends React.Component {
                         placeholder="Enter your weight"
                     />
                     {console.log(this.state)}
+                    {!this.state.confirm ? 
                     <Button variant="contained" color="primary" onClick={()=>this.save()}>
                         Save
+                    </Button> :
+                    <Button variant="contained" color="secondary" onClick={()=>this.add()}>
+                        Confirm
                     </Button>
-
+                    }
                 </div>
             </Card>
         );
