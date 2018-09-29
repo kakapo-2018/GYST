@@ -45,6 +45,15 @@ const styles = theme => ({
   },
   whiten: {
     backgroundColor: 'white'
+  },
+  scrollbar: {
+    height: 300,
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+    overflow: 'auto',
+  },
+  overflow: {
+    minHeight:'450px'
   }
 });
 
@@ -53,6 +62,8 @@ class Sidebar extends React.Component {
     const { classes } = this.props;
     return (
       <Card className={classes.card}>
+          <div className={classes.scrollbar}>
+      <div className={classes.overflow}>
         <Button
           className={classes.button}
           onClick={() => this.props.handleClick('weather')}
@@ -171,6 +182,8 @@ class Sidebar extends React.Component {
           <Typography className={classes.sub}>Weight Trackr</Typography>
         </Button>
         <Divider className={classes.whiten} />
+        </div>
+        </div>
       </Card>
     );
   }
