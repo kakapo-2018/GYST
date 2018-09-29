@@ -4,6 +4,7 @@ import insta from './insta';
 import spotify from './spotify';
 import auth from './auth';
 import image from './image';
+import weight from './weight';
 import { items, itemsHasErrored, itemsIsLoading } from './example_reducer';
 
 export default combineReducers({
@@ -14,5 +15,6 @@ export default combineReducers({
   todos,
   spotify,
   insta,
-  image
+  image,
+  weight
 });

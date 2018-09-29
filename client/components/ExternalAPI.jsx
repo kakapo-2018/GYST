@@ -17,7 +17,6 @@ class ExternalAPI extends Component {
 
     return (
       <ul>
-        {console.log('Props:', this.props.items)}
         {this.props.items.meals.map(item => (
           <li key={item.idMeal} className="list-group-item">
             Name: {item.strMeal}

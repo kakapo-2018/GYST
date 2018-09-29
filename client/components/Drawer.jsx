@@ -17,7 +17,11 @@ import Register from './Register';
 import SignIn from './SignIn';
 import Sidebar from './Sidebar';
 
+import { get, set } from '../utils/localStorage';
+
 const drawerWidth = 240;
+
+let obj = {};
 
 const styles = theme => ({
   root: {
@@ -86,17 +90,19 @@ class ResponsiveDrawer extends React.Component {
     this.state = {
       showRegisterForm: false,
       showLogin: true,
-      weather: false,
-      saving: false,
-      spotify: false,
-      date: false,
-      rss: false,
-      food: false,
-      todo: false,
-      worldmap: false,
-      googlemap: false,
-      github: false,
-      weight: false
+      weather: true,
+      saving: true,
+      spotify: true,
+      date: true,
+      rss: true,
+      food: true,
+      todo: true,
+      worldmap: true,
+      googlemap: true,
+      github: true,
+      weight: true,
+      instagram: true,
+      spotifyplaylist: true
     };
     this.toggleRegister = this.toggleRegister.bind(this);
     this.toggleLogin = this.toggleLogin.bind(this);
@@ -105,6 +111,13 @@ class ResponsiveDrawer extends React.Component {
 
   componentDidMount() {
     this.props.getImage(this.props.state.user.id);
+
+    try {
+      let newState = JSON.parse(get('stateKey'));
+      // this.setState(newState);
+    } catch (e) {
+      console.log('Loading toggles failed');
+    }
   }
 
   toggleLogin() {
@@ -126,19 +139,25 @@ class ResponsiveDrawer extends React.Component {
       ...this.state,
       [component]: !this.state[component]
     });
+
+    set(
+      'stateKey',
+      JSON.stringify({
+        ...this.state,
+        [component]: !this.state[component]
+      })
+    );
   }
 
   render() {
     const { classes, theme } = this.props;
-    console.log(this.props);
-
     const drawer = (
       <div>
         <div className={classes.toolbar} />
         <Divider className={classes.whiten} />
         <Avatar
           alt="Profile Picture"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
           src={this.props.image.image}
           className={classNames(classes.avatar, classes.bigAvatar)}
         />

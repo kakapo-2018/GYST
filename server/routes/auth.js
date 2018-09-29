@@ -29,7 +29,6 @@ router.get('/login', token.decode, (req, res) => {
 
 function register(req, res, next) {
   console.log('signIn');
-  console.log(req.body);
   userExists(req.body.username)
     .then(exists => {
       if (exists) {
@@ -44,7 +43,6 @@ function register(req, res, next) {
 
 function login(req, res, next) {
   console.log('signIn');
-  console.log(req.body);
   getUserByName(req.body.username)
     .then(user => {
       return user || invalidCredentials(res);
