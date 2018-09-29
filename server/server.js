@@ -27,6 +27,8 @@ server.use('/api/v1/todo', todoRoutes);
 
 server.use('/api/v1/spotify', spotifyRoutes);
 
+server.use('/api/v1/insta', instaRoutes);
+
 server.use('/api/ext', require('./routes/external'));
 
 server.get('/spotify', (req, res) => {

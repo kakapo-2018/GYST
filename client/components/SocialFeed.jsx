@@ -138,7 +138,7 @@ class instaFeed extends React.Component {
 function mapStateToProps(state) {
   return {
     state: state,
-    spotify: state.spotify
+    spotify: state.insta
   };
 }
 
