@@ -47,12 +47,9 @@ const styles = theme => ({
     backgroundColor: 'white'
   },
   scrollbar: {
-    height: 300,
+    height: 550,
     marginTop: theme.spacing.unit * 3,
     overflow: 'auto',
-  },
-  overflow: {
-    minHeight:'450px'
   }
 });
 
