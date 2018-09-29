@@ -71,6 +71,7 @@ class SpotifyPlaylist extends React.Component {
             name="spotify"
             // className={classes.textField}
             margin="normal"
+            value={this.state.inputURI}
             onChange={this.handleChange}
           />
           {/* <Input
