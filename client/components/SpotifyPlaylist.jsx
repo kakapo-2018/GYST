@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Input from '@material-ui/core/Input';
+import TextField from '@material-ui/core/TextField';
 import { addSpotifyAction, getSpotifyAction } from '../actions/spotify';
+import AddIcon from '@material-ui/icons/Add';
+import Button from '@material-ui/core/Button';
 
 class SpotifyPlaylist extends React.Component {
   constructor(props) {
@@ -24,10 +27,9 @@ class SpotifyPlaylist extends React.Component {
   }
 
   handleClick() {
-    // this.setState({
-    //   showInput: false,
-    //   showPlaylist: true
-    // });
+    this.setState({
+      inputURI: ''
+    });
     this.props.addPlaylist(this.state.inputURI, this.props.state.auth.user.id);
   }
 
@@ -49,14 +51,33 @@ class SpotifyPlaylist extends React.Component {
               allow="encrypted-media"
             />
           )}
-          <Input
-            style={{ maxWidth: '45%' }}
+          <TextField
+            // style={{ maxWidth: '45%' }}
+            id="standard-textarea"
+            label="Enter playlist embed URI"
+            placeholder="URI embed link"
+            multiline
+            name="spotify"
+            // className={classes.textField}
+            margin="normal"
+            onChange={this.handleChange}
+          />
+          {/* <Input
+           
             type="text"
             name="spotify"
             placeholder="Enter Playlist URI"
-            onChange={this.handleChange}
-          />
-          <button onClick={this.handleClick}>save</button>
+           
+          /> */}
+          <Button
+            onClick={this.handleClick}
+            variant="fab"
+            color="primary"
+            aria-label="Add"
+          >
+            <AddIcon />
+          </Button>
+          {/* <button>save</button> */}
         </div>
       </div>
     );
