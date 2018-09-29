@@ -5060,6 +5060,13 @@ react-event-listener@^0.6.2:
     prop-types "^15.6.0"
     warning "^4.0.1"
 
+react-google-charts@^3.0.8:
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/react-google-charts/-/react-google-charts-3.0.8.tgz#b35f7e621dd3bd3608df8b28ef34ea4265ab3ada"
+  integrity sha512-QSuJZKkDhw6aPu32A8ONvhPHH2TWKIJKYgs/TNhx4aKH1EeNznO4urYpZMQgHgU3706fLjMGzHUVWciDy7CIDw==
+  dependencies:
+    react-load-script "^0.0.6"
+
 react-grid-layout@^0.16.6:
   version "0.16.6"
   resolved "https://registry.yarnpkg.com/react-grid-layout/-/react-grid-layout-0.16.6.tgz#9b2407a2b946c2260ebaf66f13b556e1da4efeb2"
@@ -5110,6 +5117,11 @@ react-live-clock@^2.0.3:
     moment "2.19.3"
     moment-timezone "0.5.13"
     prop-types "15.5.10"
+
+react-load-script@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/react-load-script/-/react-load-script-0.0.6.tgz#db6851236aaa25bb622677a2eb51dad4f8d2c258"
+  integrity sha512-aRGxDGP9VoLxcsaYvKWIW+LRrMOzz2eEcubTS4NvQPPugjk2VvMhow0wWTkSl7RxookomD1MwcP4l5UStg5ShQ==
 
 react-moment@^0.8.1:
   version "0.8.1"
