@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Input from '@material-ui/core/Input';
 import TextField from '@material-ui/core/TextField';
 import { addSpotifyAction, getSpotifyAction } from '../actions/spotify';
 import AddIcon from '@material-ui/icons/Add';
@@ -47,7 +46,6 @@ class SpotifyPlaylist extends React.Component {
       <div>
         <div className="we">
           {!this.props.spotify.spotify && <p>Loading...</p>}
-
           {this.props.spotify.spotify && (
             <iframe
               src={`https://open.spotify.com/embed/playlist/${
@@ -63,24 +61,15 @@ class SpotifyPlaylist extends React.Component {
             />
           )}
           <TextField
-            // style={{ maxWidth: '45%' }}
             id="standard-textarea"
             label="Enter playlist embed URI"
             placeholder="URI embed link"
             multiline
             name="spotify"
-            // className={classes.textField}
             margin="normal"
             value={this.state.inputURI}
             onChange={this.handleChange}
           />
-          {/* <Input
-           
-            type="text"
-            name="spotify"
-            placeholder="Enter Playlist URI"
-           
-          /> */}
           <Button
             onClick={this.handleClick}
             variant="fab"
@@ -97,7 +86,6 @@ class SpotifyPlaylist extends React.Component {
           >
             <Refresh />
           </Button>
-          {/* <button>save</button> */}
         </div>
       </div>
     );
