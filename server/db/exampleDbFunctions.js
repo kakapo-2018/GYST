@@ -11,7 +11,8 @@ function createUser(obj, testDB) {
   const username = obj.username;
   const email = obj.email;
   const passwordHash = hash.generate(obj.password);
-  return db('users').insert({ username, email, hash: passwordHash });
+  const image = obj.image;
+  return db('users').insert({ username, email, hash: passwordHash, image });
 }
 
 function userExists(username, testDB) {

@@ -58,6 +58,7 @@ class Register extends React.Component {
       username: '',
       password: '',
       email: '',
+      image: 'https://i.imgur.com/jNNT4LE.png',
       classes: this.props.classes
     };
     this.handleClick = this.handleClick.bind(this);
@@ -72,11 +73,12 @@ class Register extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    const { username, email, password } = this.state;
+    const { username, email, password, image } = this.state;
     const creds = {
       username: username.trim(),
       email: email.trim(),
-      password: password.trim()
+      password: password.trim(),
+      image: image.trim()
     };
     this.props.registerUser(creds);
   }
