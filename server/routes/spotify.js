@@ -10,7 +10,11 @@ router.get('/', (req, res) => {
 });
 
 router.post('/save', (req, res) => {
+  console.log('hit server');
+
   spotifyDB.saveSpotify(req.body.id, req.body.url).then(result => {
+    console.log(result);
+
     res.json(result);
   });
 });

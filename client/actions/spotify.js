@@ -30,14 +30,21 @@ export function addSpotifyAction(link, id) {
   return function(dispatch) {
     request('post', '/spotify/save', obj).then(response => {
       if (!response.ok) {
+        console.log('broken');
       } else {
         console.log(response.body);
-        const len = response.body.length;
-        let select = Math.floor(Math.random() * len + 1);
-        console.log(select);
 
-        let split = response.body[select].uri.split(':');
-        console.log(split);
+        let alteredResponse = response.body.map(playlist => {
+          let splitArr = playlist.uri.split(':');
+          let miniArr = splitArr[3] + ':' + splitArr[4];
+          console.log(miniArr);
+
+          let string = splitArr.join();
+          return string;
+        });
+
+        // let split = response.body[].uri.split(':');
+        console.log(alteredResponse);
 
         dispatch(recievePlaylist(split));
       }

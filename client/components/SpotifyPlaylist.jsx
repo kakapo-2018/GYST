@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Input from '@material-ui/core/Input';
 import { addSpotifyAction, getSpotifyAction } from '../actions/spotify';
 
-class SpotifyWidgetV2 extends React.Component {
+class SpotifyPlaylist extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -88,4 +88,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SpotifyWidgetV2);
+)(SpotifyPlaylist);
