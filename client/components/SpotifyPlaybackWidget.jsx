@@ -152,6 +152,9 @@ class SpotifyPlaybackWidget extends Component {
                   Login to Spotify
                 </Button>
               )}
+              <Typography variant="headline">
+                {this.state.nowPlaying.name}
+              </Typography>
               <Typography variant="subheading" color="textSecondary">
                 {this.state.nowPlaying.artist}
               </Typography>

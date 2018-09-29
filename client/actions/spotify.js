@@ -1,6 +1,6 @@
 import request from '../utils/api';
 
-//getting todos for a user
+//getting playlist for a user
 
 export function getSpotifyAction(id) {
   let obj = { id: id };
@@ -8,13 +8,18 @@ export function getSpotifyAction(id) {
     request('get', '/spotify', obj).then(response => {
       if (!response.ok) {
       } else {
-        dispatch(receiveTodos(response.body));
+        let alteredResponse = response.body.map(playlist => {
+          let splitArr = playlist.uri.split(':');
+          let playlistURI = splitArr[4];
+          return playlistURI;
+        });
+        dispatch(recievePlaylist(alteredResponse));
       }
     });
   };
 }
 
-//function that returns the todo items from the db into redux
+//function that returns the playlist items to redux
 function recievePlaylist(response) {
   return {
     type: 'GET_PLAYLIST',
@@ -23,7 +28,7 @@ function recievePlaylist(response) {
   };
 }
 
-//adding todos
+//adding spotify playlist
 
 export function addSpotifyAction(link, id) {
   let obj = { url: link, id: id };
@@ -31,15 +36,12 @@ export function addSpotifyAction(link, id) {
     request('post', '/spotify/save', obj).then(response => {
       if (!response.ok) {
       } else {
-        console.log(response.body);
-        const len = response.body.length;
-        let select = Math.floor(Math.random() * len + 1);
-        console.log(select);
-
-        let split = response.body[select].uri.split(':');
-        console.log(split);
-
-        dispatch(recievePlaylist(split));
+        let alteredResponse = response.body.map(playlist => {
+          let splitArr = playlist.uri.split(':');
+          let playlistURI = splitArr[4];
+          return playlistURI;
+        });
+        dispatch(recievePlaylist(alteredResponse));
       }
     });
   };

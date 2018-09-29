@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 //Components
 import SpotifyPlaybackWidget from './SpotifyPlaybackWidget';
+import SpotifyPlaylist from './SpotifyPlaylist';
 import DateTime from './DateTime';
 import WorldMap from './WorldMap';
 import Gauge from './Gauge';
@@ -59,7 +60,8 @@ class Main extends Component {
               key="1"
               data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 3, minH: 2, maxH: 2 }}
             >
-              {<SpotifyPlaybackWidget />}
+              {/* {<SpotifyPlaybackWidget />} */}
+              {<SpotifyPlaylist />}
             </div>
           ) : (
             <div />
