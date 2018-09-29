@@ -1,6 +1,6 @@
 import request from '../utils/api';
 
-//getting todos for a user
+//getting playlist for a user
 
 export function getSpotifyAction(id) {
   let obj = { id: id };
@@ -11,19 +11,15 @@ export function getSpotifyAction(id) {
         let alteredResponse = response.body.map(playlist => {
           let splitArr = playlist.uri.split(':');
           let playlistURI = splitArr[4];
-
           return playlistURI;
         });
-
-        // let split = response.body[].uri.split(':');
-        console.log(alteredResponse);
         dispatch(recievePlaylist(alteredResponse));
       }
     });
   };
 }
 
-//function that returns the todo items from the db into redux
+//function that returns the playlist items to redux
 function recievePlaylist(response) {
   return {
     type: 'GET_PLAYLIST',
@@ -32,27 +28,19 @@ function recievePlaylist(response) {
   };
 }
 
-//adding todos
+//adding spotify playlist
 
 export function addSpotifyAction(link, id) {
   let obj = { url: link, id: id };
   return function(dispatch) {
     request('post', '/spotify/save', obj).then(response => {
       if (!response.ok) {
-        console.log('broken');
       } else {
-        console.log(response.body);
-
         let alteredResponse = response.body.map(playlist => {
           let splitArr = playlist.uri.split(':');
           let playlistURI = splitArr[4];
-
           return playlistURI;
         });
-
-        // let split = response.body[].uri.split(':');
-        console.log(alteredResponse);
-
         dispatch(recievePlaylist(alteredResponse));
       }
     });

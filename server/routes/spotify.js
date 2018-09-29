@@ -10,24 +10,9 @@ router.get('/', (req, res) => {
 });
 
 router.post('/save', (req, res) => {
-  console.log('hit server');
-
   spotifyDB.saveSpotify(req.body.id, req.body.url).then(result => {
-    console.log(result);
-
     res.json(result);
   });
 });
 
 module.exports = router;
-
-// spotify:user:cottonsnugs:playlist:6JCWxtu3J9pdFzIVeAbQ8B
-
-/* <iframe
-  src="https://open.spotify.com/embed/playlist/6JCWxtu3J9pdFzIVeAbQ8B"
-  width="300"
-  height="380"
-  frameborder="0"
-  allowtransparency="true"
-  allow="encrypted-media"
-/>; */
