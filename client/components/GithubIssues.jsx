@@ -19,6 +19,9 @@ const styles = theme => ({
   },
   header: {
     margin: '0%'
+  },
+  btn: {
+    margin:'2% 5% 0% 17%'
   }
 });
 
@@ -49,10 +52,7 @@ class GithubIssues extends Component {
         }}
       >
         {' '}
-        <Button
-          href="https://github.com/kakapo-2018/Personal-Dashboard"
-          target="_blank"
-        >
+
           <header className={classes.header} />
           <div className={classes.box}>
             <img className={classes.img} src="./github.png" />
@@ -65,6 +65,13 @@ class GithubIssues extends Component {
               </div>
             </div>
           </div>
+          <Button
+          className={classes.btn}
+          href="https://github.com/kakapo-2018/Personal-Dashboard"
+          target="_blank"
+          variant="contained" color="primary"
+        >
+        Go to github
         </Button>
       </Paper>
     );

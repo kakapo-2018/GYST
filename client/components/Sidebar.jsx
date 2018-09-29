@@ -16,6 +16,7 @@ import ReportProblem from '@material-ui/icons/ReportProblem';
 import AirplanemodeActive from '@material-ui/icons/AirplanemodeActive';
 import CheckCircleOutline from '@material-ui/icons/CheckCircleOutline';
 import Divider from '@material-ui/core/Divider';
+import SwapVert from '@material-ui/icons/SwapVert';
 
 const styles = theme => ({
   card: {
@@ -102,7 +103,7 @@ class Sidebar extends React.Component {
           <Icon className={classes.icon}>
             <Fastfood />
           </Icon>
-          <Typography className={classes.sub}>Food Tracker</Typography>
+          <Typography className={classes.sub}>Food Trackr</Typography>
         </Button>
         <Button
           className={classes.button}
@@ -139,6 +140,15 @@ class Sidebar extends React.Component {
             <ReportProblem />
           </Icon>
           <Typography className={classes.sub}>Github Issues</Typography>
+        </Button>
+        <Button
+          className={classes.button}
+          onClick={() => this.props.handleClick('weight')}
+        >
+          <Icon className={classes.icon}>
+            <SwapVert />
+          </Icon>
+          <Typography className={classes.sub}>Weight Trackr</Typography>
         </Button>
         <Divider className={classes.whiten} />
       </Card>

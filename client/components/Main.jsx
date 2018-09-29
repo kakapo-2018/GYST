@@ -20,7 +20,9 @@ import RSS from './RssFeed';
 import Weather from './Weather';
 import MapContainer from './MapContainer';
 import GithubIssues from './GithubIssues';
+import Weight from './Weight';
 import SocialFeed from './SocialFeed';
+
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -81,7 +83,7 @@ class Main extends Component {
           )}
           {this.props.showCom.date ? (
             <div
-              key="3"
+              key="2"
               data-grid={{ x: 0, y: 0, w: 2, h: 1, maxW: 2, maxH: 1 }}
             >
               <DateTime />
@@ -90,7 +92,7 @@ class Main extends Component {
             <div />
           )}
           {this.props.showCom.saving ? (
-            <div key="4" data-grid={{ x: 0, y: 0, w: 2, h: 2 }}>
+            <div key="3" data-grid={{ x: 0, y: 0, w: 2, h: 2 }}>
               <Gauge />
             </div>
           ) : (
@@ -98,7 +100,7 @@ class Main extends Component {
           )}
           {this.props.showCom.food ? (
             <div
-              key="5"
+              key="4"
               data-grid={{
                 x: 0,
                 y: 0,
@@ -117,7 +119,7 @@ class Main extends Component {
           )}
           {this.props.showCom.weather ? (
             <div
-              key="6"
+              key="5"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
               <Weather />
@@ -127,7 +129,7 @@ class Main extends Component {
           )}
           {this.props.showCom.todo ? (
             <div
-              key="7"
+              key="6"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
               <TodoMain />
@@ -137,7 +139,7 @@ class Main extends Component {
           )}
           {this.props.showCom.github ? (
             <div
-              key="8"
+              key="7"
               data-grid={{ x: 0, y: 0, w: 3, h: 1, minW: 3, minH: 1 }}
             >
               <GithubIssues />
@@ -147,7 +149,7 @@ class Main extends Component {
           )}
           {this.props.showCom.rss ? (
             <div
-              key="9"
+              key="8"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
               <RSS />
@@ -157,7 +159,7 @@ class Main extends Component {
           )}
           {this.props.showCom.worldmap ? (
             <div
-              key="10"
+              key="9"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
               <WorldMap />
@@ -167,10 +169,20 @@ class Main extends Component {
           )}
           {this.props.showCom.googlemap ? (
             <div
-              key="11"
+              key="10"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
               <MapContainer />
+            </div>
+          ) : (
+            <div />
+          )}
+          {this.props.showCom.weight ? (
+            <div
+              key="12"
+              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+            >
+              <Weight />
             </div>
           ) : (
             <div />
