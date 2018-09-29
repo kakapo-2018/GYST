@@ -33,6 +33,14 @@ function getUserByName(username, testDB) {
     .first();
 }
 
+function getUserByID(id, testDB) {
+  const db = testDB || connection;
+  return db('users')
+    .select()
+    .where('id', id)
+    .first();
+}
+
 function saveSavings(saved, goal, id, testDB) {
   const db = testDB || connection;
   return db('users')
@@ -56,5 +64,6 @@ module.exports = {
   createUser,
   getUserByName,
   saveSavings,
-  getSavings
+  getSavings,
+  getUserByID
 };

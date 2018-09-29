@@ -12,5 +12,6 @@ export default combineReducers({
   itemsIsLoading,
   todos,
   spotify,
-  insta
+  insta,
+  image
 });

@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { getProfileImage } from '../actions/login';
 //elements
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -95,11 +96,15 @@ class ResponsiveDrawer extends React.Component {
       worldmap: false,
       googlemap: false,
       github: false,
-      weight:false
+      weight: false
     };
     this.toggleRegister = this.toggleRegister.bind(this);
     this.toggleLogin = this.toggleLogin.bind(this);
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getImage(this.props.state.user.id);
   }
 
   toggleLogin() {
@@ -125,6 +130,7 @@ class ResponsiveDrawer extends React.Component {
 
   render() {
     const { classes, theme } = this.props;
+    console.log(this.props);
 
     const drawer = (
       <div>
@@ -132,7 +138,7 @@ class ResponsiveDrawer extends React.Component {
         <Divider className={classes.whiten} />
         <Avatar
           alt="Profile Picture"
-          src="luke.jpeg"
+          src="https://i.imgur.com/jNNT4LE.png"
           className={classNames(classes.avatar, classes.bigAvatar)}
         />
         {this.props.state.isAuthenticated && <Logout />}
@@ -191,6 +197,15 @@ class ResponsiveDrawer extends React.Component {
 function mapStateToProps(state) {
   return {
     state: state.auth
+    // image: image
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getImage: id => {
+      dispatch(getProfileImage(id));
+    }
   };
 }
 
@@ -200,5 +215,8 @@ ResponsiveDrawer.propTypes = {
 };
 
 export default withStyles(styles, { withTheme: true })(
-  connect(mapStateToProps)(ResponsiveDrawer)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ResponsiveDrawer)
 );
