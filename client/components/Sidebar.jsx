@@ -24,11 +24,11 @@ const styles = theme => ({
   card: {
     backgroundColor: 'transparent',
     color: 'white',
-    maxWidth: 240,
+    maxWidth: 250,
     zIndex: '3'
   },
   button: {
-    width: 239,
+    width: 235,
     textAlign: 'center',
     padding: 0
   },
