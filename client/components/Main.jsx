@@ -41,15 +41,27 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [{ id: '1', task: 'lol', checked: false }]
+      layout: ''
     };
   }
+
+  onLayoutChange = layout => {
+    console.log('OnLayoutChange!');
+    // this.props.onLayoutChange(layout);
+    this.setState({ layout: layout });
+    localStorage.setItem('layout', JSON.stringify(layout));
+    // localStorage.setItem('newItem', '');
+    console.log(this.state);
+  };
+
   render() {
     const { classes, theme } = this.props;
     return (
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <ResponsiveGridLayout
+          // layout={this.state.layout}
+          onLayoutChange={layout => this.onLayoutChange(layout)}
           draggableCancel="input,textarea,img"
           className="layout"
           breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
