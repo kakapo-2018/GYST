@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { getInsta, addInsta } from '../actions/insta';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -52,16 +53,16 @@ class instaFeed extends React.Component {
 
   handleRefresh() {
     this.setState({
-      inputURI: ''
+      instaURL: ''
     });
     this.props.getPlaylist(this.props.state.auth.user.id);
   }
 
   handleClick() {
     this.setState({
-      inputURI: ''
+      instaURL: ''
     });
-    this.props.addPlaylist(this.state.inputURI, this.props.state.auth.user.id);
+    this.props.addPlaylist(this.state.instaURL, this.props.state.auth.user.id);
   }
 
   render() {
@@ -143,11 +144,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getPlaylist: id => {
-      dispatch(getSpotifyAction(id));
+    getInsta: id => {
+      dispatch(getInsta(id));
     },
-    addPlaylist: (uri, id) => {
-      dispatch(addSpotifyAction(uri, id));
+    addInsta: (uri, id) => {
+      dispatch(addInsta(uri, id));
     }
   };
 }
