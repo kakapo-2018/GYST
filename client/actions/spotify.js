@@ -36,17 +36,15 @@ export function addSpotifyAction(link, id) {
 
         let alteredResponse = response.body.map(playlist => {
           let splitArr = playlist.uri.split(':');
-          let miniArr = splitArr[3] + ':' + splitArr[4];
-          console.log(miniArr);
+          let playlistURI = splitArr[4];
 
-          let string = splitArr.join();
-          return string;
+          return playlistURI;
         });
 
         // let split = response.body[].uri.split(':');
         console.log(alteredResponse);
 
-        dispatch(recievePlaylist(split));
+        dispatch(recievePlaylist(alteredResponse));
       }
     });
   };

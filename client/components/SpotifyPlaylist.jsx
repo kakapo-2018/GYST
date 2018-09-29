@@ -50,16 +50,27 @@ class SpotifyPlaylist extends React.Component {
         )}
         {this.state.showPlaylist && (
           <div className="we">
-            {this.props.spotify.spotify && (
-              <iframe
-                src="https://open.spotify.com/embed/playlist/4dPMKxqQQB7CuOe28Vrcje"
-                width="300"
-                height="380"
-                frameBorder="0"
-                allowtransparency="true"
-                allow="encrypted-media"
-              />
-            )}
+            {this.props.spotify.spotify &&
+              // <iframe
+              //   src="https://open.spotify.com/embed/playlist/4dPMKxqQQB7CuOe28Vrcje"
+              //   width="300"
+              //   height="380"
+              //   frameBorder="0"
+              //   allowtransparency="true"
+              //   allow="encrypted-media"
+              // />
+              this.props.spotify.spotify.map(playlistURI => {
+                return (
+                  <iframe
+                    src={`https://open.spotify.com/embed/playlist/${playlistURI}`}
+                    width="300"
+                    height="380"
+                    frameBorder="0"
+                    allowtransparency="true"
+                    allow="encrypted-media"
+                  />
+                );
+              })}
           </div>
         )}
       </div>
