@@ -16,7 +16,11 @@ import Register from './Register';
 import SignIn from './SignIn';
 import Sidebar from './Sidebar';
 
+import { get, set } from '../utils/localStorage';
+
 const drawerWidth = 240;
+
+let obj = {};
 
 const styles = theme => ({
   root: {
@@ -83,21 +87,22 @@ class ResponsiveDrawer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showRegisterForm: false,
+      showRegisterForm: true,
       showLogin: true,
-      weather: false,
-      saving: false,
-      spotify: false,
-      date: false,
-      rss: false,
-      food: false,
-      todo: false,
-      worldmap: false,
-      googlemap: false,
-      github: false,
-      weight:false,
-      instagram:false,
-      spotifyplaylist:false
+      weather: true,
+      saving: true,
+      spotify: true,
+      date: true,
+      rss: true,
+      food: true,
+      todo: true,
+      worldmap: true,
+      googlemap: true,
+      github: true,
+      weight:true,
+      instagram:true,
+      spotifyplaylist:true
+
     };
     this.toggleRegister = this.toggleRegister.bind(this);
     this.toggleLogin = this.toggleLogin.bind(this);
@@ -119,10 +124,30 @@ class ResponsiveDrawer extends React.Component {
   }
 
   handleClick(component) {
+    console.log(this.state);
+    console.log(component);
+
     this.setState({
       ...this.state,
       [component]: !this.state[component]
     });
+
+    set(
+      'stateKey',
+      JSON.stringify({
+        ...this.state,
+        [component]: !this.state[component]
+      })
+    );
+  }
+
+  componentDidMount() {
+    try {
+      let newState = JSON.parse(get('stateKey'));
+      // this.setState(newState);
+    } catch (e) {
+      console.log('Loading toggles failed');
+    }
   }
 
   render() {
@@ -175,6 +200,7 @@ class ResponsiveDrawer extends React.Component {
             {drawer}
           </Drawer>
         </Hidden>
+        {console.log(this.props.state)}
         {/* Components from main will render here */}
         {this.props.state.isAuthenticated && <Main showCom={this.state} />}
         {this.state.showLogin &&
