@@ -12,7 +12,6 @@ export function getWeightAction(id) {
           return [String(data.date), data.kg]
         })
         mappedWeight.unshift(["Date", "Weight"])
-        console.log(mappedWeight)
           dispatch(recieveWeight(mappedWeight));
         }
     });

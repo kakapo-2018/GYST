@@ -41,25 +41,39 @@ class Weight extends React.Component {
             ]
         }
         this.add = this.add.bind(this)
+        this.save =this.save.bind(this)
     }
 
     componentDidMount() {
         this.props.getWeight(this.props.state.auth.user.id);
-      }
+    }
+
+
+    save() {
+        return (
+            
+            <div>
+            {console.log("clicked")}
+                <Button variant="contained" color="secondary" onClick={() => this.add()}>
+                    Confirm
+                </Button>
+            </div>
+        )
+    }
 
     add() {
-       
-        this.state.dataForChart[1][0] != 'Start' ? 
-        this.state.dataForChart.push([today, Number(document.getElementById("kg").value)])
-        :
-        this.state.dataForChart = [[
-            "Date", "Weight"
-        ], [today, Number(document.getElementById("kg").value)]]
+
+        this.state.dataForChart[1][0] != 'Start' ?
+            this.state.dataForChart.push([today, Number(document.getElementById("kg").value)])
+            :
+            this.state.dataForChart = [[
+                "Date", "Weight"
+            ], [today, Number(document.getElementById("kg").value)]]
         let len = this.state.dataForChart.length
-        let lastEnteredWeight = this.state.dataForChart[len-1][1]
-        let lastEnteredDate = this.state.dataForChart[len-1][0]
+        let lastEnteredWeight = this.state.dataForChart[len - 1][1]
+        let lastEnteredDate = this.state.dataForChart[len - 1][0]
         this.setState(this.state)
-        this.props.saveWeight(lastEnteredWeight, lastEnteredDate,  this.props.state.auth.user.id)
+        this.props.saveWeight(lastEnteredWeight, lastEnteredDate, this.props.state.auth.user.id)
         this.props.getWeight(this.props.state.auth.user.id);
 
     }
@@ -70,26 +84,28 @@ class Weight extends React.Component {
 
         return (
             <Card className={classes.card}>
-            <div className="App">
-             {this.props.weight.weight && 
-                <Chart
-                    chartType="LineChart"
-                    width="100%"
-                    height="400px"
-                    data={this.props.weight.weight}
-                    options={options}
-                />}
-                <Input
-                    style={{ maxWidth: '45%', marginLeft: '25%' }}
-                    id="kg"
-                    type="number"
-                    name="value"
-                    placeholder="Enter your weight"
-                />
-                <Button variant="contained" color="primary" onClick={() => this.add()}>
-                    Save
-                </Button>
-            </div>
+                <div className="App">
+                    {this.props.weight.weight &&
+                        <Chart
+                            chartType="LineChart"
+                            width="100%"
+                            height="400px"
+                            data={this.props.weight.weight}
+                            options={options}
+                        />}
+                    <Input
+                        style={{ maxWidth: '45%', marginLeft: '25%' }}
+                        id="kg"
+                        type="number"
+                        name="value"
+                        placeholder="Enter your weight"
+                    />
+                    {console.log(this.state)}
+                    <Button variant="contained" color="primary" onClick={()=>this.save()}>
+                        Save
+                    </Button>
+
+                </div>
             </Card>
         );
     }
@@ -97,25 +113,25 @@ class Weight extends React.Component {
 
 function mapStateToProps(state) {
     return {
-      state: state,
-      weight:state.weight
+        state: state,
+        weight: state.weight
     };
-  }
-  
-  function mapDispatchToProps(dispatch) {
+}
+
+function mapDispatchToProps(dispatch) {
     return {
         saveWeight: (weight, date, id) => {
-        dispatch(saveWeightAction(weight, date, id));
-      },
-      getWeight: (id) => {
-        dispatch(getWeightAction(id));
-      }
+            dispatch(saveWeightAction(weight, date, id));
+        },
+        getWeight: (id) => {
+            dispatch(getWeightAction(id));
+        }
     };
-  }
-  
-  export default withStyles(styles)(
+}
+
+export default withStyles(styles)(
     connect(
-      mapStateToProps,
-      mapDispatchToProps
+        mapStateToProps,
+        mapDispatchToProps
     )(Weight)
-  );
+);
