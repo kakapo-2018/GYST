@@ -23,6 +23,7 @@ import MapContainer from './MapContainer';
 import GithubIssues from './GithubIssues';
 import Weight from './Weight';
 import SocialFeed from './SocialFeed';
+import Language from './Language';
 
 const drawerWidth = 240;
 
@@ -241,6 +242,17 @@ class Main extends Component {
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
               <SocialFeed />
+            </div>
+          ) : (
+            <React.Fragment />
+          )}
+
+          {this.props.showCom.instagram ? (
+            <div
+              key="15"
+              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+            >
+              <Language />
             </div>
           ) : (
             <React.Fragment />
