@@ -46,7 +46,7 @@ class Language extends Component {
       wordIdentified: '',
       wordTranslated: '',
       answer: '',
-      language: '',
+      language: 'zh-CN',
       name: 'hai'
     };
   }
@@ -107,7 +107,7 @@ class Language extends Component {
         .description;
       var key = 'AIzaSyApkbdj2rRQyrsyPJsS4H1rRnxYNSqa-tA';
       var source = 'en';
-      var dest = 'zh-CN	';
+      var dest = this.state.language;
 
       var url = 'https://www.googleapis.com/language/translate/v2?';
       url +=
@@ -137,6 +137,12 @@ class Language extends Component {
     console.log('change');
   };
 
+  submitAnswer = () => {
+    this.getIMG('https://picsum.photos/300/300/?random');
+
+    console.log('new');
+  };
+
   // handleChangeInput = event => {
   //   this.setState({ [event.target.name]: event.target.value });
   //   console.log('event');
@@ -163,13 +169,6 @@ class Language extends Component {
                 id: 'language-select'
               }}
             >
-              {/* <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={2}>Chinese</MenuItem>
-              <MenuItem value={1}>English</MenuItem>
-              <MenuItem value={3}>German</MenuItem> */}
-
               <MenuItem value={'zh-CN'}>Chinese (Simplified)</MenuItem>
               <MenuItem value={'zh-TW'}>Chinese (Traditional)</MenuItem>
               <MenuItem value={'ja'}>Japanese</MenuItem>
@@ -192,7 +191,7 @@ class Language extends Component {
         <Typography variant="subheading" align="center">
           Answer
         </Typography>
-        <Typography variant="body1" align="center">
+        <Typography variant="body1" align="center" id="blur">
           {this.state.wordTranslated}
         </Typography>
         <TextField
@@ -207,6 +206,7 @@ class Language extends Component {
           className={classes.answerEntry}
           variant="contained"
           color="primary"
+          onClick={this.submitAnswer}
         >
           Submit
         </Button>
