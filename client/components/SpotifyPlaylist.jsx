@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { addSpotifyAction, getSpotifyAction } from '../actions/spotify';
 import AddIcon from '@material-ui/icons/Add';
+import Card from '@material-ui/core/Card';
+
 import Button from '@material-ui/core/Button';
 import Refresh from '@material-ui/icons/Refresh';
 
@@ -43,7 +45,7 @@ class SpotifyPlaylist extends React.Component {
 
   render() {
     return (
-      <div>
+      <Card style={{ minHeight: '100%' }}>
         <div className="we">
           {!this.props.spotify.spotify && <p>Loading...</p>}
           {this.props.spotify.spotify && (
@@ -53,7 +55,7 @@ class SpotifyPlaylist extends React.Component {
                   Math.floor(Math.random() * this.props.spotify.spotify.length)
                 ]
               }`}
-              width="300"
+              width="100%"
               height="380"
               frameBorder="0"
               allowtransparency="true"
@@ -61,6 +63,7 @@ class SpotifyPlaylist extends React.Component {
             />
           )}
           <TextField
+            style={{ margin: '10px' }}
             id="standard-textarea"
             label="Enter playlist embed URI"
             placeholder="URI embed link"
@@ -71,6 +74,7 @@ class SpotifyPlaylist extends React.Component {
             onChange={this.handleChange}
           />
           <Button
+            style={{ margin: '10px' }}
             onClick={this.handleClick}
             variant="fab"
             color="primary"
@@ -79,6 +83,7 @@ class SpotifyPlaylist extends React.Component {
             <AddIcon />
           </Button>
           <Button
+            style={{ margin: '10px' }}
             onClick={this.handleRefresh}
             variant="fab"
             color="primary"
@@ -87,7 +92,7 @@ class SpotifyPlaylist extends React.Component {
             <Refresh />
           </Button>
         </div>
-      </div>
+      </Card>
     );
   }
 }

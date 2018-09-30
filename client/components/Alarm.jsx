@@ -12,8 +12,7 @@ const styles = theme => ({
         maxHeight: '500',
         minWidth: '100%',
         minHeight: '100%',
-        textAlign: 'center',
-        fontSize:'80px'
+        textAlign: 'center'
     },
     container: {
         overflow:'hidden',
@@ -26,6 +25,9 @@ const styles = theme => ({
         width:'80%',
         position: 'relative',
         display: 'inline-block',
+    },
+    time: {
+        fontSize:'80px'
     }
 });
 
@@ -58,7 +60,7 @@ class Alarm extends React.Component {
             // var value = paddy(this.state.value, 2);
             return (
                 <Card className={classes.card}>
-                    <Clock />
+                    <Clock className ={classes.time} />
                     <div className={classes.container}>
                         <div className={classes.alarm}>
                         <AlarmDigit numberSystem={24} val={date.getHours()} ref="hourDigit"/>
@@ -68,10 +70,10 @@ class Alarm extends React.Component {
                             <input className={classes.control} type="text" ref="comment" placeholder="Leave your comment..." ref="comment"/>
                             <button className="btn btn-default" type="button" onClick={this.handleAddAlarm}><span className="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                         </div> 
-                        {/* <h2>Sounds</h2>
+                        <h2>Sounds</h2>
                         <Bell ref="bell" bells={this.state.bells} onAddAudio={this.handleAddAudio}/>
-                        <h2>Alarms</h2> */}
-                    {/* <AlarmList data={data} ref="alarmList" onRing={this.handleRing}/> */}
+                        <h2>Alarms</h2>
+                        <AlarmList data={data} ref="alarmList" onRing={this.handleRing}/> 
                     </div>  
                 </Card>
             )

@@ -20,6 +20,7 @@ import SwapVert from '@material-ui/icons/SwapVert';
 import LibraryMusic from '@material-ui/icons/LibraryMusic';
 import LinkedCamera from '@material-ui/icons/LinkedCamera';
 import AlarmAdd from '@material-ui/icons/AlarmAdd';
+import Palette from '@material-ui/icons/Palette';
 
 
 const styles = theme => ({
@@ -187,6 +188,15 @@ class Sidebar extends React.Component {
               <SwapVert />
             </Icon>
             <Typography className={classes.sub}>Weight Trackr</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('color')}
+          >
+            <Icon className={classes.icon}>
+              <Palette />
+            </Icon>
+            <Typography className={classes.sub}>Background Color</Typography>
           </Button>
           <Divider className={classes.whiten} />
         </div>

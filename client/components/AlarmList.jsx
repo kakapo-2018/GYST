@@ -51,7 +51,7 @@ class AlarmDigit extends React.Component {
         //  var value = paddy(this.state.value, 2);
         return (
             <ul className="alarmList list-group">
-                {list()}
+                {/* {list()} */}
             </ul>
         )
     }

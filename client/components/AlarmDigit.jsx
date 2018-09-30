@@ -5,11 +5,10 @@ const styles = theme => ({
     digit: {
         width:'80px',
         flexDirection: 'row',
-        display: 'inline-block'
+        display: 'inline-block',
     },
     input: {
         fontSize: '50px',
-        lineHeight: '30px',
         height: '45px',
         width: '45px',
         border: 0,
