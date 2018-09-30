@@ -24,6 +24,7 @@ import MapContainer from './MapContainer';
 import GithubIssues from './GithubIssues';
 import Weight from './Weight';
 import SocialFeed from './SocialFeed';
+import Gmail2 from './GmailV2';
 import ColorSetting from './ColorSetting';
 
 const drawerWidth = 240;
