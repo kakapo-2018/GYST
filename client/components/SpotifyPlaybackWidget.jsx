@@ -54,7 +54,7 @@ class SpotifyPlaybackWidget extends Component {
     }
     this.state = {
       loggedIn: token ? true : false,
-      nowPlaying: { name: 'Please login', albumArt: '' },
+      nowPlaying: { name: 'Listening to', albumArt: '' },
       paused: false
     };
   }

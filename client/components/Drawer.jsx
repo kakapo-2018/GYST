@@ -103,7 +103,7 @@ class ResponsiveDrawer extends React.Component {
       weight: true,
       instagram: true,
       spotifyplaylist: true,
-      color:true
+      color: true
     };
     this.toggleRegister = this.toggleRegister.bind(this);
     this.toggleLogin = this.toggleLogin.bind(this);
@@ -111,8 +111,6 @@ class ResponsiveDrawer extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.getImage(this.props.state.user.id);
-
     try {
       let newState = JSON.parse(get('stateKey'));
       // this.setState(newState);
@@ -201,7 +199,7 @@ class ResponsiveDrawer extends React.Component {
           </Drawer>
         </Hidden>
         {/* Components from main will render here */}
-        {this.props.state.isAuthenticated && <Main showCom={this.state}/>}
+        {this.props.state.isAuthenticated && <Main showCom={this.state} />}
         {this.state.showLogin &&
           !this.props.state.isAuthenticated && (
             <SignIn toggleRegister={this.toggleRegister} />

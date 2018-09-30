@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { getProfileImage } from '../actions/login';
 //React-grid
 import { Responsive, WidthProvider } from 'react-grid-layout';
 
@@ -51,19 +52,28 @@ class Main extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.state.auth.user.id
+      ? this.props.getProfileImage(this.props.state.auth.user.id)
+      : null;
+  }
+
   onLayoutChange(layout, layouts) {
     saveToLS('layouts', layouts);
     this.setState({ layouts });
   }
 
-  handleChange = (color) => {
+  handleChange = color => {
     this.setState({ background: color.hex });
   };
 
   render() {
     const { classes, theme } = this.props;
     return (
-      <main style={{backgroundColor: this.state.background}}className={classes.content}>
+      <main
+        style={{ backgroundColor: this.state.background }}
+        className={classes.content}
+      >
         <div className={classes.toolbar} />
         <ResponsiveGridLayout
           className="layout"
@@ -92,8 +102,8 @@ class Main extends Component {
               <SpotifyPlaybackWidget />
             </div>
           ) : (
-              <React.Fragment />
-            )}
+            <React.Fragment />
+          )}
           {this.props.showCom.date ? (
             <div
               key="2"
@@ -102,8 +112,8 @@ class Main extends Component {
               <DateTime />
             </div>
           ) : (
-              <React.Fragment />
-            )}
+            <React.Fragment />
+          )}
           {this.props.showCom.saving ? (
             <div
               key="3"
@@ -121,8 +131,8 @@ class Main extends Component {
               <Gauge />
             </div>
           ) : (
-              <React.Fragment />
-            )}
+            <React.Fragment />
+          )}
           {this.props.showCom.food ? (
             <div
               key="4"
@@ -140,8 +150,8 @@ class Main extends Component {
               <Fitness />
             </div>
           ) : (
-              <React.Fragment />
-            )}
+            <React.Fragment />
+          )}
           {this.props.showCom.weather ? (
             <div
               key="5"
@@ -150,8 +160,8 @@ class Main extends Component {
               <Weather />
             </div>
           ) : (
-              <React.Fragment />
-            )}
+            <React.Fragment />
+          )}
           {this.props.showCom.todo ? (
             <div
               key="6"
@@ -160,8 +170,8 @@ class Main extends Component {
               <TodoMain />
             </div>
           ) : (
-              <React.Fragment />
-            )}
+            <React.Fragment />
+          )}
           {this.props.showCom.github ? (
             <div
               key="7"
@@ -170,8 +180,8 @@ class Main extends Component {
               <GithubIssues />
             </div>
           ) : (
-              <React.Fragment />
-            )}
+            <React.Fragment />
+          )}
           {this.props.showCom.rss ? (
             <div
               key="8"
@@ -180,8 +190,8 @@ class Main extends Component {
               <RSS />
             </div>
           ) : (
-              <React.Fragment />
-            )}
+            <React.Fragment />
+          )}
           {this.props.showCom.worldmap ? (
             <div
               key="9"
@@ -190,8 +200,8 @@ class Main extends Component {
               <WorldMap />
             </div>
           ) : (
-              <React.Fragment />
-            )}
+            <React.Fragment />
+          )}
           {this.props.showCom.googlemap ? (
             <div
               key="10"
@@ -200,8 +210,8 @@ class Main extends Component {
               <MapContainer />
             </div>
           ) : (
-              <React.Fragment />
-            )}
+            <React.Fragment />
+          )}
           {this.props.showCom.weight ? (
             <div
               key="12"
@@ -239,7 +249,7 @@ class Main extends Component {
             </div>
           ) : (
             <React.Fragment />
-            )}
+          )}
           {this.props.showCom.instagram ? (
             <div
               key="14"
@@ -248,25 +258,47 @@ class Main extends Component {
               <SocialFeed />
             </div>
           ) : (
-              <React.Fragment />
-            )}
+            <React.Fragment />
+          )}
           {this.props.showCom.color ? (
             <div
               key="15"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
-              <ColorSetting background ={this.state.background} handleChange={this.handleChange}/>
+              <ColorSetting
+                background={this.state.background}
+                handleChange={this.handleChange}
+              />
             </div>
           ) : (
-              <React.Fragment />
-            )}
+            <React.Fragment />
+          )}
         </ResponsiveGridLayout>
       </main>
     );
   }
 }
 
-export default withStyles(styles, { withTheme: true })(Main);
+function mapStateToProps(state) {
+  return {
+    state: state
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getProfileImage: id => {
+      dispatch(getProfileImage(id));
+    }
+  };
+}
+
+export default withStyles(styles)(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Main)
+);
 
 function getFromLS(key) {
   let ls = {};
