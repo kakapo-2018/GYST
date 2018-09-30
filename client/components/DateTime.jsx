@@ -12,7 +12,8 @@ import Calendar from 'react-calendar';
 const styles = theme => ({
   card: {
     backgroundColor: '#aa2e25',
-    maxWidth: '100%'
+    maxWidth: '100%',
+    minWidth: '100%'
   },
   action: {
     display: 'flex',
@@ -64,7 +65,7 @@ class DateTime extends React.Component {
           <Clock format={'MMMM Do, YYYY'} timezone={'Pacific/Auckland'} />
           {this.state.clickedCal && <Calendar className={classes.cal} />}
         </CardContent>
-        <hr />
+        <hr style={{ margin: '5px' }} />
         <CardActions className={classes.action}>
           <Button onClick={this.handleCalToggle} size="small">
             <i id="calIcon" className="far fa-calendar-alt" />
