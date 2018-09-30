@@ -47,6 +47,9 @@ class TodoMain extends Component {
   }
 
   handleRemove(id) {
+    this.setState({
+      open: true
+    });
     this.props.delTodos(id, this.props.state.auth.user.id);
   }
 
