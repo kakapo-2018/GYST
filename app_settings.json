@@ -1,0 +1,28 @@
+{
+  "client_id": "693624776345-6k38ssbajdd9s3fa9qo1m1kq9lhis0ir.apps.googleusercontent.com",
+  "libraries": [
+    {
+      "name": "compute",
+      "version": "v1"
+    },
+    {
+      "name": "drive",
+      "version": "v2"
+    },
+    {
+      "name": "gmail",
+      "version": "v1"
+    },
+    {
+      "name": "calendar",
+      "version": "v3"
+    }
+  ],
+  "scopes": [
+    "profile scope added automatically",
+    "https://www.googleapis.com/auth/compute.readonly",
+    "https://www.googleapis.com/auth/compute",
+    "https://www.googleapis.com/auth/cloud-platform",
+    "https://www.googleapis.com/auth/gmail.readonly"
+  ]
+}

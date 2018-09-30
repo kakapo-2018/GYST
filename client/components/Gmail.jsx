@@ -1,72 +1,85 @@
-import React from 'react';
-import request from 'superagent';
-// import { GoogleLogout, GoogleLogin } from '../src/index'
-import GoogleLogin, { GoogleLogout } from 'react-google-login';
-// import FontAwesome from 'react-fontawesome';
+'use strict';
 
-const clientId =
-  '693624776345-6k38ssbajdd9s3fa9qo1m1kq9lhis0ir.apps.googleusercontent.com';
+var React = require('react');
+var googleApiLoader = require('../actions/GoogleAPILoader');
 
-const success = response => {
-  console.log(response);
-};
-
-const error = response => {
-  console.error(response);
-};
-
-const loading = () => {
-  console.log('loading');
-};
-
-const logout = () => {
-  console.log('logout');
-};
-
-export default class Gmail extends React.Component {
+class Gmail extends React.Component {
   constructor(props) {
     super(props);
-    this.fetch = this.fetch.bind(this);
+    this.state = {};
   }
 
-  fetch() {
-    request
-      .get(
-        'https://www.googleapis.com/gmail/v1/users/102080572213110501793/messages'
-      )
-      .then(res => {
-        console.log(res);
+  componentDidMount() {
+    var _this = this;
 
-        // res.body, res.headers, res.status
-      })
-      .catch(err => {
-        console.log(err);
+    googleApiLoader.authLoaded(function() {
+      _this.setState({ authLoaded: true });
 
-        // err.message, err.response
+      googleApiLoader.getAuth2().currentUser.listen(function(user) {
+        _this.setState({ finishedLoading: true });
+        if (user.getBasicProfile()) {
+          var profile = user.getBasicProfile();
+
+          var profileProxy = {};
+          profileProxy.id = profile.getId();
+          profileProxy.name = profile.getName();
+          profileProxy.thumb = profile.getImageUrl();
+          profileProxy.email = profile.getEmail();
+          _this.setState({ loggedInUser: profileProxy });
+        }
+        _this.setState({ isLoggedIn: user.getBasicProfile() ? true : false });
       });
+    });
+
+    googleApiLoader.clientsLoaded(function() {
+      _this.setState({ clientsLoaded: true });
+    });
+  }
+
+  email() {
+    console.log('hit');
+    googleApiLoader
+      .getAuth2()
+      .users.messages(profileProxy.id)
+      .then(
+        function(response) {
+          console.log('Hello, ' + response.result.names[0].givenName);
+        },
+        function(reason) {
+          console.log('Error: ' + reason.result.error.message);
+        }
+      );
+  }
+
+  toggleSignIn() {
+    if (!googleApiLoader.getAuth2().isSignedIn.get()) googleApiLoader.signIn();
   }
   render() {
-    return (
-      <div>
-        <GoogleLogin
-          clientId={clientId}
-          onSuccess={success}
-          onFailure={error}
-          onRequest={loading}
-          offline={false}
-          approvalPrompt="force"
-          responseType="id_token"
-          isSignedIn
-          // disabled
-          // prompt="consent"
-          // className='button'
-          // style={{ color: 'red' }}
-        >
-          <span>Gmail Login</span>
-        </GoogleLogin>
-        <button onClick={this.fetch}>Get fkn emails boiii</button>
-        <GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />
-      </div>
+    var loggedInUserThumb = null;
+
+    if (this.state.loggedInUser)
+      loggedInUserThumb = <img src={this.state.loggedInUser.thumb} />;
+
+    var toggleLoginButton = (
+      <button onClick={this.toggleSignIn}>Login to Google</button>
     );
+
+    if (this.state.finishedLoading) {
+      if (this.state.isLoggedIn) {
+        return (
+          <div>
+            {loggedInUserThumb}
+            {this.state.loggedInUser.name}
+            <hr />
+            You're now free to use the Google APIs!
+            <button onClick={this.email}>Get fucking emails</button>
+          </div>
+        );
+      } else return toggleLoginButton;
+    } else {
+      return <div>Loading...</div>;
+    }
   }
 }
+
+export default Gmail;
