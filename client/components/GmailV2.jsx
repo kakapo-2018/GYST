@@ -28,20 +28,22 @@ const gmailObject = {
     'https://www.googleapis.com/auth/compute.readonly',
     'https://www.googleapis.com/auth/compute',
     'https://www.googleapis.com/auth/cloud-platform',
-    'https://mail.google.com/'
+    'https://mail.google.com/',
+    'https://www.googleapis.com/auth/gmail.labels'
   ]
 };
 
 var superagent = require('superagent'),
-  request = require('superagent-oauth2-client')(superagent),
-  OAuth = require('oauth2-client-js');
+  request = superagent;
+//   request = require('superagent-oauth2-client')(superagent),
+//   OAuth = require('oauth2-client-js');
 
 // define a single oauth provider
 // will use localstorage to save tokens
-var provider = new OAuth.Provider({
-  id: 'google',
-  authorization_url: 'https://accounts.google.com/o/oauth2/auth'
-});
+// var provider = new OAuth.Provider({
+//   id: 'google',
+//   authorization_url: 'https://accounts.google.com/o/oauth2/auth'
+// });
 
 //react component with information in state
 class Gmail2 extends React.Component {
@@ -58,18 +60,16 @@ class Gmail2 extends React.Component {
 
     request
       //get request for the gmail labels endpoint
-      .get(
-        `https://www.googleapis.com/gmail/v1/users/${
-          this.state.profileId
-        }/labels`
-      )
-      .oauth(provider, {
-        redirect_uri: 'http://localhost',
-        client_id:
-          '693624776345-6m4dueo8j91np8gk9cnjv187p3mn18p6.apps.googleusercontent.com'
-      })
-      .exec()
-      .then() // business logic
+      .get(`https://www.googleapis.com/gmail/v1/users/me/labels`)
+      .set('Authorization', `Bearer ${this.state.token}`)
+      //   .oauth(provider, {
+      //     redirect_uri: 'http://localhost',
+      //     scope: 'https://mail.google.com/',
+      //     client_id:
+      //       '693624776345-6m4dueo8j91np8gk9cnjv187p3mn18p6.apps.googleusercontent.com'
+      //   })
+      //   .exec()
+      .then(res => console.log(res.body)) // business logic
       .catch(); // error handling
   }
 
@@ -91,6 +91,7 @@ class Gmail2 extends React.Component {
           buttonText="Login"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
+          scope="https://www.googleapis.com/auth/gmail.labels"
         />
         {/* my button */}
         <button onClick={this.emails}>click me pls</button>
