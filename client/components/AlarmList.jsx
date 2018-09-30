@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import AlarmEntry from './AlarmEntry'
 
 const styles = theme => ({
     digit: {
@@ -49,6 +50,12 @@ class AlarmList extends React.Component {
 
     render() {
         const { classes } = this.props;
+        var alarmNodes = this.state.data.map(function(alarm, i){
+            if(alarm === undefined) return undefined;
+            return (
+                <AlarmEntry time={alarm.time} comment={alarm.comment} onClose={this.handleEntryClose.bind(this, i)} key={i} onRing={this.props.onRing} />
+            );
+        }.bind(this));
         var list = function(){
             if(this.state.data.length == 0) {
                 return (<li className="list-group-item">None</li>);
