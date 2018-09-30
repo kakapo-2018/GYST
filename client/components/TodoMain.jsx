@@ -67,7 +67,8 @@ class TodoMain extends Component {
           maxWidth: '100%',
           maxHeight: '100%',
           minWidth: '100%',
-          minHeight: '100%'
+          minHeight: '100%',
+          overflow: 'auto'
         }}
       >
         <div
