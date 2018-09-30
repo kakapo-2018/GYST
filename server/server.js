@@ -9,20 +9,6 @@ const instaRoutes = require('./routes/insta');
 const imageRoutes = require('./routes/image');
 const server = express();
 
-// var http = require('http').Server(server);
-// var io = require('socket.io')(http);
-
-// // app.get('/', function(req, res) {
-// //   res.sendFile(__dirname + '/index.html');
-// // });
-
-// io.on('connection', function(socket) {
-//   console.log('ping');
-//   socket.on('chat message', function(msg) {
-//     io.emit('chat message', msg);
-//   });
-// });
-
 var cors = require('cors');
 server.use(cors());
 
