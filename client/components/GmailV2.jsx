@@ -7,6 +7,7 @@ var superagent = require('superagent'),
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import CardActions from '@material-ui/core/CardActions';
+import CardMedia from '@material-ui/core/CardMedia';
 
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -16,6 +17,10 @@ import Button from '@material-ui/core/Button';
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit
+  },
+  cover: {
+    width: 151,
+    height: 151
   }
 });
 
@@ -23,7 +28,13 @@ const styles = theme => ({
 class Gmail2 extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { token: '', idToken: '', profileId: '', unread: '...' };
+    this.state = {
+      token: '',
+      idToken: '',
+      profileId: '',
+      unread: '...',
+      buttonVisible: true
+    };
     this.emails = this.emails.bind(this);
   }
 
@@ -38,37 +49,36 @@ class Gmail2 extends React.Component {
       .catch();
   }
 
+  click() {}
+
   render() {
     //logging the response and setting it in state
     const responseGoogle = response => {
       this.setState({
         token: response.accessToken,
         idToken: response.tokenId,
-        profileId: response.profileObj.googleId
+        profileId: response.profileObj.googleId,
+        buttonVisible: false
       });
     };
     const { classes } = this.props;
 
     //google button
     return (
-      <Card>
+      <Card className={classes.card}>
         <CardContent>
-          <Typography color="textSecondary">
+          <Typography variant="headline" component="h2">
             Unread Emails: {this.state.unread}
           </Typography>
-          <GoogleLogin
-            style={{
-              variant: 'contained',
-              size: 'large',
-              color: 'primary'
-            }}
-            clientId="693624776345-6k38ssbajdd9s3fa9qo1m1kq9lhis0ir.apps.googleusercontent.com"
-            buttonText="Google Login"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            scope="https://www.googleapis.com/auth/gmail.labels"
-          />
-
+          {this.state.buttonVisible && (
+            <GoogleLogin
+              clientId="693624776345-6k38ssbajdd9s3fa9qo1m1kq9lhis0ir.apps.googleusercontent.com"
+              buttonText="Google Login"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              scope="https://www.googleapis.com/auth/gmail.labels"
+            />
+          )}
           <CardActions>
             <Button
               variant="contained"
@@ -79,14 +89,10 @@ class Gmail2 extends React.Component {
             >
               Check Email
             </Button>
-            <Button
-              variant="contained"
-              size="large"
-              color="primary"
-              className={classes.button}
-              onClick={this.emails}
-            >
-              Check Email
+            <Button variant="contained" size="large" color="primary">
+              <a target="_blank" href="https://mail.google.com/mail/u/0/#inbox">
+                Inbox
+              </a>
             </Button>
           </CardActions>
         </CardContent>
