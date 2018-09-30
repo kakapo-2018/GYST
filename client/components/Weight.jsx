@@ -8,11 +8,12 @@ import { saveWeightAction, getWeightAction } from '../actions/weight';
 import Card from '@material-ui/core/Card';
 
 const styles = theme => ({
-  content: {
-    paddingLeft: '255px',
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3
+  card: {
+    padding: '10px',
+    maxWidth: '100%',
+    maxHeight: '100%',
+    minWidth: '100%',
+    minHeight: '100%'
   },
   enter: {
     marginLeft: '25%'
@@ -85,7 +86,7 @@ class Weight extends React.Component {
             <Chart
               chartType="LineChart"
               width="100%"
-              height="400px"
+              height="100%"
               data={this.props.weight.weight}
               options={options}
             />
