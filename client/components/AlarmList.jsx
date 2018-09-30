@@ -17,6 +17,7 @@ class AlarmList extends React.Component {
         this.state = {
             data: this.props.data
         }
+        this.handleAddEntry = this.handleAddEntry.bind(this)
     }
     
     handleEntryClose(index){
@@ -26,6 +27,7 @@ class AlarmList extends React.Component {
     }
 
     handleAddEntry(entry){
+        console.log("I am here")
         var state = this.state;
         state.data.push(entry);
         this.setState(state);

@@ -69,8 +69,9 @@ class Alarm extends React.Component {
     handleAddAlarm(){
         console.log("clicked")
         var date = new Date();
-        date.setHours(this.refs.hourDigit.state.value);
-        date.setMinutes(this.refs.minuteDigit.state.value);
+         date.setHours(this.refs.hourDigit.props.val)
+         date.setMinutes(this.refs.minuteDigit.props.val)
+       
         this.refs.alarmList.handleAddEntry({time: date, comment: this.refs.comment.getDOMNode().value});
     }
 
@@ -92,7 +93,7 @@ class Alarm extends React.Component {
                         <AlarmDigit numberSystem={60} val={date.getMinutes()} onCarry={this.handleCarry.bind(this, 'hourDigit')} onBorrow={this.handleBorrow.bind(this, 'hourDigit')} ref="minuteDigit"/>
                          </div>  
                          <div className={classes.form}>
-                            <input className={classes.control} type="text" ref="comment" placeholder="Leave your comment..." ref="comment"/>
+                            <input className={classes.control} type="text" ref="comment" placeholder="Label"/>
                             <button className={classes.btn} type="button" onClick={this.handleAddAlarm}><Add/></button>
                         </div> 
                         <h2>Sounds</h2>
