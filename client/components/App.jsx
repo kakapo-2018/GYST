@@ -43,7 +43,7 @@ class App extends Component {
   }
 
   handleClick (){
-   console.log(clicked)
+   console.log("clicked")
     this.setState({
       color:true
     })
