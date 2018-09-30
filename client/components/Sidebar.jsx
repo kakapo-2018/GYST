@@ -19,6 +19,8 @@ import Divider from '@material-ui/core/Divider';
 import SwapVert from '@material-ui/icons/SwapVert';
 import LibraryMusic from '@material-ui/icons/LibraryMusic';
 import LinkedCamera from '@material-ui/icons/LinkedCamera';
+import Palette from '@material-ui/icons/Palette';
+
 
 const styles = theme => ({
   card: {
@@ -176,6 +178,15 @@ class Sidebar extends React.Component {
               <SwapVert />
             </Icon>
             <Typography className={classes.sub}>Weight Trackr</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('color')}
+          >
+            <Icon className={classes.icon}>
+              <Palette />
+            </Icon>
+            <Typography className={classes.sub}>Background Color</Typography>
           </Button>
           <Divider className={classes.whiten} />
         </div>
