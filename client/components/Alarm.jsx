@@ -48,7 +48,10 @@ class Alarm extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            bells: bells
+            bells: bells,
+            hours: '',
+            minute: '',
+            timeArr: []
     }
     this.handleAddAlarm = this.handleAddAlarm.bind(this)
     }
@@ -69,10 +72,32 @@ class Alarm extends React.Component {
     handleAddAlarm(){
         console.log("clicked")
         var date = new Date();
-         date.setHours(this.refs.hourDigit.props.val)
-         date.setMinutes(this.refs.minuteDigit.props.val)
+         let hours = this.refs.hourDigit.props.val
+         let minute = this.refs.minuteDigit.props.val
+         console.log(this.refs.alarmList)
+        this.setState({
+            hours: hours,
+            minute:minute
+        })
+        console.log(this.state);
+        
        
-        this.refs.alarmList.handleAddEntry({time: date, comment: this.refs.comment.getDOMNode().value});
+       // this.refs.alarmList.handleAddEntry({time: date, comment: this.refs.comment.getDOMNode().value});
+        this.handleAddEntry(this.state.hours, this.state.minute)
+    }
+
+    handleAddEntry(hours, minute){
+        console.log("I am here")
+        console.log(hours, minute);
+        
+        //var state = this.state;
+        let timeArr = []
+         timeArr.push(hours, minute);
+       // this.setState(state);
+        console.log(timeArr);
+        this.setState({
+            timeArr: timeArr
+        })
     }
 
     handleAddAudio(audio){
@@ -99,7 +124,7 @@ class Alarm extends React.Component {
                         <h2>Sounds</h2>
                         <Bell ref="bell" bells={this.state.bells} onAddAudio={this.handleAddAudio}/>
                         <h2>Alarms</h2>
-                        <AlarmList data={data} ref="alarmList" onRing={this.handleRing}/> 
+                        <AlarmList data={this.state.timeArr}  hours={this.state.hours} minute={this.state.minute} ref="alarmList" onRing={this.handleRing}/> 
                     </div>  
                 </Card>
             )

@@ -29,13 +29,15 @@ class AlarmList extends React.Component {
     handleAddEntry(entry){
         console.log("I am here")
         var state = this.state;
-        state.data.push(entry);
+        state.data.push(this.props.hours + this.props.minute);
         this.setState(state);
     }
 
     render() {
         const { classes } = this.props;
-        var alarmNodes = this.state.data.map(function(alarm, i){
+        var alarmNodes = this.props.data.map(function(alarm, i){
+            console.log(alarm);
+            
             if(alarm === undefined) return undefined;
             return (
                 <AlarmEntry time={alarm.time} comment={alarm.comment} onClose={this.handleEntryClose.bind(this, i)} key={i} onRing={this.props.onRing} />
