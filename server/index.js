@@ -10,10 +10,6 @@ app = server.listen(port, function() {
 var socket = require('socket.io');
 io = socket(app);
 
-// io.on('connection', socket => {
-//   console.log(socket.id);
-// });
-
 io.on('connection', function(socket) {
   console.log('a user connected');
   socket.on('disconnect', function() {
