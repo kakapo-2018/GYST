@@ -4,10 +4,20 @@ import GoogleLogin from 'react-google-login';
 var superagent = require('superagent'),
   request = superagent;
 //material UI imports
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import CardActions from '@material-ui/core/CardActions';
 
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit
+  }
+});
 
 //react component with information in state
 class Gmail2 extends React.Component {
@@ -37,6 +47,8 @@ class Gmail2 extends React.Component {
         profileId: response.profileObj.googleId
       });
     };
+    const { classes } = this.props;
+
     //google button
     return (
       <Card>
@@ -45,34 +57,46 @@ class Gmail2 extends React.Component {
             Unread Emails: {this.state.unread}
           </Typography>
           <GoogleLogin
+            style={{
+              variant: 'contained',
+              size: 'large',
+              color: 'primary'
+            }}
             clientId="693624776345-6k38ssbajdd9s3fa9qo1m1kq9lhis0ir.apps.googleusercontent.com"
             buttonText="Google Login"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             scope="https://www.googleapis.com/auth/gmail.labels"
           />
-          <button
-            style={{
-              display: 'block',
-              background: 'rgb(209, 72, 54)',
-              color: 'rgb(255, 255, 255)',
-              width: '190px',
-              paddingTop: '10px',
-              paddingBottom: '10px',
-              borderRadius: '2px',
-              border: '1px solid transparent',
-              fontSize: '16px',
-              fontWeight: 'bold',
-              fontFamily: 'Roboto'
-            }}
-            onClick={this.emails}
-          >
-            Check Email
-          </button>
+
+          <CardActions>
+            <Button
+              variant="contained"
+              size="large"
+              color="primary"
+              className={classes.button}
+              onClick={this.emails}
+            >
+              Check Email
+            </Button>
+            <Button
+              variant="contained"
+              size="large"
+              color="primary"
+              className={classes.button}
+              onClick={this.emails}
+            >
+              Check Email
+            </Button>
+          </CardActions>
         </CardContent>
       </Card>
     );
   }
 }
 
-export default Gmail2;
+Gmail2.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(Gmail2);
