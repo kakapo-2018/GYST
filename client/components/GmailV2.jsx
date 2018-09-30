@@ -60,7 +60,7 @@ class Gmail2 extends React.Component {
 
     request
       //get request for the gmail labels endpoint
-      .get(`https://www.googleapis.com/gmail/v1/users/me/labels`)
+      .get(`https://www.googleapis.com/gmail/v1/users/me/labels/UNREAD`)
       .set('Authorization', `Bearer ${this.state.token}`)
       //   .oauth(provider, {
       //     redirect_uri: 'http://localhost',
@@ -94,7 +94,7 @@ class Gmail2 extends React.Component {
           scope="https://www.googleapis.com/auth/gmail.labels"
         />
         {/* my button */}
-        <button onClick={this.emails}>click me pls</button>
+        <button onClick={this.emails}>Unread Emails</button>
       </div>
     );
   }
