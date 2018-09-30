@@ -110,7 +110,7 @@ class ResponsiveDrawer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getImage(this.props.state.user.id);
+    // this.props.getImage(this.props.state.user.id);
 
     try {
       let newState = JSON.parse(get('stateKey'));
