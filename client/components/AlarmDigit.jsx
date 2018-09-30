@@ -1,16 +1,19 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
+import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 
 const styles = theme => ({
     digit: {
         width:'80px',
         flexDirection: 'row',
         display: 'inline-block',
+        margin: 'auto'
     },
     input: {
-        fontSize: '50px',
+        fontSize: '30px',
         height: '45px',
-        width: '45px',
+        width: '50px',
         border: 0,
         boxShadow: 'none',
         outline: 0,
@@ -18,7 +21,10 @@ const styles = theme => ({
     },
     btn:{
         width: '40px',
-        height:'20px'
+        height:'20px',
+    },
+    updown: {
+        margin:'auto'
     }
 });
 
@@ -28,7 +34,23 @@ var paddy = function(n, p, c){
     return (pad + n).slice(-pad.length);
 }
 
+
 class AlarmDigit extends React.Component {
+    constructor(props){
+        super(props)
+        var val = typeof this.props.val !== 'undefined' ? this.props.val : 0;
+        this.state ={
+            value: val, 
+            increasing: 0,
+            decreasing: 0, 
+            increaseCounter: 0, 
+            decreaseCounter: 0
+        }
+        this.handleStopIncrease = this.handleStopIncrease.bind(this)
+        this.handleStartIncrease = this.handleStartIncrease.bind(this)
+        this.handleStopDecrease = this.handleStopDecrease.bind(this)
+        this.handleStartDecrease = this.handleStartDecrease.bind(this)
+    }
     
     getInterval(counter){
         if(counter > 5)
@@ -39,11 +61,6 @@ class AlarmDigit extends React.Component {
             return 5;
         else
             return 150;
-    }
-
-    getInitialState(){
-        var val = typeof this.props.val !== 'undefined' ? this.props.val : 0;
-        return {value: val, increasing: 0, decreasing: 0, increaseCounter: 0, decreaseCounter: 0};
     }
 
     handleCarry(){
@@ -78,12 +95,16 @@ class AlarmDigit extends React.Component {
     }
 
     handleStopIncrease(){
+        console.log("handleStopIncrease clicked")
+        console.log(this.state)
         var state = this.state;
         clearTimeout(state.increasing);
         this.setState(state);
+        console.log(state)
     }
 
     handleDecrease(once){
+        console.log("handleDecrease clicked")
         var state = this.state;
         state.value --;
         state.decreaseCounter ++;
@@ -99,6 +120,7 @@ class AlarmDigit extends React.Component {
     }
 
     handleStartDecrease(){
+        console.log("handleStartDecrease clicked")
         var state = this.state;
         state.decreasing = true;
         state.decreaseCounter = 0;
@@ -107,6 +129,7 @@ class AlarmDigit extends React.Component {
     }
 
     handleStopDecrease(){
+        console.log("handleStopDecrease clicked")
         var state = this.state;
         clearTimeout(state.decreasing)
         this.setState(state);
@@ -140,15 +163,16 @@ class AlarmDigit extends React.Component {
         }
     }
 
+
     render() {
         const { classes } = this.props;
       
-        //  var value = paddy(this.state.value, 2);
+        var value = paddy(this.state.value, 2);
         return (
                 <div className={classes.digit}>
-                    <button className={classes.btn} onMouseDown={this.handleStartIncrease} onMouseUp={this.handleStopIncrease}><span className="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
-                     <input className={classes.input} type="number" /*value={value}*/ onChange={this.handleChange} onKeyDown={this.handleKeyDown} onWheel={this.handleWheel} />
-                    <button className={classes.btn} onMouseDown={this.handleStartDecrease} onMouseUp={this.handleStopDecrease}><span className="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+                 <button className={classes.btn} onMouseDown={this.handleStartIncrease} onMouseUp={this.handleStopIncrease}><ArrowDropUp className ={classes.updown}/></button>
+                     <input className={classes.input} type="text" value={value} onChange={this.handleChange} onKeyDown={this.handleKeyDown} onWheel={this.handleWheel} />
+                     <button className={classes.btn} onMouseDown={this.handleStartDecrease} onMouseUp={this.handleStopDecrease}><ArrowDropDown className ={classes.updown}/></button>
                 </div>
         )
     }

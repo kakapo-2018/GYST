@@ -10,6 +10,29 @@ const styles = theme => ({
 
 });
 
+var isValidUrl = function(url){
+    var regex = /^(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:/~+#-]*[\w@?^=%&amp;/~+#-])?$/i
+    return !!url.match(regex);
+}
+
+var getExt = function(filename){
+    var regex = /(?:\.([^.]+))?$/i;
+    return regex.exec(filename)[1];
+};
+
+var ext2mime = function(ext) {
+    var mime = {
+        mp3: 'audio/mpeg',
+        flac: 'audio/flac',
+        ogg: 'audio/ogg',
+        oga: 'audio/ogg',
+        wav: 'audio/wav',
+        weba: 'audio/webm'
+    };
+
+    return mime[ext];
+};
+
 
 class Bell extends React.Component {
 
@@ -91,7 +114,7 @@ class Bell extends React.Component {
         });
 
         var errorAlert = <div className="alert alert-danger">Unsupported audio type</div>;
-        
+
         return (
             <div className="bell">
                 <audio ref="audio" loop>

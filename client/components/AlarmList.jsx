@@ -10,23 +10,6 @@ const styles = theme => ({
     }
 });
 
-// render () {
-//     var alarmNodes = this.state.data.map(function(alarm, i){
-//         if(alarm === undefined) return undefined;
-//         return (
-//             <AlarmEntry time={alarm.time} comment={alarm.comment} onClose={this.handleEntryClose.bind(this, i)} key={i} onRing={this.props.onRing} />
-//         );
-//     }.bind(this))
-
-// var list = function(){
-//         if(this.state.data.length == 0) {
-//             return (<li className="list-group-item">None</li>);
-//         }
-//         else
-//         {
-//             return alarmNodes;
-//         }
-//     }.bind(this);
 
 class AlarmList extends React.Component {
     constructor(props) {
@@ -63,7 +46,7 @@ class AlarmList extends React.Component {
             {name: 'osng', type: 'audio/wav',  path: 'bell/70213__qlc__152bpm-osng.wav'},
             {name: 'zichus', type: 'audio/wav',  path: 'bell/70217__qlc__85bpm-zichus.wav'}
         ]
-        
+
         var list = function(){
             if(this.state.data.length == 0) {
                 return (<li className="list-group-item">None</li>);
@@ -73,7 +56,7 @@ class AlarmList extends React.Component {
                 return alarmNodes;
             }
         }.bind(this);
-        //  var value = paddy(this.state.value, 2);
+     
         return (
             <ul className="alarmList list-group">
                  {list()} 

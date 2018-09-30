@@ -5,6 +5,7 @@ import Clock from './Clock';
 import AlarmDigit from './AlarmDigit';
 import Bell from './Bell'
 import AlarmList from './AlarmList'
+import Add from '@material-ui/icons/Add';
 
 const styles = theme => ({
     card: {
@@ -28,6 +29,9 @@ const styles = theme => ({
     },
     time: {
         fontSize:'80px'
+    },
+    btn: {
+        width: '40px',
     }
 });
 
@@ -46,6 +50,7 @@ class Alarm extends React.Component {
         this.state = {
             bells: bells
     }
+    this.handleAddAlarm = this.handleAddAlarm.bind(this)
     }
 
     handleCarry(digit){
@@ -60,11 +65,12 @@ class Alarm extends React.Component {
         this.refs.bell.ring();
     }
 
+
     handleAddAlarm(){
+        console.log("clicked")
         var date = new Date();
         date.setHours(this.refs.hourDigit.state.value);
         date.setMinutes(this.refs.minuteDigit.state.value);
-        date.setSeconds(this.refs.secondDigit.state.value);
         this.refs.alarmList.handleAddEntry({time: date, comment: this.refs.comment.getDOMNode().value});
     }
 
@@ -87,7 +93,7 @@ class Alarm extends React.Component {
                          </div>  
                          <div className={classes.form}>
                             <input className={classes.control} type="text" ref="comment" placeholder="Leave your comment..." ref="comment"/>
-                            <button className="btn btn-default" type="button" onClick={this.handleAddAlarm}><span className="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                            <button className={classes.btn} type="button" onClick={this.handleAddAlarm}><Add/></button>
                         </div> 
                         <h2>Sounds</h2>
                         <Bell ref="bell" bells={this.state.bells} onAddAudio={this.handleAddAudio}/>
