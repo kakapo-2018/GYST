@@ -45,9 +45,9 @@ class Language extends Component {
     this.state = {
       wordIdentified: '',
       wordTranslated: '',
-      answer: '',
       language: 'zh-CN',
-      name: 'hai'
+      name: 'hai',
+      answerInput: ''
     };
   }
 
@@ -138,15 +138,21 @@ class Language extends Component {
   };
 
   submitAnswer = () => {
-    this.getIMG('https://picsum.photos/300/300/?random');
+    if (this.state.answerInput == this.state.wordTranslated) {
+      console.log('correct');
+    } else {
+      console.log('fail');
+    }
 
-    console.log('new');
+    this.setState({ answerInput: '' });
+
+    this.getIMG('https://picsum.photos/300/300/?random');
   };
 
-  // handleChangeInput = event => {
-  //   this.setState({ [event.target.name]: event.target.value });
-  //   console.log('event');
-  // };
+  handleChangeInput = event => {
+    event.preventDefault();
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
   render() {
     const { classes } = this.props;
@@ -189,16 +195,17 @@ class Language extends Component {
         </Typography>
 
         <Typography variant="subheading" align="center">
-          Answer
+          Answer (hover)
         </Typography>
         <Typography variant="body1" align="center" id="blur">
           {this.state.wordTranslated}
         </Typography>
         <TextField
           className={classes.answerEntry}
-          id="wordAnswer"
           label="Answer"
-          onChange={evt => this.updateInputValue(evt)}
+          name="answerInput"
+          value={this.state.answerInput}
+          onChange={evt => this.handleChangeInput(evt)}
           margin="normal"
           variant="outlined"
         />
