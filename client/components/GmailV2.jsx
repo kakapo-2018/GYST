@@ -32,7 +32,7 @@ class Gmail2 extends React.Component {
       token: '',
       idToken: '',
       profileId: '',
-      unread: '...',
+      unread: 'Please login',
       buttonVisible: true
     };
     this.emails = this.emails.bind(this);
@@ -58,7 +58,8 @@ class Gmail2 extends React.Component {
         token: response.accessToken,
         idToken: response.tokenId,
         profileId: response.profileObj.googleId,
-        buttonVisible: false
+        buttonVisible: false,
+        unread: 'Logged in'
       });
     };
     const { classes } = this.props;
@@ -87,12 +88,22 @@ class Gmail2 extends React.Component {
               className={classes.button}
               onClick={this.emails}
             >
-              Check Email
+              Check Unread
             </Button>
-            <Button variant="contained" size="large" color="primary">
-              <a target="_blank" href="https://mail.google.com/mail/u/0/#inbox">
-                Inbox
-              </a>
+            <Button
+              target="_blank"
+              href="https://mail.google.com/mail/u/0/?tab=wm#inbox"
+              variant="contained"
+              size="large"
+              color="primary"
+            >
+              {/* <a
+                style={{ textDecoration: 'none', color: 'white' }}
+                target="_blank"
+                href="https://mail.google.com/mail/u/0/#inbox"
+              > */}
+              Inbox
+              {/* </a> */}
             </Button>
           </CardActions>
         </CardContent>
