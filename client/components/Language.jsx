@@ -1,20 +1,42 @@
 import React, { Component } from 'react';
-import Card from '@material-ui/core/Card';
 
+//superagent for requests
 const request = require('superagent');
 
+//Material UI
+import Card from '@material-ui/core/Card';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
+
+//Store image currently processing on cloud so the page can render it
 let imgToTranslate = '';
+
+const styles = theme => ({
+  card: {
+    minHeight: '100%',
+    maxHeight: '100%',
+    padding: '1%'
+  },
+  textfield: {
+    marginLeft: '15px',
+    width: '35%'
+  }
+});
 
 class Language extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ident: ''
+      wordIdentified: '',
+      wordTranslated: '',
+      answer: ''
     };
   }
 
   componentDidMount() {
-    this.getIMG('https://picsum.photos/350/350/?random');
+    this.getIMG('https://picsum.photos/300/300/?random');
   }
 
   getIMG = url => {
@@ -60,7 +82,7 @@ class Language extends Component {
         JSON.parse(e.responseText).responses[0].labelAnnotations[0].description
       );
 
-      this.setState({ ident: 'fek' });
+      this.setState({ wordIdentified: 'fek' });
 
       var text = JSON.parse(e.responseText).responses[0].labelAnnotations[0]
         .description;
@@ -88,12 +110,24 @@ class Language extends Component {
   };
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <Card>
+      <Card className={classes.card}>
         <img src={imgToTranslate} />
+        <TextField
+          className={classes.textfield}
+          id="wordAnswer"
+          label="Answer"
+          // className={classes.textField}
+          // value={this.state.searchTerm}
+          onChange={evt => this.updateInputValue(evt)}
+          margin="normal"
+          variant="outlined"
+        />
       </Card>
     );
   }
 }
 
-export default Language;
+export default withStyles(styles)(Language);
