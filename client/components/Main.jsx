@@ -195,7 +195,7 @@ class Main extends Component {
               <SpotifyPlaylist />
             </div>
           ) : (
-              <div />
+            <React.Fragment />
             )}
           {this.props.showCom.instagram ? (
             <div
