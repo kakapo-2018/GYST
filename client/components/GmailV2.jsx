@@ -7,8 +7,6 @@ var superagent = require('superagent'),
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import CardActions from '@material-ui/core/CardActions';
-import CardMedia from '@material-ui/core/CardMedia';
-
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -17,10 +15,6 @@ import Button from '@material-ui/core/Button';
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit
-  },
-  cover: {
-    width: 151,
-    height: 151
   }
 });
 
@@ -48,8 +42,6 @@ class Gmail2 extends React.Component {
       })
       .catch();
   }
-
-  click() {}
 
   render() {
     //logging the response and setting it in state
@@ -97,13 +89,7 @@ class Gmail2 extends React.Component {
               size="large"
               color="primary"
             >
-              {/* <a
-                style={{ textDecoration: 'none', color: 'white' }}
-                target="_blank"
-                href="https://mail.google.com/mail/u/0/#inbox"
-              > */}
               Inbox
-              {/* </a> */}
             </Button>
           </CardActions>
         </CardContent>
