@@ -56,6 +56,10 @@ class Main extends Component {
     this.setState({ layouts });
   }
 
+  handleChangeComplete = (color) => {
+    this.setState({ background: color.hex });
+  };
+
   render() {
     const { classes, theme } = this.props;
     return (
@@ -251,7 +255,7 @@ class Main extends Component {
               key="15"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
-              <ColorSetting background ={this.state.background}/>
+              <ColorSetting background ={this.state.background} handleChangeComplete={this.handleChangeComplete}/>
             </div>
           ) : (
               <React.Fragment />
