@@ -10,10 +10,15 @@ const styles = theme => ({
 
 class Clock extends React.Component {
 
-    getInitialState(){
-        return {time: new Date(), id: 0};
+    constructor(props){
+        super(props)
+        this.state = {
+            time: new Date(), id: 0
+        }
     }
- 
+
+    
+
     componentDidMount(){
         var state = this.state;
         state.id = setInterval(function(){
