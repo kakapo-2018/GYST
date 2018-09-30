@@ -1,9 +1,9 @@
 import React from 'react'
-import { SketchPicker } from 'react-color'
+import { SwatchesPicker } from 'react-color'
 
 class ColorSetting extends React.Component {
   render() {
-    return  <SketchPicker onChangeComplete={this.props.handleChangeComplete }/>
+    return  <SwatchesPicker onChange={this.props.handleChange }/>
   }
 }
 

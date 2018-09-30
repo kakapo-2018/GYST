@@ -261,7 +261,6 @@ class Navbar extends Component {
                   className={classes.margin}
                   badgeContent={Notifications}
                   color="secondary"
-                  onClick={this.props.handleClick}
                 >
                   <Settings />
                 </Badge>

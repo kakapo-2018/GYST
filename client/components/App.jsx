@@ -41,14 +41,7 @@ class App extends Component {
       authenticated: isAuthenticated()
     });
   }
-
-  handleClick (){
-    this.setState({
-      color:true
-    })
-    console.log(this.state)
-   }
-   
+  
   render() {
     return (
       <React.Fragment>
@@ -58,7 +51,6 @@ class App extends Component {
           <NavBar
             user={this.props.state.user.username}
             handleDrawerToggle={this.handleDrawerToggle}
-            handleClick={this.handleClick}
           />
         )}
         {!this.props.state.isAuthenticated && (

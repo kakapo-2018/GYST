@@ -47,7 +47,7 @@ class Main extends Component {
     super(props);
     this.state = {
       layouts: JSON.parse(JSON.stringify(originalLayouts)),
-      background: 'pink'
+      background: 'white'
     };
   }
 
@@ -56,7 +56,7 @@ class Main extends Component {
     this.setState({ layouts });
   }
 
-  handleChangeComplete = (color) => {
+  handleChange = (color) => {
     this.setState({ background: color.hex });
   };
 
@@ -255,7 +255,7 @@ class Main extends Component {
               key="15"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
-              <ColorSetting background ={this.state.background} handleChangeComplete={this.handleChangeComplete}/>
+              <ColorSetting background ={this.state.background} handleChange={this.handleChange}/>
             </div>
           ) : (
               <React.Fragment />
