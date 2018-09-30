@@ -23,6 +23,7 @@ import MapContainer from './MapContainer';
 import GithubIssues from './GithubIssues';
 import Weight from './Weight';
 import SocialFeed from './SocialFeed';
+import Gmail from './Gmail';
 
 const drawerWidth = 240;
 
@@ -75,7 +76,7 @@ class Main extends Component {
               key="1"
               data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 3, minH: 2, maxH: 2 }}
             >
-              <SpotifyPlaybackWidget />
+              <Gmail />
             </div>
           ) : (
             <React.Fragment />
@@ -186,7 +187,7 @@ class Main extends Component {
           ) : (
             <React.Fragment />
           )}
-                    {this.props.showCom.spotifyplaylist ? (
+          {this.props.showCom.spotifyplaylist ? (
             <div
               key="13"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
@@ -196,7 +197,7 @@ class Main extends Component {
           ) : (
             <div />
           )}
-                    {this.props.showCom.instagram ? (
+          {this.props.showCom.instagram ? (
             <div
               key="14"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
@@ -204,7 +205,7 @@ class Main extends Component {
               <SocialFeed />
             </div>
           ) : (
-                <React.Fragment />
+            <React.Fragment />
           )}
         </ResponsiveGridLayout>
       </main>
