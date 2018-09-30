@@ -23,6 +23,7 @@ import MapContainer from './MapContainer';
 import GithubIssues from './GithubIssues';
 import Weight from './Weight';
 import SocialFeed from './SocialFeed';
+import Alarm from './Alarm'
 
 const drawerWidth = 240;
 
@@ -78,8 +79,8 @@ class Main extends Component {
               <SpotifyPlaybackWidget />
             </div>
           ) : (
-            <React.Fragment />
-          )}
+              <React.Fragment />
+            )}
           {this.props.showCom.date ? (
             <div
               key="2"
@@ -88,18 +89,28 @@ class Main extends Component {
               <DateTime />
             </div>
           ) : (
-            <React.Fragment />
-          )}
+              <React.Fragment />
+            )}
+          {this.props.showCom.alarm ? (
+            <div
+              key="3"
+              data-grid={{ x: 0, y: 0, w: 2, h: 1, maxW: 2, maxH: 1 }}
+            >
+              <Alarm />
+            </div>
+          ) : (
+              <React.Fragment />
+            )}
           {this.props.showCom.saving ? (
-            <div key="3" data-grid={{ x: 0, y: 0, w: 2, h: 2 }}>
+            <div key="4" data-grid={{ x: 0, y: 0, w: 2, h: 2 }}>
               <Gauge />
             </div>
           ) : (
-            <React.Fragment />
-          )}
+              <React.Fragment />
+            )}
           {this.props.showCom.food ? (
             <div
-              key="4"
+              key="5"
               data-grid={{
                 x: 0,
                 y: 0,
@@ -114,68 +125,68 @@ class Main extends Component {
               <Fitness />
             </div>
           ) : (
-            <React.Fragment />
-          )}
+              <React.Fragment />
+            )}
           {this.props.showCom.weather ? (
             <div
-              key="5"
+              key="6"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
               <Weather />
             </div>
           ) : (
-            <React.Fragment />
-          )}
+              <React.Fragment />
+            )}
           {this.props.showCom.todo ? (
             <div
-              key="6"
+              key="7"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
               <TodoMain />
             </div>
           ) : (
-            <React.Fragment />
-          )}
+              <React.Fragment />
+            )}
           {this.props.showCom.github ? (
             <div
-              key="7"
+              key="8"
               data-grid={{ x: 0, y: 0, w: 3, h: 1, minW: 3, minH: 1 }}
             >
               <GithubIssues />
             </div>
           ) : (
-            <React.Fragment />
-          )}
+              <React.Fragment />
+            )}
           {this.props.showCom.rss ? (
             <div
-              key="8"
+              key="9"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
               <RSS />
             </div>
           ) : (
-            <React.Fragment />
-          )}
+              <React.Fragment />
+            )}
           {this.props.showCom.worldmap ? (
             <div
-              key="9"
+              key="10"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
               <WorldMap />
             </div>
           ) : (
-            <React.Fragment />
-          )}
+              <React.Fragment />
+            )}
           {this.props.showCom.googlemap ? (
             <div
-              key="10"
+              key="11"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
               <MapContainer />
             </div>
           ) : (
-            <React.Fragment />
-          )}
+              <React.Fragment />
+            )}
           {this.props.showCom.weight ? (
             <div
               key="12"
@@ -184,9 +195,9 @@ class Main extends Component {
               <Weight />
             </div>
           ) : (
-            <React.Fragment />
-          )}
-                    {this.props.showCom.spotifyplaylist ? (
+              <React.Fragment />
+            )}
+          {this.props.showCom.spotifyplaylist ? (
             <div
               key="13"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
@@ -194,9 +205,9 @@ class Main extends Component {
               <SpotifyPlaylist />
             </div>
           ) : (
-            <div />
-          )}
-                    {this.props.showCom.instagram ? (
+              <div />
+            )}
+          {this.props.showCom.instagram ? (
             <div
               key="14"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
@@ -204,8 +215,8 @@ class Main extends Component {
               <SocialFeed />
             </div>
           ) : (
-                <React.Fragment />
-          )}
+              <React.Fragment />
+            )}
         </ResponsiveGridLayout>
       </main>
     );

@@ -102,7 +102,8 @@ class ResponsiveDrawer extends React.Component {
       github: true,
       weight: true,
       instagram: true,
-      spotifyplaylist: true
+      spotifyplaylist: true,
+      alarm:true
     };
     this.toggleRegister = this.toggleRegister.bind(this);
     this.toggleLogin = this.toggleLogin.bind(this);
