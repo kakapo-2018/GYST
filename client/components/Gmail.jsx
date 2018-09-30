@@ -1,4 +1,5 @@
 import React from 'react';
+import request from 'superagent';
 // import { GoogleLogout, GoogleLogin } from '../src/index'
 import GoogleLogin, { GoogleLogout } from 'react-google-login';
 // import FontAwesome from 'react-fontawesome';
@@ -23,6 +24,27 @@ const logout = () => {
 };
 
 export default class Gmail extends React.Component {
+  constructor(props) {
+    super(props);
+    this.fetch = this.fetch.bind(this);
+  }
+
+  fetch() {
+    request
+      .get(
+        'https://www.googleapis.com/gmail/v1/users/102080572213110501793/messages'
+      )
+      .then(res => {
+        console.log(res);
+
+        // res.body, res.headers, res.status
+      })
+      .catch(err => {
+        console.log(err);
+
+        // err.message, err.response
+      });
+  }
   render() {
     return (
       <div>
@@ -40,25 +62,9 @@ export default class Gmail extends React.Component {
           // className='button'
           // style={{ color: 'red' }}
         >
-          <span>Analytics</span>
+          <span>Gmail Login</span>
         </GoogleLogin>
-        <GoogleLogin
-          clientId={clientId}
-          scope="https://www.googleapis.com/auth/adwords"
-          onSuccess={success}
-          onFailure={error}
-          onRequest={loading}
-          approvalPrompt="force"
-          responseType="code"
-          // uxMode="redirect"
-          // redirectUri="http://google.com"
-          // disabled
-          // prompt="consent"
-          // className='button'
-          // style={{ color: 'red' }}
-        >
-          <span>Adwords</span>
-        </GoogleLogin>
+        <button onClick={this.fetch}>Get fkn emails boiii</button>
         <GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />
       </div>
     );
