@@ -1,9 +1,10 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import Moment from 'react-moment';
 
 const styles = theme => ({
     clock: {
-        fontSize: '2em'
+        fontSize: '4em'
     }
 });
 
@@ -35,8 +36,10 @@ class Clock extends React.Component {
     }
 
 render(){
+    const { classes } = this.props;
+    
     return (
-    <h1 className={classes.clock}>{$.format.date(this.state.time, 'HH:mm:ss')}</h1>
+    <Moment className={classes.clock} format='HH:mm' >{this.state.time}</Moment>
     )
 }
 }

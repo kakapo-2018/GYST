@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import Clock from 'react-live-clock';
+import Clock from './Clock';
 import AlarmDigit from './AlarmDigit';
 import Bell from './Bell'
 import AlarmList from './AlarmList'
