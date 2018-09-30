@@ -204,11 +204,11 @@ class Main extends Component {
                 x: 0,
                 y: 0,
                 w: 4,
-                h: 3,
+                h: 2,
                 minW: 4,
                 maxW: 4,
-                minH: 3,
-                maxH: 3
+                minH: 2,
+                maxH: 2
               }}
             >
               <Weight />

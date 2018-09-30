@@ -14,9 +14,6 @@ const styles = theme => ({
     maxHeight: '100%',
     minWidth: '100%',
     minHeight: '100%'
-  },
-  enter: {
-    marginLeft: '25%'
   }
 });
 
@@ -92,7 +89,7 @@ class Weight extends React.Component {
             />
           )}
           <Input
-            style={{ maxWidth: '45%', marginLeft: '25%' }}
+            style={{ maxWidth: '45%', marginLeft: '20%', paddingTop: '30px' }}
             id="kg"
             type="number"
             name="value"
