@@ -28,11 +28,13 @@ const styles = theme => ({
 //     }.bind(this);
 
 class AlarmList extends React.Component {
-    
-    getInitialState(){
-        return {data: this.props.data};
+    constructor(props) {
+        super(props)
+        this.state = {
+            data: this.props.data
+        }
     }
-
+    
     handleEntryClose(index){
         var state = this.state;
         state.data.splice(index, 1);
@@ -47,11 +49,19 @@ class AlarmList extends React.Component {
 
     render() {
         const { classes } = this.props;
-      
+        var list = function(){
+            if(this.state.data.length == 0) {
+                return (<li className="list-group-item">None</li>);
+            }
+            else
+            {
+                return alarmNodes;
+            }
+        }.bind(this);
         //  var value = paddy(this.state.value, 2);
         return (
             <ul className="alarmList list-group">
-                {/* {list()} */}
+                 {list()} 
             </ul>
         )
     }
