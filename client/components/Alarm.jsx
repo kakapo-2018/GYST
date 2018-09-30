@@ -33,31 +33,50 @@ const styles = theme => ({
 
 var data = []
 
+var bells = [
+    {name: 'piano-melody', type: 'audio/wav',  path: 'bell/70214__qlc__65bpm-piano-melody-0589.wav'},
+    {name: 'fractal-ramp-sonnet', type: 'audio/mpeg', path: 'bell/70002__qlc__240bpm-fractal-ramp-sonnet-track-1.mp3'},
+    {name: 'osng', type: 'audio/wav',  path: 'bell/70213__qlc__152bpm-osng.wav'},
+    {name: 'zichus', type: 'audio/wav',  path: 'bell/70217__qlc__85bpm-zichus.wav'}
+]
+
 class Alarm extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            bells : [
-                {name: 'piano-melody', type: 'audio/wav',  path: 'bell/70214__qlc__65bpm-piano-melody-0589.wav'},
-                {name: 'fractal-ramp-sonnet', type: 'audio/mpeg', path: 'bell/70002__qlc__240bpm-fractal-ramp-sonnet-track-1.mp3'},
-                {name: 'osng', type: 'audio/wav',  path: 'bell/70213__qlc__152bpm-osng.wav'},
-                {name: 'zichus', type: 'audio/wav',  path: 'bell/70217__qlc__85bpm-zichus.wav'}
-            ]   
+            bells: bells
     }
     }
 
-    handleCarry() {
-        this.handleIncrease(true);
+    handleCarry(digit){
+        this.refs[digit].handleCarry();
     }
 
-
-    handleBorrow(){
-        this.handleDecrease(true);
+    handleBorrow(digit){
+        this.refs[digit].handleBorrow();
     }
+
+    handleRing(){
+        this.refs.bell.ring();
+    }
+
+    handleAddAlarm(){
+        var date = new Date();
+        date.setHours(this.refs.hourDigit.state.value);
+        date.setMinutes(this.refs.minuteDigit.state.value);
+        date.setSeconds(this.refs.secondDigit.state.value);
+        this.refs.alarmList.handleAddEntry({time: date, comment: this.refs.comment.getDOMNode().value});
+    }
+
+    handleAddAudio(audio){
+        this.setState({
+            bells: this.state.bells.concat(audio)
+        });
+    }
+
         render() {
             const { classes } = this.props;
             var date = new Date();
-            // var value = paddy(this.state.value, 2);
             return (
                 <Card className={classes.card}>
                     <Clock className ={classes.time} />
