@@ -27,7 +27,7 @@ const styles = theme => ({
 //         }
 //     }.bind(this);
 
-class AlarmDigit extends React.Component {
+class AlarmList extends React.Component {
     
     getInitialState(){
         return {data: this.props.data};
@@ -57,5 +57,5 @@ class AlarmDigit extends React.Component {
     }
 }
 
-export default withStyles(styles)(AlarmDigit);
+export default withStyles(styles)(AlarmList);
 
