@@ -51,7 +51,7 @@ var client_secret = 'c71b46dbe44c4515bfd4aaf26b8c6ace'; // Your secret
 if (port == 3000) {
   var redirect_uri = 'http://localhost:3000/callback'; // Your redirect uri
 } else {
-  var redirect_uri = 'http://gyst-dash.herokuapp.com/callback'; // Your redirect uri
+  var redirect_uri = 'https://loginisshit.herokuapp.com/callback'; // Your redirect uri
 }
 /**
  * Generates a random string containing numbers and letters
