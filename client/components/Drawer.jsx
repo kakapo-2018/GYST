@@ -103,7 +103,8 @@ class ResponsiveDrawer extends React.Component {
       weight: true,
       instagram: true,
       spotifyplaylist: true,
-      color: true
+      color: true,
+      Gmail2: true
     };
     this.toggleRegister = this.toggleRegister.bind(this);
     this.toggleLogin = this.toggleLogin.bind(this);

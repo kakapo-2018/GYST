@@ -280,6 +280,16 @@ class Main extends Component {
           ) : (
             <React.Fragment />
           )}
+          {this.props.showCom.Gmail2 ? (
+            <div
+              key="16"
+              data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 2, minH: 1 }}
+            >
+              <Gmail2 />
+            </div>
+          ) : (
+            <React.Fragment />
+          )}
         </ResponsiveGridLayout>
       </main>
     );

@@ -15,6 +15,12 @@ import Button from '@material-ui/core/Button';
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit
+  },
+  card: {
+    maxWidth: '100%',
+    maxHeight: '100%',
+    minWidth: '100%',
+    minHeight: '100%'
   }
 });
 
