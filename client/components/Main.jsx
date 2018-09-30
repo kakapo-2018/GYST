@@ -263,7 +263,13 @@ class Main extends Component {
           {this.props.showCom.color ? (
             <div
               key="15"
-              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+              data-grid={{
+                x: 0,
+                y: 0,
+                w: 1,
+                h: 1,
+                minH: 1
+              }}
             >
               <ColorSetting
                 background={this.state.background}
