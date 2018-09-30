@@ -16,6 +16,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import VpnKey from '@material-ui/icons/VpnKey';
 import Email from '@material-ui/icons/Email';
+import Photo from '@material-ui/icons/Photo';
+
 const styles = theme => ({
   layout: {
     width: 'auto',
@@ -56,6 +58,7 @@ class Register extends React.Component {
       username: '',
       password: '',
       email: '',
+      image: 'https://i.imgur.com/jNNT4LE.png',
       classes: this.props.classes
     };
     this.handleClick = this.handleClick.bind(this);
@@ -70,11 +73,12 @@ class Register extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    const { username, email, password } = this.state;
+    const { username, email, password, image } = this.state;
     const creds = {
       username: username.trim(),
       email: email.trim(),
-      password: password.trim()
+      password: password.trim(),
+      image: image.trim()
     };
     this.props.registerUser(creds);
   }
@@ -135,6 +139,23 @@ class Register extends React.Component {
                   startAdornment={
                     <InputAdornment position="start">
                       <VpnKey />
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+              <FormControl margin="normal" fullWidth>
+                <InputLabel htmlFor="password">
+                  Profile Image (Optional)
+                </InputLabel>
+                <Input
+                  onChange={this.handleChange}
+                  name="image"
+                  type="text"
+                  id="image"
+                  autoComplete="profile image"
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <Photo />
                     </InputAdornment>
                   }
                 />

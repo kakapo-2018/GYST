@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     table.string('hash');
     table.integer('saved').defaultTo(10);
     table.integer('savingGoal').defaultTo(100);
+    table.string('image');
   });
 };
 
