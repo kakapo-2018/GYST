@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 //Sockets
 const io = require('socket.io-client');
-const socket = io.connect('http://localhost:3000');
+const socket = io.connect(window.location.host);
 
 //Store last message to compare user message just sent and not double the message
 var lastmsg = '';
