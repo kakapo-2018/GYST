@@ -9,6 +9,10 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
 
 //Store image currently processing on cloud so the page can render it
 let imgToTranslate = '';
@@ -19,9 +23,19 @@ const styles = theme => ({
     maxHeight: '100%',
     padding: '1%'
   },
-  textfield: {
+  answerEntry: {
     marginLeft: '15px',
     width: '35%'
+  },
+  img: {
+    float: 'left'
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2
   }
 });
 
@@ -31,7 +45,9 @@ class Language extends Component {
     this.state = {
       wordIdentified: '',
       wordTranslated: '',
-      answer: ''
+      answer: '',
+      language: '',
+      name: 'hai'
     };
   }
 
@@ -82,7 +98,10 @@ class Language extends Component {
         JSON.parse(e.responseText).responses[0].labelAnnotations[0].description
       );
 
-      this.setState({ wordIdentified: 'fek' });
+      this.setState({
+        wordIdentified: JSON.parse(e.responseText).responses[0]
+          .labelAnnotations[0].description
+      });
 
       var text = JSON.parse(e.responseText).responses[0].labelAnnotations[0]
         .description;
@@ -99,6 +118,10 @@ class Language extends Component {
           'Word translated',
           JSON.parse(result.text).data.translations[0].translatedText
         );
+        this.setState({
+          wordTranslated: JSON.parse(result.text).data.translations[0]
+            .translatedText
+        });
       });
     };
     e.open(
@@ -109,22 +132,84 @@ class Language extends Component {
     e.send(b);
   };
 
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+    console.log('change');
+  };
+
+  // handleChangeInput = event => {
+  //   this.setState({ [event.target.name]: event.target.value });
+  //   console.log('event');
+  // };
+
   render() {
     const { classes } = this.props;
 
     return (
       <Card className={classes.card}>
-        <img src={imgToTranslate} />
+        <img src={imgToTranslate} className={classes.img} />
+        <Typography variant="title" align="center" gutterBottom>
+          Language Trainer
+        </Typography>
+
+        <form className={classes.root} autoComplete="off">
+          <FormControl className={classes.answerEntry}>
+            <InputLabel htmlFor="language-select">Language</InputLabel>
+            <Select
+              value={this.state.language}
+              onChange={this.handleChange}
+              inputProps={{
+                name: 'language',
+                id: 'language-select'
+              }}
+            >
+              {/* <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={2}>Chinese</MenuItem>
+              <MenuItem value={1}>English</MenuItem>
+              <MenuItem value={3}>German</MenuItem> */}
+
+              <MenuItem value={'zh-CN'}>Chinese (Simplified)</MenuItem>
+              <MenuItem value={'zh-TW'}>Chinese (Traditional)</MenuItem>
+              <MenuItem value={'ja'}>Japanese</MenuItem>
+              <MenuItem value={'ko'}>Korean</MenuItem>
+              <MenuItem value={'mi'}>Māori (te reo)</MenuItem>
+              <MenuItem value={'de'}>German</MenuItem>
+              <MenuItem value={'es'}>Spanish</MenuItem>
+              <MenuItem value={'fr'}>French</MenuItem>
+            </Select>
+          </FormControl>
+        </form>
+
+        <Typography variant="subheading" align="center">
+          Word Detected
+        </Typography>
+        <Typography variant="body1" align="center" gutterBottom>
+          {this.state.wordIdentified}
+        </Typography>
+
+        <Typography variant="subheading" align="center">
+          Answer
+        </Typography>
+        <Typography variant="body1" align="center">
+          {this.state.wordTranslated}
+        </Typography>
         <TextField
-          className={classes.textfield}
+          className={classes.answerEntry}
           id="wordAnswer"
           label="Answer"
-          // className={classes.textField}
-          // value={this.state.searchTerm}
           onChange={evt => this.updateInputValue(evt)}
           margin="normal"
           variant="outlined"
         />
+        <Button
+          className={classes.answerEntry}
+          variant="contained"
+          color="primary"
+        >
+          Submit
+        </Button>
       </Card>
     );
   }
