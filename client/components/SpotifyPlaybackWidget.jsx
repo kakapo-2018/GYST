@@ -145,7 +145,7 @@ class SpotifyPlaybackWidget extends Component {
               {!this.state.loggedIn && (
                 <Button
                   variant="outlined"
-                  href="http://localhost:3000/login"
+                  href="http://gyst-dash.herokuapp.com/login"
                   className={classes.button}
                 >
                   Login to Spotify
