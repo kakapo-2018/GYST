@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { getProfileImage } from '../actions/login';
 //React-grid
 import { Responsive, WidthProvider } from 'react-grid-layout';
 
@@ -23,6 +24,7 @@ import MapContainer from './MapContainer';
 import GithubIssues from './GithubIssues';
 import Weight from './Weight';
 import SocialFeed from './SocialFeed';
+import ColorSetting from './ColorSetting';
 
 const drawerWidth = 240;
 
@@ -30,7 +32,6 @@ const styles = theme => ({
   content: {
     paddingLeft: '255px',
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3
   },
   toolbar: theme.mixins.toolbar,
@@ -46,8 +47,15 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      layouts: JSON.parse(JSON.stringify(originalLayouts))
+      layouts: JSON.parse(JSON.stringify(originalLayouts)),
+      background: 'white'
     };
+  }
+
+  componentDidMount() {
+    this.props.state.auth.user.id
+      ? this.props.getProfileImage(this.props.state.auth.user.id)
+      : null;
   }
 
   onLayoutChange(layout, layouts) {
@@ -55,10 +63,17 @@ class Main extends Component {
     this.setState({ layouts });
   }
 
+  handleChange = color => {
+    this.setState({ background: color.hex });
+  };
+
   render() {
     const { classes, theme } = this.props;
     return (
-      <main className={classes.content}>
+      <main
+        style={{ backgroundColor: this.state.background }}
+        className={classes.content}
+      >
         <div className={classes.toolbar} />
         <ResponsiveGridLayout
           className="layout"
@@ -233,7 +248,7 @@ class Main extends Component {
               <SpotifyPlaylist />
             </div>
           ) : (
-            <div />
+            <React.Fragment />
           )}
           {this.props.showCom.instagram ? (
             <div
@@ -245,13 +260,51 @@ class Main extends Component {
           ) : (
             <React.Fragment />
           )}
+          {this.props.showCom.color ? (
+            <div
+              key="15"
+              data-grid={{
+                x: 0,
+                y: 0,
+                w: 1,
+                h: 1,
+                minH: 1
+              }}
+            >
+              <ColorSetting
+                background={this.state.background}
+                handleChange={this.handleChange}
+              />
+            </div>
+          ) : (
+            <React.Fragment />
+          )}
         </ResponsiveGridLayout>
       </main>
     );
   }
 }
 
-export default withStyles(styles, { withTheme: true })(Main);
+function mapStateToProps(state) {
+  return {
+    state: state
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getProfileImage: id => {
+      dispatch(getProfileImage(id));
+    }
+  };
+}
+
+export default withStyles(styles)(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Main)
+);
 
 function getFromLS(key) {
   let ls = {};

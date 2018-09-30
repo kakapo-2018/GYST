@@ -39,7 +39,7 @@ class WorldMap extends Component {
         this.state.place == ''
           ? this.state.place + i.properties.name
           : this.state.place.includes(i.properties.name)
-            ? this.state.place.replace(i.properties.name, '')
+            ? this.state.place.replace(', ' + i.properties.name, '')
             : this.state.place + ', ' + i.properties.name
     });
   }

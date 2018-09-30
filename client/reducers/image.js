@@ -4,6 +4,10 @@ export default function todos(state = [], action) {
       return {
         image: action.image
       };
+    case 'LOGOUT_SUCCESS':
+      return {
+        image: 'https://i.stack.imgur.com/l60Hf.png'
+      };
     default:
       return state;
   }
