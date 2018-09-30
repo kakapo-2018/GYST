@@ -14,6 +14,15 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 
+//Spinner
+import { ClipLoader } from 'react-spinners';
+
+import { css } from 'react-emotion';
+const override = css`
+  display: block;
+  margin: 5% 25%;
+`;
+
 //Store image currently processing on cloud so the page can render it
 let imgToTranslate = '';
 
@@ -36,6 +45,14 @@ const styles = theme => ({
   },
   selectEmpty: {
     marginTop: theme.spacing.unit * 2
+  },
+  score: {
+    width: '300px',
+    position: 'fixed',
+    zIndex: 1,
+    color: 'white',
+    backgroundColor: '#3f51b5',
+    textAlign: 'center'
   }
 });
 
@@ -47,7 +64,8 @@ class Language extends Component {
       wordTranslated: '',
       language: 'zh-CN',
       name: 'hai',
-      answerInput: ''
+      answerInput: '',
+      score: 0
     };
   }
 
@@ -140,8 +158,10 @@ class Language extends Component {
   submitAnswer = () => {
     if (this.state.answerInput == this.state.wordTranslated) {
       console.log('correct');
+      this.setState({ score: this.state.score + 1 });
     } else {
       console.log('fail');
+      this.setState({ score: this.state.score - 1 });
     }
 
     this.setState({ answerInput: '' });
@@ -159,64 +179,82 @@ class Language extends Component {
 
     return (
       <Card className={classes.card}>
-        <img src={imgToTranslate} className={classes.img} />
-        <Typography variant="title" align="center" gutterBottom>
-          Language Trainer
-        </Typography>
+        <div className="sweet-loading">
+          <ClipLoader
+            className={override}
+            sizeUnit={'px'}
+            size={250}
+            color={'#3f51b5'}
+            loading={!imgToTranslate}
+          />
+        </div>
 
-        <form className={classes.root} autoComplete="off">
-          <FormControl className={classes.answerEntry}>
-            <InputLabel htmlFor="language-select">Language</InputLabel>
-            <Select
-              value={this.state.language}
-              onChange={this.handleChange}
-              inputProps={{
-                name: 'language',
-                id: 'language-select'
-              }}
+        {imgToTranslate && (
+          <React.Fragment>
+            <Typography className={classes.score}>
+              Score: {this.state.score}
+            </Typography>
+
+            <img src={imgToTranslate} className={classes.img} />
+            <Typography variant="title" align="center" gutterBottom>
+              Language Trainer
+            </Typography>
+
+            <form className={classes.root} autoComplete="off">
+              <FormControl className={classes.answerEntry}>
+                <InputLabel htmlFor="language-select">Language</InputLabel>
+                <Select
+                  value={this.state.language}
+                  onChange={this.handleChange}
+                  inputProps={{
+                    name: 'language',
+                    id: 'language-select'
+                  }}
+                >
+                  <MenuItem value={'zh-CN'}>Chinese (Simplified)</MenuItem>
+                  <MenuItem value={'zh-TW'}>Chinese (Traditional)</MenuItem>
+                  <MenuItem value={'ja'}>Japanese</MenuItem>
+                  <MenuItem value={'ko'}>Korean</MenuItem>
+                  <MenuItem value={'mi'}>Māori (te reo)</MenuItem>
+                  <MenuItem value={'de'}>German</MenuItem>
+                  <MenuItem value={'es'}>Spanish</MenuItem>
+                  <MenuItem value={'fr'}>French</MenuItem>
+                </Select>
+              </FormControl>
+            </form>
+
+            <Typography variant="subheading" align="center">
+              Word Detected
+            </Typography>
+            <Typography variant="body1" align="center" gutterBottom>
+              {this.state.wordIdentified}
+            </Typography>
+
+            <Typography variant="subheading" align="center">
+              Answer (hover)
+            </Typography>
+            <Typography variant="body1" align="center" id="blur">
+              {this.state.wordTranslated}
+            </Typography>
+            <TextField
+              className={classes.answerEntry}
+              label="Answer"
+              name="answerInput"
+              value={this.state.answerInput}
+              onChange={evt => this.handleChangeInput(evt)}
+              margin="normal"
+              variant="outlined"
+            />
+            <Button
+              className={classes.answerEntry}
+              variant="contained"
+              color="primary"
+              onClick={this.submitAnswer}
             >
-              <MenuItem value={'zh-CN'}>Chinese (Simplified)</MenuItem>
-              <MenuItem value={'zh-TW'}>Chinese (Traditional)</MenuItem>
-              <MenuItem value={'ja'}>Japanese</MenuItem>
-              <MenuItem value={'ko'}>Korean</MenuItem>
-              <MenuItem value={'mi'}>Māori (te reo)</MenuItem>
-              <MenuItem value={'de'}>German</MenuItem>
-              <MenuItem value={'es'}>Spanish</MenuItem>
-              <MenuItem value={'fr'}>French</MenuItem>
-            </Select>
-          </FormControl>
-        </form>
-
-        <Typography variant="subheading" align="center">
-          Word Detected
-        </Typography>
-        <Typography variant="body1" align="center" gutterBottom>
-          {this.state.wordIdentified}
-        </Typography>
-
-        <Typography variant="subheading" align="center">
-          Answer (hover)
-        </Typography>
-        <Typography variant="body1" align="center" id="blur">
-          {this.state.wordTranslated}
-        </Typography>
-        <TextField
-          className={classes.answerEntry}
-          label="Answer"
-          name="answerInput"
-          value={this.state.answerInput}
-          onChange={evt => this.handleChangeInput(evt)}
-          margin="normal"
-          variant="outlined"
-        />
-        <Button
-          className={classes.answerEntry}
-          variant="contained"
-          color="primary"
-          onClick={this.submitAnswer}
-        >
-          Submit
-        </Button>
+              Submit
+            </Button>
+          </React.Fragment>
+        )}
       </Card>
     );
   }
