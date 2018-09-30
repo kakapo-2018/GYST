@@ -71,6 +71,7 @@ module.exports.gapiLoaded(function() {
   gapi.load('auth2', function() {
     auth2 = gapi.auth2.init({
       client_id: app_settings.client_id,
+      client_secret: '336_sNZ-Ndc2LlTqXqVqEAwn',
       scopes: app_settings.scopes.join(' ')
     });
     auth2Loaded = true;

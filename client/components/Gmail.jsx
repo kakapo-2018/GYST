@@ -37,18 +37,23 @@ class Gmail extends React.Component {
   }
 
   email() {
-    console.log('hit');
-    googleApiLoader
-      .getAuth2()
-      .users.messages(profileProxy.id)
-      .then(
-        function(response) {
-          console.log('Hello, ' + response.result.names[0].givenName);
-        },
-        function(reason) {
-          console.log('Error: ' + reason.result.error.message);
+    gapi.client.gmail.users.labels
+      .list({
+        userId: 'me'
+      })
+      .then(function(response) {
+        var labels = response.result.labels;
+        appendPre('Labels:');
+
+        if (labels && labels.length > 0) {
+          for (i = 0; i < labels.length; i++) {
+            var label = labels[i];
+            appendPre(label.name);
+          }
+        } else {
+          appendPre('No Labels found.');
         }
-      );
+      });
   }
 
   toggleSignIn() {
@@ -72,7 +77,7 @@ class Gmail extends React.Component {
             {this.state.loggedInUser.name}
             <hr />
             You're now free to use the Google APIs!
-            <button onClick={this.email}>Get fucking emails</button>
+            <button onClick={this.email}>Get emails</button>
           </div>
         );
       } else return toggleLoginButton;

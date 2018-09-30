@@ -23,7 +23,7 @@ import MapContainer from './MapContainer';
 import GithubIssues from './GithubIssues';
 import Weight from './Weight';
 import SocialFeed from './SocialFeed';
-import Gmail from './Gmail';
+import Gmail2 from './GmailV2';
 
 const drawerWidth = 240;
 
@@ -76,7 +76,7 @@ class Main extends Component {
               key="1"
               data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 3, minH: 2, maxH: 2 }}
             >
-              <Gmail />
+              <Gmail2 />
             </div>
           ) : (
             <React.Fragment />
