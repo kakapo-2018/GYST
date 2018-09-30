@@ -21,7 +21,7 @@ const styles = theme => ({
     margin: '0%'
   },
   btn: {
-    margin: '2% 5% 0% 17%'
+    margin: '6% 5% 0% 24%'
   }
 });
 
