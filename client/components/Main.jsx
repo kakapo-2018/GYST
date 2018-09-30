@@ -31,7 +31,6 @@ const styles = theme => ({
   content: {
     paddingLeft: '255px',
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3
   },
   toolbar: theme.mixins.toolbar,
@@ -48,7 +47,7 @@ class Main extends Component {
     super(props);
     this.state = {
       layouts: JSON.parse(JSON.stringify(originalLayouts)),
-      background:pink
+      background: 'pink'
     };
   }
 
@@ -60,7 +59,7 @@ class Main extends Component {
   render() {
     const { classes, theme } = this.props;
     return (
-      <main className={classes.content}>
+      <main style={{backgroundColor: this.state.background}}className={classes.content}>
         <div className={classes.toolbar} />
         <ResponsiveGridLayout
           className="layout"
@@ -252,7 +251,7 @@ class Main extends Component {
               key="15"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
-              <ColorSetting />
+              <ColorSetting background ={this.state.background}/>
             </div>
           ) : (
               <React.Fragment />

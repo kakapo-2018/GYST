@@ -4,9 +4,7 @@ import { SketchPicker } from 'react-color'
 class ColorSetting extends React.Component {
   constructor(props){
     super(props)
-    this.state = {
-    background: '#fff',
-  };
+ 
 
   }
   
@@ -16,8 +14,8 @@ class ColorSetting extends React.Component {
 
 
   render() {
-    console.log(this.state)
-    return  <SketchPicker   color={ this.state.background }
+    console.log(this.state.background)
+    return  <SketchPicker   /*color={ this.state.background }*/
                             onChangeComplete={ this.handleChangeComplete }/>
   }
 }
