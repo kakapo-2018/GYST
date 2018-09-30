@@ -102,7 +102,8 @@ class ResponsiveDrawer extends React.Component {
       github: true,
       weight: true,
       instagram: true,
-      spotifyplaylist: true
+      spotifyplaylist: true,
+      color:false
     };
     this.toggleRegister = this.toggleRegister.bind(this);
     this.toggleLogin = this.toggleLogin.bind(this);
@@ -200,7 +201,7 @@ class ResponsiveDrawer extends React.Component {
           </Drawer>
         </Hidden>
         {/* Components from main will render here */}
-        {this.props.state.isAuthenticated && <Main showCom={this.state} />}
+        {this.props.state.isAuthenticated && <Main showCom={this.state}/>}
         {this.state.showLogin &&
           !this.props.state.isAuthenticated && (
             <SignIn toggleRegister={this.toggleRegister} />

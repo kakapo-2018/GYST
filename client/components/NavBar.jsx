@@ -17,6 +17,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import Settings from '@material-ui/icons/Settings';
 
 const drawerWidth = 240;
 
@@ -117,7 +118,8 @@ const styles = theme => ({
 class Navbar extends Component {
   state = {
     anchorEl: null,
-    mobileMoreAnchorEl: null
+    mobileMoreAnchorEl: null,
+    color:false
   };
 
   handleProfileMenuOpen = event => {
@@ -136,6 +138,7 @@ class Navbar extends Component {
   handleMobileMenuClose = () => {
     this.setState({ mobileMoreAnchorEl: null });
   };
+
 
   render() {
     const { classes, theme } = this.props;
@@ -243,6 +246,7 @@ class Navbar extends Component {
                   <MailIcon />
                 </Badge>
               </IconButton>
+
               <IconButton color="inherit">
                 <Badge
                   className={classes.margin}
@@ -250,6 +254,16 @@ class Navbar extends Component {
                   color="secondary"
                 >
                   <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              <IconButton color="inherit">
+                <Badge
+                  className={classes.margin}
+                  badgeContent={Notifications}
+                  color="secondary"
+                  onClick={this.props.handleClick}
+                >
+                  <Settings />
                 </Badge>
               </IconButton>
               <IconButton

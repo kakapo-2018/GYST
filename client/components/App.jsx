@@ -42,6 +42,13 @@ class App extends Component {
     });
   }
 
+  handleClick (){
+   console.log(clicked)
+    this.setState({
+      color:true
+    })
+   }
+   
   render() {
     return (
       <React.Fragment>
@@ -51,6 +58,7 @@ class App extends Component {
           <NavBar
             user={this.props.state.user.username}
             handleDrawerToggle={this.handleDrawerToggle}
+            handleClick={this.handleClick}
           />
         )}
         {!this.props.state.isAuthenticated && (
