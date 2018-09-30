@@ -8,7 +8,7 @@ const weightRoutes = require('./routes/weight');
 const instaRoutes = require('./routes/insta');
 const imageRoutes = require('./routes/image');
 const server = express();
-
+const port = process.env.PORT || 3000;
 var cors = require('cors');
 server.use(cors());
 
@@ -46,9 +46,13 @@ var request = require('request'); // "Request" library
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
-var client_id = '5da992c3166447788d05de7a2d0c1b0c'; // Your client id
-var client_secret = 'c71b46dbe44c4515bfd4aaf26b8c6ace'; // Your secret
-var redirect_uri = 'http://localhost:3000/callback'; // Your redirect uri
+var client_id = process.env.CLIENT_ID; // Your client id
+var client_secret = process.env.CLIENT_SECRET; // Your secret
+if (port == 3000) {
+  var redirect_uri = 'http://localhost:3000/callback'; // Your redirect uri
+} else {
+  var redirect_uri = 'http://gyst-dash.herokuapp.com/callback'; // Your redirect uri
+}
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
@@ -133,9 +137,9 @@ server.get('/callback', function(req, res) {
         // use the access token to access the Spotify Web API
         request.get(options, function(error, response, body) {});
 
-        // we can also pass the token to the browser to make requests from there
+        //we can also pass the token to the browser to make requests from there
         res.redirect(
-          'http://localhost:3000/#' +
+          'http://gyst-dash.herokuapp.com/#' +
             querystring.stringify({
               access_token: access_token,
               refresh_token: refresh_token

@@ -41,7 +41,7 @@ class App extends Component {
       authenticated: isAuthenticated()
     });
   }
-
+  
   render() {
     return (
       <React.Fragment>

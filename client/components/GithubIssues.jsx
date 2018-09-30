@@ -36,7 +36,7 @@ class GithubIssues extends Component {
     const request = axios.create({
       baseURL: 'https://api.github.com'
     });
-    request.get('repos/kakapo-2018/Personal-Dashboard').then(res => {
+    request.get('repos/kakapo-2018/GYST').then(res => {
       this.setState({
         userDatas: res.data
       });
@@ -65,7 +65,7 @@ class GithubIssues extends Component {
         </div>
         <Button
           className={classes.btn}
-          href="https://github.com/kakapo-2018/Personal-Dashboard"
+          href="https://github.com/kakapo-2018/GYST"
           target="_blank"
           variant="contained"
           color="primary"

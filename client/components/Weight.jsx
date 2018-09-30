@@ -75,19 +75,33 @@ class Weight extends React.Component {
 
   render() {
     const { classes } = this.props;
+    let show;
+
+    if(this.state.dataForChart) {
+      show = <Chart
+      chartType="LineChart"
+      width="100%"
+      height="100%"
+      data={this.state.dataForChart}
+      options={options}
+    />
+    }
+    else if (this.props.weight.weight) {
+      show = <Chart
+        chartType="LineChart"
+        width="100%"
+        height="100%"
+        data={this.props.weight.weight}
+        options={options}
+      />
+    } 
+
+
 
     return (
       <Card className={classes.card}>
         <div className="App">
-          {this.props.weight.weight && (
-            <Chart
-              chartType="LineChart"
-              width="100%"
-              height="100%"
-              data={this.props.weight.weight}
-              options={options}
-            />
-          )}
+          {show}
           <Input
             style={{ maxWidth: '45%', marginLeft: '20%', paddingTop: '30px' }}
             id="kg"
