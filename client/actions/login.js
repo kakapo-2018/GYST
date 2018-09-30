@@ -37,7 +37,6 @@ export function loginUser(creds) {
   return dispatch => {
     // We dispatch requestLogin to kickoff the call to the API
     dispatch(requestLogin(creds));
-
     return request('post', '/auth/login', creds)
       .then(response => {
         if (!response.ok) {
@@ -50,6 +49,29 @@ export function loginUser(creds) {
           const userInfo = saveUserToken(response.body.token);
           // Dispatch the success action
           dispatch(receiveLogin(userInfo));
+        }
+      })
+      .catch(err => dispatch(loginError(err.response.body.message)));
+  };
+}
+
+function receiveImage(image) {
+  return {
+    type: 'IMAGE_RECEIVED',
+    isFetching: false,
+    isAuthenticated: true,
+    image
+  };
+}
+
+export function getProfileImage(id) {
+  return dispatch => {
+    let obj = { id };
+    return request('get', '/image', obj)
+      .then(response => {
+        if (!response.ok) {
+        } else {
+          dispatch(receiveImage(response.body.image));
         }
       })
       .catch(err => dispatch(loginError(err.response.body.message)));

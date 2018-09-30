@@ -17,7 +17,7 @@ const wrapperStyles = {
 
 const styles = theme => ({
   card: {
-   padding: '3px',
+    padding: '3px',
     maxWidth: '100%',
     maxHeight: '100%',
     minWidth: '100%',
@@ -36,12 +36,11 @@ class WorldMap extends Component {
   handleClick(i) {
     this.setState({
       place:
-        this.state.place == "" 
+        this.state.place == ''
           ? this.state.place + i.properties.name
-          : this.state.place.includes(i.properties.name) 
-          ? this.state.place.replace(i.properties.name, "") 
-          
-          : this.state.place + ', ' + i.properties.name
+          : this.state.place.includes(i.properties.name)
+            ? this.state.place.replace(i.properties.name, '')
+            : this.state.place + ', ' + i.properties.name
     });
   }
   render() {
@@ -49,8 +48,6 @@ class WorldMap extends Component {
     return (
       <Card className={classes.card}>
         <div style={wrapperStyles}>
-          {console.log("state ",this.state)}
-          {console.log("first state ",this.state[0])}
           <ComposableMap
             projectionConfig={{
               scale: 205,
@@ -97,9 +94,7 @@ class WorldMap extends Component {
               </Geographies>
             </ZoomableGroup>
           </ComposableMap>
-          <p className={classes.name}>        
-          {this.state.place}
-          </p>
+          <p className={classes.name}>{this.state.place}</p>
         </div>
       </Card>
     );

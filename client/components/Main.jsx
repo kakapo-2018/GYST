@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 //React-grid
 import { Responsive, WidthProvider } from 'react-grid-layout';
+
 const ResponsiveGridLayout = WidthProvider(Responsive);
 const originalLayouts = getFromLS('layouts') || {};
 
@@ -49,8 +50,6 @@ class Main extends Component {
     };
   }
 
-  componentDidMount() {}
-
   onLayoutChange(layout, layouts) {
     saveToLS('layouts', layouts);
     this.setState({ layouts });
@@ -79,7 +78,7 @@ class Main extends Component {
               <SpotifyPlaybackWidget />
             </div>
           ) : (
-            <div />
+            <React.Fragment />
           )}
           {this.props.showCom.date ? (
             <div
@@ -89,14 +88,14 @@ class Main extends Component {
               <DateTime />
             </div>
           ) : (
-            <div />
+            <React.Fragment />
           )}
           {this.props.showCom.saving ? (
             <div key="3" data-grid={{ x: 0, y: 0, w: 2, h: 2 }}>
               <Gauge />
             </div>
           ) : (
-            <div />
+            <React.Fragment />
           )}
           {this.props.showCom.food ? (
             <div
@@ -115,7 +114,7 @@ class Main extends Component {
               <Fitness />
             </div>
           ) : (
-            <div />
+            <React.Fragment />
           )}
           {this.props.showCom.weather ? (
             <div
@@ -125,7 +124,7 @@ class Main extends Component {
               <Weather />
             </div>
           ) : (
-            <div />
+            <React.Fragment />
           )}
           {this.props.showCom.todo ? (
             <div
@@ -135,7 +134,7 @@ class Main extends Component {
               <TodoMain />
             </div>
           ) : (
-            <div />
+            <React.Fragment />
           )}
           {this.props.showCom.github ? (
             <div
@@ -145,7 +144,7 @@ class Main extends Component {
               <GithubIssues />
             </div>
           ) : (
-            <div />
+            <React.Fragment />
           )}
           {this.props.showCom.rss ? (
             <div
@@ -155,7 +154,7 @@ class Main extends Component {
               <RSS />
             </div>
           ) : (
-            <div />
+            <React.Fragment />
           )}
           {this.props.showCom.worldmap ? (
             <div
@@ -165,7 +164,7 @@ class Main extends Component {
               <WorldMap />
             </div>
           ) : (
-            <div />
+            <React.Fragment />
           )}
           {this.props.showCom.googlemap ? (
             <div
@@ -175,7 +174,7 @@ class Main extends Component {
               <MapContainer />
             </div>
           ) : (
-            <div />
+            <React.Fragment />
           )}
           {this.props.showCom.weight ? (
             <div
@@ -185,7 +184,7 @@ class Main extends Component {
               <Weight />
             </div>
           ) : (
-            <div />
+            <React.Fragment />
           )}
                     {this.props.showCom.spotifyplaylist ? (
             <div
@@ -205,7 +204,7 @@ class Main extends Component {
               <SocialFeed />
             </div>
           ) : (
-            <div />
+                <React.Fragment />
           )}
         </ResponsiveGridLayout>
       </main>

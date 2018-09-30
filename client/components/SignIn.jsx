@@ -73,6 +73,7 @@ class SignIn extends React.Component {
       username: username.trim(),
       password: password.trim()
     };
+    this.props.getProfileImage;
     this.props.loginUser(creds);
   }
 
