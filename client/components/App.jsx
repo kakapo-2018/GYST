@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import { isAuthenticated, getUserTokenInfo } from '../utils/auth';
 import { connect } from 'react-redux';
-//Keep for now
-import { Route, Link } from 'react-router-dom';
-import InternapAPI from './InternapAPI';
-import ExternalAPI from './ExternalAPI';
-// import RegisterForm from './RegisterForm';
-import Logout from './Logout';
 
 //Material-UI
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,6 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 //Components
 import PersistentDrawer from './Drawer';
 import NavBar from './NavBar';
+import Chat from './Chat';
 
 class App extends Component {
   constructor(props) {
@@ -46,10 +41,11 @@ class App extends Component {
       authenticated: isAuthenticated()
     });
   }
-
+  
   render() {
     return (
       <React.Fragment>
+        <Chat />
         <CssBaseline />
         {this.props.state.isAuthenticated && (
           <NavBar

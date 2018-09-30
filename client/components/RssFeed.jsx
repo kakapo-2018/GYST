@@ -142,7 +142,7 @@ class RSS extends Component {
                     <List>
                       {this.state.redditfeedItems.map(item => {
                         return (
-                          <ListItem>
+                          <ListItem key={item.id}>
                             <Typography component="p">
                               <a target="_blank" href={item.link}>
                                 {item.title}
@@ -181,7 +181,7 @@ class RSS extends Component {
                     <List>
                       {this.state.stufffeedItems.map(item => {
                         return (
-                          <ListItem>
+                          <ListItem key={item.id}>
                             <Typography component="p">
                               <a target="_blank" href={item.link}>
                                 {item.title}

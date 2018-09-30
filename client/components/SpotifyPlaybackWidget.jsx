@@ -32,8 +32,7 @@ const styles = theme => ({
   controls: {
     display: 'flex',
     alignItems: 'center',
-    paddingLeft: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit
+    paddingLeft: theme.spacing.unit
   },
   playIcon: {
     height: 38,
@@ -55,7 +54,7 @@ class SpotifyPlaybackWidget extends Component {
     }
     this.state = {
       loggedIn: token ? true : false,
-      nowPlaying: { name: 'Please login', albumArt: '' },
+      nowPlaying: { name: 'Listening to', albumArt: '' },
       paused: false
     };
   }
@@ -146,18 +145,23 @@ class SpotifyPlaybackWidget extends Component {
               {!this.state.loggedIn && (
                 <Button
                   variant="outlined"
-                  href="http://localhost:3000/login"
+                  href="http://gyst-dash.herokuapp.com/login"
                   className={classes.button}
                 >
                   Login to Spotify
                 </Button>
               )}
-              <Typography variant="headline">
-                {this.state.nowPlaying.name}
-              </Typography>
-              <Typography variant="subheading" color="textSecondary">
-                {this.state.nowPlaying.artist}
-              </Typography>
+              {this.state.loggedIn && (
+                <React.Fragment>
+                  <Typography variant="headline">
+                    {this.state.nowPlaying.name}
+                  </Typography>
+
+                  <Typography variant="subheading" color="textSecondary">
+                    {this.state.nowPlaying.artist}
+                  </Typography>
+                </React.Fragment>
+              )}
             </CardContent>
             <div className={classes.controls}>
               <IconButton

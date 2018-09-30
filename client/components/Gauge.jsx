@@ -98,11 +98,7 @@ class Gauge extends React.Component {
       >
         <CardContent
           style={{
-            padding: '10px',
-            maxWidth: '100%',
-            maxHeight: '100%',
-            minWidth: '100%',
-            minHeight: '100%'
+            padding: '2px'
           }}
         >
           {!this.props.loading && (

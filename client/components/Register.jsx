@@ -178,7 +178,7 @@ class Register extends React.Component {
               onClick={this.props.toggleLogin}
               className={this.state.classes.submit}
             >
-              Back
+              Back to sign in
             </Button>
           </Paper>
         </main>
