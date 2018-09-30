@@ -50,6 +50,7 @@
     "react-spotify-widgets": "^0.1.7",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
+    "request": "^2.88.0",
     "rss-parser": "^3.4.3",
     "socket.io": "^2.1.1",
     "sodium": "^2.0.3",
