@@ -20,6 +20,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 
 const drawerWidth = 240;
 
+var messageNotifications = '6';
+var Notifications = '6';
+
 const styles = theme => ({
   root: {
     width: '100%'
@@ -165,7 +168,7 @@ class Navbar extends Component {
           <IconButton color="inherit">
             <Badge
               className={classes.margin}
-              badgeContent={4}
+              badgeContent={messageNotifications}
               color="secondary"
             >
               <MailIcon />
@@ -177,7 +180,7 @@ class Navbar extends Component {
           <IconButton color="inherit">
             <Badge
               className={classes.margin}
-              badgeContent={11}
+              badgeContent={Notifications}
               color="secondary"
             >
               <NotificationsIcon />
@@ -234,7 +237,7 @@ class Navbar extends Component {
               <IconButton color="inherit">
                 <Badge
                   className={classes.margin}
-                  badgeContent={4}
+                  badgeContent={messageNotifications}
                   color="secondary"
                 >
                   <MailIcon />
@@ -243,7 +246,7 @@ class Navbar extends Component {
               <IconButton color="inherit">
                 <Badge
                   className={classes.margin}
-                  badgeContent={17}
+                  badgeContent={Notifications}
                   color="secondary"
                 >
                   <NotificationsIcon />

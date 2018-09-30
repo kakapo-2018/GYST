@@ -2,33 +2,13 @@ import React, { Component } from 'react';
 import { isAuthenticated, getUserTokenInfo } from '../utils/auth';
 import { connect } from 'react-redux';
 
-var lastmsg = '';
-
-//Sockets
-const io = require('socket.io-client');
-const socket = io.connect('http://localhost:3000');
-
-socket.on('chat message', function(msg) {
-  if (lastmsg != msg) {
-    addResponseMessage(msg);
-  }
-});
-
-//Chat
-import {
-  Widget,
-  addResponseMessage,
-  addLinkSnippet,
-  addUserMessage
-} from 'react-chat-widget';
-import 'react-chat-widget/lib/styles.css';
-
 //Material-UI
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 //Components
 import PersistentDrawer from './Drawer';
 import NavBar from './NavBar';
+import Chat from './Chat';
 
 class App extends Component {
   constructor(props) {
@@ -42,12 +22,6 @@ class App extends Component {
     this.refreshLoginState = this.refreshLoginState.bind(this);
   }
 
-  handleNewUserMessage = newMessage => {
-    lastmsg = newMessage;
-    console.log(`New message incomig! ${newMessage}`);
-    socket.emit('chat message', newMessage);
-  };
-
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
@@ -56,7 +30,6 @@ class App extends Component {
     this.setState({
       authenticated: isAuthenticated()
     });
-    addResponseMessage('Welcome to this awesome chat!');
   }
 
   logOut() {
@@ -72,8 +45,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Widget handleNewUserMessage={this.handleNewUserMessage} />
-
+        <Chat />
         <CssBaseline />
         {this.props.state.isAuthenticated && (
           <NavBar
