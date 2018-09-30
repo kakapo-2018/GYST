@@ -224,6 +224,16 @@ class Navbar extends Component {
                 <SearchIcon />
               </div>
               <Input
+                onKeyPress={ev => {
+                  if (ev.key === 'Enter') {
+                    var win = window.open(
+                      'http://www.google.com/search?q=' + ev.target.value,
+                      '_blank'
+                    );
+                    win.focus();
+                    ev.preventDefault();
+                  }
+                }}
                 placeholder="Search…"
                 disableUnderline
                 classes={{
