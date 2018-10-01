@@ -122,6 +122,7 @@ class Alarm extends React.Component {
   }
 
   handleChange(e) {
+    Console.log('handlechange!');
     console.log(e.target);
   }
 
