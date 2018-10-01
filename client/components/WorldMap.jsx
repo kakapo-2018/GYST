@@ -35,20 +35,23 @@ class WorldMap extends Component {
   };
 
   handleClick(i) {
-    this.setState({
-      clickArr: this.state.clickArr.concat(i),
-      place:
-        this.state.place == ''
-          ? this.state.place + i.properties.name
-          : this.state.place.includes(i.properties.name)
-            ? this.state.place.replace(', ' + i.properties.name, '')
-            : this.state.place + ', ' + i.properties.name
-    });
-    setTimeout(() => {
-      set('state', JSON.stringify(this.state.place));
-    }, 200);
+    this.setState(
+      {
+        clickArr: this.state.clickArr.concat(i),
+        place:
+          this.state.place == ''
+            ? this.state.place + i.properties.name
+            : this.state.place.includes(i.properties.name)
+              ? this.state.place.replace(i.properties.name, ' ')
+              : this.state.place + '  ' + i.properties.name
+      },
+      function() {
+        set('state', this.state.place);
+      }.bind(this)
+    );
   }
   render() {
+    set('state', this.state.place);
     const persistent = get('state') || '';
     const { classes } = this.props;
     return (
