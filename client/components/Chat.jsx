@@ -40,8 +40,6 @@ import 'react-chat-widget/lib/styles.css';
 
 class Chat extends Component {
   componentDidMount() {
-    console.log(this.props);
-
     //Initial message in chat
     addResponseMessage('Chat connected!');
   }

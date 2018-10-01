@@ -12,6 +12,15 @@ import CardContent from '@material-ui/core/CardContent';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 
+//Spinner
+import { ClipLoader } from 'react-spinners';
+
+import { css } from 'react-emotion';
+const override = css`
+  display: block;
+  margin: 5% 15%;
+`;
+
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit
@@ -96,141 +105,101 @@ class Gauge extends React.Component {
           minHeight: '100%'
         }}
       >
-        <CardContent
-          style={{
-            padding: '2px'
-          }}
-        >
-          {!this.props.loading && (
-            <LiquidFillGauge
-              style={{ margin: '0 auto' }}
-              width={radius * 2}
-              maxWidth={375}
-              height={radius * 2}
-              value={
-                (this.props.state.items.saved /
-                  this.props.state.items.savingGoal) *
-                100
-              }
-              percent="%"
-              textSize={1}
-              textOffsetX={0}
-              textOffsetY={0}
-              textRenderer={props => {
-                const value = Math.round(props.value);
-                const radius = Math.min(props.height / 2, props.width / 2);
-                const textPixels = (props.textSize * radius) / 2;
-                const valueStyle = {
-                  fontSize: textPixels
-                };
-                const percentStyle = {
-                  fontSize: textPixels * 0.6
-                };
-
-                return (
-                  <tspan>
-                    <tspan className="value" style={valueStyle}>
-                      {value >= 0 ? value : 0}
-                    </tspan>
-                    <tspan style={percentStyle}>{props.percent}</tspan>
-                  </tspan>
-                );
-              }}
-              riseAnimation
-              waveAnimation
-              waveFrequency={2}
-              waveAmplitude={1}
-              gradient
-              gradientStops={gradientStops}
-              circleStyle={{
-                fill: fillColor
-              }}
-              waveStyle={{
-                fill: fillColor
-              }}
-              textStyle={{
-                fill: color('#444').toString(),
-                fontFamily: 'Arial'
-              }}
-              waveTextStyle={{
-                fill: color('#fff').toString(),
-                fontFamily: 'Arial'
-              }}
-            />
-          )}
-          {this.props.loading && (
-            <LiquidFillGauge
-              style={{ margin: '0 auto' }}
-              width={radius * 2}
-              maxWidth={375}
-              height={radius * 2}
-              value={0}
-              percent="%"
-              textSize={1}
-              textOffsetX={0}
-              textOffsetY={0}
-              textRenderer={props => {
-                const value = Math.round(props.value);
-                const radius = Math.min(props.height / 2, props.width / 2);
-                const textPixels = (props.textSize * radius) / 2;
-                const valueStyle = {
-                  fontSize: textPixels
-                };
-                const percentStyle = {
-                  fontSize: textPixels * 0.6
-                };
-
-                return (
-                  <tspan>
-                    <tspan className="value" style={valueStyle}>
-                      {value >= 0 ? value : 0}
-                    </tspan>
-                    <tspan style={percentStyle}>{props.percent}</tspan>
-                  </tspan>
-                );
-              }}
-              riseAnimation
-              waveAnimation
-              waveFrequency={2}
-              waveAmplitude={1}
-              gradient
-              gradientStops={gradientStops}
-              circleStyle={{
-                fill: fillColor
-              }}
-              waveStyle={{
-                fill: fillColor
-              }}
-              textStyle={{
-                fill: color('#444').toString(),
-                fontFamily: 'Arial'
-              }}
-              waveTextStyle={{
-                fill: color('#fff').toString(),
-                fontFamily: 'Arial'
-              }}
-            />
-          )}
-        </CardContent>
-        <CardActions style={{ paddingBottom: '8px' }}>
-          <Input
-            style={{ maxWidth: '45%' }}
-            type="number"
-            name="value"
-            placeholder={'Saved: $' + this.props.state.items.saved}
-            onChange={this.handleChange}
+        <div className="sweet-loading">
+          <ClipLoader
+            className={override}
+            sizeUnit={'px'}
+            size={250}
+            color={'#3f51b5'}
+            loading={this.props.loading}
           />
-          <Input
-            style={{ maxWidth: '45%' }}
-            type="number"
-            name="savingGoal"
-            placeholder={'Goal: $' + this.props.state.items.savingGoal}
-            onChange={this.handleChange}
-          />
-          <Button variant="contained" color="primary" onClick={this.save}>
-            Save
-          </Button>
-        </CardActions>
+        </div>
+
+        {!this.props.loading &&
+          this.props.state.items.saved && (
+            <React.Fragment>
+              <CardContent
+                style={{
+                  padding: '2px'
+                }}
+              >
+                <LiquidFillGauge
+                  style={{ margin: '0 auto' }}
+                  width={radius * 2}
+                  maxWidth={375}
+                  height={radius * 2}
+                  value={
+                    (this.props.state.items.saved /
+                      this.props.state.items.savingGoal) *
+                    100
+                  }
+                  percent="%"
+                  textSize={1}
+                  textOffsetX={0}
+                  textOffsetY={0}
+                  textRenderer={props => {
+                    const value = Math.round(props.value);
+                    const radius = Math.min(props.height / 2, props.width / 2);
+                    const textPixels = (props.textSize * radius) / 2;
+                    const valueStyle = {
+                      fontSize: textPixels
+                    };
+                    const percentStyle = {
+                      fontSize: textPixels * 0.6
+                    };
+
+                    return (
+                      <tspan>
+                        <tspan className="value" style={valueStyle}>
+                          {value >= 0 ? value : 0}
+                        </tspan>
+                        <tspan style={percentStyle}>{props.percent}</tspan>
+                      </tspan>
+                    );
+                  }}
+                  riseAnimation
+                  waveAnimation
+                  waveFrequency={2}
+                  waveAmplitude={1}
+                  gradient
+                  gradientStops={gradientStops}
+                  circleStyle={{
+                    fill: fillColor
+                  }}
+                  waveStyle={{
+                    fill: fillColor
+                  }}
+                  textStyle={{
+                    fill: color('#444').toString(),
+                    fontFamily: 'Arial'
+                  }}
+                  waveTextStyle={{
+                    fill: color('#fff').toString(),
+                    fontFamily: 'Arial'
+                  }}
+                />
+              </CardContent>
+              <CardActions style={{ paddingBottom: '8px' }}>
+                <Input
+                  style={{ maxWidth: '45%' }}
+                  type="number"
+                  name="value"
+                  placeholder={'Saved: $' + this.props.state.items.saved}
+                  onChange={this.handleChange}
+                />
+                <Input
+                  style={{ maxWidth: '45%' }}
+                  type="number"
+                  name="savingGoal"
+                  placeholder={'Goal: $' + this.props.state.items.savingGoal}
+                  onChange={this.handleChange}
+                />
+                <Button variant="contained" color="primary" onClick={this.save}>
+                  Save
+                </Button>
+              </CardActions>
+            </React.Fragment>
+          )}
       </Card>
     );
   }
