@@ -66,8 +66,8 @@ class Alarm extends React.Component {
       timeArr: []
     };
     this.handleAddAlarm = this.handleAddAlarm.bind(this);
-
     this.handleChange = this.handleChange.bind(this);
+    this.handleAddEntry = this.handleAddEntry.bind(this);
   }
 
   handleCarry(digit) {
@@ -83,36 +83,41 @@ class Alarm extends React.Component {
   }
 
   handleAddAlarm() {
-    console.log(this.refs);
+    //console.log(this.refs);
 
     console.log('clicked');
     var date = new Date();
-    console.log(this.refs.hourDigit);
+    //console.log(this.refs.hourDigit);
     date.setHours(this.refs.hourDigit.props.val);
     date.setMinutes(this.refs.minuteDigit.props.val);
     console.log(date);
-    this.setState({
-      hours: hours,
-      minute: minute
-    });
-    console.log(this.state);
-
+    // this.setState({
+    //   hours: hours,
+    //   minute: minute
+    // });
     // this.refs.alarmList.handleAddEntry({time: date, comment: this.refs.comment.getDOMNode().value});
     this.handleAddEntry(this.state.hours, this.state.minute);
   }
 
-  handleAddEntry(hours, minute) {
-    console.log('I am here');
-    console.log(hours, minute);
+  //   handleAddEntry(hours, minute) {
+  //     //console.log('I am here');
+  //     //console.log(hours, minute);
 
-    //var state = this.state;
-    let timeArr = [];
-    timeArr.push(hours, minute);
-    // this.setState(state);
-    console.log(timeArr);
-    this.setState({
-      timeArr: timeArr
-    });
+  //     //var state = this.state;
+  //     let timeArr = [];
+  //     timeArr.push(hours, minute);
+  //     // this.setState(state);
+  //     console.log(timeArr);
+  //     this.setState({
+  //       timeArr: timeArr
+  //     });
+  //   }
+
+  handleAddEntry(entry) {
+    console.log('I am here');
+    var state = this.state;
+    state.data.push(entry);
+    this.setState(state);
   }
 
   handleAddAudio(audio) {
