@@ -82,22 +82,20 @@ class Alarm extends React.Component {
     this.refs.bell.ring();
   }
 
-  //
+  //get the input value here
   handleAddAlarm() {
     var date = new Date();
     //date.setHours(this.refs.hourDigit);
     //date.setMinutes(this.refs.minuteDigit);
-    console.log(this.refs.hourDigit);
-
-    // var date = new Date();
+    // console.log(this.refs.hourDigit);
     //console.log(this.refs.hourDigit);
     // date.setHours(this.refs.hourDigit.state.value);
     // date.setMinutes(this.refs.minuteDigit.state.value;
     // console.log(date);
     // this.setState({
-    //   hours: hours,
-    //   minute: minute
-    // });
+    //    hours: hours,
+    //    minute: minute
+    //  });
     // this.refs.alarmList.handleAddEntry({time: date, comment: this.refs.comment.getDOMNode().value});
     this.handleAddEntry(this.state.hours, this.state.minute);
   }
@@ -119,7 +117,7 @@ class Alarm extends React.Component {
   handleAddEntry(entry) {
     var state = this.state;
     console.log(entry);
-    state.data.push(entry);
+    state.data.concat(entry);
     console.log(state);
     this.setState(state);
   }
@@ -146,7 +144,7 @@ class Alarm extends React.Component {
             <AlarmDigit
               numberSystem={24}
               val={date.getHours()}
-              ref="hourDigit"
+              myRef="hourDigit"
               handleStopIncrease={this.handleStopIncrease}
               handleChange={this.handleChange}
             />
@@ -186,7 +184,7 @@ class Alarm extends React.Component {
             data={this.state.timeArr}
             hours={this.state.hours}
             minute={this.state.minute}
-            ref="alarmList"
+            myRef="alarmList"
             onRing={this.handleRing}
           />
         </div>
