@@ -20,7 +20,7 @@ import SwapVert from '@material-ui/icons/SwapVert';
 import LibraryMusic from '@material-ui/icons/LibraryMusic';
 import LinkedCamera from '@material-ui/icons/LinkedCamera';
 import Palette from '@material-ui/icons/Palette';
-
+import Language from '@material-ui/icons/Language';
 
 const styles = theme => ({
   card: {
@@ -52,7 +52,7 @@ const styles = theme => ({
     height: 550,
     marginTop: theme.spacing.unit * 3,
     overflowY: 'auto',
-    overflowX: 'hidden',
+    overflowX: 'hidden'
   }
 });
 
@@ -178,6 +178,15 @@ class Sidebar extends React.Component {
               <SwapVert />
             </Icon>
             <Typography className={classes.sub}>Weight Trackr</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('language')}
+          >
+            <Icon className={classes.icon}>
+              <Language />
+            </Icon>
+            <Typography className={classes.sub}>Language</Typography>
           </Button>
           <Button
             className={classes.button}
