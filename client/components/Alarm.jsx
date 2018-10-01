@@ -51,7 +51,8 @@ class Alarm extends React.Component {
             bells: bells,
             hours: '',
             minute: '',
-            timeArr: []
+            timeArr: [],
+
     }
     this.handleAddAlarm = this.handleAddAlarm.bind(this)
     }
@@ -70,11 +71,14 @@ class Alarm extends React.Component {
 
 
     handleAddAlarm(){
+        console.log(this.refs);
+        
         console.log("clicked")
         var date = new Date();
-         let hours = this.refs.hourDigit.props.val
-         let minute = this.refs.minuteDigit.props.val
-         console.log(this.refs.alarmList)
+        console.log(this.refs.hourDigit)
+        date.setHours(this.refs.hourDigit.props.val)
+        date.setMinutes(this.refs.minuteDigit.props.val)
+         console.log(date)
         this.setState({
             hours: hours,
             minute:minute

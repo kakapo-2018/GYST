@@ -50,6 +50,7 @@ class AlarmDigit extends React.Component {
         this.handleStartIncrease = this.handleStartIncrease.bind(this)
         this.handleStopDecrease = this.handleStopDecrease.bind(this)
         this.handleStartDecrease = this.handleStartDecrease.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
     
     getInterval(counter){
