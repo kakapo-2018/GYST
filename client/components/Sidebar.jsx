@@ -21,6 +21,7 @@ import LibraryMusic from '@material-ui/icons/LibraryMusic';
 import LinkedCamera from '@material-ui/icons/LinkedCamera';
 import Palette from '@material-ui/icons/Palette';
 import Language from '@material-ui/icons/Language';
+import Email from '@material-ui/icons/Email';
 
 const styles = theme => ({
   card: {
@@ -187,6 +188,15 @@ class Sidebar extends React.Component {
               <Language />
             </Icon>
             <Typography className={classes.sub}>Language</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('email2')}
+          >
+            <Icon className={classes.icon}>
+              <Email />
+            </Icon>
+            <Typography className={classes.sub}>Gmail</Typography>
           </Button>
           <Button
             className={classes.button}
