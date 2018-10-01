@@ -19,29 +19,18 @@ const override = css`
 `;
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper
-  },
-  paper: {
-    position: 'absolute',
-    width: theme.spacing.unit * 50,
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing.unit * 4
-  },
-  button: {
-    margin: theme.spacing.unit
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
-  },
-  extendedIcon: {
-    marginRight: theme.spacing.unit
-  },
   media: {
     marginTop: '50px'
+  },
+  card: {
+    maxHeight: '100%',
+    minHeight: '100%',
+    overflow: 'auto'
+  },
+  appbar: {
+    position: 'fixed',
+    borderTopLeftRadius: '5px',
+    borderTopRightRadius: '5px'
   }
 });
 
@@ -109,22 +98,9 @@ class RSS extends Component {
     const { value } = this.state;
 
     return (
-      <Card
-        style={{
-          maxHeight: '100%',
-          minHeight: '100%',
-          overflow: 'auto'
-        }}
-      >
+      <Card className={classes.card}>
         <React.Fragment>
-          <AppBar
-            position="static"
-            style={{
-              position: 'fixed',
-              borderTopLeftRadius: '5px',
-              borderTopRightRadius: '5px'
-            }}
-          >
+          <AppBar position="static" className={classes.appbar}>
             <Tabs value={value} onChange={this.handleChange}>
               <Tab label="Reddit" />
               <Tab label="Stuff.co.nz" />
@@ -132,80 +108,78 @@ class RSS extends Component {
             </Tabs>
           </AppBar>
 
-          <div className={classes.root}>
-            {value === 0 && (
-              <TabContainer>
-                <React.Fragment>
-                  <CardMedia
-                    component="img"
-                    className={classes.media}
-                    height="110"
-                    image="rss.jpg"
+          {value === 0 && (
+            <TabContainer>
+              <React.Fragment>
+                <CardMedia
+                  component="img"
+                  className={classes.media}
+                  height="110"
+                  image="rss.jpg"
+                />
+
+                <Card className={classes.card}>
+                  <ClipLoader
+                    className={override}
+                    sizeUnit={'px'}
+                    size={250}
+                    color={'#3f51b5'}
+                    loading={this.state.loading}
                   />
 
-                  <Card className={classes.card}>
-                    <ClipLoader
-                      className={override}
-                      sizeUnit={'px'}
-                      size={250}
-                      color={'#3f51b5'}
-                      loading={this.state.loading}
-                    />
+                  <List>
+                    {this.state.redditfeedItems.map(item => {
+                      return (
+                        <ListItem key={item.id}>
+                          <Typography component="p">
+                            <a target="_blank" href={item.link}>
+                              {item.title}
+                            </a>
+                          </Typography>
+                        </ListItem>
+                      );
+                    })}
+                  </List>
+                </Card>
+              </React.Fragment>
+            </TabContainer>
+          )}
+          {value === 1 && (
+            <TabContainer>
+              <React.Fragment>
+                <CardMedia
+                  component="img"
+                  className={classes.media}
+                  height="110"
+                  image="rss.jpg"
+                />
 
-                    <List>
-                      {this.state.redditfeedItems.map(item => {
-                        return (
-                          <ListItem key={item.id}>
-                            <Typography component="p">
-                              <a target="_blank" href={item.link}>
-                                {item.title}
-                              </a>
-                            </Typography>
-                          </ListItem>
-                        );
-                      })}
-                    </List>
-                  </Card>
-                </React.Fragment>
-              </TabContainer>
-            )}
-            {value === 1 && (
-              <TabContainer>
-                <React.Fragment>
-                  <CardMedia
-                    component="img"
-                    className={classes.media}
-                    height="110"
-                    image="rss.jpg"
+                <Card className={classes.card}>
+                  <ClipLoader
+                    className={override}
+                    sizeUnit={'px'}
+                    size={250}
+                    color={'#3f51b5'}
+                    loading={this.state.loading}
                   />
-
-                  <Card className={classes.card}>
-                    <ClipLoader
-                      className={override}
-                      sizeUnit={'px'}
-                      size={250}
-                      color={'#3f51b5'}
-                      loading={this.state.loading}
-                    />
-                    <List>
-                      {this.state.stufffeedItems.map(item => {
-                        return (
-                          <ListItem key={item.id}>
-                            <Typography component="p">
-                              <a target="_blank" href={item.link}>
-                                {item.title}
-                              </a>
-                            </Typography>
-                          </ListItem>
-                        );
-                      })}
-                    </List>
-                  </Card>
-                </React.Fragment>
-              </TabContainer>
-            )}
-            {value === 2 && <TabContainer>Item Three</TabContainer>}
-          </div>
+                  <List>
+                    {this.state.stufffeedItems.map(item => {
+                      return (
+                        <ListItem key={item.id}>
+                          <Typography component="p">
+                            <a target="_blank" href={item.link}>
+                              {item.title}
+                            </a>
+                          </Typography>
+                        </ListItem>
+                      );
+                    })}
+                  </List>
+                </Card>
+              </React.Fragment>
+            </TabContainer>
+          )}
+          {value === 2 && <TabContainer>Item Three</TabContainer>}
         </React.Fragment>
       </Card>
     );
