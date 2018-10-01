@@ -40,10 +40,17 @@ class WorldMap extends Component {
       place:
         this.state.place == ''
           ? this.state.place + i.properties.name
-          : this.state.place.includes(i.properties.name)
-            ? this.state.place.replace(', ' + i.properties.name, '')
-            : this.state.place + ', ' + i.properties.name
+          : this.state.place.includes(i.properties.name) &&
+            this.state.place.split(',').length == 1
+            ? this.state.place.replace(i.properties.name, ' ')
+            : this.state.place.includes(i.properties.name) &&
+              this.state.place.split(',').length >= 2
+              ? this.state.place.replace(', ' + i.properties.name, ' ')
+              : this.state.place + ', ' + i.properties.name
     });
+
+    console.log(this.state.place.split(',').length);
+
     setTimeout(() => {
       set('state', JSON.stringify(this.state.place));
     }, 200);
