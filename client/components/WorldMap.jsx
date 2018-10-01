@@ -30,7 +30,7 @@ const styles = theme => ({
 
 class WorldMap extends Component {
   state = {
-    place: '',
+    place: get('state') || '',
     clickArr: []
   };
 
