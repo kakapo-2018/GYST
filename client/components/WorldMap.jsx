@@ -35,27 +35,23 @@ class WorldMap extends Component {
   };
 
   handleClick(i) {
-    this.setState({
-      clickArr: this.state.clickArr.concat(i),
-      place:
-        this.state.place == ''
-          ? this.state.place + i.properties.name
-          : this.state.place.includes(i.properties.name) &&
-            this.state.place.split(',').length == 1
-            ? this.state.place.replace(i.properties.name, ' ')
-            : this.state.place.includes(i.properties.name) &&
-              this.state.place.split(',').length >= 2
-              ? this.state.place.replace(', ' + i.properties.name, ' ')
-              : this.state.place + ' ' + i.properties.name
-    });
-
-    console.log(this.state.place);
-
-    setTimeout(() => {
-      set('state', this.state.place);
-    }, 200);
+    this.setState(
+      {
+        clickArr: this.state.clickArr.concat(i),
+        place:
+          this.state.place == ''
+            ? this.state.place + i.properties.name
+            : this.state.place.includes(i.properties.name)
+              ? this.state.place.replace(i.properties.name, ' ')
+              : this.state.place + '  ' + i.properties.name
+      },
+      function() {
+        set('state', this.state.place);
+      }.bind(this)
+    );
   }
   render() {
+    set('state', this.state.place);
     const persistent = get('state') || '';
     const { classes } = this.props;
     return (
@@ -125,7 +121,7 @@ class WorldMap extends Component {
               </Geographies>
             </ZoomableGroup>
           </ComposableMap>
-          <p className={classes.name}>{this.state.place}</p>
+          <p className={classes.name}>{persistent}</p>
         </div>
       </Card>
     );
