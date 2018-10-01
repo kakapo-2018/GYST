@@ -24,6 +24,8 @@ import MapContainer from './MapContainer';
 import GithubIssues from './GithubIssues';
 import Weight from './Weight';
 import SocialFeed from './SocialFeed';
+import Language from './Language';
+import Gmail2 from './GmailV2';
 import ColorSetting from './ColorSetting';
 
 const drawerWidth = 240;
@@ -260,6 +262,7 @@ class Main extends Component {
           ) : (
             <React.Fragment />
           )}
+
           {this.props.showCom.color ? (
             <div
               key="15"
@@ -279,6 +282,31 @@ class Main extends Component {
           ) : (
             <React.Fragment />
           )}
+          {this.props.showCom.Gmail2 ? (
+            <div
+              key="16"
+              data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 2, minH: 1 }}
+            >
+              <Gmail2 />
+            </div>
+          ) : (
+            <React.Fragment />
+          )}
+          <div
+            key="17"
+            data-grid={{
+              x: 0,
+              y: 0,
+              w: 4,
+              h: 2,
+              minW: 4,
+              maxW: 4,
+              maxH: 2,
+              minH: 2
+            }}
+          >
+            <Language />
+          </div>
         </ResponsiveGridLayout>
       </main>
     );

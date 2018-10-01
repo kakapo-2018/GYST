@@ -21,7 +21,7 @@ const styles = theme => ({
     margin: '0%'
   },
   btn: {
-    margin:'2% 5% 0% 17%'
+    margin: '6% 5% 0% 24%'
   }
 });
 
@@ -36,7 +36,7 @@ class GithubIssues extends Component {
     const request = axios.create({
       baseURL: 'https://api.github.com'
     });
-    request.get('repos/kakapo-2018/Personal-Dashboard').then(res => {
+    request.get('repos/kakapo-2018/GYST').then(res => {
       this.setState({
         userDatas: res.data
       });
@@ -51,27 +51,26 @@ class GithubIssues extends Component {
           minHeight: '100%'
         }}
       >
-        {' '}
+        <header className={classes.header} />
+        <div className={classes.box}>
+          <img className={classes.img} src="./github.png" />
 
-          <header className={classes.header} />
-          <div className={classes.box}>
-            <img className={classes.img} src="./github.png" />
-
-            <div className={classes.repo}>{this.state.userDatas.name}</div>
-            <div className={classes.issue}>
-              <div className={classes.count}>
-                Issues:
-                {this.state.userDatas.open_issues_count}
-              </div>
+          <div className={classes.repo}>{this.state.userDatas.name}</div>
+          <div className={classes.issue}>
+            <div className={classes.count}>
+              Issues:
+              {this.state.userDatas.open_issues_count}
             </div>
           </div>
-          <Button
+        </div>
+        <Button
           className={classes.btn}
-          href="https://github.com/kakapo-2018/Personal-Dashboard"
+          href="https://github.com/kakapo-2018/GYST"
           target="_blank"
-          variant="contained" color="primary"
+          variant="contained"
+          color="primary"
         >
-        Go to github
+          Go to github
         </Button>
       </Paper>
     );
