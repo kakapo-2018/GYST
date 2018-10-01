@@ -8,41 +8,20 @@ import { ListItem } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Modal from '@material-ui/core/Modal';
-import Button from '@material-ui/core/Button';
 
-function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
+//Spinner
+import { ClipLoader } from 'react-spinners';
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`
-  };
-}
+import { css } from 'react-emotion';
+const override = css`
+  display: block;
+  margin: 5% 22%;
+`;
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-    maxWidth: '100%',
-    maxHeight: '85%',
-    minWidth: '100%',
-    minHeight: '85%',
-    overflow: 'auto'
+    backgroundColor: theme.palette.background.paper
   },
   paper: {
     position: 'absolute',
@@ -60,8 +39,19 @@ const styles = theme => ({
   },
   extendedIcon: {
     marginRight: theme.spacing.unit
+  },
+  media: {
+    marginTop: '50px'
   }
 });
+
+function TabContainer(props) {
+  return (
+    <Typography component="div" style={{ padding: 8 * 3 }}>
+      {props.children}
+    </Typography>
+  );
+}
 
 class RSS extends Component {
   constructor(props) {
@@ -69,8 +59,8 @@ class RSS extends Component {
     this.state = {
       redditfeedItems: [],
       stufffeedItems: [],
-      open: false,
-      value: 0
+      value: 0,
+      loading: true
     };
   }
 
@@ -109,6 +99,8 @@ class RSS extends Component {
       stufffeed.items.forEach(item => {
         this.setState({ stufffeedItems: stufffeed.items });
       });
+
+      this.setState({ loading: false });
     })();
   };
 
@@ -117,28 +109,49 @@ class RSS extends Component {
     const { value } = this.state;
 
     return (
-      <React.Fragment>
-        <AppBar position="static">
-          <Tabs value={value} onChange={this.handleChange}>
-            <Tab label="Reddit" />
-            <Tab label="Stuff.co.nz" />
-            <Tab label="Item Three" />
-          </Tabs>
-        </AppBar>
+      <Card
+        style={{
+          maxHeight: '100%',
+          minHeight: '100%',
+          overflow: 'auto'
+        }}
+      >
+        <React.Fragment>
+          <AppBar
+            position="static"
+            style={{
+              position: 'fixed',
+              borderTopLeftRadius: '5px',
+              borderTopRightRadius: '5px'
+            }}
+          >
+            <Tabs value={value} onChange={this.handleChange}>
+              <Tab label="Reddit" />
+              <Tab label="Stuff.co.nz" />
+              <Tab label="Item Three" />
+            </Tabs>
+          </AppBar>
 
-        <div className={classes.root}>
-          {value === 0 && (
-            <TabContainer>
-              <React.Fragment>
-                <CardMedia
-                  component="img"
-                  className={classes.media}
-                  height="110"
-                  image="rss.jpg"
-                  title="Contemplative Reptile"
-                />
-                <Card className={classes.card}>
-                  <div>
+          <div className={classes.root}>
+            {value === 0 && (
+              <TabContainer>
+                <React.Fragment>
+                  <CardMedia
+                    component="img"
+                    className={classes.media}
+                    height="110"
+                    image="rss.jpg"
+                  />
+
+                  <Card className={classes.card}>
+                    <ClipLoader
+                      className={override}
+                      sizeUnit={'px'}
+                      size={250}
+                      color={'#3f51b5'}
+                      loading={this.state.loading}
+                    />
+
                     <List>
                       {this.state.redditfeedItems.map(item => {
                         return (
@@ -152,32 +165,28 @@ class RSS extends Component {
                         );
                       })}
                     </List>
-                  </div>
-                </Card>
-              </React.Fragment>
-            </TabContainer>
-          )}
-          {value === 1 && (
-            <TabContainer>
-              <React.Fragment>
-                <CardMedia
-                  component="img"
-                  className={classes.media}
-                  height="110"
-                  image="rss.jpg"
-                  title="Contemplative Reptile"
-                />
-                <Card
-                  className={classes.card}
-                  style={{
-                    maxWidth: '100%',
-                    maxHeight: '100%',
-                    minWidth: '100%',
-                    minHeight: '100%',
-                    overflow: 'auto'
-                  }}
-                >
-                  <div>
+                  </Card>
+                </React.Fragment>
+              </TabContainer>
+            )}
+            {value === 1 && (
+              <TabContainer>
+                <React.Fragment>
+                  <CardMedia
+                    component="img"
+                    className={classes.media}
+                    height="110"
+                    image="rss.jpg"
+                  />
+
+                  <Card className={classes.card}>
+                    <ClipLoader
+                      className={override}
+                      sizeUnit={'px'}
+                      size={250}
+                      color={'#3f51b5'}
+                      loading={this.state.loading}
+                    />
                     <List>
                       {this.state.stufffeedItems.map(item => {
                         return (
@@ -191,14 +200,14 @@ class RSS extends Component {
                         );
                       })}
                     </List>
-                  </div>
-                </Card>
-              </React.Fragment>
-            </TabContainer>
-          )}
-          {value === 2 && <TabContainer>Item Three</TabContainer>}
-        </div>
-      </React.Fragment>
+                  </Card>
+                </React.Fragment>
+              </TabContainer>
+            )}
+            {value === 2 && <TabContainer>Item Three</TabContainer>}
+          </div>
+        </React.Fragment>
+      </Card>
     );
   }
 }
