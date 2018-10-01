@@ -94,12 +94,15 @@ class Alarm extends React.Component {
       minutes: this.state.minuteDigit
     };
     this.setState({
-      timeArr: (this.state.timeArr = []
-        ? this.state.timeArr.concat(initialAlarmObj)
-        : this.state.timeArr.concat(alarmObj))
+      timeArr:
+        alarmObj.hours == 0 && alarmObj.minutes == 0
+          ? this.state.timeArr.concat(initialAlarmObj)
+          : this.state.timeArr.concat(alarmObj)
     });
-    console.log(this.refs.hourDigit.props.val);
-    console.log(this.refs.minuteDigit.props.val);
+    // console.log(this.refs.hourDigit.props.val);
+    // console.log(this.refs.minuteDigit.props.val);
+    console.log(initialAlarmObj);
+    console.log(alarmObj);
   }
 
   handleAddAudio(audio) {
