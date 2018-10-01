@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getProfileImage } from '../actions/login';
 //React-grid
 import { Responsive, WidthProvider } from 'react-grid-layout';
-
+import { get, set } from '../utils/localStorage';
 const ResponsiveGridLayout = WidthProvider(Responsive);
 const originalLayouts = getFromLS('layouts') || {};
 
@@ -50,7 +50,7 @@ class Main extends Component {
     super(props);
     this.state = {
       layouts: JSON.parse(JSON.stringify(originalLayouts)),
-      background: 'white'
+      background: get('bgcolor') || 'white'
     };
   }
 
@@ -70,12 +70,12 @@ class Main extends Component {
   };
 
   render() {
+    set('bgcolor', this.state.background);
+
     const { classes, theme } = this.props;
+    const bgColor = get('bgcolor');
     return (
-      <main
-        style={{ backgroundColor: this.state.background }}
-        className={classes.content}
-      >
+      <main style={{ backgroundColor: bgColor }} className={classes.content}>
         <div className={classes.toolbar} />
         <ResponsiveGridLayout
           className="layout"
