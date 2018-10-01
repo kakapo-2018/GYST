@@ -40,8 +40,6 @@ import 'react-chat-widget/lib/styles.css';
 
 class Chat extends Component {
   componentDidMount() {
-    console.log(this.props);
-
     //Initial message in chat
     addResponseMessage('Chat connected!');
   }
@@ -58,7 +56,6 @@ class Chat extends Component {
   render() {
     return (
       <Widget
-        ref="jeff"
         subtitle="GYST Messenger"
         profileAvatar={imgurl}
         titleAvatar={this.props.titleAvatar}
