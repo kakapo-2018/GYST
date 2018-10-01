@@ -37,7 +37,12 @@ class Chat extends Component {
   };
 
   render() {
-    return <Widget handleNewUserMessage={this.handleNewUserMessage} />;
+    return (
+      <Widget
+        subtitle="GYST Messenger"
+        handleNewUserMessage={this.handleNewUserMessage}
+      />
+    );
   }
 }
 
