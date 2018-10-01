@@ -79,37 +79,37 @@ class WorldMap extends Component {
                           }}
                           geography={geography}
                           projection={projection}
-                          style={
-                            !persistent.includes(geography.properties.name)
-                              ? {
-                                  default: {
-                                    fill: '#ECEFF1',
-                                    stroke: '#607D8B',
-                                    strokeWidth: 0.75,
-                                    outline: 'none'
-                                  },
-                                  pressed: {
-                                    fill: '#607D8B',
-                                    stroke: 'grey',
-                                    strokeWidth: 0.75,
-                                    outline: 'none'
-                                  }
-                                }
-                              : {
-                                  default: {
-                                    fill: '#607D8B',
-                                    stroke: '#607D8B',
-                                    strokeWidth: 0.75,
-                                    outline: 'none'
-                                  },
-                                  pressed: {
-                                    fill: '#607D8B',
-                                    stroke: 'grey',
-                                    strokeWidth: 0.75,
-                                    outline: 'none'
-                                  }
-                                }
-                          }
+                          // style={
+                          //   !persistent.includes(geography.properties.name)
+                          //     ? {
+                          //         default: {
+                          //           fill: '#ECEFF1',
+                          //           stroke: '#607D8B',
+                          //           strokeWidth: 0.75,
+                          //           outline: 'none'
+                          //         },
+                          //         pressed: {
+                          //           fill: '#607D8B',
+                          //           stroke: 'grey',
+                          //           strokeWidth: 0.75,
+                          //           outline: 'none'
+                          //         }
+                          //       }
+                          //     : {
+                          //         default: {
+                          //           fill: '#607D8B',
+                          //           stroke: '#607D8B',
+                          //           strokeWidth: 0.75,
+                          //           outline: 'none'
+                          //         },
+                          //         pressed: {
+                          //           fill: '#607D8B',
+                          //           stroke: 'grey',
+                          //           strokeWidth: 0.75,
+                          //           outline: 'none'
+                          //         }
+                          //       }
+                          // }
                         />
                       )
                   )
