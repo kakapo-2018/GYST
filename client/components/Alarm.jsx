@@ -86,52 +86,14 @@ class Alarm extends React.Component {
   //get the input value here
   handleAddAlarm() {
     var date = new Date();
-    //date.setHours(this.refs.hourDigit);
-    //date.setMinutes(this.refs.minuteDigit);
-    // console.log(this.refs.hourDigit);
-    //console.log(this.refs.hourDigit);
-    // date.setHours(this.refs.hourDigit.state.value);
-    // date.setMinutes(this.refs.minuteDigit.state.value;
-    // console.log(date);
-    // this.setState({
-    //    hours: hours,
-    //    minute: minute
-    //  });
-    // this.refs.alarmList.handleAddEntry({time: date, comment: this.refs.comment.getDOMNode().value});
-    // //this.handleAddEntry(this.state.hours, this.state.minute);
-    // this.state.timeArr.concat({
-    //   hours: this.state.hourDigit,
-    //   minutes: this.state.minuteDigit
-    // });
+    let alarmObj = {
+      hours: this.state.hourDigit,
+      minutes: this.state.minuteDigit
+    };
     this.setState({
-      timeArr: {
-        hours: this.state.hourDigit,
-        minutes: this.state.minuteDigit
-      }
+      timeArr: this.state.timeArr.concat(alarmObj)
     });
   }
-
-  //   handleAddEntry(hours, minute) {
-  //     //console.log('I am here');
-  //     //console.log(hours, minute);
-
-  //     //var state = this.state;
-  //     let timeArr = [];
-  //     timeArr.push(hours, minute);
-  //     // this.setState(state);
-  //     console.log(timeArr);
-  //     this.setState({
-  //       timeArr: timeArr
-  //     });
-  //   }
-
-  // handleAddEntry(entry) {
-  //   var state = this.state;
-  //   console.log(entry);
-  //   state.data.concat(entry);
-  //   console.log(state);
-  //   this.setState(state);
-  // }
 
   handleAddAudio(audio) {
     this.setState({

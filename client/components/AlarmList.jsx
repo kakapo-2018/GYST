@@ -18,20 +18,18 @@ class AlarmList extends React.Component {
     };
   }
 
-  // handleEntryClose(index) {
-  //   var state = this.state;
-  //   state.data.splice(index, 1);
-  //   this.setState(state);
-  // }
-
   render() {
     console.log(this.props);
     return (
       <div>
         <ul>
-          <li>
-            {this.props.data.hours}: {this.props.data.minutes}
-          </li>
+          {this.props.data.map(alarm => {
+            return (
+              <li>
+                {alarm.hours}:{alarm.minutes}
+              </li>
+            );
+          })}
         </ul>
       </div>
     );
