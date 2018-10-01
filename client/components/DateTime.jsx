@@ -13,7 +13,10 @@ const styles = theme => ({
   card: {
     backgroundColor: '#aa2e25',
     maxWidth: '100%',
-    minWidth: '100%'
+    minWidth: '100%',
+    maxHeight: '100%',
+    minHeight: '100%',
+    overflow: 'auto'
   },
   action: {
     display: 'flex',
