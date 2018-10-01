@@ -27,7 +27,6 @@ import SocialFeed from './SocialFeed';
 import Language from './Language';
 import Gmail2 from './GmailV2';
 import ColorSetting from './ColorSetting';
-
 const drawerWidth = 240;
 
 const styles = theme => ({
