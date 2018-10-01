@@ -33,9 +33,45 @@ class Gmail2 extends React.Component {
       idToken: '',
       profileId: '',
       unread: 'Please login',
-      buttonVisible: true
+      buttonVisible: true,
+      msgList: 0,
+      individualMsg: false
     };
     this.emails = this.emails.bind(this);
+    this.seeEmails = this.seeEmails.bind(this);
+    this.getMessage = this.getMessage.bind(this);
+  }
+
+  seeEmails() {
+    request
+      //get request for the gmail labels endpoint
+      .get(
+        `https://www.googleapis.com/gmail/v1/users/me/messages?maxResults=10`
+      )
+      .set('Authorization', `Bearer ${this.state.token}`)
+      .then(res => {
+        return res.body.messages.map(msg => msg.id);
+      })
+      .then(messageIds => {
+        return Promise.all(
+          messageIds.map(messageId => {
+            return request
+              .get(
+                `https://www.googleapis.com/gmail/v1/users/me/messages/${messageId}`
+              )
+              .set('Authorization', `Bearer ${this.state.token}`)
+              .then(res => {
+                return res.body;
+              });
+          })
+        );
+      })
+      .then(allMessages => {
+        this.setState({
+          msgList: allMessages
+        });
+        console.log(this.state);
+      });
   }
 
   emails() {
@@ -45,6 +81,19 @@ class Gmail2 extends React.Component {
       .set('Authorization', `Bearer ${this.state.token}`)
       .then(res => {
         this.setState({ unread: res.body.messagesUnread });
+      });
+  }
+
+  getMessage(msg) {
+    request
+      //get request for the gmail labels endpoint
+      .get(`https://www.googleapis.com/gmail/v1/users/me/messages/${msg}`)
+      .set('Authorization', `Bearer ${this.state.token}`)
+      .then(res => {
+        this.setState({
+          individualMsgRes: res.body.snippet,
+          individualMsg: true
+        });
       })
       .catch();
   }
@@ -69,13 +118,38 @@ class Gmail2 extends React.Component {
           <Typography variant="headline" component="h2">
             Unread Emails: {this.state.unread}
           </Typography>
+          <Typography>
+            {this.state.msgList &&
+              !this.state.individualMsg && (
+                <ol>
+                  {this.state.msgList.map(msg => {
+                    return (
+                      <li key={msg.id}>
+                        <a
+                          target="_blank"
+                          href={`https://mail.google.com/mail/u/0/#inbox/${
+                            msg.id
+                          }`}
+                        >
+                          {msg.snippet}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ol>
+              )}
+            {this.state.individualMsg && <p>{this.state.individualMsgRes}</p>}
+          </Typography>
           {this.state.buttonVisible && (
             <GoogleLogin
               clientId="693624776345-6k38ssbajdd9s3fa9qo1m1kq9lhis0ir.apps.googleusercontent.com"
               buttonText="Google Login"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
-              scope="https://www.googleapis.com/auth/gmail.labels"
+              scope="https://mail.google.com/
+
+
+              "
             />
           )}
           <CardActions>
@@ -89,8 +163,7 @@ class Gmail2 extends React.Component {
               Check Unread
             </Button>
             <Button
-              target="_blank"
-              href="https://mail.google.com/mail/u/0/?tab=wm#inbox"
+              onClick={this.seeEmails}
               variant="contained"
               size="large"
               color="primary"
