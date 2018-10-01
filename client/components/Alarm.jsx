@@ -144,7 +144,7 @@ class Alarm extends React.Component {
             <AlarmDigit
               numberSystem={24}
               val={date.getHours()}
-              myRef="hourDigit"
+              myRref="hourDigit"
               handleStopIncrease={this.handleStopIncrease}
               handleChange={this.handleChange}
             />
