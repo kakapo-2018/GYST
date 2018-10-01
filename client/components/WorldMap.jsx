@@ -87,7 +87,7 @@ class WorldMap extends Component {
                           geography={geography}
                           projection={projection}
                           style={
-                            persistent.length > 0 &&
+                            persistent.length >= 0 &&
                             !persistent.includes(geography.properties.name)
                               ? {
                                   default: {

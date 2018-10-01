@@ -201,10 +201,13 @@ class SpotifyPlaybackWidget extends Component {
               </IconButton>
             </div>
           </div>
-          <CardMedia
-            className={classes.cover}
-            image={this.state.nowPlaying.albumArt}
-          />
+
+          {this.state.nowPlaying.albumArt && (
+            <CardMedia
+              className={classes.cover}
+              image={this.state.nowPlaying.albumArt}
+            />
+          )}
         </Card>
       </div>
     );

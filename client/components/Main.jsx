@@ -96,7 +96,7 @@ class Main extends Component {
                 w: 3,
                 h: 1,
                 minW: 3,
-                maxW: 1,
+                maxW: 3,
                 maxH: 1,
                 minH: 1
               }}
@@ -285,7 +285,7 @@ class Main extends Component {
           {this.props.showCom.Gmail2 ? (
             <div
               key="16"
-              data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 2, minH: 1 }}
+              data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 2, minH: 2 }}
             >
               <Gmail2 />
             </div>

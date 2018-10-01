@@ -84,7 +84,8 @@ class Language extends Component {
     getResourceName
       .then(res => {
         imgToTranslate = res;
-        console.log(res);
+        //Log image source
+        // console.log(res);
       })
       .catch(err => console.log(err));
   };
@@ -111,10 +112,8 @@ class Language extends Component {
     var e = new XMLHttpRequest();
 
     e.onload = () => {
-      console.log(
-        'Word detected:',
-        JSON.parse(e.responseText).responses[0].labelAnnotations[0].description
-      );
+      //Log image recognition response
+      //console.log( 'Word detected:', JSON.parse(e.responseText).responses[0].labelAnnotations[0].description );
 
       this.setState({
         wordIdentified: JSON.parse(e.responseText).responses[0]
@@ -132,10 +131,8 @@ class Language extends Component {
         'key=' + key + '&source=' + source + '&target=' + dest + '&q=' + text;
 
       request.get(url).then(result => {
-        console.log(
-          'Word translated',
-          JSON.parse(result.text).data.translations[0].translatedText
-        );
+        //Log translation response
+        //console.log('Word translated', JSON.parse(result.text).data.translations[0].translatedText);
         this.setState({
           wordTranslated: JSON.parse(result.text).data.translations[0]
             .translatedText
@@ -152,20 +149,19 @@ class Language extends Component {
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-    console.log('change');
   };
 
   submitAnswer = () => {
     if (this.state.answerInput == this.state.wordTranslated) {
-      console.log('correct');
+      //Correct answer
       this.setState({ score: this.state.score + 1 });
     } else {
-      console.log('fail');
+      //Incorrect answer
       this.setState({ score: this.state.score - 1 });
     }
-
+    //Clear answer
     this.setState({ answerInput: '' });
-
+    //Fetch new image and start the process again
     this.getIMG('https://picsum.photos/300/300/?random');
   };
 
