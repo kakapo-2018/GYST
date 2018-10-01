@@ -58,7 +58,6 @@ class Chat extends Component {
   render() {
     return (
       <Widget
-        ref="jeff"
         subtitle="GYST Messenger"
         profileAvatar={imgurl}
         titleAvatar={this.props.titleAvatar}
