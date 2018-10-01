@@ -35,7 +35,6 @@ class Weather extends React.Component {
   }
 
   loading() {
-    console.log('loading');
     setTimeout(() => {
       this.setState({
         loading: false

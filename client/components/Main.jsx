@@ -108,7 +108,16 @@ class Main extends Component {
           {this.props.showCom.date ? (
             <div
               key="2"
-              data-grid={{ x: 0, y: 0, w: 2, h: 1, maxW: 2, maxH: 1 }}
+              data-grid={{
+                x: 0,
+                y: 0,
+                w: 2,
+                h: 3,
+                minH: 1,
+                maxH: 4,
+                minW: 1,
+                maxW: 4
+              }}
             >
               <DateTime />
             </div>
