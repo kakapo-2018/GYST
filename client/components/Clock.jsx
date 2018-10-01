@@ -26,7 +26,7 @@ class Clock extends React.Component {
         state.time = new Date();
         this.setState(state);
       }.bind(this),
-      30000
+      40000
     );
     this.setState(state);
   }
@@ -37,12 +37,14 @@ class Clock extends React.Component {
 
   clockChange() {
     var date = new Date();
+    var x = document.getElementById('myAudio');
     for (let i = 0; i < this.props.data.length; i++) {
       if (
         date.getHours() == this.props.data[i].hours &&
         date.getMinutes() == this.props.data[i].minutes
       ) {
         console.log('Alarm goes off');
+        this.props.alarmGoesOff();
       } else {
         console.log('ERROR');
       }
@@ -53,17 +55,19 @@ class Clock extends React.Component {
     const { classes } = this.props;
 
     return (
-      <Moment
-        onChange={this.clockChange}
-        className={classes.clock}
-        format="HH:mm"
-      >
+      <div>
+        <Moment
+          onChange={this.clockChange}
+          className={classes.clock}
+          format="HH:mm"
+        >
+          {this.state.time}
+        </Moment>
         <audio id="myAudio">
           <source src="alarm.mp3" type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
-        {this.state.time}
-      </Moment>
+      </div>
     );
   }
 }
