@@ -143,6 +143,7 @@ class Gmail2 extends React.Component {
           {this.state.buttonVisible && (
             <GoogleLogin
               clientId="693624776345-6k38ssbajdd9s3fa9qo1m1kq9lhis0ir.apps.googleusercontent.com"
+              redirectUri="http://gyst-dash.herokuapp.com"
               buttonText="Google Login"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
