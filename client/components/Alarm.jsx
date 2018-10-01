@@ -31,7 +31,7 @@ const styles = theme => ({
     fontSize: '80px'
   },
   btn: {
-    width: '40px'
+    margin: theme.spacing.unit
   }
 });
 
@@ -88,7 +88,6 @@ class Alarm extends React.Component {
 
   //get the input value here
   handleAddAlarm() {
-    // var date = new Date();
     let initialAlarmObj = {
       hours: this.refs.hourDigit.props.val,
       minutes: this.refs.minuteDigit.props.val
@@ -97,16 +96,12 @@ class Alarm extends React.Component {
       hours: this.state.hourDigit,
       minutes: this.state.minuteDigit
     };
-    console.log(initialAlarmObj);
-    console.log(alarmObj);
-    console.log(this.state);
     this.setState({
       timeArr:
         alarmObj.hours == 0 && alarmObj.minutes == 0
           ? this.state.timeArr.concat(initialAlarmObj)
           : this.state.timeArr.concat(alarmObj)
     });
-    console.log(this.state.timeArr);
   }
 
   // checkAlarmTime() {
@@ -129,6 +124,7 @@ class Alarm extends React.Component {
   alarmGoesOff() {
     var x = document.getElementById('myAudio');
     x.play();
+    console.log(this.state);
   }
 
   pauseAlarm() {
@@ -188,13 +184,22 @@ class Alarm extends React.Component {
               ref="comment"
               placeholder="Label"
             /> */}
-            <button
+            {/* <button
               className={classes.btn}
               type="button"
               onClick={this.handleAddAlarm}
             >
               <Add />
-            </button>
+            </button> */}
+            <Button
+              variant="fab"
+              color="primary"
+              aria-label="Add"
+              className={classes.btn}
+              onClick={this.handleAddAlarm}
+            >
+              <Add />
+            </Button>
           </div>
 
           {/* <h2>Sounds</h2> */}

@@ -2,10 +2,8 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
-  digit: {
-    width: '80px',
-    flexDirection: 'row',
-    display: 'inline-block'
+  list: {
+    fontSize: '2em'
   }
 });
 
@@ -18,12 +16,13 @@ class AlarmList extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <div>
         <ul>
           {this.props.data.map(alarm => {
             return (
-              <li>
+              <li className={classes.list}>
                 {alarm.hours}:{alarm.minutes}
               </li>
             );

@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   digit: {
@@ -154,13 +155,13 @@ class AlarmDigit extends React.Component {
     var value = paddy(this.state.value, 2);
     return (
       <div className={classes.digit}>
-        <button
+        <Button
           className={classes.btn}
           onMouseDown={this.handleStartIncrease}
           onMouseUp={this.handleStopIncrease}
         >
           <ArrowDropUp className={classes.updown} />
-        </button>
+        </Button>
         <input
           className={classes.input}
           type="text"
@@ -169,13 +170,13 @@ class AlarmDigit extends React.Component {
           onKeyDown={this.handleKeyDown}
           onWheel={this.handleWheel}
         />
-        <button
+        <Button
           className={classes.btn}
           onMouseDown={this.handleStartDecrease}
           onMouseUp={this.handleStopDecrease}
         >
           <ArrowDropDown className={classes.updown} />
-        </button>
+        </Button>
       </div>
     );
   }
