@@ -63,7 +63,9 @@ class Alarm extends React.Component {
       hours: '',
       minute: '',
       timeArr: [],
-      data: data
+      data: data,
+      hourDigit: 0,
+      minuteDigit: 0
     };
     this.handleAddAlarm = this.handleAddAlarm.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -131,6 +133,10 @@ class Alarm extends React.Component {
   handleChange(ref, value) {
     console.log('handlechange!1');
     console.log(ref, value);
+    this.setState({
+      [ref]: value
+    });
+    console.log(this.state);
   }
 
   render() {
@@ -144,7 +150,7 @@ class Alarm extends React.Component {
             <AlarmDigit
               numberSystem={24}
               val={date.getHours()}
-              myRref="hourDigit"
+              myRef="hourDigit"
               handleStopIncrease={this.handleStopIncrease}
               handleChange={this.handleChange}
             />
@@ -174,11 +180,7 @@ class Alarm extends React.Component {
             </button>
           </div>
           <h2>Sounds</h2>
-          <Bell
-            ref="bell"
-            bells={this.state.bells}
-            onAddAudio={this.handleAddAudio}
-          />
+
           <h2>Alarms</h2>
           <AlarmList
             data={this.state.timeArr}
