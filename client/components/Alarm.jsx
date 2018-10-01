@@ -85,13 +85,21 @@ class Alarm extends React.Component {
   //get the input value here
   handleAddAlarm() {
     var date = new Date();
+    let initialAlarmObj = {
+      hours: this.refs.hourDigit.props.val,
+      minutes: this.refs.minuteDigit.props.val
+    };
     let alarmObj = {
       hours: this.state.hourDigit,
       minutes: this.state.minuteDigit
     };
     this.setState({
-      timeArr: this.state.timeArr.concat(alarmObj)
+      timeArr: (this.state.timeArr = []
+        ? this.state.timeArr.concat(initialAlarmObj)
+        : this.state.timeArr.concat(alarmObj))
     });
+    console.log(this.refs.hourDigit.props.val);
+    console.log(this.refs.minuteDigit.props.val);
   }
 
   handleAddAudio(audio) {
@@ -106,7 +114,6 @@ class Alarm extends React.Component {
     this.setState({
       [ref]: value
     });
-    console.log(this.state);
     this.state.timeArr.concat(this.state.hourDigit, this.state.minuteDigit);
   }
 
@@ -121,6 +128,7 @@ class Alarm extends React.Component {
             <AlarmDigit
               numberSystem={24}
               val={date.getHours()}
+              ref="hourDigit"
               myRef="hourDigit"
               handleStopIncrease={this.handleStopIncrease}
               handleChange={this.handleChange}
