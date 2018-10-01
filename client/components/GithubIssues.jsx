@@ -65,7 +65,7 @@ class GithubIssues extends Component {
         </div>
         <Button
           className={classes.btn}
-          href="https://github.com/kakapo-2018/GYST"
+          href="https://github.com/kakapo-2018/GYST/issues"
           target="_blank"
           variant="contained"
           color="primary"
