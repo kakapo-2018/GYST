@@ -46,13 +46,13 @@ class WorldMap extends Component {
             : this.state.place.includes(i.properties.name) &&
               this.state.place.split(',').length >= 2
               ? this.state.place.replace(', ' + i.properties.name, ' ')
-              : this.state.place + ', ' + i.properties.name
+              : this.state.place + ' ' + i.properties.name
     });
 
-    console.log(this.state.place.split(',').length);
+    console.log(this.state.place);
 
     setTimeout(() => {
-      set('state', JSON.stringify(this.state.place));
+      set('state', this.state.place);
     }, 200);
   }
   render() {
@@ -125,7 +125,7 @@ class WorldMap extends Component {
               </Geographies>
             </ZoomableGroup>
           </ComposableMap>
-          <p className={classes.name}>{persistent}</p>
+          <p className={classes.name}>{this.state.place}</p>
         </div>
       </Card>
     );
