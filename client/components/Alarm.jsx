@@ -69,7 +69,6 @@ class Alarm extends React.Component {
     };
     this.handleAddAlarm = this.handleAddAlarm.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleAddEntry = this.handleAddEntry.bind(this);
   }
 
   handleCarry(digit) {
@@ -99,7 +98,17 @@ class Alarm extends React.Component {
     //    minute: minute
     //  });
     // this.refs.alarmList.handleAddEntry({time: date, comment: this.refs.comment.getDOMNode().value});
-    this.handleAddEntry(this.state.hours, this.state.minute);
+    // //this.handleAddEntry(this.state.hours, this.state.minute);
+    // this.state.timeArr.concat({
+    //   hours: this.state.hourDigit,
+    //   minutes: this.state.minuteDigit
+    // });
+    this.setState({
+      timeArr: {
+        hours: this.state.hourDigit,
+        minutes: this.state.minuteDigit
+      }
+    });
   }
 
   //   handleAddEntry(hours, minute) {
@@ -116,13 +125,13 @@ class Alarm extends React.Component {
   //     });
   //   }
 
-  handleAddEntry(entry) {
-    var state = this.state;
-    console.log(entry);
-    state.data.concat(entry);
-    console.log(state);
-    this.setState(state);
-  }
+  // handleAddEntry(entry) {
+  //   var state = this.state;
+  //   console.log(entry);
+  //   state.data.concat(entry);
+  //   console.log(state);
+  //   this.setState(state);
+  // }
 
   handleAddAudio(audio) {
     this.setState({
@@ -137,6 +146,7 @@ class Alarm extends React.Component {
       [ref]: value
     });
     console.log(this.state);
+    this.state.timeArr.concat(this.state.hourDigit, this.state.minuteDigit);
   }
 
   render() {
@@ -184,8 +194,6 @@ class Alarm extends React.Component {
           <h2>Alarms</h2>
           <AlarmList
             data={this.state.timeArr}
-            hours={this.state.hours}
-            minute={this.state.minute}
             myRef="alarmList"
             onRing={this.handleRing}
           />
