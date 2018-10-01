@@ -48,6 +48,7 @@ class AlarmDigit extends React.Component {
     this.handleStartIncrease = this.handleStartIncrease.bind(this);
     this.handleStopDecrease = this.handleStopDecrease.bind(this);
     this.handleStartDecrease = this.handleStartDecrease.bind(this);
+    this.handleStopIncrease = this.handleStopIncrease.bind(this);
   }
 
   getInterval(counter) {
@@ -87,6 +88,13 @@ class AlarmDigit extends React.Component {
     state.increaseCounter = 0;
     this.setState(state);
     this.handleIncrease();
+  }
+
+  handleStopIncrease() {
+    var state = this.state;
+    clearTimeout(state.increasing);
+    this.setState(state);
+    console.log(state);
   }
 
   handleDecrease(once) {
@@ -149,7 +157,7 @@ class AlarmDigit extends React.Component {
         <button
           className={classes.btn}
           onMouseDown={this.handleStartIncrease}
-          onMouseUp={this.props.handleStopIncrease}
+          onMouseUp={this.handleStopIncrease}
         >
           <ArrowDropUp className={classes.updown} />
         </button>

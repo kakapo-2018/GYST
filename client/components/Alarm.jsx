@@ -66,7 +66,8 @@ class Alarm extends React.Component {
       timeArr: []
     };
     this.handleAddAlarm = this.handleAddAlarm.bind(this);
-    this.handleStopIncrease = this.handleStopIncrease.bind(this);
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleCarry(digit) {
@@ -120,12 +121,10 @@ class Alarm extends React.Component {
     });
   }
 
-  handleStopIncrease() {
-    var state = this.state;
-    clearTimeout(state.increasing);
-    this.setState(state);
-    console.log(state);
+  handleChange(e) {
+    console.log(e.target);
   }
+
   render() {
     const { classes } = this.props;
     var date = new Date();
@@ -139,6 +138,7 @@ class Alarm extends React.Component {
               val={date.getHours()}
               ref="hourDigit"
               handleStopIncrease={this.handleStopIncrease}
+              handleChange={this.handleChange}
             />
             <AlarmDigit
               numberSystem={60}
@@ -146,7 +146,7 @@ class Alarm extends React.Component {
               onCarry={this.handleCarry.bind(this, 'hourDigit')}
               onBorrow={this.handleBorrow.bind(this, 'hourDigit')}
               ref="minuteDigit"
-              handleStopIncrease={this.handleStopIncrease}
+              handleChange={this.handleChange}
             />
           </div>
           <div className={classes.form}>
