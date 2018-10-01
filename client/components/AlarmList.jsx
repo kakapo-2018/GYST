@@ -16,19 +16,11 @@ class AlarmList extends React.Component {
     this.state = {
       data: this.props.data
     };
-    this.handleAddEntry = this.handleAddEntry.bind(this);
   }
 
   handleEntryClose(index) {
     var state = this.state;
     state.data.splice(index, 1);
-    this.setState(state);
-  }
-
-  handleAddEntry(entry) {
-    console.log('I am here');
-    var state = this.state;
-    state.data.push(entry);
     this.setState(state);
   }
 

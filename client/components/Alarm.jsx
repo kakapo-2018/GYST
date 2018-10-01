@@ -35,8 +35,6 @@ const styles = theme => ({
   }
 });
 
-var data = [];
-
 var bells = [
   {
     name: 'piano-melody',
@@ -56,6 +54,7 @@ var bells = [
   }
 ];
 
+var data = [];
 class Alarm extends React.Component {
   constructor(props) {
     super(props);
@@ -63,7 +62,8 @@ class Alarm extends React.Component {
       bells: bells,
       hours: '',
       minute: '',
-      timeArr: []
+      timeArr: [],
+      data: data
     };
     this.handleAddAlarm = this.handleAddAlarm.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -82,15 +82,18 @@ class Alarm extends React.Component {
     this.refs.bell.ring();
   }
 
+  //
   handleAddAlarm() {
-    //console.log(this.refs);
-
-    console.log('clicked');
     var date = new Date();
+    //date.setHours(this.refs.hourDigit);
+    //date.setMinutes(this.refs.minuteDigit);
+    console.log(this.refs.hourDigit);
+
+    // var date = new Date();
     //console.log(this.refs.hourDigit);
-    date.setHours(this.refs.hourDigit.props.val);
-    date.setMinutes(this.refs.minuteDigit.props.val);
-    console.log(date);
+    // date.setHours(this.refs.hourDigit.state.value);
+    // date.setMinutes(this.refs.minuteDigit.state.value;
+    // console.log(date);
     // this.setState({
     //   hours: hours,
     //   minute: minute
@@ -114,9 +117,10 @@ class Alarm extends React.Component {
   //   }
 
   handleAddEntry(entry) {
-    console.log('I am here');
     var state = this.state;
+    console.log(entry);
     state.data.push(entry);
+    console.log(state);
     this.setState(state);
   }
 
@@ -126,9 +130,9 @@ class Alarm extends React.Component {
     });
   }
 
-  handleChange(e) {
-    Console.log('handlechange!');
-    console.log(e.target);
+  handleChange(ref, value) {
+    console.log('handlechange!1');
+    console.log(ref, value);
   }
 
   render() {
@@ -152,6 +156,7 @@ class Alarm extends React.Component {
               onCarry={this.handleCarry.bind(this, 'hourDigit')}
               onBorrow={this.handleBorrow.bind(this, 'hourDigit')}
               ref="minuteDigit"
+              myRef="minuteDigit"
               handleChange={this.handleChange}
             />
           </div>
