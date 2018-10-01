@@ -33,7 +33,6 @@ class EventList extends React.Component {
       token: '',
       email: '',
       idToken: '',
-      profileId: '',
       unread: 'Please login',
       buttonVisible: true,
       msgList: '',
@@ -41,46 +40,12 @@ class EventList extends React.Component {
       calItems: []
     };
     this.events = this.events.bind(this);
-    // this.seeEmails = this.seeEmails.bind(this);
-    // this.getMessage = this.getMessage.bind(this);
   }
-
-  //   seeEmails() {
-  //     request
-  //       //get request for the gmail labels endpoint
-  //       .get(
-  //         `https://www.googleapis.com/gmail/v1/users/me/messages?maxResults=10`
-  //       )
-  //       .set('Authorization', `Bearer ${this.state.token}`)
-  //       .then(res => {
-  //         return res.body.messages.map(msg => msg.id);
-  //       })
-  //       .then(messageIds => {
-  //         return Promise.all(
-  //           messageIds.map(messageId => {
-  //             return request
-  //               .get(
-  //                 `https://www.googleapis.com/gmail/v1/users/me/messages/${messageId}`
-  //               )
-  //               .set('Authorization', `Bearer ${this.state.token}`)
-  //               .then(res => {
-  //                 return res.body;
-  //               });
-  //           })
-  //         );
-  //       })
-  //       .then(allMessages => {
-  //         this.setState({
-  //           msgList: allMessages
-  //         });
-  //       });
-  //   }
 
   events() {
     let date = new Date().toISOString();
-
     request
-      //get request for the gmail labels endpoint
+      //get request for the gmail cal endpoint
       .get(
         `https://www.googleapis.com/calendar/v3/calendars/${
           this.state.email
@@ -89,82 +54,43 @@ class EventList extends React.Component {
       )
       .set('Authorization', `Bearer ${this.state.token}`)
       .then(res => {
-        console.log(res);
-
         this.setState({ calItems: res.body.items });
       });
   }
 
-  //   getMessage(msg) {
-  //     request
-  //       //get request for the gmail labels endpoint
-  //       .get(`https://www.googleapis.com/gmail/v1/users/me/messages/${msg}`)
-  //       .set('Authorization', `Bearer ${this.state.token}`)
-  //       .then(res => {
-  //         this.setState({
-  //           individualMsgRes: res.body.snippet,
-  //           individualMsg: true
-  //         });
-  //       })
-  //       .catch();
-  //   }
-
   render() {
     //logging the response and setting it in state
     const responseGoogle = response => {
-      console.log(response);
-
       this.setState({
         email: response.profileObj.email,
         token: response.accessToken,
         idToken: response.tokenId,
-        profileId: response.profileObj.googleId,
         buttonVisible: false,
-        unread: 'Logged in'
+        unread: 'Logged in' || response.error
       });
     };
     const { classes } = this.props;
 
-    //google button
     return (
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="headline" component="h2">
-            {/* Unread Emails: {this.state.unread} */}
+            Upcoming events: {this.state.unread}
           </Typography>
           <Typography>
-            Upcoming events:
-            {this.state.calItems &&
-              this.state.calItems.map(event => {
-                return (
-                  <li>
-                    <a target="_blank" href={event.htmlLink}>
-                      {event.summary}
-                    </a>{' '}
-                    - {event.status}
-                  </li>
-                );
-              })}
-            {/* {this.state.msgList &&
-              !this.state.individualMsg && (
-                <ol>
-                  {this.state.msgList.map(msg => {
-                    return (
-                      <li key={msg.id}>
-                        <a
-                          target="_blank"
-                          href={`https://mail.google.com/mail/u/0/#inbox/${
-                            msg.id
-                          }`}
-                        >
-                          {msg.snippet}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ol>
-              )}
-            {this.state.individualMsg && <p>{this.state.individualMsgRes}</p>} */}
+            <ol>
+              {this.state.calItems &&
+                this.state.calItems.map(event => {
+                  return (
+                    <li key={event.id}>
+                      <a target="_blank" href={event.htmlLink}>
+                        {event.summary}
+                      </a>{' '}
+                      - {event.status}
+                    </li>
+                  );
+                })}
+            </ol>
           </Typography>
           {this.state.buttonVisible && (
             <GoogleLogin
@@ -186,14 +112,6 @@ class EventList extends React.Component {
             >
               Check Events
             </Button>
-            {/* <Button
-              onClick={this.seeEmails}
-              variant="contained"
-              size="large"
-              color="primary"
-            >
-              Inbox
-            </Button> */}
           </CardActions>
         </CardContent>
       </Card>
