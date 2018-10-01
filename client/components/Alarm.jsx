@@ -58,14 +58,15 @@ var data = [];
 class Alarm extends React.Component {
   constructor(props) {
     super(props);
+    var date = new Date();
     this.state = {
       bells: bells,
       hours: '',
       minute: '',
       timeArr: [],
       data: data,
-      hourDigit: 0,
-      minuteDigit: 0
+      hourDigit: date.getHours(),
+      minuteDigit: date.getMinutes()
     };
     this.handleAddAlarm = this.handleAddAlarm.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -96,6 +97,9 @@ class Alarm extends React.Component {
       hours: this.state.hourDigit,
       minutes: this.state.minuteDigit
     };
+    console.log(initialAlarmObj);
+    console.log(alarmObj);
+    console.log(this.state);
     this.setState({
       timeArr:
         alarmObj.hours == 0 && alarmObj.minutes == 0
