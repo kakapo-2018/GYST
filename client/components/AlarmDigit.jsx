@@ -95,7 +95,6 @@ class AlarmDigit extends React.Component {
     var state = this.state;
     clearTimeout(state.increasing);
     this.setState(state);
-    console.log(state);
   }
 
   handleDecrease(once) {
@@ -127,7 +126,6 @@ class AlarmDigit extends React.Component {
     var state = this.state;
     clearTimeout(state.decreasing);
     this.setState(state);
-    console.log(state);
   }
 
   handleKeyDown(event) {

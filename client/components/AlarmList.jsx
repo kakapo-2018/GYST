@@ -1,6 +1,5 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import AlarmEntry from './AlarmEntry';
 
 const styles = theme => ({
   digit: {
@@ -19,7 +18,6 @@ class AlarmList extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <ul>
