@@ -20,7 +20,8 @@ const styles = theme => ({
     maxWidth: '100%',
     maxHeight: '100%',
     minWidth: '100%',
-    minHeight: '100%'
+    minHeight: '100%',
+    overflow: 'auto'
   }
 });
 
@@ -34,7 +35,7 @@ class Gmail2 extends React.Component {
       profileId: '',
       unread: 'Please login',
       buttonVisible: true,
-      msgList: 0,
+      msgList: '',
       individualMsg: false
     };
     this.emails = this.emails.bind(this);
@@ -70,7 +71,6 @@ class Gmail2 extends React.Component {
         this.setState({
           msgList: allMessages
         });
-        console.log(this.state);
       });
   }
 
@@ -146,10 +146,7 @@ class Gmail2 extends React.Component {
               buttonText="Google Login"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
-              scope="https://mail.google.com/
-
-
-              "
+              scope="https://mail.google.com/"
             />
           )}
           <CardActions>
