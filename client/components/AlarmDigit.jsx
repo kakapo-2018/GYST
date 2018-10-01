@@ -45,7 +45,6 @@ class AlarmDigit extends React.Component {
       increaseCounter: 0,
       decreaseCounter: 0
     };
-    this.handleStopIncrease = this.handleStopIncrease.bind(this);
     this.handleStartIncrease = this.handleStartIncrease.bind(this);
     this.handleStopDecrease = this.handleStopDecrease.bind(this);
     this.handleStartDecrease = this.handleStartDecrease.bind(this);
@@ -90,17 +89,7 @@ class AlarmDigit extends React.Component {
     this.handleIncrease();
   }
 
-  handleStopIncrease() {
-    console.log('handleStopIncrease clicked');
-    console.log(this.state);
-    var state = this.state;
-    clearTimeout(state.increasing);
-    this.setState(state);
-    console.log(state);
-  }
-
   handleDecrease(once) {
-    console.log('handleDecrease clicked');
     var state = this.state;
     state.value--;
     state.decreaseCounter++;
@@ -117,7 +106,6 @@ class AlarmDigit extends React.Component {
   }
 
   handleStartDecrease() {
-    console.log('handleStartDecrease clicked');
     var state = this.state;
     state.decreasing = true;
     state.decreaseCounter = 0;
@@ -126,10 +114,10 @@ class AlarmDigit extends React.Component {
   }
 
   handleStopDecrease() {
-    console.log('handleStopDecrease clicked');
     var state = this.state;
     clearTimeout(state.decreasing);
     this.setState(state);
+    console.log(state);
   }
 
   handleKeyDown(event) {
@@ -161,7 +149,7 @@ class AlarmDigit extends React.Component {
         <button
           className={classes.btn}
           onMouseDown={this.handleStartIncrease}
-          onMouseUp={this.handleStopIncrease}
+          onMouseUp={this.props.handleStopIncrease}
         >
           <ArrowDropUp className={classes.updown} />
         </button>
