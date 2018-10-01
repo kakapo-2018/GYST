@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { addSpotifyAction, getSpotifyAction } from '../actions/spotify';
 import AddIcon from '@material-ui/icons/Add';
+import ArrowLeft from '@material-ui/icons/ArrowLeft';
+
 import Card from '@material-ui/core/Card';
 import { ClipLoader } from 'react-spinners';
 import { css } from 'react-emotion';
@@ -45,7 +47,17 @@ class SpotifyPlaylist extends React.Component {
     this.setState({
       inputURI: ''
     });
-    this.props.addPlaylist(this.state.inputURI, this.props.state.auth.user.id);
+    const booly = /.+:\d+/.test(this.state.inputURI);
+    if (booly == true) {
+      this.props.addPlaylist(
+        this.state.inputURI,
+        this.props.state.auth.user.id
+      );
+    } else {
+      this.setState({
+        inputURI: 'Invalid entry.'
+      });
+    }
   }
 
   render() {
@@ -85,15 +97,27 @@ class SpotifyPlaylist extends React.Component {
             value={this.state.inputURI}
             onChange={this.handleChange}
           />
-          <Button
-            style={{ margin: '10px' }}
-            onClick={this.handleClick}
-            variant="fab"
-            color="primary"
-            aria-label="Add"
-          >
-            <AddIcon />
-          </Button>
+          {!this.state.inputURI == '' && (
+            <Button
+              style={{ margin: '10px' }}
+              onClick={this.handleClick}
+              variant="fab"
+              color="primary"
+              aria-label="Add"
+            >
+              <AddIcon />
+            </Button>
+          )}
+          {this.state.inputURI == '' && (
+            <Button
+              style={{ margin: '10px' }}
+              variant="fab"
+              color="primary"
+              aria-label="Add"
+            >
+              <ArrowLeft />
+            </Button>
+          )}
           <Button
             style={{ margin: '10px' }}
             onClick={this.handleRefresh}
