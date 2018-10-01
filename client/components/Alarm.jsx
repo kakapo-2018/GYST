@@ -69,7 +69,7 @@ class Alarm extends React.Component {
     };
     this.handleAddAlarm = this.handleAddAlarm.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.pauseAlarm = this.pauseAlarm.bind(this);
+    // this.pauseAlarm = this.pauseAlarm.bind(this);
   }
 
   handleCarry(digit) {
@@ -101,29 +101,30 @@ class Alarm extends React.Component {
           ? this.state.timeArr.concat(initialAlarmObj)
           : this.state.timeArr.concat(alarmObj)
     });
-    this.checkAlarmTime();
+    // this.checkAlarmTime();
   }
 
-  checkAlarmTime() {
-    var setTime = this.state.timeArr;
-    var date = new Date();
-    var x = document.getElementById('myAudio');
-    for (let i = 0; i < setTime.length; i++) {
-      if (
-        setTime[i].hours == date.getHours() &&
-        setTime[i].minutes == date.getMinutes()
-      ) {
-        x.play();
-        {
-          console.log(this.state);
-        }
-      }
-    }
-  }
-  pauseAlarm() {
-    var x = document.getElementById('myAudio');
-    x.pause();
-  }
+  // checkAlarmTime() {
+  //   var setTime = this.state.timeArr;
+  //   var date = new Date();
+  //   var x = document.getElementById('myAudio');
+  //   for (let i = 0; i < setTime.length; i++) {
+  //     if (
+  //       setTime[i].hours == date.getHours() &&
+  //       setTime[i].minutes == date.getMinutes()
+  //     ) {
+  //       x.play();
+  //       {
+  //         console.log(this.state);
+  //       }
+  //     }
+  //   }
+  // }
+
+  // pauseAlarm() {
+  //   var x = document.getElementById('myAudio');
+  //   x.pause();
+  // }
 
   handleAddAudio(audio) {
     this.setState({
@@ -167,12 +168,12 @@ class Alarm extends React.Component {
             />
           </div>
           <div className={classes.form}>
-            <input
+            {/* <input
               className={classes.control}
               type="text"
               ref="comment"
               placeholder="Label"
-            />
+            /> */}
             <button
               className={classes.btn}
               type="button"
@@ -183,10 +184,10 @@ class Alarm extends React.Component {
           </div>
 
           <h2>Sounds</h2>
-          <audio id="myAudio">
+          {/* <audio id="myAudio">
             <source src="alarm.mp3" type="audio/mpeg" />
             Your browser does not support the audio element.
-          </audio>
+          </audio> */}
           <h2>Alarms</h2>
           <AlarmList
             data={this.state.timeArr}
