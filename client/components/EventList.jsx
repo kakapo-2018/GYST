@@ -37,7 +37,8 @@ class EventList extends React.Component {
       unread: 'Please login',
       buttonVisible: true,
       msgList: '',
-      individualMsg: false
+      individualMsg: false,
+      calItems: []
     };
     this.events = this.events.bind(this);
     // this.seeEmails = this.seeEmails.bind(this);
@@ -132,7 +133,18 @@ class EventList extends React.Component {
             {/* Unread Emails: {this.state.unread} */}
           </Typography>
           <Typography>
-            {this.state.calItems && this.state.calItems.map(event => {})}
+            Upcoming events:
+            {this.state.calItems &&
+              this.state.calItems.map(event => {
+                return (
+                  <li>
+                    <a target="_blank" href={event.htmlLink}>
+                      {event.summary}
+                    </a>{' '}
+                    - {event.status}
+                  </li>
+                );
+              })}
             {/* {this.state.msgList &&
               !this.state.individualMsg && (
                 <ol>
