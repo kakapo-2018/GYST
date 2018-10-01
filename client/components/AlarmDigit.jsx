@@ -4,180 +4,185 @@ import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 
 const styles = theme => ({
-    digit: {
-        width:'80px',
-        flexDirection: 'row',
-        display: 'inline-block',
-        margin: 'auto'
-    },
-    input: {
-        fontSize: '30px',
-        height: '45px',
-        width: '50px',
-        border: 0,
-        boxShadow: 'none',
-        outline: 0,
-        textAlign:'center'
-    },
-    btn:{
-        width: '40px',
-        height:'20px',
-    },
-    updown: {
-        margin:'auto'
-    }
+  digit: {
+    width: '80px',
+    flexDirection: 'row',
+    display: 'inline-block',
+    margin: 'auto'
+  },
+  input: {
+    fontSize: '30px',
+    height: '45px',
+    width: '50px',
+    border: 0,
+    boxShadow: 'none',
+    outline: 0,
+    textAlign: 'center'
+  },
+  btn: {
+    width: '40px',
+    height: '20px'
+  },
+  updown: {
+    margin: 'auto'
+  }
 });
 
-var paddy = function(n, p, c){
-    var pad_char = (typeof c !== 'undefined' ? c : '0');
-    var pad = new Array(1 + p).join(pad_char);
-    return (pad + n).slice(-pad.length);
-}
-
+var paddy = function(n, p, c) {
+  var pad_char = typeof c !== 'undefined' ? c : '0';
+  var pad = new Array(1 + p).join(pad_char);
+  return (pad + n).slice(-pad.length);
+};
 
 class AlarmDigit extends React.Component {
-    constructor(props){
-        super(props)
-        var val = typeof this.props.val !== 'undefined' ? this.props.val : 0;
-        this.state ={
-            value: val, 
-            increasing: 0,
-            decreasing: 0, 
-            increaseCounter: 0, 
-            decreaseCounter: 0
-        }
-        this.handleStopIncrease = this.handleStopIncrease.bind(this)
-        this.handleStartIncrease = this.handleStartIncrease.bind(this)
-        this.handleStopDecrease = this.handleStopDecrease.bind(this)
-        this.handleStartDecrease = this.handleStartDecrease.bind(this)
-        this.handleChange = this.handleChange.bind(this)
-    }
-    
-    getInterval(counter){
-        if(counter > 5)
-            return 75;
-        else if(counter > 20)
-            return 50;
-        else if(counter > 30)
-            return 5;
-        else
-            return 150;
-    }
+  constructor(props) {
+    super(props);
+    var val = typeof this.props.val !== 'undefined' ? this.props.val : 0;
+    this.state = {
+      value: val,
+      increasing: 0,
+      decreasing: 0,
+      increaseCounter: 0,
+      decreaseCounter: 0
+    };
+    this.handleStopIncrease = this.handleStopIncrease.bind(this);
+    this.handleStartIncrease = this.handleStartIncrease.bind(this);
+    this.handleStopDecrease = this.handleStopDecrease.bind(this);
+    this.handleStartDecrease = this.handleStartDecrease.bind(this);
+  }
 
-    handleCarry(){
-        this.handleIncrease(true);
-    }
+  getInterval(counter) {
+    if (counter > 5) return 75;
+    else if (counter > 20) return 50;
+    else if (counter > 30) return 5;
+    else return 150;
+  }
 
-    handleBorrow(){
-        this.handleDecrease(true);
-    }
+  handleCarry() {
+    this.handleIncrease(true);
+  }
 
-    handleIncrease(once){
-        var state = this.state;
-        state.value ++;
-        state.increaseCounter ++;
-        if(state.value >= this.props.numberSystem)
-        {
-            if(typeof this.props.onCarry === 'function')
-                this.props.onCarry();
-            state.value = 0;
-        }
+  handleBorrow() {
+    this.handleDecrease(true);
+  }
 
-        if(once !== true)
-            state.increasing = setTimeout(this.handleIncrease, this.getInterval(this.state.increaseCounter));
-        this.setState(state);
+  handleIncrease(once) {
+    var state = this.state;
+    state.value++;
+    state.increaseCounter++;
+    if (state.value >= this.props.numberSystem) {
+      if (typeof this.props.onCarry === 'function') this.props.onCarry();
+      state.value = 0;
     }
 
-    handleStartIncrease(){
-        var state = this.state;
-        state.increaseCounter = 0;
-        this.setState(state);
-        this.handleIncrease();
+    if (once !== true)
+      state.increasing = setTimeout(
+        this.handleIncrease,
+        this.getInterval(this.state.increaseCounter)
+      );
+    this.setState(state);
+  }
+
+  handleStartIncrease() {
+    var state = this.state;
+    state.increaseCounter = 0;
+    this.setState(state);
+    this.handleIncrease();
+  }
+
+  handleStopIncrease() {
+    console.log('handleStopIncrease clicked');
+    console.log(this.state);
+    var state = this.state;
+    clearTimeout(state.increasing);
+    this.setState(state);
+    console.log(state);
+  }
+
+  handleDecrease(once) {
+    console.log('handleDecrease clicked');
+    var state = this.state;
+    state.value--;
+    state.decreaseCounter++;
+    if (state.value < 0) {
+      if (typeof this.props.onBorrow === 'function') this.props.onBorrow();
+      state.value = this.props.numberSystem - 1;
+    }
+    if (once !== true)
+      state.decreasing = setTimeout(
+        this.handleDecrease,
+        this.getInterval(this.state.decreaseCounter)
+      );
+    this.setState(state);
+  }
+
+  handleStartDecrease() {
+    console.log('handleStartDecrease clicked');
+    var state = this.state;
+    state.decreasing = true;
+    state.decreaseCounter = 0;
+    this.setState(state);
+    this.handleDecrease();
+  }
+
+  handleStopDecrease() {
+    console.log('handleStopDecrease clicked');
+    var state = this.state;
+    clearTimeout(state.decreasing);
+    this.setState(state);
+  }
+
+  handleKeyDown(event) {
+    if (event.keyCode == 38) {
+      this.handleIncrease(true);
     }
 
-    handleStopIncrease(){
-        console.log("handleStopIncrease clicked")
-        console.log(this.state)
-        var state = this.state;
-        clearTimeout(state.increasing);
-        this.setState(state);
-        console.log(state)
+    if (event.keyCode == 40) {
+      this.handleDecrease(true);
     }
+  }
 
-    handleDecrease(once){
-        console.log("handleDecrease clicked")
-        var state = this.state;
-        state.value --;
-        state.decreaseCounter ++;
-        if(state.value < 0)
-        {
-            if(typeof this.props.onBorrow === 'function')
-                this.props.onBorrow();
-            state.value = this.props.numberSystem - 1;
-        }
-        if(once !== true)
-            state.decreasing = setTimeout(this.handleDecrease, this.getInterval(this.state.decreaseCounter));
-        this.setState(state);
+  handleWheel(event) {
+    event.preventDefault();
+    if (event.deltaY > 0) {
+      this.handleDecrease(true);
     }
-
-    handleStartDecrease(){
-        console.log("handleStartDecrease clicked")
-        var state = this.state;
-        state.decreasing = true;
-        state.decreaseCounter = 0;
-        this.setState(state);
-        this.handleDecrease();
+    if (event.deltaY < 0) {
+      this.handleIncrease(true);
     }
+  }
 
-    handleStopDecrease(){
-        console.log("handleStopDecrease clicked")
-        var state = this.state;
-        clearTimeout(state.decreasing)
-        this.setState(state);
-    }
+  render() {
+    const { classes } = this.props;
 
-    handleChange(event){
-        var value = event.target.value.slice(-2);
-        if(value >= this.props.numberSystem)
-            value = event.target.value.slice(-1);
-        console.log(value);
-        this.setState($.extend(this.state, {value: value}));
-    }
-
-    handleKeyDown(event){
-        if(event.keyCode == 38) {
-            this.handleIncrease(true);
-        }
-
-        if(event.keyCode == 40) {
-            this.handleDecrease(true);
-        }
-    }
-
-    handleWheel(event){
-        event.preventDefault();
-        if(event.deltaY > 0){
-            this.handleDecrease(true);
-        }
-        if(event.deltaY < 0){
-            this.handleIncrease(true);
-        }
-    }
-
-
-    render() {
-        const { classes } = this.props;
-      
-        var value = paddy(this.state.value, 2);
-        return (
-                <div className={classes.digit}>
-                 <button className={classes.btn} onMouseDown={this.handleStartIncrease} onMouseUp={this.handleStopIncrease}><ArrowDropUp className ={classes.updown}/></button>
-                     <input className={classes.input} type="text" value={value} onChange={this.handleChange} onKeyDown={this.handleKeyDown} onWheel={this.handleWheel} />
-                     <button className={classes.btn} onMouseDown={this.handleStartDecrease} onMouseUp={this.handleStopDecrease}><ArrowDropDown className ={classes.updown}/></button>
-                </div>
-        )
-    }
+    var value = paddy(this.state.value, 2);
+    return (
+      <div className={classes.digit}>
+        <button
+          className={classes.btn}
+          onMouseDown={this.handleStartIncrease}
+          onMouseUp={this.handleStopIncrease}
+        >
+          <ArrowDropUp className={classes.updown} />
+        </button>
+        <input
+          className={classes.input}
+          type="text"
+          value={this.state.value}
+          onChange={e => this.props.handleChange(e)}
+          onKeyDown={this.handleKeyDown}
+          onWheel={this.handleWheel}
+        />
+        <button
+          className={classes.btn}
+          onMouseDown={this.handleStartDecrease}
+          onMouseUp={this.handleStopDecrease}
+        >
+          <ArrowDropDown className={classes.updown} />
+        </button>
+      </div>
+    );
+  }
 }
 
 export default withStyles(styles)(AlarmDigit);
-
