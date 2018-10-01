@@ -26,3 +26,10 @@ io.on('connection', function(socket) {
     io.emit('chat message', msg);
   });
 });
+
+io.on('connection', function(socket) {
+  socket.on('imgUrl', function(url) {
+    console.log('user image url: ' + url);
+    io.emit('imgUrl', url);
+  });
+});
