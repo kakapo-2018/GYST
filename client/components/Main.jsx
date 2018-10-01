@@ -27,7 +27,7 @@ import SocialFeed from './SocialFeed';
 import Language from './Language';
 import Gmail2 from './GmailV2';
 import ColorSetting from './ColorSetting';
-
+import EventList from './EventList';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -130,7 +130,7 @@ class Main extends Component {
                 minH: 2
               }}
             >
-              <Gauge />
+              <EventList />
             </div>
           ) : (
             <React.Fragment />
