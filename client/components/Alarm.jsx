@@ -5,6 +5,7 @@ import Clock from './Clock';
 import AlarmDigit from './AlarmDigit';
 import AlarmList from './AlarmList';
 import Add from '@material-ui/icons/Add';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   card: {
@@ -68,6 +69,7 @@ class Alarm extends React.Component {
     };
     this.handleAddAlarm = this.handleAddAlarm.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.pauseAlarm = this.pauseAlarm.bind(this);
   }
 
   handleCarry(digit) {
@@ -99,10 +101,28 @@ class Alarm extends React.Component {
           ? this.state.timeArr.concat(initialAlarmObj)
           : this.state.timeArr.concat(alarmObj)
     });
-    // console.log(this.refs.hourDigit.props.val);
-    // console.log(this.refs.minuteDigit.props.val);
-    console.log(initialAlarmObj);
-    console.log(alarmObj);
+    this.checkAlarmTime();
+  }
+
+  checkAlarmTime() {
+    var setTime = this.state.timeArr;
+    var date = new Date();
+    var x = document.getElementById('myAudio');
+    for (let i = 0; i < setTime.length; i++) {
+      if (
+        setTime[i].hours == date.getHours() &&
+        setTime[i].minutes == date.getMinutes()
+      ) {
+        x.play();
+        {
+          console.log(this.state);
+        }
+      }
+    }
+  }
+  pauseAlarm() {
+    var x = document.getElementById('myAudio');
+    x.pause();
   }
 
   handleAddAudio(audio) {
@@ -125,7 +145,7 @@ class Alarm extends React.Component {
     var date = new Date();
     return (
       <Card className={classes.card}>
-        <Clock className={classes.time} />
+        <Clock className={classes.time} data={this.state.timeArr} />
         <div className={classes.container}>
           <div className={classes.alarm}>
             <AlarmDigit
@@ -161,8 +181,12 @@ class Alarm extends React.Component {
               <Add />
             </button>
           </div>
-          <h2>Sounds</h2>
 
+          <h2>Sounds</h2>
+          <audio id="myAudio">
+            <source src="alarm.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
           <h2>Alarms</h2>
           <AlarmList
             data={this.state.timeArr}
@@ -170,6 +194,9 @@ class Alarm extends React.Component {
             onRing={this.handleRing}
           />
         </div>
+        <Button variant="contained" color="primary" onClick={this.pauseAlarm}>
+          Stop
+        </Button>
       </Card>
     );
   }
