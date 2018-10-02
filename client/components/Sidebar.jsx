@@ -211,7 +211,7 @@ class Sidebar extends React.Component {
           </Button>
           <Button
             className={classes.button}
-            onClick={() => this.props.handleClick('email2')}
+            onClick={() => this.props.handleClick('gmail2')}
           >
             <Icon className={classes.icon}>
               <Email />
