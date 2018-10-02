@@ -70,7 +70,6 @@ class Alarm extends React.Component {
     this.refs.bell.ring();
   }
 
-  //get the input value here
   handleAddAlarm() {
     let id = 1;
     while (this.state.timeArr.find(alarm => alarm.id == id)) id++;
@@ -86,11 +85,6 @@ class Alarm extends React.Component {
       minutes: this.state.minuteDigit
     };
 
-    //if alarmobj exists do nothing
-
-    //if initialalarmobj exists do nothing
-
-    //else
     this.setState({
       timeArr:
         alarmObj.hours == 0 && alarmObj.minutes == 0
