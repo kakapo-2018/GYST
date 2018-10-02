@@ -93,11 +93,11 @@ class Main extends Component {
             <div
               key="1"
               data-grid={{
-                x: 0,
-                y: 0,
-                w: 3,
+                x: 3,
+                y: 2,
+                w: 2,
                 h: 1,
-                minW: 3,
+                minW: 2,
                 maxW: 3,
                 maxH: 1,
                 minH: 1
@@ -115,10 +115,10 @@ class Main extends Component {
                 x: 0,
                 y: 0,
                 w: 2,
-                h: 3,
+                h: 1,
                 minH: 1,
-                maxH: 4,
-                minW: 1,
+                maxH: 3,
+                minW: 2,
                 maxW: 4
               }}
             >
@@ -130,7 +130,16 @@ class Main extends Component {
           {this.props.showCom.alarm ? (
             <div
               key="3"
-              data-grid={{ x: 4, y: 0, w: 2, h: 2.5, maxW: 2, maxH: 2 }}
+              data-grid={{
+                x: 0,
+                y: 1,
+                w: 2,
+                h: 2,
+                minW: 2,
+                maxW: 3,
+                minH: 2,
+                maxH: 3
+              }}
             >
               <Alarm />
             </div>
@@ -143,7 +152,7 @@ class Main extends Component {
               data-grid={{
                 x: 0,
                 y: 0,
-                w: 3,
+                w: 2,
                 h: 2,
                 minW: 3,
                 maxW: 3,
@@ -178,7 +187,7 @@ class Main extends Component {
           {this.props.showCom.weather ? (
             <div
               key="6"
-              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+              data-grid={{ x: 8, y: 0, w: 4, h: 2, minW: 4, maxW: 8, minH: 2 }}
             >
               <Weather />
             </div>
@@ -198,7 +207,7 @@ class Main extends Component {
           {this.props.showCom.github ? (
             <div
               key="8"
-              data-grid={{ x: 0, y: 0, w: 2, h: 1, maxW: 2, maxH: 1 }}
+              data-grid={{ x: 2, y: 0, w: 2, h: 1, maxW: 2, maxH: 1 }}
             >
               <GithubIssues />
             </div>
@@ -241,10 +250,10 @@ class Main extends Component {
               data-grid={{
                 x: 0,
                 y: 0,
-                w: 4,
+                w: 6,
                 h: 2,
                 minW: 4,
-                maxW: 4,
+                maxW: 6,
                 minH: 2,
                 maxH: 2
               }}
@@ -259,10 +268,10 @@ class Main extends Component {
               key="13"
               data-grid={{
                 x: 0,
-                y: 0,
-                w: 3,
+                y: 4,
+                w: 2,
                 h: 3,
-                minW: 3,
+                minW: 2,
                 maxW: 3,
                 maxH: 3,
                 minH: 3
@@ -289,8 +298,9 @@ class Main extends Component {
               data-grid={{
                 x: 0,
                 y: 0,
-                w: 1,
+                w: 3,
                 h: 1,
+                minW: 3,
                 minH: 1
               }}
             >
@@ -305,7 +315,16 @@ class Main extends Component {
           {this.props.showCom.gmail2 ? (
             <div
               key="16"
-              data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 2, minH: 2 }}
+              data-grid={{
+                x: 0,
+                y: 0,
+                w: 3,
+                h: 2,
+                minW: 3,
+                maxW: 4,
+                maxH: 4,
+                minH: 2
+              }}
             >
               <Gmail2 />
             </div>
@@ -316,12 +335,12 @@ class Main extends Component {
             <div
               key="17"
               data-grid={{
-                x: 0,
+                x: 4,
                 y: 0,
                 w: 4,
                 h: 2,
                 minW: 4,
-                maxW: 4,
+                maxW: 8,
                 maxH: 2,
                 minH: 2
               }}
@@ -338,11 +357,11 @@ class Main extends Component {
                 x: 0,
                 y: 0,
                 w: 3,
-                h: 1.5,
+                h: 2,
                 minW: 3,
                 maxW: 4,
                 maxH: 4,
-                minH: 1.5
+                minH: 2
               }}
             >
               <EventList />
