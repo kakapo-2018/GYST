@@ -38,32 +38,12 @@ const styles = theme => ({
   }
 });
 
-var bells = [
-  {
-    name: 'piano-melody',
-    type: 'audio/wav',
-    path: 'bell/70214__qlc__65bpm-piano-melody-0589.wav'
-  },
-  {
-    name: 'fractal-ramp-sonnet',
-    type: 'audio/mpeg',
-    path: 'bell/70002__qlc__240bpm-fractal-ramp-sonnet-track-1.mp3'
-  },
-  { name: 'osng', type: 'audio/wav', path: 'bell/70213__qlc__152bpm-osng.wav' },
-  {
-    name: 'zichus',
-    type: 'audio/wav',
-    path: 'bell/70217__qlc__85bpm-zichus.wav'
-  }
-];
-
 var data = [];
 class Alarm extends React.Component {
   constructor(props) {
     super(props);
     var date = new Date();
     this.state = {
-      bells: bells,
       hours: '',
       minute: '',
       timeArr: [],
@@ -119,68 +99,17 @@ class Alarm extends React.Component {
     });
   }
 
-  // checkAlarmTime() {
-  //   var setTime = this.state.timeArr;
-  //   var date = new Date();
-  //   var x = document.getElementById('myAudio');
-  //   for (let i = 0; i < setTime.length; i++) {
-  //     if (
-  //       setTime[i].hours == date.getHours() &&
-  //       setTime[i].minutes == date.getMinutes()
-  //     ) {
-  //       x.play();
-  //       {
-  //         console.log(this.state);
-  //       }
-  //     }
-  //   }
-  // }
-
   alarmGoesOff() {
     var x = document.getElementById('myAudio');
     x.play();
-
-    //console.log('before ', this.state.timeArr);
-    //console.log(this.state.hourDigit);
-    //console.log(this.state.minuteDigit);
-
-    //this.changetimeArr();
-    // for (let i = 0; i < this.state.timeArr.length; i++) {
-    //   if (
-    //     this.state.timeArr[i].hours == this.state.hourDigit &&
-    //     this.state.timeArr[i].minutes == this.state.minuteDigit
-    //   ) {
-    //     return;
-    //     this.setState({
-    //       timeArr: !this.state.timeArr[i]
-    //     });
-    //     ? this.state.timeArr.filter(res => res != this.state.timeArr[i])
-    //     : null;
-    // console.log('after ', this.state.timeArr);
-    // }
-    // }
   }
-
-  // changetimeArr() {
-  //   this.setState({
-  //     timeArr: !this.state.timeArr
-  //   });
-  // }
 
   pauseAlarm() {
     var x = document.getElementById('myAudio');
     x.pause();
   }
 
-  handleAddAudio(audio) {
-    this.setState({
-      bells: this.state.bells.concat(audio)
-    });
-  }
-
   handleChange(ref, value) {
-    // console.log('handlechange!1');
-    console.log(ref, value);
     if (ref == 'minuteDigit' || ref == 'hourDigit') value = Number(value);
     this.setState({
       [ref]: value
@@ -189,17 +118,11 @@ class Alarm extends React.Component {
   }
 
   handleClickDel(alarm) {
-    // console.log('hit', i, this.state.timeArr);
-    // let deletedArr = this.state.timeArr.splice(i, 1);
-    // console.log(deletedArr);
     this.setState({
       timeArr: this.state.timeArr.filter(other => alarm.id != other.id)
     });
-    console.log(this.state);
   }
   render() {
-    console.log(this.state);
-
     const { classes } = this.props;
     var date = new Date();
     return (
@@ -216,7 +139,6 @@ class Alarm extends React.Component {
               val={this.state.hourDigit}
               ref="hourDigit"
               myRef="hourDigit"
-              //handleStopIncrease={this.handleStopIncrease}
               handleChange={this.handleChange}
             />
             <AlarmDigit
@@ -230,19 +152,6 @@ class Alarm extends React.Component {
             />
           </div>
           <div className={classes.form}>
-            {/* <input
-              className={classes.control}
-              type="text"
-              ref="comment"
-              placeholder="Label"
-            /> */}
-            {/* <button
-              className={classes.btn}
-              type="button"
-              onClick={this.handleAddAlarm}
-            >
-              <Add />
-            </button> */}
             <Button
               variant="fab"
               color="primary"
@@ -254,7 +163,6 @@ class Alarm extends React.Component {
             </Button>
           </div>
 
-          {/* <h2>Sounds</h2> */}
           <audio id="myAudio">
             <source src="alarm.mp3" type="audio/mpeg" />
             Your browser does not support the audio element.
