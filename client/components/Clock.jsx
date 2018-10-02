@@ -26,7 +26,7 @@ class Clock extends React.Component {
         state.time = new Date();
         this.setState(state);
       }.bind(this),
-      40000
+      60000
     );
     this.setState(state);
   }
@@ -44,9 +44,14 @@ class Clock extends React.Component {
         date.getMinutes() == this.props.data[i].minutes
       ) {
         console.log('Alarm goes off');
+        //console.log(this.props.data);
+        let filteredArr = this.props.data.filter(res => {
+          return res != this.props.data[i];
+        });
+        // console.log(filteredArr);
         this.props.alarmGoesOff();
       } else {
-        console.log('ERROR');
+        //console.log('ERROR');
       }
     }
   }

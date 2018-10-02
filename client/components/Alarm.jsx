@@ -72,6 +72,7 @@ class Alarm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.alarmGoesOff = this.alarmGoesOff.bind(this);
     this.pauseAlarm = this.pauseAlarm.bind(this);
+    this.handleClickDel = this.handleClickDel.bind(this);
   }
 
   handleCarry(digit) {
@@ -88,14 +89,25 @@ class Alarm extends React.Component {
 
   //get the input value here
   handleAddAlarm() {
+    let id = 1;
+    while (this.state.timeArr.find(alarm => alarm.id == id)) id++;
+
     let initialAlarmObj = {
+      id,
       hours: this.refs.hourDigit.props.val,
       minutes: this.refs.minuteDigit.props.val
     };
     let alarmObj = {
+      id,
       hours: this.state.hourDigit,
       minutes: this.state.minuteDigit
     };
+
+    //if alarmobj exists do nothing
+
+    //if initialalarmobj exists do nothing
+
+    //else
     this.setState({
       timeArr:
         alarmObj.hours == 0 && alarmObj.minutes == 0
@@ -124,8 +136,33 @@ class Alarm extends React.Component {
   alarmGoesOff() {
     var x = document.getElementById('myAudio');
     x.play();
-    console.log(this.state);
+
+    //console.log('before ', this.state.timeArr);
+    //console.log(this.state.hourDigit);
+    //console.log(this.state.minuteDigit);
+
+    //this.changetimeArr();
+    // for (let i = 0; i < this.state.timeArr.length; i++) {
+    //   if (
+    //     this.state.timeArr[i].hours == this.state.hourDigit &&
+    //     this.state.timeArr[i].minutes == this.state.minuteDigit
+    //   ) {
+    //     return;
+    //     this.setState({
+    //       timeArr: !this.state.timeArr[i]
+    //     });
+    //     ? this.state.timeArr.filter(res => res != this.state.timeArr[i])
+    //     : null;
+    // console.log('after ', this.state.timeArr);
+    // }
+    // }
   }
+
+  // changetimeArr() {
+  //   this.setState({
+  //     timeArr: !this.state.timeArr
+  //   });
+  // }
 
   pauseAlarm() {
     var x = document.getElementById('myAudio');
@@ -147,7 +184,18 @@ class Alarm extends React.Component {
     this.state.timeArr.concat(this.state.hourDigit, this.state.minuteDigit);
   }
 
+  handleClickDel(alarm) {
+    // console.log('hit', i, this.state.timeArr);
+    // let deletedArr = this.state.timeArr.splice(i, 1);
+    // console.log(deletedArr);
+    this.setState({
+      timeArr: this.state.timeArr.filter(other => alarm.id != other.id)
+    });
+    console.log(this.state);
+  }
   render() {
+    console.log('im rending');
+
     const { classes } = this.props;
     var date = new Date();
     return (
@@ -209,9 +257,14 @@ class Alarm extends React.Component {
           </audio>
           <h2>Alarms</h2>
           <AlarmList
+            handleClickDel={this.handleClickDel}
             data={this.state.timeArr}
             myRef="alarmList"
             onRing={this.handleRing}
+            pauseAlarm={this.pauseAlarm}
+            hourDigit={this.state.hourDigit}
+            minuteDigit={this.state.minuteDigit}
+            count={this.state.count}
           />
         </div>
         {this.alarmGoesOff && (
