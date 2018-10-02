@@ -30,6 +30,9 @@ const styles = theme => ({
   time: {
     fontSize: '80px'
   },
+  stop: {
+    marginBottom: '5%'
+  },
   btn: {
     margin: theme.spacing.unit
   }
@@ -209,6 +212,7 @@ class Alarm extends React.Component {
           <div className={classes.alarm}>
             <AlarmDigit
               numberSystem={24}
+              type="text"
               val={date.getHours()}
               ref="hourDigit"
               myRef="hourDigit"
@@ -268,7 +272,12 @@ class Alarm extends React.Component {
           />
         </div>
         {this.alarmGoesOff && (
-          <Button variant="contained" color="primary" onClick={this.pauseAlarm}>
+          <Button
+            className={classes.stop}
+            variant="contained"
+            color="primary"
+            onClick={this.pauseAlarm}
+          >
             Stop
           </Button>
         )}
