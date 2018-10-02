@@ -13,34 +13,12 @@ const styles = theme => ({
 });
 
 class AlarmList extends React.Component {
-  constructor(props) {
-    super(props);
-    // this.state = {
-    //   data: this.props.data
-    // };
-    // this.handleClick = this.handleClick.bind(this);
-  }
-
-  // handleClick(i) {
-  //   this.props.pauseAlarm();
-
-  //   this.deleteArr(i);
-  // }
-
-  // deleteArr(i) {
-  //   console.log(this.props.data);
-  // }
   render() {
-    console.log('alarm list state');
-    console.log(this.props.data);
-
     const { classes } = this.props;
     return (
       <div>
         <ul>
           {this.props.data.map((alarm, i) => {
-            console.log(alarm.hours);
-
             return (
               <p key={i} className={classes.list}>
                 {alarm.hours}:{alarm.minutes}

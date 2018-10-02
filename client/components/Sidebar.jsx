@@ -23,6 +23,7 @@ import AlarmAdd from '@material-ui/icons/AlarmAdd';
 import Palette from '@material-ui/icons/Palette';
 import Language from '@material-ui/icons/Language';
 import Email from '@material-ui/icons/Email';
+import CalendarToday from '@material-ui/icons/CalendarToday';
 
 const styles = theme => ({
   card: {
@@ -108,6 +109,15 @@ class Sidebar extends React.Component {
               <AccessTime />
             </Icon>
             <Typography className={classes.sub}>Date & Time</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('calendar')}
+          >
+            <Icon className={classes.icon}>
+              <CalendarToday />
+            </Icon>
+            <Typography className={classes.sub}>Calendar</Typography>
           </Button>
           <Button
             className={classes.button}
