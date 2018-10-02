@@ -89,14 +89,6 @@ class Weight extends React.Component {
   render() {
     const { classes } = this.props;
     let show;
-    show = (
-      <ClipLoader
-        className={override}
-        sizeUnit={'px'}
-        size={250}
-        color={'#3f51b5'}
-      />
-    );
 
     if (this.props.weight.weight && this.props.weight.weight.length > 1) {
       show = (

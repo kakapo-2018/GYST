@@ -119,7 +119,7 @@ class Navbar extends Component {
   state = {
     anchorEl: null,
     mobileMoreAnchorEl: null,
-    color:false
+    color: false
   };
 
   handleProfileMenuOpen = event => {
@@ -138,7 +138,6 @@ class Navbar extends Component {
   handleMobileMenuClose = () => {
     this.setState({ mobileMoreAnchorEl: null });
   };
-
 
   render() {
     const { classes, theme } = this.props;
@@ -267,13 +266,7 @@ class Navbar extends Component {
                 </Badge>
               </IconButton>
               <IconButton color="inherit">
-                <Badge
-                  className={classes.margin}
-                  badgeContent={Notifications}
-                  color="secondary"
-                >
-                  <Settings />
-                </Badge>
+                <Settings />
               </IconButton>
               <IconButton
                 aria-owns={isMenuOpen ? 'material-appbar' : null}
