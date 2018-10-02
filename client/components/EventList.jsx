@@ -41,6 +41,9 @@ const styles = theme => ({
   header: {
     color: 'white',
     textAlign: 'center'
+  },
+  center: {
+    textAlign: 'center'
   }
 });
 
@@ -147,14 +150,16 @@ class EventList extends React.Component {
                 })}
             </List>
             {this.state.buttonVisible && (
-              <GoogleLogin
-                clientId="693624776345-6k38ssbajdd9s3fa9qo1m1kq9lhis0ir.apps.googleusercontent.com"
-                redirectUri="http://gyst-dash.herokuapp.com"
-                buttonText="Google Login"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                scope="https://www.googleapis.com/auth/calendar.readonly"
-              />
+              <div className={classes.center}>
+                <GoogleLogin
+                  clientId="693624776345-6k38ssbajdd9s3fa9qo1m1kq9lhis0ir.apps.googleusercontent.com"
+                  redirectUri="http://gyst-dash.herokuapp.com"
+                  buttonText="Google Login"
+                  onSuccess={responseGoogle}
+                  onFailure={responseGoogle}
+                  scope="https://www.googleapis.com/auth/calendar.readonly"
+                />
+              </div>
             )}
             <CardActions>
               {this.state.token && (
