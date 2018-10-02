@@ -45,13 +45,11 @@ class AlarmList extends React.Component {
               <p key={i} className={classes.list}>
                 {alarm.hours}:{alarm.minutes}
                 <Button
+                  color="secondary"
                   className={classes.btn}
                   onClick={() => this.props.handleClickDel(alarm)}
                 >
                   <Delete />
-                </Button>
-                <Button variant="contained" color="secondary">
-                  Confirm
                 </Button>
               </p>
             );
