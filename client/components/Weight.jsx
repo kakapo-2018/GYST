@@ -8,8 +8,8 @@ import { saveWeightAction, getWeightAction } from '../actions/weight';
 import Card from '@material-ui/core/Card';
 //Spinner
 import { ClipLoader } from 'react-spinners';
-
 import { css } from 'react-emotion';
+
 const override = css`
   display: block;
   margin: 5% 25%;
@@ -88,32 +88,25 @@ class Weight extends React.Component {
 
   render() {
     const { classes } = this.props;
-    let show;
-    show = (
-      <ClipLoader
-        className={override}
-        sizeUnit={'px'}
-        size={250}
-        color={'#3f51b5'}
-      />
-    );
-
-    if (this.props.weight.weight && this.props.weight.weight.length > 1) {
-      show = (
-        <Chart
-          chartType="LineChart"
-          width="100%"
-          height="100%"
-          data={this.props.weight.weight}
-          options={options}
-        />
-      );
-    }
-
     return (
       <Card className={classes.card}>
         <div className="App">
-          {show}
+          {this.props.weight.weight && this.props.weight.weight.length >= 1 ? (
+            <Chart
+              chartType="LineChart"
+              width="100%"
+              height="100%"
+              data={this.props.weight.weight}
+              options={options}
+            />
+          ) : (
+            <ClipLoader
+              className={override}
+              sizeUnit={'px'}
+              size={250}
+              color={'#3f51b5'}
+            />
+          )}
           <Input
             style={{ maxWidth: '45%', marginLeft: '20%', paddingTop: '30px' }}
             id="kg"
