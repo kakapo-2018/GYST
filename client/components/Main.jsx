@@ -134,10 +134,10 @@ class Main extends Component {
                 x: 0,
                 y: 1,
                 w: 2,
-                h: 2,
+                h: 3,
                 minW: 2,
                 maxW: 3,
-                minH: 2,
+                minH: 3,
                 maxH: 3
               }}
             >
@@ -293,8 +293,8 @@ class Main extends Component {
             <div
               key="12"
               data-grid={{
-                x: 0,
-                y: 0,
+                x: 3,
+                y: 9,
                 w: 6,
                 h: 2,
                 minW: 4,
@@ -313,13 +313,13 @@ class Main extends Component {
               key="13"
               data-grid={{
                 x: 0,
-                y: 8,
+                y: 5,
                 w: 2,
-                h: 3,
+                h: 4,
                 minW: 2,
-                maxW: 3,
-                maxH: 3,
-                minH: 3
+                maxW: 6,
+                maxH: 6,
+                minH: 4
               }}
             >
               <SpotifyPlaylist />
@@ -330,7 +330,16 @@ class Main extends Component {
           {this.props.showCom.instagram ? (
             <div
               key="14"
-              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+              data-grid={{
+                x: 9,
+                y: 9,
+                w: 4,
+                h: 2,
+                minW: 4,
+                maxW: 8,
+                minH: 2,
+                maxH: 6
+              }}
             >
               <SocialFeed />
             </div>
@@ -342,13 +351,13 @@ class Main extends Component {
               key="15"
               data-grid={{
                 x: 0,
-                y: 8,
+                y: 9,
                 w: 2,
                 h: 1,
-                minW: 3,
-                maxW: 3,
+                minW: 1,
+                maxW: 8,
                 minH: 1,
-                maxH: 1
+                maxH: 2
               }}
             >
               <ColorSetting
