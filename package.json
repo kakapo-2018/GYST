@@ -46,6 +46,7 @@
     "react-instagram-embed": "^1.4.0",
     "react-liquid-gauge": "^1.2.4",
     "react-live-clock": "^2.0.3",
+    "react-material-ui-form-validator": "^2.0.2",
     "react-moment": "^0.8.1",
     "react-open-weather": "^0.4.0",
     "react-redux": "^5.0.7",
