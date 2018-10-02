@@ -6,7 +6,14 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import { saveWeightAction, getWeightAction } from '../actions/weight';
 import Card from '@material-ui/core/Card';
+//Spinner
+import { ClipLoader } from 'react-spinners';
+import { css } from 'react-emotion';
 
+const override = css`
+  display: block;
+  margin: 5% 25%;
+`;
 const styles = theme => ({
   card: {
     padding: '10px',
@@ -31,7 +38,6 @@ const options = {
 class Weight extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       confirm: false,
       dataForChart: [['Date', 'Weight'], ['Start', 0]]
@@ -65,43 +71,42 @@ class Weight extends React.Component {
     let lastEnteredDate = this.state.dataForChart[len - 1][0];
     this.state.confirm = false;
     this.setState(this.state);
-    this.props.saveWeight(
-      lastEnteredWeight,
-      lastEnteredDate,
-      this.props.state.auth.user.id
-    );
+    const booly = /^[1-9]\d*$/.test(lastEnteredWeight);
+
+    if (booly) {
+      this.props.saveWeight(
+        lastEnteredWeight,
+        lastEnteredDate,
+        this.props.state.auth.user.id
+      );
+    } else {
+      this.setState;
+      document.getElementById('kg').value = '';
+    }
     this.props.getWeight(this.props.state.auth.user.id);
   }
 
   render() {
     const { classes } = this.props;
-    let show;
-
-    if(this.state.dataForChart) {
-      show = <Chart
-      chartType="LineChart"
-      width="100%"
-      height="100%"
-      data={this.state.dataForChart}
-      options={options}
-    />
-    }
-    else if (this.props.weight.weight) {
-      show = <Chart
-        chartType="LineChart"
-        width="100%"
-        height="100%"
-        data={this.props.weight.weight}
-        options={options}
-      />
-    } 
-
-
-
     return (
       <Card className={classes.card}>
         <div className="App">
-          {show}
+          {this.props.weight.weight && this.props.weight.weight.length >= 1 ? (
+            <Chart
+              chartType="LineChart"
+              width="100%"
+              height="100%"
+              data={this.props.weight.weight}
+              options={options}
+            />
+          ) : (
+            <ClipLoader
+              className={override}
+              sizeUnit={'px'}
+              size={250}
+              color={'#3f51b5'}
+            />
+          )}
           <Input
             style={{ maxWidth: '45%', marginLeft: '20%', paddingTop: '30px' }}
             id="kg"

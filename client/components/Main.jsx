@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getProfileImage } from '../actions/login';
 //React-grid
 import { Responsive, WidthProvider } from 'react-grid-layout';
-
+import { get, set } from '../utils/localStorage';
 const ResponsiveGridLayout = WidthProvider(Responsive);
 const originalLayouts = getFromLS('layouts') || {};
 
@@ -25,8 +25,9 @@ import GithubIssues from './GithubIssues';
 import Weight from './Weight';
 import SocialFeed from './SocialFeed';
 import Alarm from './Alarm';
+import Language from './Language';
+import Gmail2 from './GmailV2';
 import ColorSetting from './ColorSetting';
-
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -49,7 +50,7 @@ class Main extends Component {
     super(props);
     this.state = {
       layouts: JSON.parse(JSON.stringify(originalLayouts)),
-      background: 'white'
+      background: get('bgcolor') || 'white'
     };
   }
 
@@ -69,12 +70,12 @@ class Main extends Component {
   };
 
   render() {
+    set('bgcolor', this.state.background);
+
     const { classes, theme } = this.props;
+    const bgColor = get('bgcolor');
     return (
-      <main
-        style={{ backgroundColor: this.state.background }}
-        className={classes.content}
-      >
+      <main style={{ backgroundColor: bgColor }} className={classes.content}>
         <div className={classes.toolbar} />
         <ResponsiveGridLayout
           className="layout"
@@ -95,7 +96,7 @@ class Main extends Component {
                 w: 3,
                 h: 1,
                 minW: 3,
-                maxW: 1,
+                maxW: 3,
                 maxH: 1,
                 minH: 1
               }}
@@ -108,7 +109,16 @@ class Main extends Component {
           {this.props.showCom.date ? (
             <div
               key="2"
-              data-grid={{ x: 0, y: 0, w: 2, h: 1, maxW: 2, maxH: 1 }}
+              data-grid={{
+                x: 0,
+                y: 0,
+                w: 2,
+                h: 3,
+                minH: 1,
+                maxH: 4,
+                minW: 1,
+                maxW: 4
+              }}
             >
               <DateTime />
             </div>
@@ -271,6 +281,7 @@ class Main extends Component {
           ) : (
             <React.Fragment />
           )}
+
           {this.props.showCom.color ? (
             <div
               key="15"
@@ -290,6 +301,31 @@ class Main extends Component {
           ) : (
             <React.Fragment />
           )}
+          {this.props.showCom.Gmail2 ? (
+            <div
+              key="16"
+              data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 2, minH: 2 }}
+            >
+              <Gmail2 />
+            </div>
+          ) : (
+            <React.Fragment />
+          )}
+          <div
+            key="17"
+            data-grid={{
+              x: 0,
+              y: 0,
+              w: 4,
+              h: 2,
+              minW: 4,
+              maxW: 4,
+              maxH: 2,
+              minH: 2
+            }}
+          >
+            <Language />
+          </div>
         </ResponsiveGridLayout>
       </main>
     );

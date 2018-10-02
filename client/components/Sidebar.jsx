@@ -21,14 +21,15 @@ import LibraryMusic from '@material-ui/icons/LibraryMusic';
 import LinkedCamera from '@material-ui/icons/LinkedCamera';
 import AlarmAdd from '@material-ui/icons/AlarmAdd';
 import Palette from '@material-ui/icons/Palette';
-
+import Language from '@material-ui/icons/Language';
+import Email from '@material-ui/icons/Email';
 
 const styles = theme => ({
   card: {
     backgroundColor: 'transparent',
     color: 'white',
     maxWidth: 250,
-    zIndex: '3',
+    zIndex: '3'
   },
   button: {
     width: 235,
@@ -52,8 +53,8 @@ const styles = theme => ({
   scrollbar: {
     height: 550,
     marginTop: theme.spacing.unit * 3,
-    overflowY: 'scroll',
-   overflowX: 'hidden',
+    overflowY: 'auto',
+    overflowX: 'hidden'
   }
 });
 
@@ -188,6 +189,24 @@ class Sidebar extends React.Component {
               <SwapVert />
             </Icon>
             <Typography className={classes.sub}>Weight Trackr</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('language')}
+          >
+            <Icon className={classes.icon}>
+              <Language />
+            </Icon>
+            <Typography className={classes.sub}>Language</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('email2')}
+          >
+            <Icon className={classes.icon}>
+              <Email />
+            </Icon>
+            <Typography className={classes.sub}>Gmail</Typography>
           </Button>
           <Button
             className={classes.button}

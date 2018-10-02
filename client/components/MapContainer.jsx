@@ -13,7 +13,7 @@ export class MapContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      position: { lat: 18.486278764986732, lng: 69.92786525735443 }
+      position: { lat: -41.2950227, lng: 174.7739585 }
     };
     this.mapClicked = this.mapClicked.bind(this);
   }
@@ -34,6 +34,10 @@ export class MapContainer extends React.Component {
         onClick={this.mapClicked}
         style={style}
         google={this.props.google}
+        initialCenter={{
+          lat: this.state.position.lat,
+          lng: this.state.position.lng
+        }}
         zoom={14}
       >
         {/* <Marker onClick={this.onMarkerClick} name={"Current location"} /> */}

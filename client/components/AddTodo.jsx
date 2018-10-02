@@ -8,7 +8,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   button: {
-    margin: '2px'
+    marginLeft: '12px',
+    marginTop: '-24px'
   }
 });
 
@@ -42,18 +43,25 @@ class AddTodo extends Component {
     return (
       <div>
         <form id="myForm">
-          <Paper style={{ width: '100%', leftMargin: '15px' }} zdepth={1}>
-            <div style={{ marginLeft: '10px' }}>
-              <TextField
-                hinttext="What needs to be done?"
-                className="AddText"
-                fullWidth={true}
-                onChange={e => this.setState({ inputValue: e.target.value })}
-              />
-            </div>
+          <Paper
+            style={{
+              marginLeft: '10px',
+              width: '85%',
+              leftMargin: '15px',
+              float: 'left'
+            }}
+            zdepth={1}
+          >
+            <TextField
+              hinttext="What needs to be done?"
+              className="AddText"
+              fullWidth={true}
+              onChange={e => this.setState({ inputValue: e.target.value })}
+            />
           </Paper>
           <br />
           <Button
+            mini
             type="submit"
             variant="fab"
             color="primary"

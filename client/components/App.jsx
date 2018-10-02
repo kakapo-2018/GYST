@@ -41,11 +41,19 @@ class App extends Component {
       authenticated: isAuthenticated()
     });
   }
-  
+
   render() {
     return (
       <React.Fragment>
-        <Chat />
+        <Chat
+          profileAvatar={this.props.image.image}
+          titleAvatar={this.props.image.image}
+          chatuser={
+            this.props.state.isAuthenticated
+              ? this.props.state.user.username
+              : 'Anonymous'
+          }
+        />
         <CssBaseline />
         {this.props.state.isAuthenticated && (
           <NavBar
@@ -70,7 +78,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    state: state.auth
+    state: state.auth,
+    image: state.image
   };
 }
 

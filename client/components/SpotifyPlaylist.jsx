@@ -3,11 +3,18 @@ import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { addSpotifyAction, getSpotifyAction } from '../actions/spotify';
 import AddIcon from '@material-ui/icons/Add';
+import ArrowLeft from '@material-ui/icons/ArrowLeft';
+
 import Card from '@material-ui/core/Card';
+import { ClipLoader } from 'react-spinners';
+import { css } from 'react-emotion';
 
 import Button from '@material-ui/core/Button';
 import Refresh from '@material-ui/icons/Refresh';
-
+const override = css`
+  display: block;
+  margin: 5% 25%;
+`;
 class SpotifyPlaylist extends React.Component {
   constructor(props) {
     super(props);
@@ -40,14 +47,27 @@ class SpotifyPlaylist extends React.Component {
     this.setState({
       inputURI: ''
     });
-    this.props.addPlaylist(this.state.inputURI, this.props.state.auth.user.id);
+    const booly = /.+:\d+/.test(this.state.inputURI);
+    if (booly == true) {
+      this.props.addPlaylist(
+        this.state.inputURI,
+        this.props.state.auth.user.id
+      );
+    }
   }
 
   render() {
     return (
       <Card style={{ minHeight: '100%' }}>
         <div className="we">
-          {!this.props.spotify.spotify && <p>Loading...</p>}
+          {!this.props.spotify.spotify && (
+            <ClipLoader
+              className={override}
+              sizeUnit={'px'}
+              size={250}
+              color={'#3f51b5'}
+            />
+          )}
           {this.props.spotify.spotify && (
             <iframe
               src={`https://open.spotify.com/embed/playlist/${
@@ -73,15 +93,27 @@ class SpotifyPlaylist extends React.Component {
             value={this.state.inputURI}
             onChange={this.handleChange}
           />
-          <Button
-            style={{ margin: '10px' }}
-            onClick={this.handleClick}
-            variant="fab"
-            color="primary"
-            aria-label="Add"
-          >
-            <AddIcon />
-          </Button>
+          {!this.state.inputURI == '' && (
+            <Button
+              style={{ margin: '10px' }}
+              onClick={this.handleClick}
+              variant="fab"
+              color="primary"
+              aria-label="Add"
+            >
+              <AddIcon />
+            </Button>
+          )}
+          {this.state.inputURI == '' && (
+            <Button
+              style={{ margin: '10px' }}
+              variant="fab"
+              color="primary"
+              aria-label="Add"
+            >
+              <ArrowLeft />
+            </Button>
+          )}
           <Button
             style={{ margin: '10px' }}
             onClick={this.handleRefresh}

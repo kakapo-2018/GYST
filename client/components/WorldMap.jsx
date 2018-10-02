@@ -7,7 +7,7 @@ import {
 } from 'react-simple-maps';
 import Card from '@material-ui/core/Card';
 import { withStyles } from '@material-ui/core/styles';
-
+import { get, set } from '../utils/localStorage';
 const wrapperStyles = {
   maxWidth: '100%',
   maxHeight: '100%',
@@ -30,20 +30,29 @@ const styles = theme => ({
 
 class WorldMap extends Component {
   state = {
-    place: ''
+    place: get('state') || '',
+    clickArr: []
   };
 
   handleClick(i) {
-    this.setState({
-      place:
-        this.state.place == ''
-          ? this.state.place + i.properties.name
-          : this.state.place.includes(i.properties.name)
-            ? this.state.place.replace(', ' + i.properties.name, '')
-            : this.state.place + ', ' + i.properties.name
-    });
+    this.setState(
+      {
+        clickArr: this.state.clickArr.concat(i),
+        place:
+          this.state.place == ''
+            ? this.state.place + i.properties.name
+            : this.state.place.includes(i.properties.name)
+              ? this.state.place.replace(i.properties.name, ' ')
+              : this.state.place + '  ' + i.properties.name
+      },
+      function() {
+        set('state', this.state.place);
+      }.bind(this)
+    );
   }
   render() {
+    set('state', this.state.place);
+    const persistent = get('state') || '';
     const { classes } = this.props;
     return (
       <Card className={classes.card}>
@@ -73,20 +82,38 @@ class WorldMap extends Component {
                           }}
                           geography={geography}
                           projection={projection}
-                          style={{
-                            default: {
-                              fill: '#ECEFF1',
-                              stroke: '#607D8B',
-                              strokeWidth: 0.75,
-                              outline: 'none'
-                            },
-                            pressed: {
-                              fill: '#607D8B',
-                              stroke: 'grey',
-                              strokeWidth: 0.75,
-                              outline: 'none'
-                            }
-                          }}
+                          style={
+                            persistent.length >= 0 &&
+                            !persistent.includes(geography.properties.name)
+                              ? {
+                                  default: {
+                                    fill: '#ECEFF1',
+                                    stroke: '#607D8B',
+                                    strokeWidth: 0.75,
+                                    outline: 'none'
+                                  },
+                                  pressed: {
+                                    fill: '#607D8B',
+                                    stroke: 'grey',
+                                    strokeWidth: 0.75,
+                                    outline: 'none'
+                                  }
+                                }
+                              : {
+                                  default: {
+                                    fill: '#607D8B',
+                                    stroke: '#607D8B',
+                                    strokeWidth: 0.75,
+                                    outline: 'none'
+                                  },
+                                  pressed: {
+                                    fill: '#607D8B',
+                                    stroke: 'grey',
+                                    strokeWidth: 0.75,
+                                    outline: 'none'
+                                  }
+                                }
+                          }
                         />
                       )
                   )
@@ -94,7 +121,7 @@ class WorldMap extends Component {
               </Geographies>
             </ZoomableGroup>
           </ComposableMap>
-          <p className={classes.name}>{this.state.place}</p>
+          <p className={classes.name}>{persistent}</p>
         </div>
       </Card>
     );

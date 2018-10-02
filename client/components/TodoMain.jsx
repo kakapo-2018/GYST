@@ -33,17 +33,19 @@ class TodoMain extends Component {
   }
 
   handleClick(todo) {
-    this.setState({
-      todos: [
-        ...this.state.todos,
-        {
-          id: uuid(),
-          task: todo,
-          checked: false
-        }
-      ]
-    });
-    this.props.addTodos(this.props.state.auth.user.id, todo);
+    if (todo.length >= 1) {
+      this.setState({
+        todos: [
+          ...this.state.todos,
+          {
+            id: uuid(),
+            task: todo,
+            checked: false
+          }
+        ]
+      });
+      this.props.addTodos(this.props.state.auth.user.id, todo);
+    }
   }
 
   handleRemove(id) {
@@ -70,7 +72,8 @@ class TodoMain extends Component {
           maxWidth: '100%',
           maxHeight: '100%',
           minWidth: '100%',
-          minHeight: '100%'
+          minHeight: '100%',
+          overflow: 'auto'
         }}
       >
         <div
