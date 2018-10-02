@@ -21,7 +21,6 @@ import Settings from '@material-ui/icons/Settings';
 import Modal2 from './Modal';
 
 const drawerWidth = 240;
-var messageNotifications = '6';
 var Notifications = '6';
 
 const styles = theme => ({
@@ -154,6 +153,7 @@ class Navbar extends Component {
 
   render() {
     const { classes, theme } = this.props;
+    let messageNotifications = 0 || this.props.mailCounter.mail;
     const { anchorEl, mobileMoreAnchorEl } = this.state;
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -259,15 +259,17 @@ class Navbar extends Component {
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <IconButton color="inherit">
-                <Badge
-                  className={classes.margin}
-                  badgeContent={messageNotifications}
-                  color="secondary"
-                >
-                  <MailIcon />
-                </Badge>
-              </IconButton>
+              {messageNotifications > 0 && (
+                <IconButton color="inherit">
+                  <Badge
+                    className={classes.margin}
+                    badgeContent={messageNotifications}
+                    color="secondary"
+                  >
+                    <MailIcon />
+                  </Badge>
+                </IconButton>
+              )}
 
               <IconButton color="inherit">
                 <Badge

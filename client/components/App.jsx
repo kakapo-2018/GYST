@@ -57,6 +57,7 @@ class App extends Component {
         <CssBaseline />
         {this.props.state.isAuthenticated && (
           <NavBar
+            mailCounter={this.props.mail}
             user={this.props.state.user.username}
             handleDrawerToggle={this.handleDrawerToggle}
           />
@@ -79,7 +80,8 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     state: state.auth,
-    image: state.image
+    image: state.image,
+    mail: state.mail
   };
 }
 

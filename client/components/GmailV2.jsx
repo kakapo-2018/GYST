@@ -1,6 +1,8 @@
 //external imports
 import React from 'react';
+import { connect } from 'react-redux';
 import GoogleLogin from 'react-google-login';
+import { emailCounter } from '../actions/gmail';
 var superagent = require('superagent'),
   request = superagent;
 //material UI imports
@@ -102,6 +104,7 @@ class Gmail2 extends React.Component {
       .set('Authorization', `Bearer ${this.state.token}`)
       .then(res => {
         this.setState({ unread: res.body.messagesUnread });
+        this.props.emailCounter(res.body.messagesUnread);
       });
   }
 
@@ -221,4 +224,17 @@ Gmail2.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Gmail2);
+function mapDispatchToProps(dispatch) {
+  return {
+    emailCounter: counter => {
+      dispatch(emailCounter(counter));
+    }
+  };
+}
+
+export default withStyles(styles)(
+  connect(
+    null,
+    mapDispatchToProps
+  )(Gmail2)
+);
