@@ -17,6 +17,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import VpnKey from '@material-ui/icons/VpnKey';
 import Email from '@material-ui/icons/Email';
 import Photo from '@material-ui/icons/Photo';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 const styles = theme => ({
   layout: {
@@ -26,6 +27,7 @@ const styles = theme => ({
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
       width: 400,
+      height: 800,
       marginLeft: 'auto',
       marginRight: 'auto'
     }
@@ -45,6 +47,9 @@ const styles = theme => ({
   form: {
     width: '100%',
     marginTop: theme.spacing.unit
+  },
+  input: {
+    marginBottom: '30px'
   },
   submit: {
     marginTop: theme.spacing.unit * 3
@@ -93,84 +98,108 @@ class Register extends React.Component {
               <PersonAdd />
             </Avatar>
             <Typography variant="headline">Register</Typography>
-            <form
+            <ValidatorForm
+              onSubmit={this.handleClick}
               name="Login"
               action="/api/v1/auth/login"
               method="POST"
               className={this.state.classes.form}
             >
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="username">User name</InputLabel>
-                <Input
-                  onChange={this.handleChange}
-                  id="username"
-                  name="username"
-                  autoComplete="username"
-                  autoFocus
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <AccountCircle />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="email">Email address</InputLabel>
-                <Input
-                  onChange={this.handleChange}
-                  id="email"
-                  name="email"
-                  autoComplete="email"
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <Email />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input
-                  onChange={this.handleChange}
-                  name="password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <VpnKey />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-              <FormControl margin="normal" fullWidth>
-                <InputLabel htmlFor="password">
-                  Profile Image (Optional)
-                </InputLabel>
-                <Input
-                  onChange={this.handleChange}
-                  name="image"
-                  type="text"
-                  id="image"
-                  autoComplete="profile image"
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <Photo />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
+              {/* <FormControl margin="normal" required={true} fullWidth> */}
+              <InputLabel htmlFor="username">User name</InputLabel>
+              <TextValidator
+                autoFocus={true}
+                className={this.state.classes.input}
+                fullWidth
+                onChange={this.handleChange}
+                id="username"
+                // onChange={this.handleChange}
+                name="username"
+                value={this.state.username || ''}
+                validators={['required']}
+                errorMessages={['this field is required']}
+                startAdornment={
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                }
+              />
+              {/* </FormControl> */}
+              {/* <FormControl margin="normal" required fullWidth> */}
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <TextValidator
+                validators={['required', 'matchRegexp:^([A-Za-z0-9]){4,20}$']}
+                fullWidth
+                // validators={['required']}
+                errorMessages={[
+                  'this field is required',
+                  'minimum 4 characters - no special characters'
+                ]}
+                onChange={this.handleChange}
+                name="password"
+                type="password"
+                id="password"
+                value={this.state.password || ''}
+                autoComplete="current-password"
+                startAdornment={<InputAdornment position="start" />}
+              />
+              <InputLabel htmlFor="password">Email Address</InputLabel>
+              <TextValidator
+                validators={['required', 'matchRegexp:^([A-Za-z0-9]){4,20}$']}
+                fullWidth
+                // validators={['required']}
+                errorMessages={[
+                  'this field is required',
+                  'email format please'
+                ]}
+                onChange={this.handleChange}
+                name="email"
+                type="email"
+                id="email"
+                value={this.state.email || ''}
+                autoComplete="current-email"
+                startAdornment={<InputAdornment position="start" />}
+              />
+              <InputLabel htmlFor="password">
+                Profile Image (optional)
+              </InputLabel>
+              <TextValidator
+                fullWidth
+                onChange={this.handleChange}
+                name="image"
+                type="text"
+                id="image"
+                autoComplete="current-image"
+                startAdornment={<InputAdornment position="start" />}
+              />
+              {/* <FormControl margin="normal" fullWidth>
+              <InputLabel htmlFor="password">
+                Profile Image (Optional)
+              </InputLabel>
+              <TextValidator
+                className={this.state.classes.image}
+                onChange={this.handleChange}
+                name="image"
+                type="text"
+                id="image"
+                autoComplete="profile image"
+                startAdornment={
+                  <InputAdornment position="start">
+                    <Photo />
+                  </InputAdornment>
+                }
+              /> */}
               <Button
                 type="submit"
                 fullWidth
                 variant="raised"
                 color="primary"
-                onClick={this.handleClick}
+                //onClick={this.handleClick}
                 className={this.state.classes.submit}
               >
                 Register
               </Button>
-            </form>
+            </ValidatorForm>
             <Button
               fullWidth
               variant="raised"
