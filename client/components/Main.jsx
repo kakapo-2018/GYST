@@ -28,6 +28,8 @@ import Alarm from './Alarm';
 import Language from './Language';
 import Gmail2 from './GmailV2';
 import ColorSetting from './ColorSetting';
+import EventList from './EventList';
+
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -198,7 +200,7 @@ class Main extends Component {
               key="8"
               data-grid={{ x: 0, y: 0, w: 2, h: 1, maxW: 2, maxH: 1 }}
             >
-              <Alarm />
+              <GithubIssues />
             </div>
           ) : (
             <React.Fragment />
@@ -325,6 +327,25 @@ class Main extends Component {
               }}
             >
               <Language />
+            </div>
+          ) : (
+            <React.Fragment />
+          )}
+          {this.props.showCom.calendar ? (
+            <div
+              key="18"
+              data-grid={{
+                x: 0,
+                y: 0,
+                w: 4,
+                h: 2,
+                minW: 4,
+                maxW: 4,
+                maxH: 2,
+                minH: 2
+              }}
+            >
+              <EventList />
             </div>
           ) : (
             <React.Fragment />
