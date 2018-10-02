@@ -89,7 +89,7 @@ class EventList extends React.Component {
                         <a target="_blank" href={event.htmlLink}>
                           {event.summary}
                         </a>{' '}
-                        - {moment(event.start.date).format('MMM Do YY')}
+                        - {moment(event.start.date).format('MMM Do, YYYY')}
                       </li>
                     );
                   } else if (event.start.dateTime) {
