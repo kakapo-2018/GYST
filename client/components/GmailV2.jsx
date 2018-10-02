@@ -11,6 +11,14 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import AppBar from '@material-ui/core/AppBar';
+
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import EmailIcon from '@material-ui/icons/Email';
+import Divider from '@material-ui/core/Divider';
 
 const styles = theme => ({
   button: {
@@ -22,6 +30,16 @@ const styles = theme => ({
     minWidth: '100%',
     minHeight: '100%',
     overflow: 'auto'
+  },
+  appbar: {
+    position: 'fixed',
+    color: 'white',
+    borderTopLeftRadius: '5px',
+    borderTopRightRadius: '5px'
+  },
+  header: {
+    color: 'white',
+    textAlign: 'center'
   }
 });
 
@@ -114,62 +132,81 @@ class Gmail2 extends React.Component {
     //google button
     return (
       <Card className={classes.card}>
-        <CardContent>
-          <Typography variant="headline" component="h2">
+        <AppBar className={classes.appbar}>
+          <Typography
+            className={classes.header}
+            variant="headline"
+            component="h2"
+          >
             Unread Emails: {this.state.unread}
           </Typography>
-          <Typography>
+        </AppBar>
+        <div style={{ paddingTop: 32 }}>
+          <CardContent>
             {this.state.msgList &&
               !this.state.individualMsg && (
-                <ol>
+                <List>
                   {this.state.msgList.map(msg => {
                     return (
-                      <li key={msg.id}>
-                        <a
-                          target="_blank"
-                          href={`https://mail.google.com/mail/u/0/#inbox/${
-                            msg.id
-                          }`}
-                        >
-                          {msg.snippet}
-                        </a>
-                      </li>
+                      <React.Fragment>
+                        <ListItem key={msg.id}>
+                          <a
+                            target="_blank"
+                            href={`https://mail.google.com/mail/u/0/#inbox/${
+                              msg.id
+                            }`}
+                          >
+                            <ListItemText>
+                              <ListItemIcon>
+                                <EmailIcon />
+                              </ListItemIcon>
+                              {msg.snippet}
+                            </ListItemText>
+                          </a>
+                        </ListItem>
+                        <Divider />
+                      </React.Fragment>
                     );
                   })}
-                </ol>
+                </List>
               )}
             {this.state.individualMsg && <p>{this.state.individualMsgRes}</p>}
-          </Typography>
-          {this.state.buttonVisible && (
-            <GoogleLogin
-              clientId="693624776345-6k38ssbajdd9s3fa9qo1m1kq9lhis0ir.apps.googleusercontent.com"
-              redirectUri="http://gyst-dash.herokuapp.com"
-              buttonText="Google Login"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              scope="https://mail.google.com/"
-            />
-          )}
-          <CardActions>
-            <Button
-              variant="contained"
-              size="large"
-              color="primary"
-              className={classes.button}
-              onClick={this.emails}
-            >
-              Check Unread
-            </Button>
-            <Button
-              onClick={this.seeEmails}
-              variant="contained"
-              size="large"
-              color="primary"
-            >
-              Inbox
-            </Button>
-          </CardActions>
-        </CardContent>
+            {this.state.buttonVisible && (
+              <GoogleLogin
+                clientId="693624776345-6k38ssbajdd9s3fa9qo1m1kq9lhis0ir.apps.googleusercontent.com"
+                redirectUri="http://gyst-dash.herokuapp.com"
+                buttonText="Google Login"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                scope="https://mail.google.com/"
+              />
+            )}
+
+            <CardActions>
+              {this.state.token && (
+                <React.Fragment>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.emails}
+                  >
+                    Check Unread
+                  </Button>
+                  <Button
+                    onClick={this.seeEmails}
+                    variant="contained"
+                    size="large"
+                    color="primary"
+                  >
+                    Inbox
+                  </Button>
+                </React.Fragment>
+              )}
+            </CardActions>
+          </CardContent>
+        </div>
       </Card>
     );
   }
