@@ -10,9 +10,9 @@ const apiEndpointBaseRSShack = 'https://hackaday.com/blog/feed/';
 router.get('/rss/:source', (req, res) => {
   let newsSource = '';
   if (req.params.source == 'reddit') {
-    newsSource = apiEndpointBaseRSSreddit;
+    newsSource = apiEndpointBaseRSShack;
   } else if (req.params.source == 'stuff') {
-    newsSource = apiEndpointBaseRSSstuff;
+    newsSource = apiEndpointBaseRSShack;
   } else if (req.params.source == 'hackaday') {
     newsSource = apiEndpointBaseRSShack;
   }
