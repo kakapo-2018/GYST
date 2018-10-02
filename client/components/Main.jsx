@@ -130,7 +130,7 @@ class Main extends Component {
           {this.props.showCom.alarm ? (
             <div
               key="3"
-              data-grid={{ x: 0, y: 0, w: 4, h: 4, maxW: 4, maxH: 4 }}
+              data-grid={{ x: 4, y: 0, w: 2, h: 2.5, maxW: 2, maxH: 2.5 }}
             >
               <Alarm />
             </div>
