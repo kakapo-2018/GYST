@@ -26,7 +26,7 @@ const styles = theme => ({
   }
 });
 
-//react component with information in state
+//react component with information in state to toggle views
 class EventList extends React.Component {
   constructor(props) {
     super(props);
@@ -46,7 +46,7 @@ class EventList extends React.Component {
   events() {
     let date = new Date().toISOString();
     request
-      //get request for the gmail cal endpoint
+      //get request for the gmail calendar endpoint
       .get(
         `https://www.googleapis.com/calendar/v3/calendars/${
           this.state.email
@@ -71,7 +71,7 @@ class EventList extends React.Component {
       });
     };
     const { classes } = this.props;
-
+    //mapping over returned objects to get event date (parsed) and name
     return (
       <Card className={classes.card}>
         <CardContent>
@@ -82,7 +82,6 @@ class EventList extends React.Component {
             <ol>
               {this.state.calItems &&
                 this.state.calItems.map(event => {
-                  console.log(event);
                   if (event.start.date) {
                     return (
                       <li key={event.id}>
