@@ -65,7 +65,7 @@ class Register extends React.Component {
       username: '',
       password: '',
       email: '',
-      image: 'https://i.imgur.com/jNNT4LE.png',
+      image: '',
       classes: this.props.classes
     };
     this.handleClick = this.handleClick.bind(this);
@@ -80,14 +80,28 @@ class Register extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    const { username, email, password, image } = this.state;
-    const creds = {
-      username: username.trim(),
-      email: email.trim(),
-      password: password.trim(),
-      image: image.trim()
-    };
-    this.props.registerUser(creds);
+    if (this.state.image == '') {
+      const { username, email, password } = this.state;
+      let image = 'https://i.imgur.com/jNNT4LE.png';
+      const creds = {
+        username: username.trim(),
+        email: email.trim(),
+        password: password.trim(),
+        image: image.trim()
+      };
+      this.props.registerUser(creds);
+    } else {
+      const { username, email, password, image } = this.state;
+      console.log(image);
+
+      const creds = {
+        username: username.trim(),
+        email: email.trim(),
+        password: password.trim(),
+        image: image.trim()
+      };
+      this.props.registerUser(creds);
+    }
   }
 
   render() {
@@ -116,20 +130,18 @@ class Register extends React.Component {
                 id="username"
                 name="username"
                 value={this.state.username || ''}
-                validators={['required']}
-                errorMessages={['this field is required']}
-                startAdornment={
-                  <InputAdornment position="start">
-                    <AccountCircle />
-                  </InputAdornment>
-                }
+                validators={['required', 'matchRegexp:^([A-Za-z0-9]){4,20}$']}
+                errorMessages={[
+                  'username is required',
+                  'minimum 4 characters - no special characters'
+                ]}
               />
               <InputLabel htmlFor="password">Password</InputLabel>
               <TextValidator
                 validators={['required', 'matchRegexp:^([A-Za-z0-9]){4,20}$']}
                 fullWidth
                 errorMessages={[
-                  'this field is required',
+                  'password is required',
                   'minimum 4 characters - no special characters'
                 ]}
                 className={this.state.classes.input}
@@ -139,16 +151,12 @@ class Register extends React.Component {
                 id="password"
                 value={this.state.password || ''}
                 autoComplete="current-password"
-                startAdornment={<InputAdornment position="start" />}
               />
               <InputLabel htmlFor="password">Email Address</InputLabel>
               <TextValidator
-                validators={['required', 'matchRegexp:^([A-Za-z0-9]){4,20}$']}
+                validators={['required', 'isEmail']}
                 fullWidth
-                errorMessages={[
-                  'this field is required',
-                  'email format please'
-                ]}
+                errorMessages={['email is required', 'email format please']}
                 className={this.state.classes.input}
                 onChange={this.handleChange}
                 name="email"
@@ -156,20 +164,17 @@ class Register extends React.Component {
                 id="email"
                 value={this.state.email || ''}
                 autoComplete="current-email"
-                startAdornment={<InputAdornment position="start" />}
               />
-              <InputLabel htmlFor="password">
-                Profile Image (optional)
-              </InputLabel>
+              <InputLabel htmlFor="image">Profile Image (optional)</InputLabel>
               <TextValidator
                 fullWidth
                 onChange={this.handleChange}
                 name="image"
                 type="text"
+                value={this.state.image}
                 className={this.state.classes.input}
                 id="image"
                 autoComplete="current-image"
-                startAdornment={<InputAdornment position="start" />}
               />
               <Button
                 type="submit"
