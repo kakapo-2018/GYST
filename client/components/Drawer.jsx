@@ -113,10 +113,6 @@ class ResponsiveDrawer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.state.isAuthenticated
-      ? this.props.getImage(this.props.state.user.id)
-      : null;
-
     try {
       let newState = JSON.parse(get('stateKey'));
       // this.setState(newState);
