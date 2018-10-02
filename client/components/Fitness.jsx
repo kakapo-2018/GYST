@@ -91,7 +91,9 @@ class Fitness extends Component {
   }
 
   submit = e => {
-    this.getData(this.state.searchTerm);
+    if (this.state.searchTerm.length > 1) {
+      this.getData(this.state.searchTerm);
+    }
   };
 
   render() {
