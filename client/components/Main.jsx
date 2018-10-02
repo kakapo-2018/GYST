@@ -32,6 +32,7 @@ const drawerWidth = 240;
 const styles = theme => ({
   content: {
     paddingLeft: '255px',
+    zIndex: 0,
     flexGrow: 1,
     padding: theme.spacing.unit * 3
   },
