@@ -8,6 +8,6 @@
 
 // test('<App />', () => {
 //   const expected = 'Hi';
-//   const wrapper = shallow(<App image={[]} />);
+//   const wrapper = shallow(<App image={[]} isAuthenticated={}/>);
 //   expect(wrapper.text()).toMatch(expected);
 // });
