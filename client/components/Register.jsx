@@ -92,8 +92,6 @@ class Register extends React.Component {
       this.props.registerUser(creds);
     } else {
       const { username, email, password, image } = this.state;
-      console.log(image);
-
       const creds = {
         username: username.trim(),
         email: email.trim(),
