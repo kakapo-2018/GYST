@@ -15,6 +15,8 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import VpnKey from '@material-ui/icons/VpnKey';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+
 const styles = theme => ({
   layout: {
     width: 'auto',
@@ -42,6 +44,9 @@ const styles = theme => ({
   form: {
     width: '100%',
     marginTop: theme.spacing.unit
+  },
+  input: {
+    marginBottom: '30px'
   },
   submit: {
     marginTop: theme.spacing.unit * 3
@@ -73,7 +78,6 @@ class SignIn extends React.Component {
       username: username.trim(),
       password: password.trim()
     };
-    // this.props.getProfileImage;
     this.props.loginUser(creds);
   }
 
@@ -87,53 +91,67 @@ class SignIn extends React.Component {
               <LockIcon />
             </Avatar>
             <Typography variant="headline">Sign in</Typography>
-            <form
+            <ValidatorForm
+              onSubmit={this.handleClick}
               name="Login"
               action="/api/v1/auth/login"
               method="POST"
               className={this.state.classes.form}
             >
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="username">User name</InputLabel>
-                <Input
-                  onChange={this.handleChange}
-                  id="username"
-                  name="username"
-                  autoComplete="username"
-                  autoFocus
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <AccountCircle />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input
-                  onChange={this.handleChange}
-                  name="password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <VpnKey />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
+              {/* <FormControl margin="normal" required={true} fullWidth> */}
+              <InputLabel htmlFor="username">User name</InputLabel>
+              <TextValidator
+                autoFocus={true}
+                className={this.state.classes.input}
+                fullWidth
+                onChange={this.handleChange}
+                id="username"
+                // onChange={this.handleChange}
+                name="username"
+                value={this.state.username || ''}
+                validators={['required']}
+                errorMessages={['this field is required']}
+                startAdornment={
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                }
+              />
+              {/* </FormControl> */}
+              {/* <FormControl margin="normal" required fullWidth> */}
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <TextValidator
+                validators={['required', 'matchRegexp:^([A-Za-z0-9]){4,20}$']}
+                fullWidth
+                // validators={['required']}
+                errorMessages={[
+                  'this field is required',
+                  'minimum 4 characters - no special characters'
+                ]}
+                onChange={this.handleChange}
+                name="password"
+                type="password"
+                id="password"
+                value={this.state.password || ''}
+                autoComplete="current-password"
+                startAdornment={
+                  <InputAdornment position="start">
+                    <VpnKey />
+                  </InputAdornment>
+                }
+              />
+              {/* </FormControl> */}
               <Button
                 type="submit"
                 fullWidth
                 variant="raised"
                 color="primary"
-                onClick={this.handleClick}
+                // onClick={this.handleClick}
                 className={this.state.classes.submit}
               >
                 Sign in
               </Button>
-            </form>
+            </ValidatorForm>
             <Button
               fullWidth
               variant="raised"
