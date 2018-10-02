@@ -93,7 +93,7 @@ class Main extends Component {
             <div
               key="1"
               data-grid={{
-                x: 3,
+                x: 2,
                 y: 2,
                 w: 2,
                 h: 1,
@@ -150,12 +150,12 @@ class Main extends Component {
             <div
               key="4"
               data-grid={{
-                x: 0,
-                y: 0,
-                w: 2,
+                x: 8,
+                y: 3,
+                w: 3,
                 h: 2,
                 minW: 3,
-                maxW: 3,
+                maxW: 6,
                 maxH: 2,
                 minH: 2
               }}
@@ -169,12 +169,12 @@ class Main extends Component {
             <div
               key="5"
               data-grid={{
-                x: 0,
-                y: 0,
+                x: 3,
+                y: 3,
                 w: 3,
                 h: 2,
                 minW: 3,
-                maxW: 3,
+                maxW: 6,
                 minH: 2,
                 maxH: 2
               }}
@@ -187,7 +187,16 @@ class Main extends Component {
           {this.props.showCom.weather ? (
             <div
               key="6"
-              data-grid={{ x: 8, y: 0, w: 4, h: 2, minW: 4, maxW: 8, minH: 2 }}
+              data-grid={{
+                x: 9,
+                y: 0,
+                w: 4,
+                h: 2,
+                minW: 4,
+                maxW: 8,
+                minH: 2,
+                maxH: 4
+              }}
             >
               <Weather />
             </div>
@@ -217,7 +226,16 @@ class Main extends Component {
           {this.props.showCom.rss ? (
             <div
               key="9"
-              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+              data-grid={{
+                x: 9,
+                y: 3,
+                w: 4,
+                h: 2,
+                minW: 4,
+                maxW: 8,
+                minH: 2,
+                maxH: 4
+              }}
             >
               <RSS />
             </div>
@@ -268,7 +286,7 @@ class Main extends Component {
               key="13"
               data-grid={{
                 x: 0,
-                y: 4,
+                y: 8,
                 w: 2,
                 h: 3,
                 minW: 2,
@@ -297,11 +315,13 @@ class Main extends Component {
               key="15"
               data-grid={{
                 x: 0,
-                y: 0,
-                w: 3,
+                y: 8,
+                w: 2,
                 h: 1,
                 minW: 3,
-                minH: 1
+                maxW: 3,
+                minH: 1,
+                maxH: 1
               }}
             >
               <ColorSetting
