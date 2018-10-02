@@ -281,7 +281,6 @@ class Main extends Component {
           ) : (
             <React.Fragment />
           )}
-
           {this.props.showCom.color ? (
             <div
               key="15"
@@ -311,21 +310,25 @@ class Main extends Component {
           ) : (
             <React.Fragment />
           )}
-          <div
-            key="17"
-            data-grid={{
-              x: 0,
-              y: 0,
-              w: 4,
-              h: 2,
-              minW: 4,
-              maxW: 4,
-              maxH: 2,
-              minH: 2
-            }}
-          >
-            <Language />
-          </div>
+          {this.props.showCom.language ? (
+            <div
+              key="17"
+              data-grid={{
+                x: 0,
+                y: 0,
+                w: 4,
+                h: 2,
+                minW: 4,
+                maxW: 4,
+                maxH: 2,
+                minH: 2
+              }}
+            >
+              <Language />
+            </div>
+          ) : (
+            <React.Fragment />
+          )}
         </ResponsiveGridLayout>
       </main>
     );
