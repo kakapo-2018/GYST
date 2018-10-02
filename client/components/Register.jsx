@@ -27,7 +27,7 @@ const styles = theme => ({
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
       width: 400,
-      height: 800,
+      height: 650,
       marginLeft: 'auto',
       marginRight: 'auto'
     }
@@ -37,6 +37,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    height: '100%',
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
       .spacing.unit * 3}px`
   },
@@ -46,6 +47,7 @@ const styles = theme => ({
   },
   form: {
     width: '100%',
+    height: '100%',
     marginTop: theme.spacing.unit
   },
   input: {
@@ -105,7 +107,6 @@ class Register extends React.Component {
               method="POST"
               className={this.state.classes.form}
             >
-              {/* <FormControl margin="normal" required={true} fullWidth> */}
               <InputLabel htmlFor="username">User name</InputLabel>
               <TextValidator
                 autoFocus={true}
@@ -113,7 +114,6 @@ class Register extends React.Component {
                 fullWidth
                 onChange={this.handleChange}
                 id="username"
-                // onChange={this.handleChange}
                 name="username"
                 value={this.state.username || ''}
                 validators={['required']}
@@ -124,17 +124,15 @@ class Register extends React.Component {
                   </InputAdornment>
                 }
               />
-              {/* </FormControl> */}
-              {/* <FormControl margin="normal" required fullWidth> */}
               <InputLabel htmlFor="password">Password</InputLabel>
               <TextValidator
                 validators={['required', 'matchRegexp:^([A-Za-z0-9]){4,20}$']}
                 fullWidth
-                // validators={['required']}
                 errorMessages={[
                   'this field is required',
                   'minimum 4 characters - no special characters'
                 ]}
+                className={this.state.classes.input}
                 onChange={this.handleChange}
                 name="password"
                 type="password"
@@ -147,11 +145,11 @@ class Register extends React.Component {
               <TextValidator
                 validators={['required', 'matchRegexp:^([A-Za-z0-9]){4,20}$']}
                 fullWidth
-                // validators={['required']}
                 errorMessages={[
                   'this field is required',
                   'email format please'
                 ]}
+                className={this.state.classes.input}
                 onChange={this.handleChange}
                 name="email"
                 type="email"
@@ -168,47 +166,30 @@ class Register extends React.Component {
                 onChange={this.handleChange}
                 name="image"
                 type="text"
+                className={this.state.classes.input}
                 id="image"
                 autoComplete="current-image"
                 startAdornment={<InputAdornment position="start" />}
               />
-              {/* <FormControl margin="normal" fullWidth>
-              <InputLabel htmlFor="password">
-                Profile Image (Optional)
-              </InputLabel>
-              <TextValidator
-                className={this.state.classes.image}
-                onChange={this.handleChange}
-                name="image"
-                type="text"
-                id="image"
-                autoComplete="profile image"
-                startAdornment={
-                  <InputAdornment position="start">
-                    <Photo />
-                  </InputAdornment>
-                }
-              /> */}
               <Button
                 type="submit"
                 fullWidth
                 variant="raised"
                 color="primary"
-                //onClick={this.handleClick}
                 className={this.state.classes.submit}
               >
                 Register
               </Button>
+              <Button
+                fullWidth
+                variant="raised"
+                color="primary"
+                onClick={this.props.toggleLogin}
+                className={this.state.classes.submit}
+              >
+                Back to sign in
+              </Button>
             </ValidatorForm>
-            <Button
-              fullWidth
-              variant="raised"
-              color="primary"
-              onClick={this.props.toggleLogin}
-              className={this.state.classes.submit}
-            >
-              Back to sign in
-            </Button>
           </Paper>
         </main>
       </React.Fragment>
