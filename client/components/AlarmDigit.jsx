@@ -178,7 +178,7 @@ class AlarmDigit extends React.Component {
           className={classes.input}
           type="text"
           name={this.props.myRef}
-          value={(this.state.value < 10 ? '0' : '') + String(this.state.value)}
+          value={this.props.val}
           onChange={e => this.props.handleChange(e.target.name, e.target.value)}
           onKeyDown={this.handleKeyDown}
           onWheel={this.handleWheel}
