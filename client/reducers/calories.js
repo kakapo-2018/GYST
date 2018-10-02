@@ -8,6 +8,10 @@ export default function calories(state = [], action) {
       return {
         totalcalories: action.totalcalories
       };
+    case 'LOGOUT_SUCCESS':
+      return {
+        totalcalories: ''
+      };
     default:
       return state;
   }
