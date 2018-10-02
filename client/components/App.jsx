@@ -81,7 +81,8 @@ function mapStateToProps(state) {
   return {
     state: state.auth,
     image: state.image,
-    mail: state.mail
+    mail: state.mail,
+    notifications: state
   };
 }
 
