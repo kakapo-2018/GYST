@@ -31,9 +31,6 @@ const styles = theme => ({
   time: {
     fontSize: '80px'
   },
-  stop: {
-    marginBottom: '5%'
-  },
   btn: {
     margin: theme.spacing.unit
   }
