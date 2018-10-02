@@ -3,7 +3,7 @@ const request = require('superagent');
 
 const apiEndpointBaseRSSreddit = 'https://www.reddit.com/.rss';
 
-const apiEndpointBaseRSSstuff =
+const apiEndpointBaseRSSNZH =
   'http://rss.nzherald.co.nz/rss/xml/nzhtsrsscid_000000698.xml';
 
 const apiEndpointBaseRSShack = 'https://hackaday.com/blog/feed/';
@@ -12,8 +12,8 @@ router.get('/rss/:source', (req, res) => {
   let newsSource = '';
   if (req.params.source == 'reddit') {
     newsSource = apiEndpointBaseRSSreddit;
-  } else if (req.params.source == 'stuff') {
-    newsSource = apiEndpointBaseRSSstuff;
+  } else if (req.params.source == 'nzherald') {
+    newsSource = apiEndpointBaseRSSNZH;
   } else if (req.params.source == 'hackaday') {
     newsSource = apiEndpointBaseRSShack;
   }
