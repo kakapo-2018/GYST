@@ -66,6 +66,8 @@ export function chkTodosAction(id, user, checked) {
     request('post', '/todo/check', obj).then(response => {
       if (!response.ok) {
       } else {
+        console.log(response.body);
+
         dispatch(receiveTodos(response.body));
       }
     });
