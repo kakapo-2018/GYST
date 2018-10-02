@@ -8,6 +8,7 @@ export default function todos(state = [], action) {
       return {
         image: 'https://i.stack.imgur.com/l60Hf.png'
       };
+
     default:
       return state;
   }

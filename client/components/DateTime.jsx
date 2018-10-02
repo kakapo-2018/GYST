@@ -7,13 +7,16 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Clock from 'react-live-clock';
-import Calendar from 'react-calendar';
+import Calendar from './Calendar';
 
 const styles = theme => ({
   card: {
     backgroundColor: '#aa2e25',
     maxWidth: '100%',
-    minWidth: '100%'
+    minWidth: '100%',
+    maxHeight: '100%',
+    minHeight: '100%',
+    overflow: 'auto'
   },
   action: {
     display: 'flex',

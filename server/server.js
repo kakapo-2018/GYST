@@ -7,6 +7,8 @@ const todoRoutes = require('./routes/todo');
 const weightRoutes = require('./routes/weight');
 const instaRoutes = require('./routes/insta');
 const imageRoutes = require('./routes/image');
+const calorieRoutes = require('./routes/calorie');
+
 const server = express();
 const port = process.env.PORT || 3000;
 var cors = require('cors');
@@ -24,6 +26,8 @@ server.use(express.static(path.join(__dirname, '../public')));
 //API calls
 server.use('/api/v1', require('./routes/internal'));
 
+server.use('/api/ext', require('./routes/external'));
+
 server.use('/api/v1/auth', authRoutes);
 
 server.use('/api/v1/image', imageRoutes);
@@ -34,9 +38,9 @@ server.use('/api/v1/spotify', spotifyRoutes);
 
 server.use('/api/v1/weight', weightRoutes);
 
-server.use('/api/v1/insta', instaRoutes);
+server.use('/api/v1/calories', calorieRoutes);
 
-server.use('/api/ext', require('./routes/external'));
+server.use('/api/v1/insta', instaRoutes);
 
 server.get('/spotify', (req, res) => {});
 

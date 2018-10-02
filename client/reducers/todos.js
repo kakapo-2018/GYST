@@ -4,6 +4,10 @@ export default function todos(state = [], action) {
       return {
         todos: action.todos
       };
+    case 'LOGOUT_SUCCESS':
+      return {
+        todos: ''
+      };
     default:
       return { ...state };
   }
