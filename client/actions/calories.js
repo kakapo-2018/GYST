@@ -36,7 +36,6 @@ export function getTotalCals(id) {
     request('get', '/calories/' + id).then(response => {
       if (!response.ok) {
       } else {
-        console.log(response.body.calories);
         dispatch(getCals(response.body.calories));
       }
     });

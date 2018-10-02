@@ -95,7 +95,10 @@ class AlarmDigit extends React.Component {
     state.increaseCounter = 0;
     this.setState(state);
     this.handleIncrease();
-    this.props.handleChange(this.props.myRef, this.state.value);
+    let newVal = paddy(this.state.value, 2);
+    console.log(this.props.myRef, newVal);
+
+    this.props.handleChange(this.props.myRef, newVal);
   }
 
   handleStopIncrease() {
@@ -126,7 +129,10 @@ class AlarmDigit extends React.Component {
     state.decreaseCounter = 0;
     this.setState(state);
     this.handleDecrease();
-    this.props.handleChange(this.props.myRef, this.state.value);
+    let newVal = paddy(this.state.value, 2);
+    console.log(this.props.myRef, newVal);
+
+    this.props.handleChange(this.props.myRef, newVal);
   }
 
   handleStopDecrease() {
