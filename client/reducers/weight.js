@@ -8,6 +8,10 @@ export default function weight(state = [], action) {
       return {
         weight: action.weight
       };
+    case 'LOADING_WEIGHT':
+      return {
+        loading: true
+      };
     case 'LOGOUT_SUCCESS':
       return {
         weight: ''
