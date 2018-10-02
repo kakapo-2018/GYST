@@ -5,6 +5,8 @@ import spotify from './spotify';
 import auth from './auth';
 import image from './image';
 import weight from './weight';
+import calories from './calories';
+
 import { items, itemsHasErrored, itemsIsLoading } from './example_reducer';
 
 export default combineReducers({
@@ -16,5 +18,6 @@ export default combineReducers({
   spotify,
   insta,
   image,
-  weight
+  weight,
+  calories
 });
