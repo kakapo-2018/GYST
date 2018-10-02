@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
     table.binary('hash');
     table.integer('saved').defaultTo(10);
     table.integer('savingGoal').defaultTo(100);
-    table.string('image');
+    table.string('image').defaultTo('https://i.imgur.com/jNNT4LE.png');
   });
 };
 

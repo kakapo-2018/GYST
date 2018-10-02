@@ -4,6 +4,10 @@ export default function todos(state = [], action) {
       return {
         insta: action.insta
       };
+    case 'LOGOUT_SUCCESS':
+      return {
+        insta: ''
+      };
     default:
       return state;
   }
