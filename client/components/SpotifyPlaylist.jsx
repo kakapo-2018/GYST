@@ -53,10 +53,6 @@ class SpotifyPlaylist extends React.Component {
         this.state.inputURI,
         this.props.state.auth.user.id
       );
-    } else {
-      this.setState({
-        inputURI: 'Invalid entry.'
-      });
     }
   }
 
