@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { saveTotalCals, getTotalCals } from '../actions/calories';
 
 //Material UI
 import Card from '@material-ui/core/Card';
@@ -12,7 +15,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit
+    margin: theme.spacing.unit,
+    marginTop: '15px'
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -20,6 +24,12 @@ const styles = theme => ({
   },
   extendedIcon: {
     marginRight: theme.spacing.unit
+  },
+  card: {
+    maxWidth: '100%',
+    maxHeight: '100%',
+    minWidth: '100%',
+    minHeight: '100%'
   }
 });
 
@@ -34,9 +44,15 @@ class Fitness extends Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getTotalCals(this.props.state.auth.user.id);
 
-  getData() {
+    setTimeout(() => {
+      this.setState({ totalCals: this.props.state.calories.totalcalories });
+    }, 2000);
+  }
+
+  getData = () => {
     var foodWeb = require('foodweb');
 
     var item = foodWeb.search(this.state.searchTerm)[0];
@@ -48,18 +64,25 @@ class Fitness extends Component {
     // description of serving
     var servingDescription = item.data.primaryWeightDesc;
 
-    this.setState({
-      searchInfo:
-        servingDescription +
-        ' of ' +
-        this.state.searchTerm +
-        ' is ' +
-        serving +
-        ' calories',
-      totalCals: this.state.totalCals + serving
-    });
-    this.forceUpdate();
-  }
+    this.setState(
+      {
+        searchInfo:
+          servingDescription +
+          ' of ' +
+          this.state.searchTerm +
+          ' is ' +
+          serving +
+          ' calories',
+        totalCals: this.state.totalCals + serving
+      },
+      () => {
+        this.props.saveTotalCals(
+          this.state.totalCals,
+          this.props.state.auth.user.id
+        );
+      }
+    );
+  };
 
   updateInputValue(evt) {
     this.setState({
@@ -75,15 +98,7 @@ class Fitness extends Component {
     const { classes } = this.props;
 
     return (
-      <Card
-        className={classes.card}
-        style={{
-          maxWidth: '100%',
-          maxHeight: '100%',
-          minWidth: '100%',
-          minHeight: '100%'
-        }}
-      >
+      <Card className={classes.card}>
         <CardMedia
           component="img"
           className={classes.media}
@@ -105,14 +120,17 @@ class Fitness extends Component {
         >
           {this.state.searchInfo}
         </Typography>
-        <Typography
-          component="p"
-          style={{
-            marginLeft: '10px'
-          }}
-        >
-          kCals consumed today: {this.state.totalCals}
-        </Typography>
+
+        {this.props.state.calories.totalcalories && (
+          <Typography
+            component="p"
+            style={{
+              marginLeft: '10px'
+            }}
+          >
+            kCals consumed today: {this.state.totalCals}
+          </Typography>
+        )}
 
         <TextField
           id="outlined-name"
@@ -137,4 +155,28 @@ class Fitness extends Component {
   }
 }
 
-export default withStyles(styles)(Fitness);
+function mapStateToProps(state) {
+  return {
+    state: state
+    // items: state.items[0],
+    // loading: state.itemsIsLoading
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    saveTotalCals: (cals, id) => {
+      dispatch(saveTotalCals(cals, id));
+    },
+    getTotalCals: id => {
+      dispatch(getTotalCals(id));
+    }
+  };
+}
+
+export default withStyles(styles)(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Fitness)
+);
