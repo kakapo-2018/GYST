@@ -23,7 +23,8 @@ router.get('/rss/:source', (req, res) => {
     .buffer(true)
     .then(result => {
       res.send(result.text);
-    });
+    })
+    .catch(err => console.log(err));
 });
 
 //External json api example
