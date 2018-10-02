@@ -10,7 +10,7 @@ import PersistentDrawer from './Drawer';
 import NavBar from './NavBar';
 import Chat from './Chat';
 
-class App extends Component {
+export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
