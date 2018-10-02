@@ -11,17 +11,18 @@ import { get, set } from '../utils/localStorage';
 const styles = theme => ({
   card: {
     maxWidth: '100%',
-    maxHeight: '500',
+    overflow: 'auto',
+    maxHeight: '100%',
     minWidth: '100%',
     minHeight: '100%',
     textAlign: 'center'
   },
   container: {
-    overflow: 'hidden',
+    overflow: 'auto',
     margin: 'auto'
   },
   alarm: {
-    overflow: 'hidden'
+    overflow: 'auto'
   },
   control: {
     width: '80%',
@@ -33,6 +34,9 @@ const styles = theme => ({
   },
   btn: {
     margin: theme.spacing.unit
+  },
+  stop: {
+    marginBottom: '4px'
   }
 });
 var paddy = function(n, p, c) {
@@ -173,6 +177,7 @@ class Alarm extends React.Component {
           </audio>
           <h2>Alarms</h2>
           <AlarmList
+            className={classes.container}
             handleClickDel={this.handleClickDel}
             data={this.state.timeArr}
             myRef="alarmList"
