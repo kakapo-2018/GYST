@@ -54,7 +54,7 @@ class Main extends Component {
     };
   }
 
-  componentDidyarMount() {
+  componentDidMount() {
     this.props.state.auth.user.id
       ? this.props.getProfileImage(this.props.state.auth.user.id)
       : null;
