@@ -27,7 +27,7 @@ const styles = theme => ({
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
       width: 400,
-      height: 650,
+      height: 700,
       marginLeft: 'auto',
       marginRight: 'auto'
     }
@@ -92,8 +92,6 @@ class Register extends React.Component {
       this.props.registerUser(creds);
     } else {
       const { username, email, password, image } = this.state;
-      console.log(image);
-
       const creds = {
         username: username.trim(),
         email: email.trim(),
@@ -114,6 +112,7 @@ class Register extends React.Component {
               <PersonAdd />
             </Avatar>
             <Typography variant="headline">Register</Typography>
+            <p style={{ color: 'red' }}>{this.props.state.errorMessage}</p>
             <ValidatorForm
               onSubmit={this.handleClick}
               name="Login"
@@ -205,6 +204,12 @@ Register.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
+const mapStateToProps = state => {
+  return {
+    state: state.auth
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     registerUser: creds => {
@@ -218,7 +223,7 @@ const mapDispatchToProps = dispatch => {
 
 export default withStyles(styles)(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(Register)
 );

@@ -33,8 +33,7 @@ export default function auth(state = initialState, action) {
     case 'LOGOUT_SUCCESS':
       return {
         isFetching: false,
-        isAuthenticated: false,
-        user: null
+        isAuthenticated: false
       };
     case 'REGISTER_REQUEST':
       return {

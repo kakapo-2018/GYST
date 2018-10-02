@@ -89,6 +89,7 @@ class SignIn extends React.Component {
               <LockIcon />
             </Avatar>
             <Typography variant="headline">Sign in</Typography>
+            <p style={{ color: 'red' }}>{this.props.state.errorMessage}</p>
             <ValidatorForm
               onSubmit={this.handleClick}
               name="Login"
