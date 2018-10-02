@@ -5,6 +5,7 @@ import request from '../utils/api';
 export function getWeightAction(id) {
   let obj = { id: id };
   return function(dispatch) {
+    dispatch(gettingWeights());
     request('get', '/weight', obj).then(response => {
       if (!response.ok) {
       } else {
@@ -35,11 +36,19 @@ function setWeight(response) {
   };
 }
 
+function gettingWeights() {
+  return {
+    type: 'LOADING_WEIGHT',
+    isFetching: true
+  };
+}
+
 //adding weight info
 
 export function saveWeightAction(weight, date, id) {
   let obj = { weight, date, id };
   return function(dispatch) {
+    dispatch(gettingWeights());
     request('post', '/weight/save', obj).then(response => {
       if (!response.ok) {
       } else {

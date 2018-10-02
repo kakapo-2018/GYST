@@ -10,9 +10,6 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import VpnKey from '@material-ui/icons/VpnKey';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 const styles = theme => ({
@@ -97,7 +94,6 @@ class SignIn extends React.Component {
               method="POST"
               className={this.state.classes.form}
             >
-              {/* <FormControl margin="normal" required={true} fullWidth> */}
               <InputLabel htmlFor="username">User name</InputLabel>
               <TextValidator
                 autoFocus={true}
@@ -105,24 +101,15 @@ class SignIn extends React.Component {
                 fullWidth
                 onChange={this.handleChange}
                 id="username"
-                // onChange={this.handleChange}
                 name="username"
                 value={this.state.username || ''}
                 validators={['required']}
                 errorMessages={['this field is required']}
-                startAdornment={
-                  <InputAdornment position="start">
-                    <AccountCircle />
-                  </InputAdornment>
-                }
               />
-              {/* </FormControl> */}
-              {/* <FormControl margin="normal" required fullWidth> */}
               <InputLabel htmlFor="password">Password</InputLabel>
               <TextValidator
                 validators={['required', 'matchRegexp:^([A-Za-z0-9]){4,20}$']}
                 fullWidth
-                // validators={['required']}
                 errorMessages={[
                   'this field is required',
                   'minimum 4 characters - no special characters'
@@ -133,19 +120,12 @@ class SignIn extends React.Component {
                 id="password"
                 value={this.state.password || ''}
                 autoComplete="current-password"
-                startAdornment={
-                  <InputAdornment position="start">
-                    <VpnKey />
-                  </InputAdornment>
-                }
               />
-              {/* </FormControl> */}
               <Button
                 type="submit"
                 fullWidth
                 variant="raised"
                 color="primary"
-                // onClick={this.handleClick}
                 className={this.state.classes.submit}
               >
                 Sign in
