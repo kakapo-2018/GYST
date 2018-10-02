@@ -18,9 +18,9 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Settings from '@material-ui/icons/Settings';
+import Modal2 from './Modal';
 
 const drawerWidth = 240;
-
 var messageNotifications = '6';
 var Notifications = '6';
 
@@ -119,7 +119,20 @@ class Navbar extends Component {
   state = {
     anchorEl: null,
     mobileMoreAnchorEl: null,
-    color:false
+    color: false,
+    modal: false
+  };
+
+  closeModal = () => {
+    this.setState({
+      modal: false
+    });
+  };
+
+  showModal = () => {
+    this.setState({
+      modal: true
+    });
   };
 
   handleProfileMenuOpen = event => {
@@ -138,7 +151,6 @@ class Navbar extends Component {
   handleMobileMenuClose = () => {
     this.setState({ mobileMoreAnchorEl: null });
   };
-
 
   render() {
     const { classes, theme } = this.props;
@@ -266,14 +278,8 @@ class Navbar extends Component {
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
-              <IconButton color="inherit">
-                <Badge
-                  className={classes.margin}
-                  badgeContent={Notifications}
-                  color="secondary"
-                >
-                  <Settings />
-                </Badge>
+              <IconButton onClick={this.showModal} color="inherit">
+                <Settings />
               </IconButton>
               <IconButton
                 aria-owns={isMenuOpen ? 'material-appbar' : null}
@@ -297,6 +303,7 @@ class Navbar extends Component {
         </AppBar>
         {renderMenu}
         {renderMobileMenu}
+        <Modal2 open={this.state.modal} closeModal={this.closeModal} />
       </React.Fragment>
     );
   }

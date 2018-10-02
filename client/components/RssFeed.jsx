@@ -47,7 +47,8 @@ class RSS extends Component {
     super(props);
     this.state = {
       redditfeedItems: [],
-      stufffeedItems: [],
+      nzheraldfeedItems: [],
+      hackadayfeedItems: [],
       value: 0,
       loading: true
     };
@@ -79,14 +80,20 @@ class RSS extends Component {
     (async () => {
       let redditfeed = await parser.parseURL(`/api/ext/rss/reddit`);
 
-      let stufffeed = await parser.parseURL(`/api/ext/rss/stuff`);
+      let nzheraldfeed = await parser.parseURL(`/api/ext/rss/nzherald`);
+
+      let hackadayfeed = await parser.parseURL(`/api/ext/rss/hackaday`);
 
       redditfeed.items.forEach(item => {
         this.setState({ redditfeedItems: redditfeed.items });
       });
 
-      stufffeed.items.forEach(item => {
-        this.setState({ stufffeedItems: stufffeed.items });
+      nzheraldfeed.items.forEach(item => {
+        this.setState({ nzheraldfeedItems: nzheraldfeed.items });
+      });
+
+      hackadayfeed.items.forEach(item => {
+        this.setState({ hackadayfeedItems: hackadayfeed.items });
       });
 
       this.setState({ loading: false });
@@ -103,8 +110,8 @@ class RSS extends Component {
           <AppBar position="static" className={classes.appbar}>
             <Tabs value={value} onChange={this.handleChange}>
               <Tab label="Reddit" />
-              <Tab label="Stuff.co.nz" />
-              <Tab label="Item Three" />
+              <Tab label="nz herald" />
+              <Tab label="Hackaday" />
             </Tabs>
           </AppBar>
 
@@ -163,7 +170,7 @@ class RSS extends Component {
                     loading={this.state.loading}
                   />
                   <List>
-                    {this.state.stufffeedItems.map(item => {
+                    {this.state.nzheraldfeedItems.map(item => {
                       return (
                         <ListItem key={item.id}>
                           <Typography component="p">
@@ -179,7 +186,41 @@ class RSS extends Component {
               </React.Fragment>
             </TabContainer>
           )}
-          {value === 2 && <TabContainer>Item Three</TabContainer>}
+          {value === 2 && (
+            <TabContainer>
+              <React.Fragment>
+                <CardMedia
+                  component="img"
+                  className={classes.media}
+                  height="110"
+                  image="rss.jpg"
+                />
+
+                <Card className={classes.card}>
+                  <ClipLoader
+                    className={override}
+                    sizeUnit={'px'}
+                    size={250}
+                    color={'#3f51b5'}
+                    loading={this.state.loading}
+                  />
+                  <List>
+                    {this.state.hackadayfeedItems.map(item => {
+                      return (
+                        <ListItem key={item.id}>
+                          <Typography component="p">
+                            <a target="_blank" href={item.link}>
+                              {item.title}
+                            </a>
+                          </Typography>
+                        </ListItem>
+                      );
+                    })}
+                  </List>
+                </Card>
+              </React.Fragment>
+            </TabContainer>
+          )}
         </React.Fragment>
       </Card>
     );

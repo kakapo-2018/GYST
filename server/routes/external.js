@@ -3,14 +3,19 @@ const request = require('superagent');
 
 const apiEndpointBaseRSSreddit = 'https://www.reddit.com/.rss';
 
-const apiEndpointBaseRSSstuff = 'https://www.stuff.co.nz/rss';
+const apiEndpointBaseRSSNZH =
+  'http://rss.nzherald.co.nz/rss/xml/nzhtsrsscid_000000698.xml';
+
+const apiEndpointBaseRSShack = 'https://hackaday.com/blog/feed/';
 
 router.get('/rss/:source', (req, res) => {
   let newsSource = '';
   if (req.params.source == 'reddit') {
     newsSource = apiEndpointBaseRSSreddit;
-  } else if (req.params.source == 'stuff') {
-    newsSource = apiEndpointBaseRSSstuff;
+  } else if (req.params.source == 'nzherald') {
+    newsSource = apiEndpointBaseRSSNZH;
+  } else if (req.params.source == 'hackaday') {
+    newsSource = apiEndpointBaseRSShack;
   }
 
   console.log(req.params.source);
@@ -19,7 +24,8 @@ router.get('/rss/:source', (req, res) => {
     .buffer(true)
     .then(result => {
       res.send(result.text);
-    });
+    })
+    .catch(err => console.log(err));
 });
 
 //External json api example
