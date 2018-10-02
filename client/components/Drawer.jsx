@@ -116,10 +116,7 @@ class ResponsiveDrawer extends React.Component {
   componentDidMount() {
     try {
       let newState = JSON.parse(get('stateKey'));
-      // this.setState(newState);
-    } catch (e) {
-      console.log('Loading toggles failed');
-    }
+    } catch (e) {}
   }
 
   toggleLogin() {

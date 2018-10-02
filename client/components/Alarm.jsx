@@ -38,7 +38,11 @@ const styles = theme => ({
     margin: theme.spacing.unit
   }
 });
-
+var paddy = function(n, p, c) {
+  var pad_char = typeof c !== 'undefined' ? c : '0';
+  var pad = new Array(1 + p).join(pad_char);
+  return (pad + n).slice(-pad.length);
+};
 var data = [];
 class Alarm extends React.Component {
   constructor(props) {
@@ -74,7 +78,6 @@ class Alarm extends React.Component {
   handleAddAlarm() {
     let id = 1;
     while (this.state.timeArr.find(alarm => alarm.id == id)) id++;
-
     let initialAlarmObj = {
       id,
       hours: this.refs.hourDigit.props.val,
@@ -110,7 +113,7 @@ class Alarm extends React.Component {
   }
 
   handleChange(ref, value) {
-    if (ref == 'minuteDigit' || ref == 'hourDigit') value = Number(value);
+    if (ref == 'minuteDigit' || ref == 'hourDigit') value = paddy(value, 2);
     this.setState({
       [ref]: value
     });
@@ -125,6 +128,7 @@ class Alarm extends React.Component {
     localObj = this.state.timeArr.filter(other => alarm.id != other.id);
     set('alarm', JSON.stringify(localObj));
   }
+
   render() {
     const { classes } = this.props;
     var date = new Date();
@@ -139,14 +143,14 @@ class Alarm extends React.Component {
           <div className={classes.alarm}>
             <AlarmDigit
               numberSystem={24}
-              val={this.state.hourDigit}
+              val={paddy(this.state.hourDigit, 2)}
               ref="hourDigit"
               myRef="hourDigit"
               handleChange={this.handleChange}
             />
             <AlarmDigit
               numberSystem={60}
-              val={this.state.minuteDigit}
+              val={paddy(this.state.minuteDigit, 2)}
               onCarry={this.handleCarry.bind(this, 'hourDigit')}
               onBorrow={this.handleBorrow.bind(this, 'hourDigit')}
               ref="minuteDigit"

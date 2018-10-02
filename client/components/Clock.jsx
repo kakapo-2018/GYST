@@ -26,7 +26,7 @@ class Clock extends React.Component {
         state.time = new Date();
         this.setState(state);
       }.bind(this),
-      60000
+      30000
     );
     this.setState(state);
   }

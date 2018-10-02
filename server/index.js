@@ -13,10 +13,7 @@ io = socket(app);
 
 //Log when user connects/disconnects
 io.on('connection', function(socket) {
-  console.log('a user connected');
-  socket.on('disconnect', function() {
-    console.log('user disconnected');
-  });
+  socket.on('disconnect', function() {});
 });
 
 //On message recieved sent message out
