@@ -78,10 +78,6 @@ class Alarm extends React.Component {
   handleAddAlarm() {
     let id = 1;
     while (this.state.timeArr.find(alarm => alarm.id == id)) id++;
-    // if (this.refs.minuteDigit.props.val < 10) {
-    //   let hoursModify = this.refs.minuteDigit.props.val.padStart(2, '0');
-    //   console.log(hoursModify);
-    // }
     let initialAlarmObj = {
       id,
       hours: this.refs.hourDigit.props.val,
@@ -117,14 +113,10 @@ class Alarm extends React.Component {
   }
 
   handleChange(ref, value) {
-    console.log(value);
-
     if (ref == 'minuteDigit' || ref == 'hourDigit') value = paddy(value, 2);
     this.setState({
       [ref]: value
     });
-    console.log(this.state);
-
     this.state.timeArr.concat(this.state.hourDigit, this.state.minuteDigit);
   }
 
