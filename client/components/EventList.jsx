@@ -3,6 +3,7 @@ import React from 'react';
 import GoogleLogin from 'react-google-login';
 var superagent = require('superagent'),
   request = superagent;
+import moment from 'moment';
 //material UI imports
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
@@ -81,14 +82,26 @@ class EventList extends React.Component {
             <ol>
               {this.state.calItems &&
                 this.state.calItems.map(event => {
-                  return (
-                    <li key={event.id}>
-                      <a target="_blank" href={event.htmlLink}>
-                        {event.summary}
-                      </a>{' '}
-                      - {event.status}
-                    </li>
-                  );
+                  console.log(event);
+                  if (event.start.date) {
+                    return (
+                      <li key={event.id}>
+                        <a target="_blank" href={event.htmlLink}>
+                          {event.summary}
+                        </a>{' '}
+                        - {moment(event.start.date).format('MMM Do YY')}
+                      </li>
+                    );
+                  } else if (event.start.dateTime) {
+                    return (
+                      <li key={event.id}>
+                        <a target="_blank" href={event.htmlLink}>
+                          {event.summary}
+                        </a>{' '}
+                        - {moment(event.start.dateTime).format('MMM Do, YYYY')}
+                      </li>
+                    );
+                  }
                 })}
             </ol>
           </Typography>
