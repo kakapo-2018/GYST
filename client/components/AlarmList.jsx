@@ -39,7 +39,7 @@ class AlarmList extends React.Component {
       <div>
         <ul>
           {this.props.data.map((alarm, i) => {
-            console.log(i);
+            console.log(alarm.hours);
 
             return (
               <p key={i} className={classes.list}>

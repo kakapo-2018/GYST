@@ -180,7 +180,8 @@ class Alarm extends React.Component {
 
   handleChange(ref, value) {
     // console.log('handlechange!1');
-    // console.log(ref, value);
+    console.log(ref, value);
+    if (ref == 'minuteDigit' || ref == 'hourDigit') value = Number(value);
     this.setState({
       [ref]: value
     });
@@ -197,7 +198,7 @@ class Alarm extends React.Component {
     console.log(this.state);
   }
   render() {
-    console.log('im rending');
+    console.log(this.state);
 
     const { classes } = this.props;
     var date = new Date();
@@ -212,16 +213,15 @@ class Alarm extends React.Component {
           <div className={classes.alarm}>
             <AlarmDigit
               numberSystem={24}
-              type="text"
-              val={date.getHours()}
+              val={this.state.hourDigit}
               ref="hourDigit"
               myRef="hourDigit"
-              handleStopIncrease={this.handleStopIncrease}
+              //handleStopIncrease={this.handleStopIncrease}
               handleChange={this.handleChange}
             />
             <AlarmDigit
               numberSystem={60}
-              val={date.getMinutes()}
+              val={this.state.minuteDigit}
               onCarry={this.handleCarry.bind(this, 'hourDigit')}
               onBorrow={this.handleBorrow.bind(this, 'hourDigit')}
               ref="minuteDigit"

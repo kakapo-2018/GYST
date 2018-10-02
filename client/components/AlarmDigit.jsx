@@ -52,6 +52,12 @@ class AlarmDigit extends React.Component {
     this.handleStopIncrease = this.handleStopIncrease.bind(this);
   }
 
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      value: newProps.val
+    });
+  }
+
   getInterval(counter) {
     if (counter > 5) return 75;
     else if (counter > 20) return 50;
@@ -165,8 +171,9 @@ class AlarmDigit extends React.Component {
         <input
           className={classes.input}
           type="text"
-          value={this.state.value}
-          onChange={e => this.props.handleChange(e)}
+          name={this.props.myRef}
+          value={(this.state.value < 10 ? '0' : '') + String(this.state.value)}
+          onChange={e => this.props.handleChange(e.target.name, e.target.value)}
           onKeyDown={this.handleKeyDown}
           onWheel={this.handleWheel}
         />
