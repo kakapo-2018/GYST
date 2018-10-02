@@ -65,38 +65,44 @@ class Weight extends React.Component {
     let lastEnteredDate = this.state.dataForChart[len - 1][0];
     this.state.confirm = false;
     this.setState(this.state);
-    this.props.saveWeight(
-      lastEnteredWeight,
-      lastEnteredDate,
-      this.props.state.auth.user.id
-    );
+    const booly = /^[1-9]\d*$/.test(lastEnteredWeight);
+    console.log(booly);
+
+    if (booly) {
+      console.log(booly);
+
+      this.props.saveWeight(
+        lastEnteredWeight,
+        lastEnteredDate,
+        this.props.state.auth.user.id
+      );
+    } else {
+      this.setState;
+
+      document.getElementById('kg').value = '';
+    }
     this.props.getWeight(this.props.state.auth.user.id);
+    // console.log(this.props.state.weight);
   }
 
   render() {
     const { classes } = this.props;
     let show;
+    // let manipulatedArray = this.props.weight.weight;
 
-    if(this.state.dataForChart) {
-      show = <Chart
-      chartType="LineChart"
-      width="100%"
-      height="100%"
-      data={this.state.dataForChart}
-      options={options}
-    />
+    console.log(this.props.weight.weight);
+
+    if (this.props.weight.weight) {
+      show = (
+        <Chart
+          chartType="LineChart"
+          width="100%"
+          height="100%"
+          data={this.props.weight.weight}
+          options={options}
+        />
+      );
     }
-    else if (this.props.weight.weight) {
-      show = <Chart
-        chartType="LineChart"
-        width="100%"
-        height="100%"
-        data={this.props.weight.weight}
-        options={options}
-      />
-    } 
-
-
 
     return (
       <Card className={classes.card}>
