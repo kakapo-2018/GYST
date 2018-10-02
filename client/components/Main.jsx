@@ -206,7 +206,16 @@ class Main extends Component {
           {this.props.showCom.todo ? (
             <div
               key="7"
-              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+              data-grid={{
+                x: 3,
+                y: 5,
+                w: 6,
+                h: 2,
+                minW: 4,
+                maxW: 8,
+                minH: 2,
+                maxH: 6
+              }}
             >
               <TodoMain />
             </div>
@@ -245,7 +254,16 @@ class Main extends Component {
           {this.props.showCom.worldmap ? (
             <div
               key="10"
-              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+              data-grid={{
+                x: 9,
+                y: 7,
+                w: 4,
+                h: 2,
+                minW: 4,
+                maxW: 8,
+                minH: 2,
+                maxH: 6
+              }}
             >
               <WorldMap />
             </div>
@@ -255,7 +273,16 @@ class Main extends Component {
           {this.props.showCom.googlemap ? (
             <div
               key="11"
-              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+              data-grid={{
+                x: 9,
+                y: 5,
+                w: 4,
+                h: 2,
+                minW: 4,
+                maxW: 12,
+                minH: 2,
+                maxH: 8
+              }}
             >
               <MapContainer />
             </div>
@@ -336,13 +363,13 @@ class Main extends Component {
             <div
               key="16"
               data-grid={{
-                x: 0,
-                y: 0,
+                x: 3,
+                y: 7,
                 w: 3,
                 h: 2,
                 minW: 3,
-                maxW: 4,
-                maxH: 4,
+                maxW: 8,
+                maxH: 6,
                 minH: 2
               }}
             >
@@ -374,13 +401,13 @@ class Main extends Component {
             <div
               key="18"
               data-grid={{
-                x: 0,
-                y: 0,
+                x: 6,
+                y: 7,
                 w: 3,
                 h: 2,
                 minW: 3,
-                maxW: 4,
-                maxH: 4,
+                maxW: 8,
+                maxH: 6,
                 minH: 2
               }}
             >
