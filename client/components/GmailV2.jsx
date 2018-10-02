@@ -118,10 +118,10 @@ class Gmail2 extends React.Component {
           <Typography variant="headline" component="h2">
             Unread Emails: {this.state.unread}
           </Typography>
-          <Typography>
-            {this.state.msgList &&
-              !this.state.individualMsg && (
-                <ol>
+          {this.state.msgList &&
+            !this.state.individualMsg && (
+              <ol>
+                <Typography>
                   {this.state.msgList.map(msg => {
                     return (
                       <li key={msg.id}>
@@ -136,10 +136,10 @@ class Gmail2 extends React.Component {
                       </li>
                     );
                   })}
-                </ol>
-              )}
-            {this.state.individualMsg && <p>{this.state.individualMsgRes}</p>}
-          </Typography>
+                </Typography>
+              </ol>
+            )}
+          {this.state.individualMsg && <p>{this.state.individualMsgRes}</p>}
           {this.state.buttonVisible && (
             <GoogleLogin
               clientId="693624776345-6k38ssbajdd9s3fa9qo1m1kq9lhis0ir.apps.googleusercontent.com"

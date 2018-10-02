@@ -77,8 +77,8 @@ class EventList extends React.Component {
           <Typography variant="headline" component="h2">
             Upcoming events: {this.state.unread}
           </Typography>
-          <Typography>
-            <ol>
+          <ol>
+            <Typography>
               {this.state.calItems &&
                 this.state.calItems.map(event => {
                   return (
@@ -90,8 +90,8 @@ class EventList extends React.Component {
                     </li>
                   );
                 })}
-            </ol>
-          </Typography>
+            </Typography>
+          </ol>
           {this.state.buttonVisible && (
             <GoogleLogin
               clientId="693624776345-6k38ssbajdd9s3fa9qo1m1kq9lhis0ir.apps.googleusercontent.com"
