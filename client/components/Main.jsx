@@ -24,6 +24,7 @@ import MapContainer from './MapContainer';
 import GithubIssues from './GithubIssues';
 import Weight from './Weight';
 import SocialFeed from './SocialFeed';
+import Alarm from './Alarm';
 import Language from './Language';
 import Gmail2 from './GmailV2';
 import ColorSetting from './ColorSetting';
@@ -124,9 +125,19 @@ class Main extends Component {
           ) : (
             <React.Fragment />
           )}
-          {this.props.showCom.saving ? (
+          {this.props.showCom.alarm ? (
             <div
               key="3"
+              data-grid={{ x: 0, y: 0, w: 4, h: 4, maxW: 4, maxH: 4 }}
+            >
+              <Alarm />
+            </div>
+          ) : (
+            <React.Fragment />
+          )}
+          {this.props.showCom.saving ? (
+            <div
+              key="4"
               data-grid={{
                 x: 0,
                 y: 0,
@@ -145,7 +156,7 @@ class Main extends Component {
           )}
           {this.props.showCom.food ? (
             <div
-              key="4"
+              key="5"
               data-grid={{
                 x: 0,
                 y: 0,
@@ -164,7 +175,7 @@ class Main extends Component {
           )}
           {this.props.showCom.weather ? (
             <div
-              key="5"
+              key="6"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
               <Weather />
@@ -174,7 +185,7 @@ class Main extends Component {
           )}
           {this.props.showCom.todo ? (
             <div
-              key="6"
+              key="7"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
               <TodoMain />
@@ -184,17 +195,17 @@ class Main extends Component {
           )}
           {this.props.showCom.github ? (
             <div
-              key="7"
+              key="8"
               data-grid={{ x: 0, y: 0, w: 2, h: 1, maxW: 2, maxH: 1 }}
             >
-              <GithubIssues />
+              <Alarm />
             </div>
           ) : (
             <React.Fragment />
           )}
           {this.props.showCom.rss ? (
             <div
-              key="8"
+              key="9"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
               <RSS />
@@ -204,7 +215,7 @@ class Main extends Component {
           )}
           {this.props.showCom.worldmap ? (
             <div
-              key="9"
+              key="10"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
               <WorldMap />
@@ -214,7 +225,7 @@ class Main extends Component {
           )}
           {this.props.showCom.googlemap ? (
             <div
-              key="10"
+              key="11"
               data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
             >
               <MapContainer />
@@ -270,7 +281,6 @@ class Main extends Component {
           ) : (
             <React.Fragment />
           )}
-
           {this.props.showCom.color ? (
             <div
               key="15"
@@ -300,21 +310,25 @@ class Main extends Component {
           ) : (
             <React.Fragment />
           )}
-          <div
-            key="17"
-            data-grid={{
-              x: 0,
-              y: 0,
-              w: 4,
-              h: 2,
-              minW: 4,
-              maxW: 4,
-              maxH: 2,
-              minH: 2
-            }}
-          >
-            <Language />
-          </div>
+          {this.props.showCom.language ? (
+            <div
+              key="17"
+              data-grid={{
+                x: 0,
+                y: 0,
+                w: 4,
+                h: 2,
+                minW: 4,
+                maxW: 4,
+                maxH: 2,
+                minH: 2
+              }}
+            >
+              <Language />
+            </div>
+          ) : (
+            <React.Fragment />
+          )}
         </ResponsiveGridLayout>
       </main>
     );

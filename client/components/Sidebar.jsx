@@ -19,6 +19,7 @@ import Divider from '@material-ui/core/Divider';
 import SwapVert from '@material-ui/icons/SwapVert';
 import LibraryMusic from '@material-ui/icons/LibraryMusic';
 import LinkedCamera from '@material-ui/icons/LinkedCamera';
+import AlarmAdd from '@material-ui/icons/AlarmAdd';
 import Palette from '@material-ui/icons/Palette';
 import Language from '@material-ui/icons/Language';
 import Email from '@material-ui/icons/Email';
@@ -107,6 +108,15 @@ class Sidebar extends React.Component {
               <AccessTime />
             </Icon>
             <Typography className={classes.sub}>Date & Time</Typography>
+          </Button>
+          <Button
+            className={classes.button}
+            onClick={() => this.props.handleClick('alarm')}
+          >
+            <Icon className={classes.icon}>
+              <AlarmAdd />
+            </Icon>
+            <Typography className={classes.sub}>Alarm</Typography>
           </Button>
           <Button
             className={classes.button}
