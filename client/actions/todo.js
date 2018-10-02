@@ -14,17 +14,8 @@ export function getTodosAction(id) {
   };
 }
 
-//function that returns the todo items from the db into redux
-// function receiveTodos(response) {
-//   return {
-//     type: 'GET_TODOS',
-//     isFetching: false,
-//     todos: response,
-//     notification: response.length
-//   };
-// }
-
 function receiveTodos(response) {
+  //counting how many todos aren't checked off as done
   let count = 0;
   let completedTodo = response.map(todo => {
     if (todo.status == 1) {
@@ -32,7 +23,6 @@ function receiveTodos(response) {
     }
   });
   let notificationCount = response.length - count;
-  console.log(notificationCount);
   return {
     type: 'GET_TODOS',
     isFetching: false,
@@ -42,6 +32,7 @@ function receiveTodos(response) {
 }
 
 function receiveTodosDel(response) {
+  //counting how many todos aren't checked off as done
   let count = 0;
   let completedTodo = response.map(todo => {
     if (todo.status == 1) {
@@ -49,7 +40,6 @@ function receiveTodosDel(response) {
     }
   });
   let notificationCount = response.length - count;
-  console.log(notificationCount);
   return {
     type: 'DEL_TODOS',
     isFetching: false,
@@ -57,6 +47,7 @@ function receiveTodosDel(response) {
     notification: notificationCount
   };
 }
+
 //adding todos
 
 export function addTodosAction(id, todo) {
@@ -65,8 +56,6 @@ export function addTodosAction(id, todo) {
     request('post', '/todo/save', obj).then(response => {
       if (!response.ok) {
       } else {
-        console.log(response.body);
-
         dispatch(receiveTodos(response.body));
       }
     });
@@ -74,7 +63,6 @@ export function addTodosAction(id, todo) {
 }
 
 //delete todos
-
 export function delTodosAction(id, user) {
   let obj = {
     id: id,
@@ -91,7 +79,6 @@ export function delTodosAction(id, user) {
 }
 
 //check todos
-
 export function chkTodosAction(id, user, checked) {
   let obj = {
     id: id,
@@ -102,8 +89,6 @@ export function chkTodosAction(id, user, checked) {
     request('post', '/todo/check', obj).then(response => {
       if (!response.ok) {
       } else {
-        console.log(response.body);
-
         dispatch(receiveTodos(response.body));
       }
     });
