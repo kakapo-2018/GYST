@@ -5,7 +5,7 @@ function getMail(counter) {
   };
 }
 
-//adding weight info
+//getting counter info
 
 export function emailCounter(counter) {
   return function(dispatch) {

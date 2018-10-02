@@ -21,7 +21,6 @@ import Settings from '@material-ui/icons/Settings';
 import Modal2 from './Modal';
 
 const drawerWidth = 240;
-var Notifications = '6';
 
 const styles = theme => ({
   root: {
@@ -154,6 +153,8 @@ class Navbar extends Component {
   render() {
     const { classes, theme } = this.props;
     let messageNotifications = 0 || this.props.mailCounter.mail;
+    var notifications = 0 || this.props.notification;
+
     const { anchorEl, mobileMoreAnchorEl } = this.state;
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -195,7 +196,7 @@ class Navbar extends Component {
           <IconButton color="inherit">
             <Badge
               className={classes.margin}
-              badgeContent={Notifications}
+              badgeContent={notifications}
               color="secondary"
             >
               <NotificationsIcon />
@@ -232,7 +233,6 @@ class Navbar extends Component {
             >
               {this.props.user}
             </Typography>
-
             <div className={classes.grow} />
             <div className={classes.search}>
               <div className={classes.searchIcon}>
@@ -270,16 +270,17 @@ class Navbar extends Component {
                   </Badge>
                 </IconButton>
               )}
-
-              <IconButton color="inherit">
-                <Badge
-                  className={classes.margin}
-                  badgeContent={Notifications}
-                  color="secondary"
-                >
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
+              {notifications > 0 && (
+                <IconButton color="inherit">
+                  <Badge
+                    className={classes.margin}
+                    badgeContent={notifications}
+                    color="secondary"
+                  >
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+              )}
               <IconButton onClick={this.showModal} color="inherit">
                 <Settings />
               </IconButton>
