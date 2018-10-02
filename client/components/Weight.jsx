@@ -20,19 +20,19 @@ const styles = theme => ({
     maxWidth: '100%',
     maxHeight: '100%',
     minWidth: '100%',
-    minHeight: '100%'
+    minHeight: '100%',
+    justifyContent: 'center'
   }
 });
 
 var today = new Date();
 var month = today.getMonth() + 1;
 var date = today.getDate();
-today = date + '-' + month;
+today = date + '/' + month;
 
 const options = {
   title: 'Weight Tracking',
-  curveType: 'function',
-  legend: { position: 'bottom' }
+  legend: { position: 'left' }
 };
 
 class Weight extends React.Component {
@@ -90,47 +90,63 @@ class Weight extends React.Component {
     const { classes } = this.props;
     return (
       <Card className={classes.card}>
-        <div className="App">
-          {this.props.weight.weight && this.props.weight.weight.length >= 1 ? (
-            <Chart
-              chartType="LineChart"
-              width="100%"
-              height="100%"
-              data={this.props.weight.weight}
-              options={options}
-            />
-          ) : (
+        <div className={classes.card}>
+          {this.props.weight.weight &&
+            this.props.weight.weight.length >= 2 && (
+              <Chart
+                chartType="Line"
+                width="100%"
+                justifyContent="center"
+                height="100%"
+                data={this.props.weight.weight}
+                options={options}
+              />
+            )}
+          {this.props.weight.loading && (
             <ClipLoader
               className={override}
               sizeUnit={'px'}
-              size={250}
+              size={160}
               color={'#3f51b5'}
             />
           )}
-          <Input
-            style={{ maxWidth: '45%', marginLeft: '20%', paddingTop: '30px' }}
-            id="kg"
-            type="number"
-            name="value"
-            placeholder="Enter your weight"
-          />
-          {!this.state.confirm ? (
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => this.save()}
-            >
-              Save
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={() => this.add()}
-            >
-              Confirm
-            </Button>
+          {!this.props.weight.loading && (
+            <Input
+              style={{
+                maxWidth: '45%',
+                marginLeft: '30%',
+                paddingTop: '30px'
+              }}
+              id="kg"
+              type="number"
+              name="value"
+              placeholder="Enter your weight"
+            />
           )}
+          {!this.props.weight.loading &&
+            (!this.state.confirm ? (
+              <Button
+                style={{
+                  marginRight: '5px'
+                }}
+                variant="contained"
+                color="primary"
+                onClick={() => this.save()}
+              >
+                Save
+              </Button>
+            ) : (
+              <Button
+                style={{
+                  marginRight: '5px'
+                }}
+                variant="contained"
+                color="secondary"
+                onClick={() => this.add()}
+              >
+                Confirm
+              </Button>
+            ))}
         </div>
       </Card>
     );
