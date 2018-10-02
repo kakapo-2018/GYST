@@ -10,12 +10,14 @@ test('weight reducer Initial State', () => {
 
 test('GET_WEIGHT', () => {
   const fakeWeight = [30, 40];
-  const expected = [...fakeWeight];
+  const expected = fakeWeight;
 
-  const actual = weightReducer(undefined, {
+  const action = {
     type: 'GET_WEIGHT',
     weight: fakeWeight
-  });
+  };
+
+  const actual = weightReducer(undefined, action);
 
   expect(actual).toEqual(expected);
 });
