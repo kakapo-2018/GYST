@@ -6,6 +6,7 @@ import AlarmDigit from './AlarmDigit';
 import AlarmList from './AlarmList';
 import Add from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
+import { get, set } from '../utils/localStorage';
 
 const styles = theme => ({
   card: {
@@ -43,7 +44,7 @@ class Alarm extends React.Component {
     this.state = {
       hours: '',
       minute: '',
-      timeArr: [],
+      timeArr: JSON.parse(get('alarm')) || [],
       data: data,
       hourDigit: date.getHours(),
       minuteDigit: date.getMinutes()
@@ -82,12 +83,17 @@ class Alarm extends React.Component {
       minutes: this.state.minuteDigit
     };
 
-    this.setState({
-      timeArr:
-        alarmObj.hours == 0 && alarmObj.minutes == 0
-          ? this.state.timeArr.concat(initialAlarmObj)
-          : this.state.timeArr.concat(alarmObj)
-    });
+    this.setState(
+      {
+        timeArr:
+          alarmObj.hours == 0 && alarmObj.minutes == 0
+            ? this.state.timeArr.concat(initialAlarmObj)
+            : this.state.timeArr.concat(alarmObj)
+      },
+      () => {
+        set('alarm', JSON.stringify(this.state.timeArr));
+      }
+    );
   }
 
   alarmGoesOff() {
@@ -112,6 +118,9 @@ class Alarm extends React.Component {
     this.setState({
       timeArr: this.state.timeArr.filter(other => alarm.id != other.id)
     });
+    let localObj = JSON.parse(get('alarm'));
+    localObj = this.state.timeArr.filter(other => alarm.id != other.id);
+    set('alarm', JSON.stringify(localObj));
   }
   render() {
     const { classes } = this.props;
