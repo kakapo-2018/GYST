@@ -130,7 +130,7 @@ class Main extends Component {
           {this.props.showCom.alarm ? (
             <div
               key="3"
-              data-grid={{ x: 4, y: 0, w: 2, h: 2.5, maxW: 2, maxH: 2.5 }}
+              data-grid={{ x: 4, y: 0, w: 2, h: 2.5, maxW: 2, maxH: 2 }}
             >
               <Alarm />
             </div>
@@ -302,7 +302,7 @@ class Main extends Component {
           ) : (
             <React.Fragment />
           )}
-          {this.props.showCom.Gmail2 ? (
+          {this.props.showCom.gmail2 ? (
             <div
               key="16"
               data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 2, minH: 2 }}
@@ -337,12 +337,12 @@ class Main extends Component {
               data-grid={{
                 x: 0,
                 y: 0,
-                w: 4,
-                h: 2,
-                minW: 4,
+                w: 3,
+                h: 1.5,
+                minW: 3,
                 maxW: 4,
-                maxH: 2,
-                minH: 2
+                maxH: 4,
+                minH: 1.5
               }}
             >
               <EventList />
