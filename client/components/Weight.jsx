@@ -6,7 +6,14 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import { saveWeightAction, getWeightAction } from '../actions/weight';
 import Card from '@material-ui/core/Card';
+//Spinner
+import { ClipLoader } from 'react-spinners';
 
+import { css } from 'react-emotion';
+const override = css`
+  display: block;
+  margin: 5% 25%;
+`;
 const styles = theme => ({
   card: {
     padding: '10px',
@@ -31,7 +38,6 @@ const options = {
 class Weight extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       confirm: false,
       dataForChart: [['Date', 'Weight'], ['Start', 0]]
@@ -66,11 +72,8 @@ class Weight extends React.Component {
     this.state.confirm = false;
     this.setState(this.state);
     const booly = /^[1-9]\d*$/.test(lastEnteredWeight);
-    console.log(booly);
 
     if (booly) {
-      console.log(booly);
-
       this.props.saveWeight(
         lastEnteredWeight,
         lastEnteredDate,
@@ -78,21 +81,24 @@ class Weight extends React.Component {
       );
     } else {
       this.setState;
-
       document.getElementById('kg').value = '';
     }
     this.props.getWeight(this.props.state.auth.user.id);
-    // console.log(this.props.state.weight);
   }
 
   render() {
     const { classes } = this.props;
     let show;
-    // let manipulatedArray = this.props.weight.weight;
+    show = (
+      <ClipLoader
+        className={override}
+        sizeUnit={'px'}
+        size={250}
+        color={'#3f51b5'}
+      />
+    );
 
-    console.log(this.props.weight.weight);
-
-    if (this.props.weight.weight) {
+    if (this.props.weight.weight && this.props.weight.weight.length > 1) {
       show = (
         <Chart
           chartType="LineChart"

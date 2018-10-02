@@ -5,8 +5,6 @@ const weightDB = require('../db/weight');
 
 router.get('/', (req, res) => {
   weightDB.getWeight(req.query.id).then(result => {
-    console.log(result);
-
     res.json(result);
   });
 });
