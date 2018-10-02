@@ -152,7 +152,9 @@ class Navbar extends Component {
 
   render() {
     const { classes, theme } = this.props;
-    let messageNotifications = 0 || this.props.mailCounter.mail;
+    {
+    }
+    let messageNotifications = this.props.mailCounter || 0;
     var notifications = 0 || this.props.notification;
 
     const { anchorEl, mobileMoreAnchorEl } = this.state;

@@ -58,7 +58,7 @@ class App extends Component {
         {this.props.state.isAuthenticated && (
           <NavBar
             notification={this.props.notification.notification}
-            mailCounter={this.props.mail}
+            mailCounter={this.props.mail.mail}
             user={this.props.state.user.username}
             handleDrawerToggle={this.handleDrawerToggle}
           />
