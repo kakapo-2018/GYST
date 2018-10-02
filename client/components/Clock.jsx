@@ -44,14 +44,11 @@ class Clock extends React.Component {
         date.getMinutes() == this.props.data[i].minutes
       ) {
         console.log('Alarm goes off');
-        //console.log(this.props.data);
         let filteredArr = this.props.data.filter(res => {
           return res != this.props.data[i];
         });
-        // console.log(filteredArr);
         this.props.alarmGoesOff();
       } else {
-        //console.log('ERROR');
       }
     }
   }
