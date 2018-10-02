@@ -179,7 +179,9 @@ class Gauge extends React.Component {
                   }}
                 />
               </CardContent>
-              <CardActions style={{ paddingBottom: '8px' }}>
+              <CardActions
+                style={{ justifyContent: 'center', paddingBottom: '8px' }}
+              >
                 <Input
                   style={{ maxWidth: '45%' }}
                   type="number"

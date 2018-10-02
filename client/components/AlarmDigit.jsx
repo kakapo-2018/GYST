@@ -95,7 +95,8 @@ class AlarmDigit extends React.Component {
     state.increaseCounter = 0;
     this.setState(state);
     this.handleIncrease();
-    this.props.handleChange(this.props.myRef, this.state.value);
+    let newVal = paddy(this.state.value, 2);
+    this.props.handleChange(this.props.myRef, newVal);
   }
 
   handleStopIncrease() {
@@ -126,7 +127,8 @@ class AlarmDigit extends React.Component {
     state.decreaseCounter = 0;
     this.setState(state);
     this.handleDecrease();
-    this.props.handleChange(this.props.myRef, this.state.value);
+    let newVal = paddy(this.state.value, 2);
+    this.props.handleChange(this.props.myRef, newVal);
   }
 
   handleStopDecrease() {
@@ -172,7 +174,7 @@ class AlarmDigit extends React.Component {
           className={classes.input}
           type="text"
           name={this.props.myRef}
-          value={(this.state.value < 10 ? '0' : '') + String(this.state.value)}
+          value={this.props.val}
           onChange={e => this.props.handleChange(e.target.name, e.target.value)}
           onKeyDown={this.handleKeyDown}
           onWheel={this.handleWheel}

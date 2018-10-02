@@ -11,17 +11,18 @@ import { get, set } from '../utils/localStorage';
 const styles = theme => ({
   card: {
     maxWidth: '100%',
-    maxHeight: '500',
+    overflow: 'auto',
+    maxHeight: '100%',
     minWidth: '100%',
     minHeight: '100%',
     textAlign: 'center'
   },
   container: {
-    overflow: 'hidden',
+    overflow: 'auto',
     margin: 'auto'
   },
   alarm: {
-    overflow: 'hidden'
+    overflow: 'auto'
   },
   control: {
     width: '80%',
@@ -31,14 +32,18 @@ const styles = theme => ({
   time: {
     fontSize: '80px'
   },
-  stop: {
-    marginBottom: '5%'
-  },
   btn: {
     margin: theme.spacing.unit
+  },
+  stop: {
+    marginBottom: '4px'
   }
 });
-
+var paddy = function(n, p, c) {
+  var pad_char = typeof c !== 'undefined' ? c : '0';
+  var pad = new Array(1 + p).join(pad_char);
+  return (pad + n).slice(-pad.length);
+};
 var data = [];
 class Alarm extends React.Component {
   constructor(props) {
@@ -74,7 +79,6 @@ class Alarm extends React.Component {
   handleAddAlarm() {
     let id = 1;
     while (this.state.timeArr.find(alarm => alarm.id == id)) id++;
-
     let initialAlarmObj = {
       id,
       hours: this.refs.hourDigit.props.val,
@@ -110,7 +114,7 @@ class Alarm extends React.Component {
   }
 
   handleChange(ref, value) {
-    if (ref == 'minuteDigit' || ref == 'hourDigit') value = Number(value);
+    if (ref == 'minuteDigit' || ref == 'hourDigit') value = paddy(value, 2);
     this.setState({
       [ref]: value
     });
@@ -125,6 +129,7 @@ class Alarm extends React.Component {
     localObj = this.state.timeArr.filter(other => alarm.id != other.id);
     set('alarm', JSON.stringify(localObj));
   }
+
   render() {
     const { classes } = this.props;
     var date = new Date();
@@ -139,14 +144,14 @@ class Alarm extends React.Component {
           <div className={classes.alarm}>
             <AlarmDigit
               numberSystem={24}
-              val={this.state.hourDigit}
+              val={paddy(this.state.hourDigit, 2)}
               ref="hourDigit"
               myRef="hourDigit"
               handleChange={this.handleChange}
             />
             <AlarmDigit
               numberSystem={60}
-              val={this.state.minuteDigit}
+              val={paddy(this.state.minuteDigit, 2)}
               onCarry={this.handleCarry.bind(this, 'hourDigit')}
               onBorrow={this.handleBorrow.bind(this, 'hourDigit')}
               ref="minuteDigit"
@@ -172,6 +177,7 @@ class Alarm extends React.Component {
           </audio>
           <h2>Alarms</h2>
           <AlarmList
+            className={classes.container}
             handleClickDel={this.handleClickDel}
             data={this.state.timeArr}
             myRef="alarmList"

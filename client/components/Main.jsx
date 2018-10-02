@@ -93,11 +93,11 @@ class Main extends Component {
             <div
               key="1"
               data-grid={{
-                x: 0,
-                y: 0,
-                w: 3,
+                x: 2,
+                y: 2,
+                w: 2,
                 h: 1,
-                minW: 3,
+                minW: 2,
                 maxW: 3,
                 maxH: 1,
                 minH: 1
@@ -115,10 +115,10 @@ class Main extends Component {
                 x: 0,
                 y: 0,
                 w: 2,
-                h: 3,
+                h: 1,
                 minH: 1,
-                maxH: 4,
-                minW: 1,
+                maxH: 3,
+                minW: 2,
                 maxW: 4
               }}
             >
@@ -130,7 +130,16 @@ class Main extends Component {
           {this.props.showCom.alarm ? (
             <div
               key="3"
-              data-grid={{ x: 0, y: 0, w: 4, h: 4, maxW: 4, maxH: 4 }}
+              data-grid={{
+                x: 0,
+                y: 1,
+                w: 2,
+                h: 3,
+                minW: 2,
+                maxW: 3,
+                minH: 3,
+                maxH: 3
+              }}
             >
               <Alarm />
             </div>
@@ -141,12 +150,12 @@ class Main extends Component {
             <div
               key="4"
               data-grid={{
-                x: 0,
-                y: 0,
+                x: 8,
+                y: 3,
                 w: 3,
                 h: 2,
                 minW: 3,
-                maxW: 3,
+                maxW: 6,
                 maxH: 2,
                 minH: 2
               }}
@@ -160,12 +169,12 @@ class Main extends Component {
             <div
               key="5"
               data-grid={{
-                x: 0,
-                y: 0,
+                x: 3,
+                y: 3,
                 w: 3,
                 h: 2,
                 minW: 3,
-                maxW: 3,
+                maxW: 6,
                 minH: 2,
                 maxH: 2
               }}
@@ -178,7 +187,16 @@ class Main extends Component {
           {this.props.showCom.weather ? (
             <div
               key="6"
-              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+              data-grid={{
+                x: 9,
+                y: 0,
+                w: 4,
+                h: 2,
+                minW: 4,
+                maxW: 8,
+                minH: 2,
+                maxH: 4
+              }}
             >
               <Weather />
             </div>
@@ -188,7 +206,16 @@ class Main extends Component {
           {this.props.showCom.todo ? (
             <div
               key="7"
-              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+              data-grid={{
+                x: 3,
+                y: 5,
+                w: 6,
+                h: 2,
+                minW: 4,
+                maxW: 8,
+                minH: 2,
+                maxH: 6
+              }}
             >
               <TodoMain />
             </div>
@@ -198,7 +225,7 @@ class Main extends Component {
           {this.props.showCom.github ? (
             <div
               key="8"
-              data-grid={{ x: 0, y: 0, w: 2, h: 1, maxW: 2, maxH: 1 }}
+              data-grid={{ x: 2, y: 0, w: 2, h: 1, maxW: 2, maxH: 1 }}
             >
               <GithubIssues />
             </div>
@@ -208,7 +235,16 @@ class Main extends Component {
           {this.props.showCom.rss ? (
             <div
               key="9"
-              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+              data-grid={{
+                x: 9,
+                y: 3,
+                w: 4,
+                h: 2,
+                minW: 4,
+                maxW: 8,
+                minH: 2,
+                maxH: 4
+              }}
             >
               <RSS />
             </div>
@@ -218,7 +254,16 @@ class Main extends Component {
           {this.props.showCom.worldmap ? (
             <div
               key="10"
-              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+              data-grid={{
+                x: 9,
+                y: 7,
+                w: 4,
+                h: 2,
+                minW: 4,
+                maxW: 8,
+                minH: 2,
+                maxH: 6
+              }}
             >
               <WorldMap />
             </div>
@@ -228,7 +273,16 @@ class Main extends Component {
           {this.props.showCom.googlemap ? (
             <div
               key="11"
-              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+              data-grid={{
+                x: 9,
+                y: 5,
+                w: 4,
+                h: 2,
+                minW: 4,
+                maxW: 12,
+                minH: 2,
+                maxH: 8
+              }}
             >
               <MapContainer />
             </div>
@@ -239,12 +293,12 @@ class Main extends Component {
             <div
               key="12"
               data-grid={{
-                x: 0,
-                y: 0,
-                w: 4,
+                x: 3,
+                y: 9,
+                w: 6,
                 h: 2,
                 minW: 4,
-                maxW: 4,
+                maxW: 6,
                 minH: 2,
                 maxH: 2
               }}
@@ -259,13 +313,13 @@ class Main extends Component {
               key="13"
               data-grid={{
                 x: 0,
-                y: 0,
-                w: 3,
-                h: 3,
-                minW: 3,
-                maxW: 3,
-                maxH: 3,
-                minH: 3
+                y: 5,
+                w: 2,
+                h: 4,
+                minW: 2,
+                maxW: 6,
+                maxH: 6,
+                minH: 4
               }}
             >
               <SpotifyPlaylist />
@@ -276,7 +330,16 @@ class Main extends Component {
           {this.props.showCom.instagram ? (
             <div
               key="14"
-              data-grid={{ x: 0, y: 0, w: 4, h: 2, minW: 4, minH: 2 }}
+              data-grid={{
+                x: 9,
+                y: 9,
+                w: 4,
+                h: 2,
+                minW: 4,
+                maxW: 8,
+                minH: 2,
+                maxH: 6
+              }}
             >
               <SocialFeed />
             </div>
@@ -288,10 +351,13 @@ class Main extends Component {
               key="15"
               data-grid={{
                 x: 0,
-                y: 0,
-                w: 1,
+                y: 9,
+                w: 2,
                 h: 1,
-                minH: 1
+                minW: 1,
+                maxW: 8,
+                minH: 1,
+                maxH: 2
               }}
             >
               <ColorSetting
@@ -302,10 +368,19 @@ class Main extends Component {
           ) : (
             <React.Fragment />
           )}
-          {this.props.showCom.Gmail2 ? (
+          {this.props.showCom.gmail2 ? (
             <div
               key="16"
-              data-grid={{ x: 0, y: 0, w: 3, h: 2, minW: 2, minH: 2 }}
+              data-grid={{
+                x: 3,
+                y: 7,
+                w: 3,
+                h: 2,
+                minW: 3,
+                maxW: 8,
+                maxH: 6,
+                minH: 2
+              }}
             >
               <Gmail2 />
             </div>
@@ -316,12 +391,12 @@ class Main extends Component {
             <div
               key="17"
               data-grid={{
-                x: 0,
+                x: 4,
                 y: 0,
                 w: 4,
                 h: 2,
                 minW: 4,
-                maxW: 4,
+                maxW: 8,
                 maxH: 2,
                 minH: 2
               }}
@@ -335,13 +410,13 @@ class Main extends Component {
             <div
               key="18"
               data-grid={{
-                x: 0,
-                y: 0,
-                w: 4,
+                x: 6,
+                y: 7,
+                w: 3,
                 h: 2,
-                minW: 4,
-                maxW: 4,
-                maxH: 2,
+                minW: 3,
+                maxW: 8,
+                maxH: 6,
                 minH: 2
               }}
             >
