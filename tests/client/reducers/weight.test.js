@@ -54,7 +54,7 @@ test('LOGOUT_SUCCESS', () => {
 
   const action = {
     type: 'LOGOUT_SUCCESS',
-    weiht: ''
+    weight: ''
   };
 
   const actual = weightReducer([], action).weight;
