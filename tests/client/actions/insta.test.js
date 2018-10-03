@@ -50,5 +50,5 @@ test('add Instagram will dispatch an action on success', done => {
     scope.done();
     done();
   });
-  actions.addInsta(fakeInstagram)(dispatch);
+  actions.addInsta()(dispatch);
 });
