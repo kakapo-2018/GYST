@@ -14,7 +14,7 @@ export function getTodosAction(id) {
   };
 }
 
-function receiveTodos(response) {
+export function receiveTodos(response) {
   //counting how many todos aren't checked off as done
   let count = 0;
   let completedTodo = response.map(todo => {
@@ -31,7 +31,7 @@ function receiveTodos(response) {
   };
 }
 
-function receiveTodosDel(response) {
+export function receiveTodosDel(response) {
   //counting how many todos aren't checked off as done
   let count = 0;
   let completedTodo = response.map(todo => {
