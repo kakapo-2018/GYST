@@ -62,6 +62,25 @@ test('receive todoDel action creator', () => {
   };
   expect(actions.receiveTodosDel(fakeTodo)).toEqual(expected);
 });
+
+test('add todos will dispatch an action on success', done => {
+  const fakeTodo = [{ id: 2 }];
+  const scope = nock('http://localhost:80')
+    .post('/api/v1/todo/save')
+    .reply(200, fakeTodo);
+  const secondExpected = {
+    type: 'GET_TODOS',
+    isFetching: false,
+    todos: fakeTodo,
+    notification: 1
+  };
+  const dispatch = jest.fn().mockImplementationOnce(action => {
+    expect(action).toEqual(secondExpected);
+    scope.done();
+    done();
+  });
+  actions.addTodosAction()(dispatch);
+});
 // test('receive weight action creator', () => {
 //   const fakeWeight = '20, 30';
 
