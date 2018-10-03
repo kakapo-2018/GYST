@@ -1,4 +1,4 @@
-export default function todos(state = [], action) {
+export default function insta(state = [], action) {
   switch (action.type) {
     case 'GET_INSTA':
       return {
