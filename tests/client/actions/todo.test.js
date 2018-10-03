@@ -41,6 +41,27 @@ test('get todo will dispatch an action on success', done => {
   actions.getTodosAction()(dispatch);
 });
 
+test('receive todo action creator', () => {
+  const fakeTodo = [{ id: 2 }];
+  const expected = {
+    type: 'GET_TODOS',
+    isFetching: false,
+    todos: fakeTodo,
+    notification: 1
+  };
+  expect(actions.receiveTodos(fakeTodo)).toEqual(expected);
+});
+
+test('receive todoDel action creator', () => {
+  const fakeTodo = [{ id: 2 }];
+  const expected = {
+    type: 'DEL_TODOS',
+    isFetching: false,
+    todos: fakeTodo,
+    notification: 1
+  };
+  expect(actions.receiveTodosDel(fakeTodo)).toEqual(expected);
+});
 // test('receive weight action creator', () => {
 //   const fakeWeight = '20, 30';
 
