@@ -1,12 +1,12 @@
-export default function insta(state = [], action) {
+export default function mail(state = [], action) {
   switch (action.type) {
-    case 'GET_INSTA':
+    case 'SET_MAIL':
       return {
-        insta: action.insta
+        mail: action.counter
       };
     case 'LOGOUT_SUCCESS':
       return {
-        insta: []
+        mail: []
       };
     default:
       return state;

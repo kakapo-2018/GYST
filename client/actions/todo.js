@@ -14,12 +14,37 @@ export function getTodosAction(id) {
   };
 }
 
-//function that returns the todo items from the db into redux
 function receiveTodos(response) {
+  //counting how many todos aren't checked off as done
+  let count = 0;
+  let completedTodo = response.map(todo => {
+    if (todo.status == 1) {
+      return count++;
+    }
+  });
+  let notificationCount = response.length - count;
   return {
     type: 'GET_TODOS',
     isFetching: false,
-    todos: response
+    todos: response,
+    notification: notificationCount
+  };
+}
+
+function receiveTodosDel(response) {
+  //counting how many todos aren't checked off as done
+  let count = 0;
+  let completedTodo = response.map(todo => {
+    if (todo.status == 1) {
+      return count++;
+    }
+  });
+  let notificationCount = response.length - count;
+  return {
+    type: 'DEL_TODOS',
+    isFetching: false,
+    todos: response,
+    notification: notificationCount
   };
 }
 
@@ -38,7 +63,6 @@ export function addTodosAction(id, todo) {
 }
 
 //delete todos
-
 export function delTodosAction(id, user) {
   let obj = {
     id: id,
@@ -48,14 +72,13 @@ export function delTodosAction(id, user) {
     request('post', '/todo/delete', obj).then(response => {
       if (!response.ok) {
       } else {
-        dispatch(receiveTodos(response.body));
+        dispatch(receiveTodosDel(response.body));
       }
     });
   };
 }
 
 //check todos
-
 export function chkTodosAction(id, user, checked) {
   let obj = {
     id: id,

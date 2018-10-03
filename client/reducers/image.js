@@ -1,4 +1,4 @@
-export default function todos(state = [], action) {
+export default function image(state = [], action) {
   switch (action.type) {
     case 'IMAGE_RECEIVED':
       return {

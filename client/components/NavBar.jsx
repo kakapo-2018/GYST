@@ -21,8 +21,6 @@ import Settings from '@material-ui/icons/Settings';
 import Modal2 from './Modal';
 
 const drawerWidth = 240;
-var messageNotifications = '6';
-var Notifications = '6';
 
 const styles = theme => ({
   root: {
@@ -68,10 +66,10 @@ const styles = theme => ({
       backgroundColor: fade(theme.palette.common.white, 0.25)
     },
     marginLeft: 0,
-    width: '100%',
+    width: '40%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing.unit,
-      width: 'auto'
+      width: '30%'
     }
   },
   searchIcon: {
@@ -154,6 +152,11 @@ class Navbar extends Component {
 
   render() {
     const { classes, theme } = this.props;
+    {
+    }
+    let messageNotifications = this.props.mailCounter || 0;
+    var notifications = 0 || this.props.notification;
+
     const { anchorEl, mobileMoreAnchorEl } = this.state;
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -195,7 +198,7 @@ class Navbar extends Component {
           <IconButton color="inherit">
             <Badge
               className={classes.margin}
-              badgeContent={Notifications}
+              badgeContent={notifications}
               color="secondary"
             >
               <NotificationsIcon />
@@ -232,7 +235,6 @@ class Navbar extends Component {
             >
               {this.props.user}
             </Typography>
-
             <div className={classes.grow} />
             <div className={classes.search}>
               <div className={classes.searchIcon}>
@@ -259,25 +261,28 @@ class Navbar extends Component {
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <IconButton color="inherit">
-                <Badge
-                  className={classes.margin}
-                  badgeContent={messageNotifications}
-                  color="secondary"
-                >
-                  <MailIcon />
-                </Badge>
-              </IconButton>
-
-              <IconButton color="inherit">
-                <Badge
-                  className={classes.margin}
-                  badgeContent={Notifications}
-                  color="secondary"
-                >
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
+              {messageNotifications > 0 && (
+                <IconButton color="inherit">
+                  <Badge
+                    className={classes.margin}
+                    badgeContent={messageNotifications}
+                    color="secondary"
+                  >
+                    <MailIcon />
+                  </Badge>
+                </IconButton>
+              )}
+              {notifications > 0 && (
+                <IconButton color="inherit">
+                  <Badge
+                    className={classes.margin}
+                    badgeContent={notifications}
+                    color="secondary"
+                  >
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+              )}
               <IconButton onClick={this.showModal} color="inherit">
                 <Settings />
               </IconButton>

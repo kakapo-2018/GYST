@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const accessDB = require('../db/exampleDbFunctions');
+const accessDB = require('../db/userDBfunctions');
 
 router.get('/', (req, res) => {
   accessDB.getUsers().then(result => {

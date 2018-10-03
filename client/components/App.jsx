@@ -10,13 +10,14 @@ import PersistentDrawer from './Drawer';
 import NavBar from './NavBar';
 import Chat from './Chat';
 
-class App extends Component {
+export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       authenticated: false,
       loggedInAs: '',
-      mobileOpen: false
+      mobileOpen: false,
+      paddingSize: 255
     };
     this.logOut = this.logOut.bind(this);
     this.refreshLoginState = this.refreshLoginState.bind(this);
@@ -24,6 +25,9 @@ class App extends Component {
 
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+
+    if (this.state.mobileOpen) this.setState({ paddingSize: 0 });
+    else this.setState({ paddingSize: 0 });
   };
 
   componentDidMount() {
@@ -57,6 +61,8 @@ class App extends Component {
         <CssBaseline />
         {this.props.state.isAuthenticated && (
           <NavBar
+            notification={this.props.notification.notification}
+            mailCounter={this.props.mail.mail}
             user={this.props.state.user.username}
             handleDrawerToggle={this.handleDrawerToggle}
           />
@@ -68,6 +74,7 @@ class App extends Component {
           />
         )}
         <PersistentDrawer
+          paddingSize={this.state.paddingSize}
           handleDrawerToggle={this.handleDrawerToggle}
           drawerState={this.state.mobileOpen}
         />
@@ -79,7 +86,9 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     state: state.auth,
-    image: state.image
+    image: state.image,
+    mail: state.mail,
+    notification: state.todos
   };
 }
 

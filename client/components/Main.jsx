@@ -34,7 +34,9 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   content: {
-    paddingLeft: '255px',
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: 255
+    },
     flexGrow: 1,
     padding: theme.spacing.unit * 3
   },
@@ -77,7 +79,14 @@ class Main extends Component {
     const { classes, theme } = this.props;
     const bgColor = get('bgcolor');
     return (
-      <main style={{ backgroundColor: bgColor }} className={classes.content}>
+      <main
+        style={{
+          backgroundColor: bgColor
+          // paddingLeft: this.props.paddingSize
+          // paddingLeft: classes.paddingLeft
+        }}
+        className={classes.content}
+      >
         <div className={classes.toolbar} />
         <ResponsiveGridLayout
           className="layout"
@@ -155,7 +164,7 @@ class Main extends Component {
                 w: 3,
                 h: 2,
                 minW: 3,
-                maxW: 6,
+                maxW: 4,
                 maxH: 2,
                 minH: 2
               }}
@@ -209,7 +218,7 @@ class Main extends Component {
               data-grid={{
                 x: 3,
                 y: 5,
-                w: 6,
+                w: 4,
                 h: 2,
                 minW: 4,
                 maxW: 8,
@@ -295,7 +304,7 @@ class Main extends Component {
               data-grid={{
                 x: 3,
                 y: 9,
-                w: 6,
+                w: 4,
                 h: 2,
                 minW: 4,
                 maxW: 6,
@@ -315,11 +324,11 @@ class Main extends Component {
                 x: 0,
                 y: 5,
                 w: 2,
-                h: 4,
+                h: 3,
                 minW: 2,
                 maxW: 6,
-                maxH: 6,
-                minH: 4
+                maxH: 4,
+                minH: 3
               }}
             >
               <SpotifyPlaylist />
@@ -334,7 +343,7 @@ class Main extends Component {
                 x: 9,
                 y: 9,
                 w: 4,
-                h: 2,
+                h: 3,
                 minW: 4,
                 maxW: 8,
                 minH: 2,
