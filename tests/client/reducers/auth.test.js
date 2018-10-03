@@ -47,3 +47,17 @@ test('LOGIN_SUCCESS', () => {
     }
   });
 });
+
+test('REGISTER_REQUEST', () => {
+  const action = {
+    type: 'REGISTER_REQUEST'
+  };
+
+  const actual = authReducer(initialState, action);
+  expect(actual).toEqual({
+    ...initialState,
+    isFetching: true,
+    isAuthenticated: false,
+    errorMessage: ''
+  });
+});
