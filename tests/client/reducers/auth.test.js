@@ -15,13 +15,35 @@ test('auth reducer Initial State', () => {
 });
 
 test('LOGIN_REQUEST', () => {
-  const actual = authReducer(initialState, {
+  const action = {
     type: 'LOGIN_REQUEST'
-  });
+  };
+
+  const actual = authReducer(initialState, action);
   expect(actual).toEqual({
     ...initialState,
     isFetching: true,
     isAuthenticated: false,
     errorMessage: ''
+  });
+});
+
+test('LOGIN_SUCCESS', () => {
+  const action = {
+    type: 'LOGIN_SUCCESS',
+    user: {
+      user_name: 'Test',
+      user_password: 'Test'
+    }
+  };
+  const actual = authReducer(initialState, action);
+  expect(actual).toEqual({
+    ...initialState,
+    isFetching: false,
+    isAuthenticated: true,
+    user: {
+      user_name: 'Test',
+      user_password: 'Test'
+    }
   });
 });
