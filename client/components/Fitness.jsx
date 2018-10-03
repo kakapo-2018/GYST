@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { saveTotalCals, getTotalCals } from '../actions/calories';
+import {
+  saveTotalCals,
+  getTotalCals,
+  deleteCalories
+} from '../actions/calories';
 
 //Material UI
 import Card from '@material-ui/core/Card';
@@ -11,6 +15,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
 import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -83,6 +88,13 @@ class Fitness extends Component {
     );
   };
 
+  delete = () => {
+    this.props.deleteCalories(this.props.state.auth.user.id);
+    setTimeout(() => {
+      this.props.getTotalCals(this.props.state.auth.user.id);
+    }, 200);
+  };
+
   updateInputValue(evt) {
     this.setState({
       searchTerm: evt.target.value
@@ -151,6 +163,15 @@ class Fitness extends Component {
         >
           <AddIcon />
         </Button>
+        <Button
+          variant="fab"
+          color="primary"
+          aria-label="Add"
+          className={classes.button}
+          onClick={this.delete}
+        >
+          <DeleteIcon />
+        </Button>
       </Card>
     );
   }
@@ -171,6 +192,9 @@ function mapDispatchToProps(dispatch) {
     },
     getTotalCals: id => {
       dispatch(getTotalCals(id));
+    },
+    deleteCalories: id => {
+      dispatch(deleteCalories(id));
     }
   };
 }

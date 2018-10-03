@@ -5,7 +5,7 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
-function requestLogin() {
+export function requestLogin() {
   return {
     type: LOGIN_REQUEST,
     isFetching: true,
@@ -22,7 +22,7 @@ export function receiveLogin(user) {
   };
 }
 
-function loginError(message) {
+export function loginError(message) {
   return {
     type: LOGIN_FAILURE,
     isFetching: false,
@@ -55,7 +55,7 @@ export function loginUser(creds) {
   };
 }
 
-function receiveImage(image) {
+export function receiveImage(image) {
   return {
     type: 'IMAGE_RECEIVED',
     isFetching: false,

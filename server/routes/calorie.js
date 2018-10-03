@@ -10,7 +10,17 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/save', (req, res) => {
-  calorieDB.saveCalories(req.body.totalcals, req.body.id).then(result => {
+  let calories = req.body.totalcals;
+
+  if (calories == NaN || calories == null) calories = 0;
+
+  calorieDB.saveCalories(calories, req.body.id).then(result => {
+    res.json(result);
+  });
+});
+
+router.post('/delete/:id', (req, res) => {
+  calorieDB.deleteCalories(req.params.id).then(result => {
     res.json(result);
   });
 });

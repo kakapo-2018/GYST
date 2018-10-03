@@ -1,4 +1,4 @@
-function getMail(counter) {
+export function getMail(counter) {
   return {
     type: 'SET_MAIL',
     counter: counter
