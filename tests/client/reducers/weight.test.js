@@ -48,3 +48,16 @@ test('LOADING_WEIGHT', () => {
 
   expect(actual).toEqual(expected);
 });
+
+test('LOGOUT_SUCCESS', () => {
+  const expected = '';
+
+  const action = {
+    type: 'LOGOUT_SUCCESS',
+    weiht: ''
+  };
+
+  const actual = weightReducer([], action).weight;
+
+  expect(actual).toEqual(expected);
+});
