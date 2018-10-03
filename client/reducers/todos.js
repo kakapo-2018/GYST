@@ -16,6 +16,6 @@ export default function todos(state = [], action) {
         notification: ''
       };
     default:
-      return { ...state };
+      return state;
   }
 }
