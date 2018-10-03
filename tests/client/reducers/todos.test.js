@@ -8,7 +8,7 @@ test('todos reducer Initial State', () => {
   expect(actual).toEqual(expected);
 });
 
-test('GET_TODOS', () => {
+test('getting users todos', () => {
   const todos = ['get petrol', 'dishes'];
   const expected = [...todos];
 
@@ -22,7 +22,7 @@ test('GET_TODOS', () => {
   expect(actual).toEqual(expected);
 });
 
-test('DEL_TODOS', () => {
+test('returns todos after one is deleted', () => {
   const todos = ['get petrol'];
   const expected = [...todos];
 
@@ -36,15 +36,14 @@ test('DEL_TODOS', () => {
   expect(actual).toEqual(expected);
 });
 
-// test('LOADING_WEIGHT', () => {
-//   const expected = true;
+test('cleared todos state on logout', () => {
+  const expected = '';
+  const action = {
+    type: 'LOGOUT_SUCCESS',
+    notification: ''
+  };
 
-//   const action = {
-//     type: 'LOADING_WEIGHT',
-//     loading: true
-//   };
+  const actual = todoReducer([], action).notification;
 
-//   const actual = todoReducer([], action).loading;
-
-//   expect(actual).toEqual(expected);
-// });
+  expect(actual).toEqual(expected);
+});
