@@ -24,7 +24,7 @@ export function saveTotalCals(totalcals, id) {
     request('post', '/calories/save', obj).then(response => {
       if (!response.ok) {
       } else {
-        dispatch(setCals(response.body));
+        dispatch(setCals(response.body.calories));
       }
     });
   };
