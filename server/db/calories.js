@@ -5,6 +5,35 @@ function getCalories(id, testDB) {
   return db('calories').where({ userid: id });
 }
 
+function deleteCalories(id, testDB) {
+  console.log(id);
+  const db = testDB || connection;
+  return db('calories')
+    .where('userid', id)
+    .then(data => {
+      //If user exists update
+      if (data.length > 0) {
+        return db('calories')
+          .where('userid', id)
+          .update({
+            userid: id,
+            calories: 0
+          });
+      }
+      //Else create new entry
+      else {
+        console.log("user calories don't exist");
+      }
+    })
+    .then(data => {
+      return connection('calories')
+        .where({
+          userid: id
+        })
+        .first();
+    });
+}
+
 function saveCalories(cals, id, testDB) {
   const db = testDB || connection;
   console.log(cals);
@@ -40,5 +69,6 @@ function saveCalories(cals, id, testDB) {
 
 module.exports = {
   getCalories,
-  saveCalories
+  saveCalories,
+  deleteCalories
 };
