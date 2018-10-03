@@ -6,7 +6,7 @@ export default function todos(state = [], action) {
       };
     case 'LOGOUT_SUCCESS':
       return {
-        spotify: ''
+        spotify: []
       };
     default:
       return state;

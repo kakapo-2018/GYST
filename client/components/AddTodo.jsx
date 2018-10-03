@@ -55,22 +55,25 @@ class AddTodo extends Component {
             <TextField
               hinttext="What needs to be done?"
               className="AddText"
+              placeholder="What needs to be done?"
               fullWidth={true}
               onChange={e => this.setState({ inputValue: e.target.value })}
             />
           </Paper>
           <br />
-          <Button
-            mini
-            type="submit"
-            variant="fab"
-            color="primary"
-            aria-label="Add"
-            onClick={this.onClick}
-            className={classes.button}
-          >
-            <AddIcon />
-          </Button>
+          {this.state.inputValue && (
+            <Button
+              mini
+              type="submit"
+              variant="fab"
+              color="primary"
+              aria-label="Add"
+              onClick={this.onClick}
+              className={classes.button}
+            >
+              <AddIcon />
+            </Button>
+          )}
         </form>
       </div>
     );

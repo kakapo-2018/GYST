@@ -83,9 +83,9 @@ class SpotifyPlaylist extends React.Component {
             />
           )}
           <TextField
-            style={{ margin: '10px' }}
+            style={{ width: '60%', marginLeft: '5px' }}
             id="standard-textarea"
-            label="Enter playlist embed URI"
+            label="Enter playlist URI"
             placeholder="URI embed link"
             multiline
             name="spotify"
@@ -95,7 +95,7 @@ class SpotifyPlaylist extends React.Component {
           />
           {!this.state.inputURI == '' && (
             <Button
-              style={{ margin: '10px' }}
+              style={{ margin: '0px' }}
               onClick={this.handleClick}
               variant="fab"
               color="primary"
@@ -106,7 +106,8 @@ class SpotifyPlaylist extends React.Component {
           )}
           {this.state.inputURI == '' && (
             <Button
-              style={{ margin: '10px' }}
+              mini
+              style={{ marginTop: '25px', marginRight: '5px' }}
               variant="fab"
               color="primary"
               aria-label="Add"
@@ -115,7 +116,8 @@ class SpotifyPlaylist extends React.Component {
             </Button>
           )}
           <Button
-            style={{ margin: '10px' }}
+            mini
+            style={{ marginTop: '25px' }}
             onClick={this.handleRefresh}
             variant="fab"
             color="primary"
