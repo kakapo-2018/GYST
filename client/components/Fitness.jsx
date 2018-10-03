@@ -40,16 +40,15 @@ class Fitness extends Component {
       searchInfo: '',
       searchTerm: '',
       currentCals: 0,
-      totalCals: 0
+      totalCals: this.props.state.calories.totalcalories || 0
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.getTotalCals(this.props.state.auth.user.id);
-
     setTimeout(() => {
       this.setState({ totalCals: this.props.state.calories.totalcalories });
-    }, 2000);
+    }, 200);
   }
 
   getData = () => {
@@ -130,7 +129,7 @@ class Fitness extends Component {
               marginLeft: '10px'
             }}
           >
-            kCals consumed today: {this.state.totalCals}
+            kCals consumed today: {this.props.state.calories.totalcalories}
           </Typography>
         )}
 

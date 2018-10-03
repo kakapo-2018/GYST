@@ -7,16 +7,19 @@ function getCalories(id, testDB) {
 
 function saveCalories(cals, id, testDB) {
   const db = testDB || connection;
+  console.log(cals);
 
   return db('calories')
     .where('userid', id)
     .then(data => {
       //If user exists update
       if (data.length > 0) {
-        return db('calories').update({
-          userid: id,
-          calories: cals
-        });
+        return db('calories')
+          .where('userid', id)
+          .update({
+            userid: id,
+            calories: cals
+          });
       }
       //Else create new entry
       else {
@@ -27,9 +30,11 @@ function saveCalories(cals, id, testDB) {
       }
     })
     .then(data => {
-      return connection('calories').where({
-        userid: id
-      });
+      return connection('calories')
+        .where({
+          userid: id
+        })
+        .first();
     });
 }
 
