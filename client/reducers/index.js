@@ -6,6 +6,7 @@ import auth from './auth';
 import image from './image';
 import weight from './weight';
 import calories from './calories';
+import mail from './mail';
 
 import { items, itemsHasErrored, itemsIsLoading } from './example_reducer';
 
@@ -19,5 +20,6 @@ export default combineReducers({
   insta,
   image,
   weight,
-  calories
+  calories,
+  mail
 });
