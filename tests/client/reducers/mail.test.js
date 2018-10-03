@@ -2,22 +2,17 @@ import mailReducer from '../../../client/reducers/mail';
 
 test('mail reducer Initial State', () => {
   const expected = [];
-
   const actual = mailReducer(undefined, {});
-
   expect(actual).toEqual(expected);
 });
 
 test('getting users mail list', () => {
-  const counter = 1;
-  const expected = counter;
+  const expected = 18;
   const action = {
     type: 'SET_MAIL',
-    mail: counter
+    counter: 18
   };
-
-  const actual = mailReducer([], action).counter;
-
+  const actual = mailReducer([], action).mail;
   expect(actual).toEqual(expected);
 });
 
@@ -27,8 +22,6 @@ test('cleared mail state on logout', () => {
     type: 'LOGOUT_SUCCESS',
     spotify: []
   };
-
   const actual = mailReducer([], action).mail;
-
   expect(actual).toEqual(expected);
 });
