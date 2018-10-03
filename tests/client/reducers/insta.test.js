@@ -17,3 +17,13 @@ test('getting users insta list', () => {
   const actual = instaReducer([], action).insta;
   expect(actual).toEqual(expected);
 });
+
+test('cleared insta state on logout', () => {
+  const expected = [];
+  const action = {
+    type: 'LOGOUT_SUCCESS',
+    spotify: []
+  };
+  const actual = instaReducer([], action).insta;
+  expect(actual).toEqual(expected);
+});

@@ -6,7 +6,7 @@ export default function insta(state = [], action) {
       };
     case 'LOGOUT_SUCCESS':
       return {
-        insta: ''
+        insta: []
       };
     default:
       return state;
