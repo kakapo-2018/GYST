@@ -1,6 +1,5 @@
 import * as actions from '../../../client/actions/weight';
 import nock from 'nock';
-import { log } from 'core-js';
 
 const fakeid = {
   id: 1
