@@ -41,8 +41,39 @@ class Modal2 extends React.Component {
             </Typography>
             <Typography variant="subheading" id="simple-modal-description">
               Thanks for visiting. We hope you enjoy using the GYST Dashboard.
-              Created in 2018 by Luke C, Yuzuki S and Leslie A, as part of our
-              final group project at Enspiral Dev Academy.
+              Created in 2018 by:
+              <ul>
+                <li>
+                  <a
+                    style={{ textDecoration: 'none' }}
+                    href="https://github.com/lukechadwick"
+                  >
+                    Luke C
+                  </a>
+                </li>
+                <li>
+                  <a
+                    style={{ textDecoration: 'none' }}
+                    href="https://github.com/Yuzuki-S"
+                  >
+                    Yuzuki S
+                  </a>
+                </li>
+                <li>
+                  <a
+                    style={{ textDecoration: 'none' }}
+                    href="https://github.com/leslie-alldridge"
+                  >
+                    Leslie A
+                  </a>
+                </li>
+              </ul>
+              As part of our final group project at Enspiral Dev Academy.
+              <br />
+              <img
+                style={{ maxWidth: '100%', maxHeight: '100%' }}
+                src="/team.jpg"
+              />
             </Typography>
             <SimpleModalWrapped />
           </div>
