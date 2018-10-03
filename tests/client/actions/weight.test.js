@@ -1,6 +1,5 @@
 import * as actions from '../../../client/actions/weight';
 import nock from 'nock';
-import { log } from 'core-js';
 
 const fakeid = {
   id: 1
@@ -38,7 +37,7 @@ test('get weight will dispatch an action on success', done => {
 });
 
 test('receive weight action creator', () => {
-  const fakeWeight = '20, 30';
+  const fakeWeight = [20, 30];
 
   const expected = {
     type: 'GET_WEIGHT',
@@ -50,7 +49,7 @@ test('receive weight action creator', () => {
 });
 
 test('set weight action creator', () => {
-  const fakeWeight = '20, 30';
+  const fakeWeight = [20, 30];
 
   const expected = {
     type: 'SET_WEIGHT',
@@ -71,22 +70,31 @@ test('loading weight action creator', () => {
 });
 
 test('save weight will dispatch an action on success', () => {
-  const fakeWeight = '20, 30';
+  const fakeWeight = [{ date: '20', kg: '30' }];
 
   const scope = nock('http://localhost:80')
-    .get('/weight/save')
+    .get('/api/v1/weight/save')
     .reply(200, fakeWeight);
 
   const expected = {
+    type: 'LOADING_WEIGHT',
+    isFetching: true
+  };
+  const secondExpected = {
     type: 'SET_WEIGHT',
     isFetching: false,
-    weight: fakeWeight
+    weight: [['Date', 'Weight'], ['20', '30']]
   };
-
-  const dispatch = jest.fn().mockImplementationOnce(action => {
-    expect(action).toEqual(expected);
-    scope.done();
-  });
+  const dispatch = jest
+    .fn()
+    .mockImplementationOnce(action => {
+      expect(action).toEqual(expected);
+    })
+    .mockImplementationOnce(action => {
+      expect(action).toEqual(secondExpected);
+      scope.done();
+      done();
+    });
 
   actions.saveWeightAction(dispatch);
 });

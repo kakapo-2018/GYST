@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { saveTotalCals, getTotalCals } from '../actions/calories';
+import {
+  saveTotalCals,
+  getTotalCals,
+  deleteCalories
+} from '../actions/calories';
 
 //Material UI
 import Card from '@material-ui/core/Card';
@@ -11,6 +15,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
 import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -40,7 +45,7 @@ class Fitness extends Component {
       searchInfo: '',
       searchTerm: '',
       currentCals: 0,
-      totalCals: this.props.state.calories.totalcalories || 0
+      totalCals: this.props.state.calories.totalcalories || 0.1
     };
   }
 
@@ -81,6 +86,15 @@ class Fitness extends Component {
         );
       }
     );
+  };
+
+  delete = () => {
+    this.setState({ totalCals: 0 });
+    this.props.deleteCalories(this.props.state.auth.user.id);
+    setTimeout(() => {
+      this.props.getTotalCals(this.props.state.auth.user.id);
+    }, 200);
+    this.forceUpdate();
   };
 
   updateInputValue(evt) {
@@ -129,7 +143,8 @@ class Fitness extends Component {
               marginLeft: '10px'
             }}
           >
-            kCals consumed today: {this.props.state.calories.totalcalories}
+            {'kCals consumed today:' +
+              Math.floor(this.props.state.calories.totalcalories)}
           </Typography>
         )}
 
@@ -143,6 +158,7 @@ class Fitness extends Component {
           variant="outlined"
         />
         <Button
+          mini
           variant="fab"
           color="primary"
           aria-label="Add"
@@ -150,6 +166,16 @@ class Fitness extends Component {
           onClick={this.submit}
         >
           <AddIcon />
+        </Button>
+        <Button
+          mini
+          variant="fab"
+          color="primary"
+          aria-label="Add"
+          className={classes.button}
+          onClick={this.delete}
+        >
+          <DeleteIcon />
         </Button>
       </Card>
     );
@@ -171,6 +197,9 @@ function mapDispatchToProps(dispatch) {
     },
     getTotalCals: id => {
       dispatch(getTotalCals(id));
+    },
+    deleteCalories: id => {
+      dispatch(deleteCalories(id));
     }
   };
 }
