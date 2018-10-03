@@ -1,6 +1,6 @@
 const request = require('supertest');
 
-jest.mock('../../server/db/userDBFunctions', () => ({
+jest.mock('../../server/db/userDBfunctions', () => ({
   getUser: id =>
     Promise.resolve({ id: id, name: 'test user', email: 'test@user.nz' }),
   getUsers: () =>
@@ -10,31 +10,16 @@ jest.mock('../../server/db/userDBFunctions', () => ({
     ])
 }));
 
-const server = require('../server/server');
+const server = require('../../server/server');
 
 test('GET /', () => {
   return request(server)
     .get('/api/v1/')
     .expect(200)
     .then(res => {
-      console.log('response', res.text);
+      // console.log('response', res.text);
 
-      // .first()
-      // .text();
       expect(res.text).toContain('@user.nz');
     })
     .catch(err => expect(err).toBeNull());
 });
-
-// test('GET /', () => {
-//   jest
-//     .getUser(4)
-//     .then(res => {
-//       console.log('response', res.text);
-
-//       // .first()
-//       // .text();
-//       expect(res.text).toContain('@user.nz');
-//     })
-//     .catch(err => expect(err).toBeNull());
-// });

@@ -1,7 +1,7 @@
 const verifyJwt = require('express-jwt');
 const jwt = require('jsonwebtoken');
 
-const db = require('../db/userDBFunctions');
+const db = require('../db/userDBfunctions');
 
 function issue(req, res) {
   db.getUserByName(req.body.username).then(user => {

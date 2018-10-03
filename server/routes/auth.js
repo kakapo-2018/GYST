@@ -8,7 +8,7 @@ const {
   userExists,
   createUser,
   getUserByName
-} = require('../db/userDBFunctions');
+} = require('../db/userDBfunctions');
 
 router.post('/register', register, token.issue);
 

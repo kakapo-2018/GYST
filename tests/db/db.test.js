@@ -1,5 +1,5 @@
 const testEnv = require('./test-environment');
-const db = require('../server/db/userDBFunctions');
+const db = require('../../server/db/userDBfunctions');
 
 let testDb = null;
 
@@ -22,7 +22,7 @@ test('getUsers gets all users', () => {
 });
 
 test('getUser user email from getUserByName query', () => {
-  const expected = 'a@b.com';
+  const expected = 'Wanganui@nz.nz';
   return db
     .getUserByName('Jake', testDb)
     .then(user => {
