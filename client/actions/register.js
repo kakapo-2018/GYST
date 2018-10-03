@@ -5,7 +5,7 @@ import { saveUserToken } from '../utils/auth';
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 
-function requestRegister(creds) {
+export function requestRegister(creds) {
   return {
     type: REGISTER_REQUEST,
     isFetching: true,

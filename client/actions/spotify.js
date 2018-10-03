@@ -20,7 +20,7 @@ export function getSpotifyAction(id) {
 }
 
 //function that returns the playlist items to redux
-function recievePlaylist(response) {
+export function recievePlaylist(response) {
   return {
     type: 'GET_PLAYLIST',
     isFetching: false,
