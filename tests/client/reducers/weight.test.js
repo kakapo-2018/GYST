@@ -10,14 +10,41 @@ test('weight reducer Initial State', () => {
 
 test('GET_WEIGHT', () => {
   const fakeWeight = [30, 40];
-  const expected = fakeWeight;
+  const expected = [...fakeWeight];
 
   const action = {
     type: 'GET_WEIGHT',
     weight: fakeWeight
   };
 
-  const actual = weightReducer(undefined, action);
+  const actual = weightReducer([], action).weight;
+
+  expect(actual).toEqual(expected);
+});
+
+test('SET_WEIGHT', () => {
+  const fakeWeight = [20, 25];
+  const expected = [...fakeWeight];
+
+  const action = {
+    type: 'SET_WEIGHT',
+    weight: fakeWeight
+  };
+
+  const actual = weightReducer([], action).weight;
+
+  expect(actual).toEqual(expected);
+});
+
+test('LOADING_WEIGHT', () => {
+  const expected = true;
+
+  const action = {
+    type: 'LOADING_WEIGHT',
+    loading: true
+  };
+
+  const actual = weightReducer([], action).loading;
 
   expect(actual).toEqual(expected);
 });
