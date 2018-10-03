@@ -40,6 +40,7 @@ test('cleared todos state on logout', () => {
   const expected = '';
   const action = {
     type: 'LOGOUT_SUCCESS',
+    todos: [],
     notification: ''
   };
 
