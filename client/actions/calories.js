@@ -41,3 +41,16 @@ export function getTotalCals(id) {
     });
   };
 }
+
+export function deleteCalories(id) {
+  return function(dispatch) {
+    request('post', '/calories/delete/' + id).then(response => {
+      if (!response.ok) {
+      } else {
+        console.log(response);
+
+        dispatch(getCals(response.body.calories));
+      }
+    });
+  };
+}
