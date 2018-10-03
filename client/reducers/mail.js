@@ -6,9 +6,9 @@ export default function mail(state = [], action) {
       };
     case 'LOGOUT_SUCCESS':
       return {
-        mail: ''
+        mail: []
       };
     default:
-      return { ...state };
+      return state;
   }
 }

@@ -12,10 +12,10 @@ export default function todos(state = [], action) {
       };
     case 'LOGOUT_SUCCESS':
       return {
-        todos: '',
+        todos: [],
         notification: ''
       };
     default:
-      return { ...state };
+      return state;
   }
 }
