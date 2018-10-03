@@ -20,7 +20,7 @@ export function getWeightAction(id) {
 }
 
 //function that returns the weight info to redux
-function recieveWeight(response) {
+export function recieveWeight(response) {
   return {
     type: 'GET_WEIGHT',
     isFetching: false,
@@ -28,7 +28,7 @@ function recieveWeight(response) {
   };
 }
 
-function setWeight(response) {
+export function setWeight(response) {
   return {
     type: 'SET_WEIGHT',
     isFetching: false,
@@ -36,7 +36,7 @@ function setWeight(response) {
   };
 }
 
-function gettingWeights() {
+export function gettingWeights() {
   return {
     type: 'LOADING_WEIGHT',
     isFetching: true
