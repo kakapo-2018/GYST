@@ -26,6 +26,14 @@ const styles = {
   },
   pos: {
     marginBottom: 12
+  },
+  button: {
+    marginTop: '25px'
+  },
+  text: {
+    width: '75%',
+    marginLeft: '27px',
+    marginRight: '28px'
   }
 };
 
@@ -69,23 +77,6 @@ class instaFeed extends React.Component {
     return (
       <Card className={classes.card}>
         <CardContent>
-          <TextField
-            onChange={this.handleChange}
-            value={this.state.instaURL}
-            id="standard-textarea"
-            label="Add instagram image url"
-            placeholder="URL link"
-            multiline
-            margin="normal"
-          />
-          <Button
-            onClick={this.handleClick}
-            variant="fab"
-            color="primary"
-            aria-label="Add"
-          >
-            <AddIcon />
-          </Button>
           {this.props.insta.insta &&
             this.props.insta.insta.map(post => {
               return (
@@ -103,6 +94,26 @@ class instaFeed extends React.Component {
               );
             })}
         </CardContent>
+        <TextField
+          className={classes.text}
+          onChange={this.handleChange}
+          value={this.state.instaURL}
+          id="standard-textarea"
+          label="Add instagram image url"
+          placeholder="URL link"
+          multiline
+          margin="normal"
+        />
+        <Button
+          mini
+          className={classes.button}
+          onClick={this.handleClick}
+          variant="fab"
+          color="primary"
+          aria-label="Add"
+        >
+          <AddIcon />
+        </Button>
       </Card>
     );
   }
