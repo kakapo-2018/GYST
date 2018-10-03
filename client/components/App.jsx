@@ -16,7 +16,8 @@ export class App extends Component {
     this.state = {
       authenticated: false,
       loggedInAs: '',
-      mobileOpen: false
+      mobileOpen: false,
+      paddingSize: 255
     };
     this.logOut = this.logOut.bind(this);
     this.refreshLoginState = this.refreshLoginState.bind(this);
@@ -24,6 +25,9 @@ export class App extends Component {
 
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+
+    if (this.state.mobileOpen) this.setState({ paddingSize: 0 });
+    else this.setState({ paddingSize: 0 });
   };
 
   componentDidMount() {
@@ -70,6 +74,7 @@ export class App extends Component {
           />
         )}
         <PersistentDrawer
+          paddingSize={this.state.paddingSize}
           handleDrawerToggle={this.handleDrawerToggle}
           drawerState={this.state.mobileOpen}
         />

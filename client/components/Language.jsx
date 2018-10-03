@@ -37,6 +37,7 @@ const styles = theme => ({
     width: '35%'
   },
   img: {
+    width: '60%',
     float: 'left'
   },
   formControl: {
@@ -47,7 +48,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 2
   },
   score: {
-    width: '300px',
+    width: '59%',
     position: 'fixed',
     zIndex: 1,
     color: 'white',
