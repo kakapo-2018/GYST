@@ -34,7 +34,9 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   content: {
-    paddingLeft: '255px',
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: 255
+    },
     flexGrow: 1,
     padding: theme.spacing.unit * 3
   },
@@ -77,7 +79,14 @@ class Main extends Component {
     const { classes, theme } = this.props;
     const bgColor = get('bgcolor');
     return (
-      <main style={{ backgroundColor: bgColor }} className={classes.content}>
+      <main
+        style={{
+          backgroundColor: bgColor
+          // paddingLeft: this.props.paddingSize
+          // paddingLeft: classes.paddingLeft
+        }}
+        className={classes.content}
+      >
         <div className={classes.toolbar} />
         <ResponsiveGridLayout
           className="layout"
