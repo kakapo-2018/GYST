@@ -1,29 +1,40 @@
 import * as actions from '../../../client/actions/weight';
 import nock from 'nock';
+import { log } from 'core-js';
 
 const fakeid = {
   id: 1
 };
 
-test('get weight will dispatch an action on success', () => {
-  const fakeWeight = '20, 30';
+test('get weight will dispatch an action on success', done => {
+  const fakeWeight = [{ date: '20', kg: '30' }];
 
   const scope = nock('http://localhost:80')
-    .get('/weight')
+    .get('/api/v1/weight')
     .reply(200, fakeWeight);
 
   const expected = {
+    type: 'LOADING_WEIGHT',
+    isFetching: true
+  };
+  const secondExpected = {
     type: 'GET_WEIGHT',
     isFetching: false,
-    weight: fakeWeight
+    weight: [['Date', 'Weight'], ['20', '30']]
   };
 
-  const dispatch = jest.fn().mockImplementationOnce(action => {
-    expect(action).toEqual(expected);
-    scope.done();
-  });
+  const dispatch = jest
+    .fn()
+    .mockImplementationOnce(action => {
+      expect(action).toEqual(expected);
+    })
+    .mockImplementationOnce(action => {
+      expect(action).toEqual(secondExpected);
+      scope.done();
+      done();
+    });
 
-  actions.getWeightAction(dispatch);
+  actions.getWeightAction()(dispatch);
 });
 
 test('receive weight action creator', () => {
