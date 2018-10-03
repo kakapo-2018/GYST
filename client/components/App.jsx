@@ -74,7 +74,6 @@ export class App extends Component {
           />
         )}
         <PersistentDrawer
-          paddingSize={this.state.paddingSize}
           handleDrawerToggle={this.handleDrawerToggle}
           drawerState={this.state.mobileOpen}
         />
