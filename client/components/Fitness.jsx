@@ -15,6 +15,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
 import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -88,7 +89,7 @@ class Fitness extends Component {
   };
 
   delete = () => {
-    this.props.deleteCalories(this.state.auth.user.id);
+    this.props.deleteCalories(this.props.state.auth.user.id);
     setTimeout(() => {
       this.props.getTotalCals(this.props.state.auth.user.id);
     }, 200);
@@ -169,7 +170,7 @@ class Fitness extends Component {
           className={classes.button}
           onClick={this.delete}
         >
-          <AddIcon />
+          <DeleteIcon />
         </Button>
       </Card>
     );
