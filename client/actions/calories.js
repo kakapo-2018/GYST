@@ -47,8 +47,6 @@ export function deleteCalories(id) {
     request('post', '/calories/delete/' + id).then(response => {
       if (!response.ok) {
       } else {
-        console.log(response);
-
         dispatch(getCals(response.body.calories));
       }
     });
