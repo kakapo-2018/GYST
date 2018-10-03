@@ -1,5 +1,4 @@
 import * as actions from '../../../client/actions/gmail';
-import nock from 'nock';
 
 // test('check unread mail action creator', () => {
 //   const fakeCounter = 30;

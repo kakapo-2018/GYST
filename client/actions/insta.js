@@ -15,7 +15,7 @@ export function getInsta(id) {
 }
 
 //function that returns the insta items to redux
-function recieveInsta(response) {
+export function recieveInsta(response) {
   return {
     type: 'GET_INSTA',
     isFetching: false,
