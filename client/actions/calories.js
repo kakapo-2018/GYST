@@ -19,6 +19,7 @@ export function getCals(response) {
 
 //setting calorie info for a user
 export function saveTotalCals(totalcals, id) {
+  console.log(id);
   let obj = { totalcals: totalcals, id: id };
   return function(dispatch) {
     request('post', '/calories/save', obj).then(response => {

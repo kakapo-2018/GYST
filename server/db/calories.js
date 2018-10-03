@@ -17,7 +17,7 @@ function deleteCalories(id, testDB) {
           .where('userid', id)
           .update({
             userid: id,
-            calories: 0
+            calories: 0.1
           });
       }
       //Else create new entry
