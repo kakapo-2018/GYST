@@ -13,3 +13,15 @@ test('auth reducer Initial State', () => {
 
   expect(actual).toEqual(initialState);
 });
+
+test('LOGIN_REQUEST', () => {
+  const actual = authReducer(initialState, {
+    type: 'LOGIN_REQUEST'
+  });
+  expect(actual).toEqual({
+    ...initialState,
+    isFetching: true,
+    isAuthenticated: false,
+    errorMessage: ''
+  });
+});
