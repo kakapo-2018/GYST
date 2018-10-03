@@ -1,7 +1,7 @@
 import request from '../utils/api';
 
 //function that returns the weight info to redux
-function setCals(response) {
+export function setCals(response) {
   return {
     type: 'SET_CALORIES',
     isFetching: false,
@@ -9,7 +9,7 @@ function setCals(response) {
   };
 }
 
-function getCals(response) {
+export function getCals(response) {
   return {
     type: 'GET_CALORIES',
     isFetching: false,
