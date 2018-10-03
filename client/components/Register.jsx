@@ -5,18 +5,11 @@ import { registerUser } from '../actions/register';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import VpnKey from '@material-ui/icons/VpnKey';
-import Email from '@material-ui/icons/Email';
-import Photo from '@material-ui/icons/Photo';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 const styles = theme => ({
